@@ -1,0 +1,37 @@
+<?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
+<html>
+<head>
+    <?= $this->headTitle() ?>
+</head>
+<body>
+    <div class="container">
+        <div class="block">
+            <div id="header" class="column span-24">
+                <h1> <?= $this->bugMsg ?> </h1>
+            </div>
+        </div>
+
+
+        <div class="block">
+            <div id="principal" class="column span-24">
+                 <table class="bordered">
+                    <thead>
+                        <tr> <th>Nombre</th> <th>Usuario</th> </tr>
+                    </thead>
+                    <tbody>
+                        <? foreach($this->users as $user) { ?>
+                        <tr> <td> <?= $user->NOMBRE_USU ?> </td> <td> <?= $user->USUARIO_USU ?> </td> </tr>
+                        <? } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="block">
+            <div id="footer" class="span-24">
+                <p>Copyright &copy; 2008 Trifiori</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
