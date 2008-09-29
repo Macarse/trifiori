@@ -9,8 +9,24 @@ class IndexController extends Trifiori_Default_Controller_Action
         //mostrar contenido de una base de datos.
         $this->listarTodo();
 
+        $this->mostrarUsu();
+
         //TODO: _baseUrl esta fucked up habria que corregirlo.
         //echo $this->_baseUrl;
+    }
+
+    public function mostrarUsu()
+    {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        if ( $identity )
+        {
+	    echo 'Usuario:'. $identity->USUARIO_USU . "<br />";
+	    echo 'Es admin:' . Zend_Registry::getInstance()->admin;
+        }
+	else
+	{
+	   echo 'Usuario no loggeado';
+	}
     }
 
     public function listarTodo()
