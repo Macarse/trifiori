@@ -388,8 +388,8 @@ INSERT INTO EXPORTACIONES VALUES(14709, 1, 4, 858, 'ARS', 3, 2, 140, NULL, STR_T
 INSERT INTO EXPORTACIONES VALUES(98481, 5, 4, 336, 'ARS', 3, 2, 122, NULL, STR_TO_DATE('19/07/2007', '%d/%m/%Y'), 'Puloveres', 11824, STR_TO_DATE('14/10/2007', '%d/%m/%Y'), STR_TO_DATE('03/08/2007', '%d/%m/%Y'), '12129MASW', STR_TO_DATE('18/12/2007', '%d/%m/%Y'), 'PPAMSXMASX', STR_TO_DATE('28/12/2007', '%d/%m/%Y'));
 INSERT INTO EXPORTACIONES VALUES(12481, 3, 2, 336, 'ARS', 3, 2, 120, NULL, STR_TO_DATE('13/05/2007', '%d/%m/%Y'), 'Camperas de Cuero', 8499, STR_TO_DATE('14/10/2007', '%d/%m/%Y'), STR_TO_DATE('03/08/2007', '%d/%m/%Y'), 'KASJ123-12', STR_TO_DATE('25/12/2007', '%d/%m/%Y'), 'MXMXMAL-129-A', STR_TO_DATE('21/12/2007', '%d/%m/%Y'));
 
-INSERT INTO USUARIOS VALUES(1, 'Sr. Administrador', 'admin', 'admin', 1);
-INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', 'prueba', 'prueba', 1);
+INSERT INTO USUARIOS VALUES(1, 'Sr. Administrador', SHA1('admin'), 'admin', 1);
+INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', SHA1('prueba'), 'prueba', 1);
 
 INSERT INTO IDIOMAS VALUES(1, 'en');
 INSERT INTO IDIOMAS VALUES(2, 'es');
