@@ -5,12 +5,6 @@
 </head>
 <body>
     <div class="container">
-        <div class="block">
-            <div id="header" class="column span-24">
-                <h1> <?= $this->bugMsg ?> </h1>
-            </div>
-        </div>
-
 
         <div class="block">
             <div id="principal" class="column span-24">
@@ -25,7 +19,13 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+
+            <div class="column span-6 last">
+                <div id="login" class="box">
+                    <?= $this->action('loginstate', 'index', 'default') ?>
+                </div>
+            </div>
+
 
         <div class="block">
             <div id="footer" class="span-24">

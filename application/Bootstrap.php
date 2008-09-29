@@ -111,7 +111,8 @@ class Bootstrap
         else
         {
             Zend_Registry::getInstance()->identity=$identity;
-            Zend_Registry::getInstance()->admin=($identity->admin == 1);
+            //TODO: Todavia on detectamos si es admin o no.
+            //Zend_Registry::getInstance()->admin=($identity->admin == 1);
             Zend_Registry::getInstance()->user=true;
         }
     }
