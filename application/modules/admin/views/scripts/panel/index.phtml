@@ -1,7 +1,6 @@
 <?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
 <html>
 <head>
-    <link rel="stylesheet" href="/css/login.css" type="text/css" media="screen,projection"/>
     <?= $this->headTitle() ?>
 </head>
 <body>
@@ -10,7 +9,7 @@
         <div class="block">
             <div class="column span-6 last">
                 <div id="login" class="box">
-                    <?= $this->action('loginstate', 'index', 'default') ?>
+                    <?= $this->action('adduserstate', 'panel', 'admin') ?>
                 </div>
             </div>
 

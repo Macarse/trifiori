@@ -14,6 +14,26 @@ class IndexController extends Zend_Controller_Action
         $this->view->headTitle("Trifiori Login");
     }
 
+    public function mostrarUsu()
+    {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        if ( $identity )
+        {
+	    echo 'Usuario:'. $identity->USUARIO_USU . "<br />";
+	    echo 'Es admin:' . Zend_Registry::getInstance()->admin;
+        }
+	else
+	{
+	   echo 'Usuario no loggeado';
+	}
+    }
+
+    public function listarTodo()
+    {
+        $table = new Users();
+        $this->view->users = $table->fetchAll();
+    }
+
     public function loginstateAction()
     {
         $registry = Zend_Registry::getInstance();
@@ -45,15 +65,17 @@ class IndexController extends Zend_Controller_Action
                     if ($result->isValid())
                     {
                         $auth->getStorage()->write($adapter->getResultRowObject(null, 'password'));
-                        if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == 'admin')
-                        {
-                            $this->_helper->redirector->gotoUrl('admin/panel');
-                        }
-                        else
-                        {
-                            $this->_helper->redirector->gotoUrl('user/main-page');
-                        }
-                    }
+                        //TODO: Esto hay que modificarlo por la pagina principal.
+            			if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == 'admin')
+			            {
+	                        $this->_helper->redirector->gotoUrl('admin/panel');
+			            }
+			            else
+			            {
+				        //Pagina principal para users
+			            	echo 'pag principal';
+			            }
+		            }
                     else
                     {
                         // or not! Back to the login page!
