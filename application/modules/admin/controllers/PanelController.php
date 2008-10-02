@@ -2,6 +2,8 @@
 class admin_PanelController extends Zend_Controller_Action
 {
 
+    protected $_form;
+
     public function init()
     {
         if (!isset($this->_baseUrl))
@@ -25,11 +27,11 @@ class admin_PanelController extends Zend_Controller_Action
                 unset($this->view->failedAddUser);
                 unset($this->view->suceedAddUser);
 
-                $form = $this->getUserForm();
-                if ($form->isValid($_POST))
+                $this->_form = $this->getUserForm();
+                if ($this->_form->isValid($_POST))
                 {
                     // process user
-                    $values = $form->getValues();
+                    $values = $this->_form->getValues();
                     if ($values['password'] == $values['passwordvrfy'])
                     {
                         //Falta agregar idioma.
@@ -61,45 +63,50 @@ class admin_PanelController extends Zend_Controller_Action
 
     private function getUserForm()
     {
-        $form = new Zend_Form();
-        $form->setAction($this->_baseUrl)->setMethod('post');
+        if (null !== $this->_form)
+        {
+            return $this->_form;
+        }
 
-        $name = $form->createElement('text', 'name', array('label' => 'Nombre'));
+        $this->_form = new Zend_Form();
+        $this->_form->setAction($this->_baseUrl)->setMethod('post');
+
+        $name = $this->_form->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure username element:
-        $username = $form->createElement('text', 'username', array('label' => 'Usuario'));
+        $username = $this->_form->createElement('text', 'username', array('label' => 'Usuario'));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $form->createElement('password', 'password', array('label' => 'Clave'));
+        $password = $this->_form->createElement('password', 'password', array('label' => 'Clave'));
         $password->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
-        $passwordvrfy = $form->createElement('password', 'passwordvrfy', array('label' => 'Repetir Clave'));
+        $passwordvrfy = $this->_form->createElement('password', 'passwordvrfy', array('label' => 'Repetir Clave'));
         $passwordvrfy->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
         // frutita++
-        $lang = $form->createElement('text', 'lang', array('label' => 'Idioma'));
+        $lang = $this->_form->createElement('text', 'lang', array('label' => 'Idioma'));
         $lang->addValidator('StringLength', false, array(1,20))
                  ->setRequired(true);
 
         // Add elements to form:
-        $form->addElement($name)
+        $this->_form->addElement($name)
              ->addElement($username)
              ->addElement($password)
              ->addElement($passwordvrfy)
              ->addElement($lang)
              ->addElement('hidden', 'AddUserTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
-        return $form;
+        return $this->_form;
     }
 
 }

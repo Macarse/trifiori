@@ -288,11 +288,12 @@ create table TRANSPORTES
 create table USUARIOS
 (
    CODIGO_USU                     int AUTO_INCREMENT             not null,
-   NOMBRE_USU                     varchar(50),
+   NOMBRE_USU                     varchar(50)                    not null,
    PASSWORD_USU                   varbinary(128),
    USUARIO_USU                    varchar(30),
    IDIOMA_USU                     int,
-   primary key (CODIGO_USU)
+   primary key (CODIGO_USU),
+   unique USUARIO_USU (USUARIO_USU)
 );
 
 /*==============================================================*/

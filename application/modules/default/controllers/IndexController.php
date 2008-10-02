@@ -1,6 +1,8 @@
 <?php
 class IndexController extends Zend_Controller_Action
 {
+    protected $_form;
+
     public function init()
     {
         if (!isset($this->_baseUrl))
@@ -12,6 +14,17 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->headTitle("Trifiori Login");
+        if (Zend_Auth::getInstance()->getIdentity() !== null)
+        {
+            if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == "admin")
+            {
+                $this->_helper->redirector->gotoUrl('admin/panel');
+            }
+            else
+            {
+                $this->_helper->redirector->gotoUrl('user/main-page');
+            }
+        }
     }
 
     public function loginstateAction()
@@ -22,11 +35,11 @@ class IndexController extends Zend_Controller_Action
         {
             if (isset($_POST['loginTrack']))
             {
-                $form = $this->getLoginForm();
-                if ($form->isValid($_POST))
+                $this->_form = $this->getLoginForm();
+                if ($this->_form->isValid($_POST))
                 {
                     // process login
-                    $values = $form->getValues();
+                    $values = $this->_form->getValues();
 
                     $adapter = new Zend_Auth_Adapter_DbTable($registry->database);
                     $adapter->setTableName('USUARIOS');
@@ -85,26 +98,31 @@ class IndexController extends Zend_Controller_Action
 
     private function getLoginForm()
     {
-        $form = new Zend_Form();
-        $form->setAction($this->_baseUrl)->setMethod('post');
+        if (null !== $this->_form)
+        {
+            return $this->_form;
+        }
+
+        $this->_form = new Zend_Form();
+        $this->_form->setAction($this->_baseUrl)->setMethod('post');
 
         // Create and configure username element:
-        $username = $form->createElement('text', 'username', array('label' => 'Usuario'));
+        $username = $this->_form->createElement('text', 'username', array('label' => 'Usuario'));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $form->createElement('password', 'password', array('label' => 'Clave'));
+        $password = $this->_form->createElement('password', 'password', array('label' => 'Clave'));
         $password->addValidator('StringLength', false, array(1,20))
                  ->setRequired(true);
 
         // Add elements to form:
-        $form->addElement($username)
+        $this->_form->addElement($username)
              ->addElement($password)
              ->addElement('hidden', 'loginTrack', array('values' => 'logPost'))
              ->addElement('submit', 'login', array('label' => 'Ingresar'));
-        return $form;
+        return $this->_form;
     }
 }
