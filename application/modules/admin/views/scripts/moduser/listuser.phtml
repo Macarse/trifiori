@@ -1,15 +1,24 @@
-<table class="bordered">
-    <thead>
-        <tr> <th>ID</th> <th>Nombre</th> <th>Usuario</th> <th>Idioma</th> </tr>
-    </thead>
-    <tbody>
-        <? foreach($this->users as $user) { ?>
-        <tr> <td> <?= $user->id() ?> </td>
-             <td> <?= $user->name() ?> </td>
-             <td> <?= $user->user() ?> </td>
-             <td> <?= $user->language() ?> </td>
-             <td> <a href="<?= $this->baseUrl . "/removeuser/id/".$user->id()?>">Eliminar</a> </td>
-        </tr>
-        <? } ?>
-    </tbody>
-</table>
+<? if ($this->showForm) { ?>
+    <? if (isset($this->failedAddUser)) { ?>
+        <p class="error"> <?= $this->failedAddUser ?>.</p>
+    <? } ?>
+    <?= $this->modForm ?>
+    <?= $this->headTitle() ?>
+<? }else { ?>
+    <table class="bordered">
+        <thead>
+            <tr> <th>ID</th> <th>Nombre</th> <th>Usuario</th> <th>Idioma</th> </tr>
+        </thead>
+        <tbody>
+            <? foreach($this->users as $user) { ?>
+            <tr> <td> <?= $user->id() ?> </td>
+                <td> <?= $user->name() ?> </td>
+                <td> <?= $user->user() ?> </td>
+                <td> <?= $user->language() ?> </td>
+                <td> <a href="<?= $this->baseUrl . "/removeuser/id/".$user->id()?>">Eliminar</a> </td>
+                <td> <a href="<?= $this->baseUrl . "/listuser/id/".$user->id()?>">Modificar</a> </td>
+            </tr>
+            <? } ?>
+        </tbody>
+    </table>
+<? } ?>

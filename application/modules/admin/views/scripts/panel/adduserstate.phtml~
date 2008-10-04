@@ -1,7 +1,0 @@
-<? if (isset($this->failedAddUser)) { ?>
-    <p class="error"> <?= $this->failedAddUser ?>.</p>
-<? } ?>
-<? if (isset($this->suceedAddUser)) { ?>
-    <p class="error"> <?= $this->suceedAddUser ?>.</p>
-<? } ?>
-<?= $this->getUserForm ?>
