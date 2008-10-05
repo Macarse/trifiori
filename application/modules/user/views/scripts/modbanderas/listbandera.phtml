@@ -1,0 +1,23 @@
+<? if ($this->showForm) { ?>
+    <?= $this->headTitle() ?>
+    <?= $this->modForm ?>
+<? }else { ?>
+    <table class="bordered">
+        <thead>
+            <tr> <th>ID</th> <th>Nombre</th> </tr>
+        </thead>
+        <tbody>
+            <? foreach($this->Banderas as $bandera) { ?>
+            <tr> <td> <?= $bandera->id() ?> </td>
+                <td> <?= $bandera->name() ?> </td>
+                <td>
+                    <a href="<?= $this->baseUrl . "/removebandera/id/".$bandera->id()?>">Eliminar</a>
+                </td>
+                <td>
+                    <a href="<?= $this->baseUrl . "/listbandera/id/".$bandera->id()?>">Modificar</a>
+                </td>
+            </tr>
+            <? } ?>
+        </tbody>
+    </table>
+<? } ?>
