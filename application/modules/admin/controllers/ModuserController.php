@@ -27,20 +27,8 @@ class admin_ModuserController extends Zend_Controller_Action
         $this->view->buscador = "Esto es el buscador";
     }
 
-
-    public function listuserAction()
+    public function modifyuserAction()
     {
-        /*TODO de esta función:
-        * 1) No pude lograr que se muestre o la lista o el form.
-             Ahora va a otra pantalla y queda feo.
-
-          2) Hay que ver qué hacemos con lo de idioma, si es combo, etc
-             El idioma hace cualquiera.
-
-          3) Hay muchas cosas feas para mi gusto. Comenten.
-
-        */
-        /*Si hay parámetros pedir el form*/
         if ( $this->getRequest()->getParam('id') != null )
         {
             $this->_id = $this->getRequest()->getParam('id');
@@ -51,15 +39,6 @@ class admin_ModuserController extends Zend_Controller_Action
             }
         }
 
-        /*Si no hay que mostrar el form mostrar la lista de users*/
-        if ( !$this->_showForm )
-        {
-            $table = new Users();
-            $this->view->users = $table->fetchAll();
-            $this->view->showForm = False;
-        }
-
-        /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
             if (isset($_POST['ModUserTrack']))
@@ -94,6 +73,27 @@ class admin_ModuserController extends Zend_Controller_Action
                     $this->view->failedAddUser = 'Algún campo no fue insertado correctamente';
                 }
             }
+        }
+    }
+
+    public function listuserAction()
+    {
+        /*TODO de esta función:
+        * 1) No pude lograr que se muestre o la lista o el form.
+             Ahora va a otra pantalla y queda feo.
+
+          2) Hay que ver qué hacemos con lo de idioma, si es combo, etc
+             El idioma hace cualquiera.
+
+          3) Hay muchas cosas feas para mi gusto. Comenten.
+
+        */
+        /*Si no hay que mostrar el form mostrar la lista de users*/
+        if ( !$this->_showForm )
+        {
+            $table = new Users();
+            $this->view->users = $table->fetchAll();
+            $this->view->showForm = False;
         }
     }
 
