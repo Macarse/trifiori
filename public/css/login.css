@@ -1,12 +1,55 @@
-div.box {
-	border: thin double #FF0000;
-	width: 20em;
+div.error
+{
+	border: 2px solid #FF0000;
 	position: absolute;
-	left: 35em;
-	top: 10em;
+	top: 12em;
+	left: 0em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FF0000;
+	height: 2em;
+	width: 20em;
+	text-align: center;
+	vertical-align: middle;
 }
 
-div.box label
+div.cfooter
+{
+	position: absolute;
+	top: 92%;
+	left: 80%;
+}
+
+div.containerlogin
+{
+	border: 2px solid #666666;
+	position: relative;
+	left: 30em;
+	top: 5em;
+	height: 19em;
+	width: 20em;
+}
+
+div.cloginimg
+{
+	position: relative;
+	top: 2em;
+	left: 4em;
+}
+
+div.cboxlogin
+{
+	position: relative;
+	top: 1em;
+}
+
+div.cboxlogin input
+{
+	position: relative;
+	left: 6em;
+}
+
+div.cboxlogin label
 {
 	position: relative;
 	top: 1.4em;
@@ -14,22 +57,4 @@ div.box label
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: small;
-}
-
-div.box input
-{
-	position: relative;
-	left: 6em;
-}
-
-div.box submit {
-	position: relative;
-	left: 6em;
-	border: 2px ridge #000000;
-}
-
-div.block {
-	position: relative;
-	top: 25em;
-	width: 20em;
 }
