@@ -1,0 +1,60 @@
+div.error
+{
+	border: 2px solid #FF0000;
+	position: absolute;
+	top: 12em;
+	left: 0em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FF0000;
+	height: 2em;
+	width: 20em;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.cfooter
+{
+	position: absolute;
+	top: 46em;
+	left: 65em;
+}
+
+div.containerlogin
+{
+	border: 2px solid #666666;
+	position: relative;
+	left: 30em;
+	top: 5em;
+	height: 19em;
+	width: 20em;
+}
+
+div.cloginimg
+{
+	position: relative;
+	top: 2em;
+	left: 4em;
+}
+
+div.cboxlogin
+{
+	position: relative;
+	top: 1em;
+}
+
+div.cboxlogin input
+{
+	position: relative;
+	left: 6em;
+}
+
+div.cboxlogin label
+{
+	position: relative;
+	top: 1.4em;
+	left: 2.5em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: small;
+}

@@ -1,0 +1,41 @@
+<?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
+<html>
+<head>
+    <?= $this->headTitle() ?>
+    <style type="text/css">
+    body {
+    	margin:0;
+	padding:0;
+	}
+    </style>
+	<link rel="stylesheet" href="/css/adduser.css" type="text/css" media="screen,projection"/>
+	<link rel="stylesheet" type="text/css" href="/yui/build/fonts/fonts-min.css" />
+	<link rel="stylesheet" type="text/css" href="/yui/build/datatable/assets/skins/sam/datatable.css" />
+	<script type="text/javascript" src="/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="/yui/build/element/element-beta-min.js"></script>
+	<script type="text/javascript" src="/yui/build/datasource/datasource-beta-min.js"></script>
+	<script type="text/javascript" src="/yui/build/datatable/datatable-beta-min.js"></script>
+
+
+</head>
+<body class="yui-skin-sam">
+    <div class="container">
+        <!-- TODO: Hacer el buscador y ubicarlo bien en la página!  -->
+        <?= $this->action('finduser', 'moduser', 'admin') ?>
+
+        <div class="block">
+            <div class="column span-6 last">
+                <div id="idtabla" class="">
+                    <?= $this->action('listuser', 'moduser', 'admin') ?>
+                </div>
+            </div>
+
+
+        <div class="block">
+            <div id="footer" class="span-24">
+                <p>Copyright &copy; 2008 Trifiori</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

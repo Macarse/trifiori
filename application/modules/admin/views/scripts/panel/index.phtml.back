@@ -1,0 +1,39 @@
+<?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/panelAdmin.css" type="text/css" media="screen,projection"/>
+    <?= $this->headTitle() ?>
+</head>
+<body>
+    <div class="container">
+
+        <div class="block">
+            <div class="column span-6 last">
+                <table class="bordered">
+                    <thead>
+                        <tr> <th>Links</th> </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="<?= $this->baseUrl . "/admin/moduser"?>">Modificar usuario</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="<?= $this->baseUrl . "/admin/adduser"?>">Agregar usuario</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        <div class="block">
+            <div id="footer" class="span-24">
+                <p>Copyright &copy; 2008 Trifiori</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

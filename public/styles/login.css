@@ -1,0 +1,35 @@
+div.box {
+	border: thin double #FF0000;
+	width: 20em;
+	position: absolute;
+	left: 35em;
+	top: 10em;
+}
+
+div.box label
+{
+	position: relative;
+	top: 1.4em;
+	left: 2.5em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: small;
+}
+
+div.box input
+{
+	position: relative;
+	left: 6em;
+}
+
+div.box submit {
+	position: relative;
+	left: 6em;
+	border: 2px ridge #000000;
+}
+
+div.block {
+	position: relative;
+	top: 35em;
+	width: 20em;
+}
