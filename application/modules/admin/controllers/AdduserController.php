@@ -3,12 +3,22 @@ class admin_AdduserController extends Zend_Controller_Action
 {
 
     protected $_form;
-
+    protected $_acl;
+    
     public function init()
     {
         if (!isset($this->_baseUrl))
         {
             $this->_baseUrl = $this->_helper->url->url(array());
+        }
+        $_acl = Zend_Registry::getInstance()->accesslist;
+        
+        if (! Zend_Registry::getInstance()->admin)
+        {
+            if (! $_acl->isAllowed('user', 'admin'))
+            {
+                $this->_helper->redirector->gotoUrl('default/index');
+            }
         }
     }
 
