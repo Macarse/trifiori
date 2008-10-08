@@ -108,16 +108,19 @@ class Bootstrap
         {
             Zend_Registry::getInstance()->user=false;
             Zend_Registry::getInstance()->admin=false;
+            Zend_Registry::getInstance()->name = 'guest';
         }
         else
         {
             Zend_Registry::getInstance()->identity=$identity;
             if ($identity->USUARIO_USU == 'admin')
             {
+                Zend_Registry::getInstance()->name = 'admin';
                 Zend_Registry::getInstance()->admin=1;
             }
             else
             {
+                Zend_Registry::getInstance()->name = 'user';
                 Zend_Registry::getInstance()->admin=0;
             }
 

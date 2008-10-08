@@ -3,15 +3,24 @@ class admin_ModuserController extends Zend_Controller_Action
 {
 
     protected $_form;
+    protected $_acl;
+    protected $_username;
     protected $_showForm = False;
     /*TODO: Villero*/
     protected $_id;
-
+    
     public function init()
     {
         if (!isset($this->_baseUrl))
         {
             $this->_baseUrl = $this->_helper->url->url(array());
+        }
+        $_acl = Zend_Registry::getInstance()->accesslist;
+        $_username = Zend_Registry::getInstance()->name;
+
+        if (! $_acl->isAllowed($_username, 'admin'))
+        {
+            $this->_helper->redirector->gotoUrl('default/index');
         }
     }
 

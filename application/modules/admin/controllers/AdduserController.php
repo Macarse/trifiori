@@ -4,6 +4,7 @@ class admin_AdduserController extends Zend_Controller_Action
 
     protected $_form;
     protected $_acl;
+    protected $_username;
     
     public function init()
     {
@@ -12,13 +13,11 @@ class admin_AdduserController extends Zend_Controller_Action
             $this->_baseUrl = $this->_helper->url->url(array());
         }
         $_acl = Zend_Registry::getInstance()->accesslist;
-        
-        if (! Zend_Registry::getInstance()->admin)
+        $_username = Zend_Registry::getInstance()->name;
+
+        if (! $_acl->isAllowed($_username, 'admin'))
         {
-            if (! $_acl->isAllowed('user', 'admin'))
-            {
-                $this->_helper->redirector->gotoUrl('default/index');
-            }
+            $this->_helper->redirector->gotoUrl('default/index');
         }
     }
 

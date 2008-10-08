@@ -4,6 +4,8 @@ class user_ModbanderasController extends Zend_Controller_Action
 
     protected $_form;
     protected $_showForm = False;
+    protected $_acl;
+    protected $_username;    
     /*TODO: Villero*/
     protected $_id;
 
@@ -12,6 +14,13 @@ class user_ModbanderasController extends Zend_Controller_Action
         if (!isset($this->_baseUrl))
         {
             $this->_baseUrl = $this->_helper->url->url(array());
+        }
+        $_acl = Zend_Registry::getInstance()->accesslist;
+        $_username = Zend_Registry::getInstance()->name;
+
+        if (! $_acl->isAllowed($_username, 'user'))
+        {
+            $this->_helper->redirector->gotoUrl('default/index');
         }
     }
 
