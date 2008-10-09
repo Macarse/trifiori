@@ -64,13 +64,14 @@ class Bootstrap
         $view->addHelperPath( $this->root. '/library/Forum/View/Helper',
                               'Forum_View_Helper_'
         );
- */
+
 
         Zend_Layout::startMvc(array(
                 'layoutPath' => $this->root. '/application/layouts',
                 'layout' => 'common'
         ));
 
+ */
     }
 
     private function sendResponse(Zend_Controller_Response_Http $response)
