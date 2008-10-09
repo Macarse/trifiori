@@ -7,6 +7,7 @@ class admin_PanelController extends Trifiori_Admin_Controller_Action
 
     public function init()
     {
+        parent::init();
         $_acl = Zend_Registry::getInstance()->accesslist;
         $_username = Zend_Registry::getInstance()->name;
 

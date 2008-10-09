@@ -60,18 +60,11 @@ class Bootstrap
         $view->setEncoding('UTF-8');
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($view);
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
-/*
-        $view->addHelperPath( $this->root. '/library/Forum/View/Helper',
-                              'Forum_View_Helper_'
-        );
-
 
         Zend_Layout::startMvc(array(
-                'layoutPath' => $this->root. '/application/layouts',
+                'layoutPath' => $this->root . '/application/layouts',
                 'layout' => 'common'
         ));
-
- */
     }
 
     private function sendResponse(Zend_Controller_Response_Http $response)

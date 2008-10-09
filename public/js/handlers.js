@@ -11,7 +11,7 @@ function onMenuItemClick(p_sType, p_aArgs, p_Data)
 		
 		switch(p_Data.id)
 		{
-			case "agregarusuario": case "borrarusuario": case "modificarusuario":
+			case "agregarusuario": case "borrarusuario": case "modificarusuario": case "logout":
 				window.location = p_Data.url;
 				break;
 		}

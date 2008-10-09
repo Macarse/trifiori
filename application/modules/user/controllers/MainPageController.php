@@ -1,11 +1,12 @@
 <?php
-class user_MainPageController extends Zend_Controller_Action
+class user_MainPageController extends Trifiori_User_Controller_Action
 {
     protected $_acl;
     protected $_username;
     
     public function init()
     {
+        parent::init();
         $_acl = Zend_Registry::getInstance()->accesslist;
         $_username = Zend_Registry::getInstance()->name;
 

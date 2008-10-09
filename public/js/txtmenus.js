@@ -1,7 +1,7 @@
 // JavaScript Document
 
 var txtmenuadminspa = [
-                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick } },
+                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'logout', url:"panel/logout"} } },
 					{ 
                         text: "Usuarios", 
                         submenu: {  
@@ -21,7 +21,7 @@ var txtmenuadminspa = [
 
 
 var txtmenuspa = [
-                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick } },
+                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'logout', url: "main-page/logout" } } },
 					{ 
                         text: "Exportaciones", 
                         submenu: {  
