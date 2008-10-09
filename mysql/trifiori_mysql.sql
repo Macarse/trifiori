@@ -50,7 +50,7 @@ drop table if exists USUARIO_MODIFICA_TABLA;
 /*==============================================================*/
 create table BANDERAS
 (
-   CODIGO_BAN                     int                            not null,
+   CODIGO_BAN                     int AUTO_INCREMENT             not null,
    NOMBRE_BAN                     varchar(150)                   not null,
    primary key (CODIGO_BAN)
 );
@@ -158,7 +158,7 @@ create table GIROS
 /*==============================================================*/
 create table IMPORTACIONES
 (
-   ORDEN_IMP                      int AUTO_INCREMENT             not null,
+   ORDEN_IMP                      int                            not null,
    CODIGO_DES                     int                            not null,
    CODIGO_BAN                     int                            not null,
    CODIGO_CAN                     char(1)                        not null,
