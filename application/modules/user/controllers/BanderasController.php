@@ -1,7 +1,8 @@
 <?php
 class user_BanderasController extends Zend_Controller_Action
 {
-    protected $_form;
+    protected $_addform;
+    protected $_modform;
     protected $_acl;
     protected $_username;
     
@@ -22,52 +23,59 @@ class user_BanderasController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->headTitle("Agregar Bandera");
     }
 
-    public function addbanderastateAction()
+    public function addbanderasAction()
     {
+        $this->view->headTitle("Agregar Bandera");
+
         if ($this->getRequest()->isPost())
         {
             if (isset($_POST['AddBanderaTrack']))
             {
-                $this->_form = $this->getBanderaForm();
-                if ($this->_form->isValid($_POST))
+                $this->_addform = $this->getBanderaAddForm();
+                if ($this->_addform->isValid($_POST))
                 {
-                    $values = $this->_form->getValues();
+                    $values = $this->_addform->getValues();
 
-                    /*TODO: Try except.*/
-                    $banderasTable = new Banderas();
-                    $banderasTable->addBandera($values['name']);
+                    try
+                    {
+                        $banderasTable = new Banderas();
+                        $banderasTable->addBandera($values['name']);
+                    }
+                    catch (Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
                 }
             }
         }
 
-        $this->view->banderaForm = $this->getBanderaForm();
+        $this->view->banderaAddForm = $this->getBanderaAddForm();
     }
 
-    private function getBanderaForm()
+    private function getBanderaAddForm()
     {
-        if (null !== $this->_form)
+        if (null !== $this->_addform)
         {
-            return $this->_form;
+            return $this->_addform;
         }
 
-        $this->_form = new Zend_Form();
-        $this->_form->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform = new Zend_Form();
+        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
-        $name = $this->_form->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Add elements to form:
-        $this->_form->addElement($name)
+        $this->_addform->addElement($name)
              ->addElement('hidden', 'AddBanderaTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
-        return $this->_form;
+        return $this->_addform;
     }
 
 }

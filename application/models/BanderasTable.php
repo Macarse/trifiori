@@ -30,13 +30,17 @@ class Banderas extends Zend_Db_Table_Abstract
 
     public function modifyBandera( $id, $name )
     {
-        /*TODO: Validaciones.*/
+        try 
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
 
-        /*TODO: Ese id existe?*/
-        $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
-        $row = $this->fetchRow($where);
-
-        /*TODO: Pudo actualizar correctamente?*/
         $this->update(array('NOMBRE_BAN'    => $name), $where );
 
         return True;
