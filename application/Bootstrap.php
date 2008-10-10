@@ -51,6 +51,11 @@ class Bootstrap
         $this->frontController->throwExceptions();
         $this->frontController->returnResponse(true);
         $this->frontController->addModuleDirectory($this->root.'/application/modules');
+
+        /*TODO: Ver si hay que usar y cómo.
+        hook for ACL*/
+        Zend_Controller_Front::getInstance()->registerPlugin( new Trifiori_Controller_Plugin_ACL() );
+        /*a*/
     }
 
     private function setupView()
@@ -65,6 +70,11 @@ class Bootstrap
                 'layoutPath' => $this->root . '/application/layouts',
                 'layout' => 'common'
         ));
+
+        /*TODO: Ver si hay que usar y cómo.
+        Save View to use in PreDispatch Hook
+        Zend_Registry::set('view', $view);
+        */
     }
 
     private function sendResponse(Zend_Controller_Response_Http $response)
