@@ -7,10 +7,10 @@
         <tr> <td> <?= $bandera->id() ?> </td>
             <td> <?= $bandera->name() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "user/banderas/removebanderas/id/" . $bandera->id()?>">Eliminar</a>
+                <a href="<?= $this->baseUrl . "removebanderas/id/" . $bandera->id()?>">Eliminar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "user/banderas/modbanderas/id/" . $bandera->id()?>">Modificar</a>
+                <a href="<?= $this->baseUrl . "modbanderas/id/" . $bandera->id()?>">Modificar</a>
             </td>
         </tr>
         <? } ?>

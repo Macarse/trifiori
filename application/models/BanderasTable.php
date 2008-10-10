@@ -30,7 +30,7 @@ class Banderas extends Zend_Db_Table_Abstract
 
     public function modifyBandera( $id, $name )
     {
-        try 
+        try
         {
             $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
             $row = $this->fetchRow($where);

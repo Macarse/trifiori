@@ -52,7 +52,8 @@ create table BANDERAS
 (
    CODIGO_BAN                     int AUTO_INCREMENT             not null,
    NOMBRE_BAN                     varchar(150)                   not null,
-   primary key (CODIGO_BAN)
+   primary key (CODIGO_BAN),
+   unique NOMBRE_BAN (NOMBRE_BAN)
 );
 
 /*==============================================================*/
