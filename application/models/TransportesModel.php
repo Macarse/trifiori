@@ -30,8 +30,16 @@ class TransportesModel extends Zend_Db_Table_Row_Abstract
 
    public function codMedioName()
     {
-        /*TODO: Agregar la lógica cuando esté codMedio*/
-        return $this->CODIGO_BAN;
+        $row = null;
+        $mediosTable = new Medios();
+
+        $row = $mediosTable->getMedioByID($this->CODIGOMED);
+
+        /*TODO: esto es por inconsistencias en la DB :(*/
+        if ($row == NULL)
+            return 'No Name';
+        else
+            return $row->name();
     }
 
     public function codMedio()
