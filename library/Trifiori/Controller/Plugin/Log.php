@@ -35,16 +35,16 @@ class Trifiori_Controller_Plugin_Log extends Zend_Controller_Plugin_Abstract
         $msg = $username;
         switch ($action)
         {   
-            case 'removeusers':
-                $msg = $msg . " ALTERANDO USUARIOS. Eliminado id " . 
+            case strpos($action, "remove"):
+                $msg = $msg . " ALTERANDO " . $controller . " Eliminado id " . 
                     $request->getParam('id') . ".";
                 break;
-            case 'modusers':
-                $msg = $msg . " ALTERANDO USUARIOS. Modificando id " .
+            case strpos($action, "mod"):
+                $msg = $msg . " ALTERANDO " . $controller . " Modificando id " . 
                     $request->getParam('id') . ".";
                 break;
-            case 'addusers':
-                $msg = $msg . " ALTERANDO USUARIOS. Agregando nuevo usuario.";
+            case strpos($action, "add"):
+                $msg = $msg . " ALTERANDO " . $controller .  "Agregando nuevo.";
                 break;
             default:
                 $msg = $msg . " accediendo a " . $module . "/" . 
