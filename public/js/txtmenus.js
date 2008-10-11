@@ -52,7 +52,7 @@ var txtmenuspa =
                             { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
-                            { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick }}
+                            { text: "Listado de Exportaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ]
                     ] 
                 }
@@ -75,22 +75,26 @@ var txtmenuspa =
 								[{ text: "Listado de importaciones", helptext: "" , onclick: { fn: onMenuItemClick }}]
                             ] 
                         }
-                    },
-					{ 
-                        text: "Clientes", 
-                        submenu: {  
-                            id: "clientesmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar cliente", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar cliente", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar cliente", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },										
-					{ 
+        },
+        {
+            text: "Clientes",
+            submenu:
+            {
+                id: "clientesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar cliente", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarcliente', url: "/user/clientes/addclientes"} }},
+                        { text: "Modificar cliente", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarcliente', url: "/user/clientes/listclientes"} }},
+                        { text: "Borrar cliente", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarcliente', url: "/user/clientes/listclientes"} }}
+                    ],
+                    [
+                        { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listclientes', url: "/user/clientes/listclientes"} }}
+                    ]
+                ] 
+            }
+        },
+        {
                         text: "Proveedores", 
                         submenu: {  
                             id: "proveedormenu", 
@@ -146,19 +150,23 @@ var txtmenuspa =
                             ] 
                         }
                     },
-					{ 
-                        text: "Transportes", 
-                        submenu: {  
-                            id: "transportesmenu", 
-                            itemdata: [
-								[
-									{ text: "Agregar transporte", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar transporte", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar transporte", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de transporte", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
+        {
+            text: "Transportes",
+            submenu:
+            {
+                id: "transportesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar transporte", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregartransporte', url: "/user/transportes/addtransportes"} }},
+                        { text: "Modificar transporte", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificartransporte', url: "/user/transportes/listtransportes"} }},
+                        { text: "Borrar transporte", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrartransportes', url: "/user/transportes/listtransportes"} }}
+                    ],
+                    [
+                        { text: "Listado de transportes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listtransporte', url: "/user/transportes/listtransportes"} }}
+                    ]
+                ]
+            }
         },
     {
         text: "Banderas",

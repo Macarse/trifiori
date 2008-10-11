@@ -161,15 +161,16 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     ->setLabel('Bandera')
                     ->setMultiOptions($banderasOptions);
 
-//         /*TODO: MODIFICAR POR COD_MEDIO CUANDO ESTÉ!*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $mediosTable = new Medios();
+        $mediosOptions =  $mediosTable->getMediosArray();
 
         $codMedio = $this->_addform->createElement('select', 'codMedio');
         $codMedio   ->setRequired(true)
                     ->setOrder(2)
                     ->setLabel('Medio')
-                    ->setMultiOptions($banderasOptions);
+                    ->setMultiOptions($mediosOptions);
 
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
@@ -230,16 +231,17 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     ->setLabel('Bandera')
                     ->setMultiOptions($banderasOptions);
 
-//         /*TODO: MODIFICAR POR COD_MEDIO CUANDO ESTÉ!*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $mediosTable = new Medios();
+        $mediosOptions =  $mediosTable->getMediosArray();
 
         $codMedio = $this->_modform->createElement('select', 'codMedio');
         $codMedio   ->setValue( $row->codMedio() )
                     ->setRequired(true)
                     ->setOrder(2)
                     ->setLabel('Medio')
-                    ->setMultiOptions($banderasOptions);
+                    ->setMultiOptions($mediosOptions);
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
