@@ -1,0 +1,21 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th></tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Transportes as $tran) { ?>
+        <tr> <td> <?= $tran->id() ?> </td>
+            <td> <?= $tran->codBanderaName() ?> </td>
+            <td> <?= $tran->codMedioName() ?> </td>
+            <td> <?= $tran->name() ?> </td>
+            <td> <?= $tran->observaciones() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removetransportes/id/" . $tran->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modtransportes/id/" . $tran->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+<script type="text/javascript">
+		YAHOO.namespace("local.calendar");
+		
+		YAHOO.local.calendar.init = function() {
+			var eLog = YAHOO.util.Dom.get("evtentries");
+	
+			function logEvent(idText, msg) {
+				document.getElementById(idText).value = msg;
+			}
+	
+			function dateToLocaleString(dt, cal) {
+						var dStr = dt.getDate();
+						var mStr = dt.getMonth();
+						var yStr = dt.getFullYear();
+						return (dStr + "-" + mStr + "-" + yStr);
+			}
+	
+			function mySelectHandler(type,args,obj) {
+				var selected = args[0];
+				var selDate = this.toDate(selected[0]);
+				 
+				logEvent('date', dateToLocaleString(selDate, this));
+			};
+	
+			YAHOO.local.calendar.cal1 = new YAHOO.widget.Calendar("cal1","cal1Container");
+	
+			YAHOO.local.calendar.cal1.selectEvent.subscribe(mySelectHandler, YAHOO.local.calendar.cal1, true);
+	
+			YAHOO.local.calendar.cal1.render();
+		}
+		
+		YAHOO.util.Event.onDOMReady(YAHOO.local.calendar.init);
+</script>
+
+<div id="cal1Container" style="display:none;"></div>
+<div style="clear:both"></div>
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<?= $this->exportacionAddForm ?>
+<a href="#" onClick="show_hide_div('cal1Container')">Mostrar/Ocultar Calendario</a>
