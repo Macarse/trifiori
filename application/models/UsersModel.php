@@ -23,11 +23,11 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
     {
         if ($this->USUARIO_USU == 'admin')
         {
-            return true;
+            return True;
         }
         else
         {
-            return false;
+            return False;
         }
     }
 
@@ -43,6 +43,11 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
         {
             return 'es';
         }
+    }
+
+    public function langNum()
+    {
+        return $this->IDIOMA_USU;
     }
 
 }

@@ -1,52 +1,63 @@
 // JavaScript Document
 
-var txtmenuadminspa = [
-                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'logout', url:"panel/logout"} } },
-					{ 
-                        text: "Usuarios", 
-                        submenu: {  
-                            id: "usuariosadminmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarusuario', url:"adduser" }  }},
-									{ text: "Modificar usuario", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarusuario', url:"moduser" }   }},
-									{ text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"moduser" }   }}
-								]
-                            ] 
-                        }
-                    },
-					{ text: "Ultimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick } }
-													
-                ];
+var txtmenuadminspa =
+[
+    { text: "Logout", helptext: "" ,
+        onclick: {fn: onMenuItemClick,
+        obj: { id: 'logout', url:"/admin/panel/logout"} } },
+
+    {text: "Usuarios",
+        submenu:
+        {
+            id: "usuariosadminmenu",
+            itemdata:
+            [
+                [
+                { text: "Agregar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarusuario', url:"/admin/users/addusers" }  }},
+                { text: "Modificar usuario", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarusuario', url:"/admin/users/listusers" }   }},
+                { text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"/admin/users/listusers" }   }}
+                ]
+            ]
+        }
+    },
+
+    { text: "Ultimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick } }
+];
 
 
-var txtmenuspa = [
-                    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'logout', url: "main-page/logout" } } },
-					{ 
-                        text: "Exportaciones", 
-                        submenu: {  
-                            id: "exportacionesmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar exportacion", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [
-									{ text: "Cargas", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-								[
-									{ text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-								[
-									{ text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-								[{ text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },
-					{ 
+var txtmenuspa =
+[
+    { text: "Logout", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'logout', url: "/user/main-page/logout" } } },
+    {text: "Exportaciones",
+        submenu: {
+                    id: "exportacionesmenu",
+                    itemdata:
+                    [
+                        [
+                            { text: "Agregar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }},
+
+                            { text: "Modificar exportacion", helptext: "", onclick: { fn: onMenuItemClick }},
+
+                            { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }}
+                        ],
+                        [
+                            { text: "Cargas", helptext: "" , onclick: { fn: onMenuItemClick }},
+
+                            { text: "Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
+                        ],
+                        [
+                            { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
+                        ],
+                        [
+                            { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick }}
+                        ],
+                        [
+                            { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick }}
+                        ]
+                    ] 
+                }
+        },
+        {
                         text: "Importaciones", 
                         submenu: {  
                             id: "importacionesmenu", 
@@ -148,24 +159,28 @@ var txtmenuspa = [
                                 [{ text: "Listado de transporte", helptext: "" , onclick: { fn: onMenuItemClick }}]
                             ] 
                         }
-                    },
-					{ 
-                        text: "Banderas", 
-                        submenu: {  
-                            id: "banderasmenu", 
-                            itemdata: [
-								[
-									{ text: "Agregar bandera", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar bandera", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar bandera", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de bandera", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    }								
-                ];
+        },
+    {
+        text: "Banderas",
+        submenu:
+        {
+            id: "banderasmenu",
+            itemdata:
+            [
+                [
+                    { text: "Agregar bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarbandera', url: "/user/banderas/addbanderas"} }},
+                    { text: "Modificar bandera", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarbandera', url: "/user/banderas/listbanderas"} }},
+                    { text: "Borrar bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarbandera', url: "/user/banderas/listbanderas"} }}
+                ],
+                [
+                    { text: "Listado de bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listbandera', url: "/user/banderas/listbanderas"} }}
+                ]
+            ]
+        }
+    }
+];
 
-	var txtmenueng = [
+var txtmenueng = [
                     { 
                         text: "System", 
                         submenu: {  
@@ -311,18 +326,22 @@ var txtmenuspa = [
                             ] 
                         }
                     },
-					{ 
-                        text: "Flags", 
-                        submenu: {  
-                            id: "banderasmenu", 
-                            itemdata: [
-								[
-									{ text: "Agregar bandera", helptext: "" },
-									{ text: "Modificar bandera", helptext: ""},
-									{ text: "Borrar bandera", helptext: "" }
-								],
-                                [{ text: "Listado de bandera", helptext: "" }]
-                            ] 
+                    {
+                        text: "Flags",
+                        submenu:
+                        {
+                            id: "banderasmenu",
+                            itemdata:
+                            [
+                                [
+                                    { text: "Agregar bandera", helptext: "" },
+                                    { text: "Modificar bandera", helptext: ""},
+                                    { text: "Borrar bandera", helptext: "" }
+                                ],
+                                [
+                                    { text: "Listado de bandera", helptext: "" }
+                                ]
+                            ]
                         }
-                    }								
+                    }
                 ];

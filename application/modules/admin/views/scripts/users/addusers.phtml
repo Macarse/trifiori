@@ -1,0 +1,7 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"> <?= $this->error ?>.</div>
+<? } ?>
+<? if (isset($this->suceedAddUser)) { ?>
+    <p class="okmsg"> <?= $this->suceedAddUser ?>.</p>
+<? } ?>
+<?= $this->getUserAddForm ?>

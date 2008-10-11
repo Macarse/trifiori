@@ -31,7 +31,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                         $banderasTable = new Banderas();
                         $banderasTable->addBandera($values['name']);
                     }
-                    catch (Exception $error)
+                    catch (Zend_Exception $error)
                     {
                         $this->view->error = $error;
                     }
@@ -54,7 +54,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             $table = new Banderas();
             $this->view->Banderas = $table->fetchAll();
         }
-        catch (Exception $error)
+        catch (Zend_Exception $error)
         {
             $this->view->error = $error;
         }
@@ -118,7 +118,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                         $banderasTable->modifyBandera( $this->_id,
                                             $values['name']);
                     }
-                    catch (Exception $error)
+                    catch (Zend_Exception $error)
                     {
                     $this->view->error = $error;
                     }

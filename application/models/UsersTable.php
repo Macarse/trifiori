@@ -5,6 +5,19 @@ class Users extends Zend_Db_Table_Abstract
     protected $_sequence = true;
     protected $_rowClass = 'UsersModel';
 
+    public function addUser( $name, $user, $pass, $lang )
+    {
+        $data = array(  'NOMBRE_USU'  => $name,
+                        'USUARIO_USU' => $user,
+                        'PASSWORD_USU'=> $pass,
+                        'IDIOMA_USU'  => $lang
+                    );
+
+        $this->insert($data);
+
+        return True;
+    }
+
     public function removeUser( $id )
     {
         $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
@@ -21,9 +34,7 @@ class Users extends Zend_Db_Table_Abstract
 
     public function modifyUser( $id, $name, $user, $pass, $lang )
     {
-        /*TODO: Validaciones.*/
-
-        /*TODO: Ese id existe?*/
+        /*TODO: Try Catch*/
         $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
         $row = $this->fetchRow($where);
 
@@ -37,7 +48,6 @@ class Users extends Zend_Db_Table_Abstract
             $pass = hash('SHA1', $pass);
         }
 
-        /*TODO: Pudo actualizar correctamente?*/
         $this->update(array('NOMBRE_USU'    => $name,
                             'USUARIO_USU'   => $user,
                             'PASSWORD_USU'  => $pass,

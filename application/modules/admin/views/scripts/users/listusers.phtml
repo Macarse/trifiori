@@ -1,0 +1,20 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Nombre</th> <th>Usuario</th> <th>Idioma</th> </tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Users as $user) { ?>
+        <tr> <td> <?= $user->id() ?> </td>
+            <td> <?= $user->name() ?> </td>
+            <td> <?= $user->user() ?> </td>
+            <td> <?= $user->language() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removeusers/id/" . $user->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modusers/id/" . $user->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

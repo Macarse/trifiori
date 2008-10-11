@@ -5,4 +5,6 @@
     require_once 'UsersModel.php';
     require_once 'BanderasTable.php';
     require_once 'BanderasModel.php';
+    require_once 'LangTable.php';
+    require_once 'LangModel.php';
 ?>
