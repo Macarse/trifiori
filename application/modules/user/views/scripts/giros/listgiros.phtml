@@ -1,0 +1,18 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Nombre</th> </tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Giros as $giro) { ?>
+        <tr> <td> <?= $giro->id() ?> </td>
+            <td> <?= $giro->name() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removegiros/id/" . $giro->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modgiros/id/" . $giro->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

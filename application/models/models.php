@@ -15,4 +15,6 @@
     require_once 'ClientesModel.php';
     require_once 'LogTable.php';
     require_once 'LogModel.php';
+    require_once 'GirosTable.php';
+    require_once 'GirosModel.php';
 ?>

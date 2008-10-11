@@ -108,21 +108,25 @@ var txtmenuspa =
                             ] 
                         }
                     },
-					{ 
-                        text: "Giros", 
-                        submenu: {  
-                            id: "girosmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar giro", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar giro", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar giro", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de giros", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },
-					{ 
+        {
+            text: "Giros",
+            submenu:
+            {
+                id: "girosmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar giro", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregargiro', url: "/user/giros/addgiros"} }},
+                        { text: "Modificar giro", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificargiro', url: "/user/giros/listgiros"} }},
+                        { text: "Borrar giro", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrargiro', url: "/user/giros/listgiros"} }}
+                    ],
+                    [
+                        { text: "Listado de giros", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listargiro', url: "/user/giros/listgiros"} }}
+                    ]
+                ]
+            }
+        },
+        {
                         text: "Puertos", 
                         submenu: {  
                             id: "puertosmenu", 
