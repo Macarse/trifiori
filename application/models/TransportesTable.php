@@ -1,9 +1,9 @@
 <?php
-class Transports extends Zend_Db_Table_Abstract
+class Transportes extends Zend_Db_Table_Abstract
 {
     protected $_name = 'TRANSPORTES';
     protected $_sequence = True;
-    protected $_rowClass = 'TransportsModel';
+    protected $_rowClass = 'TransportesModel';
 
     public function removeTransporte( $id )
     {
@@ -32,7 +32,7 @@ class Transports extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function modifyBandera( $id, $codBandera, $codMedio, $name, $observaciones )
+    public function modifyTransporte( $id, $codBandera, $codMedio, $name, $observaciones )
     {
         try
         {

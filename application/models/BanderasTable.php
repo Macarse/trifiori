@@ -46,6 +46,27 @@ class Banderas extends Zend_Db_Table_Abstract
         return True;
     }
 
+    public function getBanderasArray()
+    {
+        $arr = array();
+
+        try
+        {
+            $banderas = $this->fetchAll();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
+
+        foreach ($banderas as $row)
+        {
+            $arr[ $row->id() ] = $row->name();
+        }
+
+        return $arr;
+    }
+
 }
 
 ?>

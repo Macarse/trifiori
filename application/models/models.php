@@ -7,6 +7,6 @@
     require_once 'BanderasModel.php';
     require_once 'LangTable.php';
     require_once 'LangModel.php';
-    require_once 'TransportsTable.php';
-    require_once 'TransportsModel.php';
+    require_once 'TransportesTable.php';
+    require_once 'TransportesModel.php';
 ?>

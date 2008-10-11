@@ -74,7 +74,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             $banderasTable = new Banderas();
             $banderasTable->removeBandera( $this->getRequest()->getParam('id') );
             }
-            catch (Exception $error)
+            catch (Zend_Exception $error)
             {
             $this->view->error = $error;
             }
