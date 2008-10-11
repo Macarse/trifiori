@@ -23,7 +23,8 @@ drop table if exists GIROS;
 
 drop table if exists IMPORTACIONES;
 
-drop table if exists LOGS;
+drop table if exists LOGS;
+
 drop table if exists MEDIOS;
 
 drop table if exists MONEDAS;
@@ -215,7 +216,8 @@ create table MEDIOS
 /*==============================================================*/
 create table MONEDAS
 (
-   CODIGO_MON                     char(3)                        not null,
+   CODIGO_MON                     int AUTO_INCREMENT             not null,
+   NAME_MON                       char(3)                        not null,
    DESCRIPCION_MON                varchar(150),
    primary key (CODIGO_MON)
 );
