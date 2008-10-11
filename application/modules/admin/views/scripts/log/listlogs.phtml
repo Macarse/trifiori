@@ -1,0 +1,13 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Nivel</th> <th>Mensaje</th></tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Log as $log) { ?>
+        <tr> <td> <?= $log->id() ?> </td>
+            <td> <?= $log->nivel() ?> </td>
+            <td> <?= $log->msg() ?> </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

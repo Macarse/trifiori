@@ -15,13 +15,13 @@ var txtmenuadminspa =
                 [
                 { text: "Agregar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarusuario', url:"/admin/users/addusers" }  }},
                 { text: "Modificar usuario", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarusuario', url:"/admin/users/listusers" }   }},
-                { text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"/admin/users/listusers" }   }}
+                { text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"/admin/users/listusers" }   }},
                 ]
             ]
         }
     },
 
-    { text: "Ultimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick } }
+    { text: "Ultimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarlogs', url:"/admin/log/listlogs"}  }}
 ];
 
 

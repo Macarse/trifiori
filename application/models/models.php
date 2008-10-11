@@ -13,4 +13,6 @@
     require_once 'MediosModel.php';
     require_once 'ClientesTable.php';
     require_once 'ClientesModel.php';
+    require_once 'LogTable.php';
+    require_once 'LogModel.php';
 ?>
