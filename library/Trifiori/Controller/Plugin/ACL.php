@@ -44,6 +44,17 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
 
     public function preDispatch( Zend_Controller_Request_Abstract $request )
     {
+        $module = $request->getModuleName();
+        $acl = Zend_Registry::get('acl');
+        $username = Zend_Registry::get('name');
+        
+        if ( !$acl->isAllowed($username, $module) )
+        {
+            $request->setModuleName('default')->setControllerName('index')
+                ->setActionName('index');
+        }
+
+        /* Blah blah blah... keep it simple ;) */
 
 // Comentar Control+D; Descomentar Control+Shift+D; KATE FTW.
 //         /*TODO: Ver cómo modificamos esto.*/

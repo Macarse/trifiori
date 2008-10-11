@@ -6,8 +6,6 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
     protected $_modform;
     protected $_id;
 
-    protected $_acl;
-    protected $_username;
 
     public function indexAction()
     {
