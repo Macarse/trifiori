@@ -52,10 +52,9 @@ class Bootstrap
         $this->frontController->returnResponse(true);
         $this->frontController->addModuleDirectory($this->root.'/application/modules');
 
-        /*TODO: Ver si hay que usar y cómo.
-        hook for ACL*/
-        Zend_Controller_Front::getInstance()->registerPlugin( new Trifiori_Controller_Plugin_ACL() );
-        /*a*/
+        // Registrar los plugins de ACL y Log 
+        Zend_Controller_Front::getInstance()->registerPlugin( new    Trifiori_Controller_Plugin_ACL() );
+        Zend_Controller_Front::getInstance()->registerPlugin( new    Trifiori_Controller_Plugin_Log() );
     }
 
     private function setupView()
@@ -118,6 +117,7 @@ class Bootstrap
         else
         {
             Zend_Registry::getInstance()->identity=$identity;
+            
             if ($identity->USUARIO_USU == 'admin')
             {
                 Zend_Registry::getInstance()->name = 'admin';

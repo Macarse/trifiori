@@ -23,6 +23,7 @@ drop table if exists GIROS;
 
 drop table if exists IMPORTACIONES;
 
+drop table if exists LOGS;
 drop table if exists MEDIOS;
 
 drop table if exists MONEDAS;
@@ -186,6 +187,17 @@ create table IMPORTACIONES
    DES_FACTURA                    varchar(50),
    DES_FECHAFACTURA               date,
    primary key (ORDEN_IMP)
+);
+
+/*==============================================================*/
+/* Table: LOGS                                                  */
+/*==============================================================*/
+create table LOGS
+(
+   CODIGOLOG                      int AUTO_INCREMENT             not null,
+   NIVEL                          int                            not null,
+   MSG                            varchar(250)                   not null,
+   primary key (CODIGOLOG)
 );
 
 /*==============================================================*/

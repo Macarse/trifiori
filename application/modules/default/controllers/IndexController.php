@@ -54,6 +54,8 @@ class IndexController extends Zend_Controller_Action
                     $auth = Zend_Auth::getInstance();
                     $result = $auth->authenticate($adapter);
 
+                    $registry->validLogin = $result->isValid();
+                    
                     // authentication succeeded
                     if ($result->isValid())
                     {

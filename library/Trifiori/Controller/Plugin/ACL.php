@@ -29,17 +29,7 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         $acl->allow('admin', 'user');
         $acl->allow('admin', 'admin');
 
-        /*TODO: MAXII
-        En
-        http://zfsite.andreinikolov.com/2008/08/part-6-very-simple-acl-plugin-and-simple-ajax-with-jquery/
-        lo hace así:
-        store ACL object connection in registry
         Zend_Registry::set('acl', $acl);
-        */
-
-        /*OLD: Zend_Registry::getInstance()->accesslist = $acl;*/
-        Zend_Registry::set('acl', $acl);
-
     }
 
     public function preDispatch( Zend_Controller_Request_Abstract $request )
@@ -53,43 +43,6 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
             $request->setModuleName('default')->setControllerName('index')
                 ->setActionName('index');
         }
-
-        /* Blah blah blah... keep it simple ;) */
-
-// Comentar Control+D; Descomentar Control+Shift+D; KATE FTW.
-//         /*TODO: Ver cómo modificamos esto.*/
-//         $acl = Zend_Registry::get('acl');
-// 
-//         $aclNamespace = new Zend_Session_Namespace( 'ACL' );
-// 
-//         if ( ! isset( $aclNamespace->accessLevel ) )
-//             $aclNamespace->accessLevel = 'guest';
-// 
-//         /* Check access level */
-//         if ( ! $acl->isAllowed( $aclNamespace->accessLevel,
-//                         $request->getControllerName(), $request->getActionName() ) )
-//         {
-//             if ( $aclNamespace->accessLevel == 'guest' )
-//             {
-//                 /* just allow them to login */
-//                 $request->setControllerName( 'login' );
-//                 $request->setActionName( 'index' );
-//             }
-//             else
-//             {
-//                 /* access denied page */
-//                 $request->setControllerName( 'access' );
-//                 $request->setActionName( 'denied' );
-//             }
-//         }
-// 
-//         /* Load Config File for this controller */
-//         $view = Zend_Registry::get('view');
-//         $controllerName = $request->getControllerName();
-//         $resource = Zend_Registry::get('lang_resource');
-// 
-//         $view->config_load($resource, $controllerName);
-
     }
 }
 ?>
