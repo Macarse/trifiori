@@ -75,22 +75,26 @@ var txtmenuspa =
 								[{ text: "Listado de importaciones", helptext: "" , onclick: { fn: onMenuItemClick }}]
                             ] 
                         }
-                    },
-					{ 
-                        text: "Clientes", 
-                        submenu: {  
-                            id: "clientesmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar cliente", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar cliente", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar cliente", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },										
-					{ 
+        },
+        {
+            text: "Clientes",
+            submenu:
+            {
+                id: "clientesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar cliente", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarcliente', url: "/user/clientes/addclientes"} }},
+                        { text: "Modificar cliente", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarcliente', url: "/user/clientes/listclientes"} }},
+                        { text: "Borrar cliente", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarcliente', url: "/user/clientes/listclientes"} }}
+                    ],
+                    [
+                        { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listclientes', url: "/user/clientes/listclientes"} }}
+                    ]
+                ] 
+            }
+        },
+        {
                         text: "Proveedores", 
                         submenu: {  
                             id: "proveedormenu", 

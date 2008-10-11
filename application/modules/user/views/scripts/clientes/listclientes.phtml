@@ -1,0 +1,34 @@
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Código Postal</th>
+            <th>Localidad</th>
+            <th>CUIT</th>
+            <th>Tipo IVA</th>
+            <th>Tipo Cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Clientes as $cliente) { ?>
+        <tr>
+            <td> <?= $cliente->id() ?> </td>
+            <td> <?= $cliente->name() ?> </td>
+            <td> <?= $cliente->adress() ?> </td>
+            <td> <?= $cliente->codPostal() ?> </td>
+            <td> <?= $cliente->localidad() ?> </td>
+            <td> <?= $cliente->CUIT() ?> </td>
+            <td> <?= $cliente->tipoIVA() ?> </td>
+            <td> <?= $cliente->tipoCliente() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removeclientes/id/" . $cliente->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modclientes/id/" . $cliente->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

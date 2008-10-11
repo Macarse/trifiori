@@ -11,4 +11,6 @@
     require_once 'TransportesModel.php';
     require_once 'MediosTable.php';
     require_once 'MediosModel.php';
+    require_once 'ClientesTable.php';
+    require_once 'ClientesModel.php';
 ?>
