@@ -1,20 +1,49 @@
-<table class="bordered">
-    <thead>
-        <tr> <th>ID</th> <th>Nombre</th> <th>Usuario</th> <th>Idioma</th> </tr>
-    </thead>
-    <tbody>
-        <? foreach($this->Users as $user) { ?>
-        <tr> <td> <?= $user->id() ?> </td>
-            <td> <?= $user->name() ?> </td>
-            <td> <?= $user->user() ?> </td>
-            <td> <?= $user->language() ?> </td>
-            <td>
-                <a href="<?= $this->baseUrl . "removeusers/id/" . $user->id()?>">Eliminar</a>
-            </td>
-            <td>
-                <a href="<?= $this->baseUrl . "modusers/id/" . $user->id()?>">Modificar</a>
-            </td>
-        </tr>
-        <? } ?>
-    </tbody>
-</table>
+<div id="divlistusers" class="clistado">
+	<table id="tableusers">
+		<thead>
+			<tr><th>Nombre</th> <th>Usuario</th> <th>Idioma</th> <th>Modificar</th> <th>Eliminar</th> </tr>
+		</thead>
+		<tbody>
+			<? foreach($this->Users as $user) { ?>
+			<tr><td> <?= $user->name() ?> </td>
+				<td> <?= $user->user() ?> </td>
+				<td> <?= $user->language() ?> </td>
+				<td>
+					<a href="<?= $this->baseUrl . "modusers/id/" . $user->id()?>">Modificar</a>
+				</td>
+				<td>
+					<a href="<?= $this->baseUrl . "removeusers/id/" . $user->id()?>">Eliminar</a>
+				</td>
+			</tr>
+			<? } ?>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"name",label:"Nombre",sortable:true},
+            {key:"user",label:"Usuario", sortable:true},
+            {key:"language",label:"Idioma", sortable:false},
+			{key:"modify",label:"Modificar", sortable:false},
+			{key:"eliminate",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tableusers"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [{key:"name"},
+		             {key:"user"},
+         		     {key:"language"},
+		  	   		 {key:"modify"},
+					 {key:"eliminate"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistusers", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"}}
+        );
+    };
+});
+</script>

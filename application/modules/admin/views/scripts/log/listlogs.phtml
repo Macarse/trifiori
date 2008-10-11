@@ -1,4 +1,5 @@
-<table class="bordered">
+<div id="divmodificaciones" class="clistado">
+<table id="tablemodifications">
     <thead>
         <tr> <th>ID</th> <th>Nivel</th> <th>Mensaje</th></tr>
     </thead>
@@ -11,3 +12,28 @@
         <? } ?>
     </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"id",label:"ID",sortable:true},
+            {key:"level",label:"Nivel", sortable:true},
+            {key:"msg",label:"Mensaje", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablemodifications"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [{key:"id"},
+		             {key:"level"},
+         		     {key:"msg"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divmodificaciones", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"id",dir:"desc"}}
+        );
+    };
+});
+</script>
