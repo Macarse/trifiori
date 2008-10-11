@@ -16,6 +16,9 @@ var txtmenuadminspa =
                 { text: "Agregar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarusuario', url:"/admin/users/addusers" }  }},
                 { text: "Modificar usuario", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarusuario', url:"/admin/users/listusers" }   }},
                 { text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"/admin/users/listusers" }   }},
+                ],
+                [
+                    { text: "Listado de Usuarios", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listusuario', url: "/admin/users/listusers"} }}
                 ]
             ]
         }
@@ -127,20 +130,23 @@ var txtmenuspa =
             }
         },
         {
-                        text: "Puertos", 
-                        submenu: {  
-                            id: "puertosmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar puerto", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar puerto", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar puerto", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de puerto", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },
-					{ 
+            text: "Puertos",
+            submenu:
+            {
+                id: "puertosmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar puerto", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarpuerto', url: "/user/puertos/addpuertos"} }},
+                        { text: "Modificar puerto", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarpuerto', url: "/user/puertos/listpuertos"} }},
+                        { text: "Borrar puerto", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarpuerto', url: "/user/puertos/listpuertos"} }}
+                    ],
+                    [
+                        { text: "Listado de puerto", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarpuerto', url: "/user/puertos/listpuertos"} }}]
+                ]
+            }
+        },
+        {
                         text: "Monedas", 
                         submenu: {  
                             id: "monedasmenu", 
