@@ -55,7 +55,7 @@ div.clistado
 	top: 5em;
 }
 
-div.cformusuario
+div.cformulario
 {
 	border: 2px solid #666666;
 	background-color: #FFFFFF;
@@ -66,7 +66,7 @@ div.cformusuario
 	height: 20em;
 }
 
-div.cformusuario label
+div.cformulario label
 {
 	position: relative;
 	top: 1.4em;
@@ -76,13 +76,13 @@ div.cformusuario label
 	font-size: small;
 }
 
-div.cformusuario select
+div.cformulario select
 {
 	position: relative;
 	left: 11em;
 }
 
-div.cformusuario input
+div.cformulario input
 {
 	position: relative;
 	left: 11em;

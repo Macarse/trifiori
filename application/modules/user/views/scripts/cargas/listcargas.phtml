@@ -1,7 +1,7 @@
-<table class="bordered">
+<div id="divlistado" class="clistado">
+	<table id="tablelist">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Cantidad Bultos</th>
             <th>Tipo de Envase</th>
             <th>Peso</th>
@@ -9,11 +9,12 @@
             <th>Número de paquete</th>
             <th>Marca y número</th>
             <th>Merc. IMCO</th>
+			<th>Modificar</th> <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
         <? foreach($this->Cargas as $carga) { ?>
-        <tr> <td> <?= $carga->id() ?> </td>
+        <tr> 
             <td> <?= $carga->cantBultos() ?> </td>
             <td> <?= $carga->tipoEnvase() ?> </td>
             <td> <?= $carga->peso() ?> </td>
@@ -22,12 +23,50 @@
             <td> <?= $carga->marcaYnum() ?> </td>
             <td> <?= $carga->mercIMCO() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "removecargas/id/" . $carga->id()?>">Eliminar</a>
+                <a href="<?= $this->baseUrl . "modcargas/id/" . $carga->id()?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "modcargas/id/" . $carga->id()?>">Modificar</a>
+                <a href="<?= $this->baseUrl . "removecargas/id/" . $carga->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
     </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"bultos",label:"Cantidad Bultos", sortable:true},
+			{key:"tipoenvase",label:"Tipo de Envase", sortable:true},
+			{key:"peso",label:"Peso", sortable:true},
+			{key:"unidad",label:"Unidad", sortable:true},
+			{key:"nropaq",label:"Número de paquete", sortable:true},
+			{key:"marcayum",label:"Marca y número", sortable:true},
+			{key:"imco",label:"Merc. IMCO", sortable:true},
+			{key:"mod",label:"Modificar", sortable:false},
+			{key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [            
+				{key:"bultos"},
+				{key:"tipoenvase"},
+				{key:"peso"},
+				{key:"unidad"},
+				{key:"nropaq"},
+				{key:"marcayum"},
+				{key:"imco"},
+				{key:"mod"},
+				{key:"elim"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"}}
+        );
+    };
+});
+</script>

@@ -254,6 +254,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
+
         $cargasTable = new Cargas();
         $cargasOptions =  $cargasTable->getCargasArray();
 

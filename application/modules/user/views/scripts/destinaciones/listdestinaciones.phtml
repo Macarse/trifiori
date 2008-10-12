@@ -1,18 +1,44 @@
-<table class="bordered">
+<div id="divlistado" class="clistado">
+	<table id="tablelist">
     <thead>
-        <tr> <th>ID</th> <th>Nombre</th> </tr>
+        <tr> <th>Nombre</th>  <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
         <? foreach($this->Destinaciones as $destinacion) { ?>
-        <tr> <td> <?= $destinacion->id() ?> </td>
+        <tr> 
             <td> <?= $destinacion->name() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "removedestinaciones/id/" . $destinacion->id()?>">Eliminar</a>
-            </td>
-            <td>
                 <a href="<?= $this->baseUrl . "moddestinaciones/id/" . $destinacion->id()?>">Modificar</a>
+            </td>
+			<td>
+                <a href="<?= $this->baseUrl . "removedestinaciones/id/" . $destinacion->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
     </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"name",label:"Nombre", sortable:true},
+			{key:"mod",label:"Modificar", sortable:false},
+			{key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [{key:"name"},
+					{key:"mod"},
+					{key:"elim"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"}}
+        );
+    };
+});
+</script>

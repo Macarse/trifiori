@@ -29,3 +29,19 @@ function show_hide_div(divID)
 	else
 		show_div(divID);
 }
+
+function keyPress(e)
+{
+      var kC  = (window.event) ?    // MSIE or Firefox?
+                 event.keyCode : e.keyCode;
+      
+	  return kC;
+} 
+
+function keyCalendar(e, divCalendar)
+{
+	if (keyPress(e) == 40)
+	{
+		show_hide_div(divCalendar);
+	}
+}
