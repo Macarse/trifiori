@@ -169,7 +169,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
-        $date = $this->_addform->createElement('text', 'date', array('label' => 'Fecha', 'id' => 'date')); 
+        $date = $this->_addform->createElement('text', 'date', array('label' => 'Fecha', 'id' => 'date', 'onKeyPress' => "keyCalendar(event,'cal1Container')")); 
           $date->addValidator('date')
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true)
