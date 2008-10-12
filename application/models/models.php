@@ -23,4 +23,6 @@
     require_once 'MonedasModel.php';
     require_once 'CargasTable.php';
     require_once 'CargasModel.php';
+    require_once 'ExportacionesTable.php';
+    require_once 'ExportacionesModel.php';
 ?>

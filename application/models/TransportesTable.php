@@ -54,6 +54,27 @@ class Transportes extends Zend_Db_Table_Abstract
         return True;
     }
 
+    public function getTransportesArray()
+    {
+        $arr = array();
+
+        try
+        {
+            $transportes = $this->fetchAll();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
+
+        foreach ($transportes as $row)
+        {
+            $arr[ $row->id() ] = $row->name();
+        }
+
+        return $arr;
+    }
+
 }
 
 ?>

@@ -12,7 +12,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
     public function addexportacionesAction()
     {
-        $this->view->headTitle("Agregar Exportaciones");
+        $this->view->headTitle("Agregar Exportación");
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -26,32 +26,34 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 {
                     $values = $this->_addform->getValues();
 
-		    //fecha
-		    $date = new Zend_Date;
-		    if ($date->isDate($values['date']))
-		    	$date->set($values['date']);
-		    else
-		    {
-		    	echo 'fecha invalida';
-		    	$this->view->error = 'Invalid Date';
-		    }
-
-
-		/*
                     try
                     {
-                        $transportesTable = new Transportes();
-                        $transportesTable->addTransporte(   $values['codBandera'],
-                                                            $values['codMedio'],
-                                                            $values['name'],
-                                                            $values['observaciones']
+                        $exportacionesTable = new Exportaciones();
+                        $exportacionesTable->addExportacion(
+                                                            $values['orden'],
+                                                            $values['codTransporte'],
+                                                            $values['codCliente'],
+                                                            $values['codBandera'],
+                                                            $values['codMoneda'],
+                                                            $values['codGiro'],
+                                                            $values['codDestinacion'],
+                                                            $values['codCarga'],
+                                                            $values['referencia'],
+                                                            $values['fechaIngreso'],
+                                                            $values['desMercaderias'],
+                                                            $values['valorFactura'],
+                                                            $values['vencimiento'],
+                                                            $values['ingresoPuerto'],
+                                                            $values['PERnroDoc'],
+                                                            $values['PERpresentado'],
+                                                            $values['PERfactura'],
+                                                            $values['PERfechaFactura']
                                                         );
                     }
                     catch (Zend_Exception $error)
                     {
                         $this->view->error = $error;
                     }
-		   */
                 }
             }
         }
@@ -65,17 +67,16 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
-	/*
+
         try
         {
-            $table = new Transportes();
-            $this->view->Transportes = $table->fetchAll();
+            $table = new Exportaciones();
+            $this->view->Exportaciones = $table->fetchAll();
         }
         catch (Zend_Exception $error)
         {
             $this->view->error = $error;
         }
-	*/
     }
 
     public function removeexportacionesAction()
@@ -87,17 +88,15 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         }
         else
         {
-	/*
             try
             {
-            $transportesTable = new Transportes();
-            $transportesTable->removeTransporte( $this->getRequest()->getParam('id') );
+            $exportacionesTable = new Exportaciones();
+            $exportacionesTable->removeExportacion( $this->getRequest()->getParam('id') );
             }
             catch (Zend_Exception $error)
             {
             $this->view->error = $error;
             }
-	    */
         }
 
         $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
@@ -105,7 +104,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
     public function modexportacionesAction()
     {
-        $this->view->headTitle("Modificar Exportaciones");
+        $this->view->headTitle("Modificar Exportación");
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -131,22 +130,35 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 {
                     // process user
                     $values = $this->_modform->getValues();
-		/*
+
                     try
                     {
-                        $transportesTable = new Transportes();
-                        $transportesTable->modifyTransporte(    $this->_id,
+                        $exportacionesTable = new Exportaciones();
+                        $exportacionesTable->modifyExportacion( $this->_id,
+                                                                $values['orden'],
+                                                                $values['codTransporte'],
+                                                                $values['codCliente'],
                                                                 $values['codBandera'],
-                                                                $values['codMedio'],
-                                                                $values['name'],
-                                                                $values['observaciones']
+                                                                $values['codMoneda'],
+                                                                $values['codGiro'],
+                                                                $values['codDestinacion'],
+                                                                $values['codCarga'],
+                                                                $values['referencia'],
+                                                                $values['fechaIngreso'],
+                                                                $values['desMercaderias'],
+                                                                $values['valorFactura'],
+                                                                $values['vencimiento'],
+                                                                $values['ingresoPuerto'],
+                                                                $values['PERnroDoc'],
+                                                                $values['PERpresentado'],
+                                                                $values['PERfactura'],
+                                                                $values['PERfechaFactura']
                                                             );
                     }
                     catch (Zend_Exception $error)
                     {
                     $this->view->error = $error;
                     }
-		*/
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
                     /*Se actualizó, volver a mostrar lista de users*/
@@ -158,103 +170,400 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
     private function getExportacionAddForm()
     {
+
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
 
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
         $this->_addform = new Zend_Form();
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
+        $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden  ->addValidator('int')
+                ->addValidator('stringLength', false, array(1, 11))
+                ->setRequired(true);
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
-        $date = $this->_addform->createElement('text', 'date', array('label' => 'Fecha', 'id' => 'date', 'onKeyPress' => "keyCalendar(event,'cal1Container')")); 
-          $date->addValidator('date')
-                 ->addValidator('stringLength', false, array(1, 100))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+        $transportesTable = new Transportes();
+        $transportesOptions =  $transportesTable->getTransportesArray();
+
+        $codTransporte = $this->_addform->createElement('select', 'codTransporte');
+        $codTransporte  ->setRequired(true)
+                        ->setOrder(1)
+                        ->setLabel('Transporte')
+                        ->setMultiOptions($transportesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $clientesTable = new Clientes();
+        $clientesOptions =  $clientesTable->getClientesArray();
+
+        $codCliente = $this->_addform->createElement('select', 'codCliente');
+        $codCliente ->setRequired(true)
+                    ->setOrder(2)
+                    ->setLabel('Cliente')
+                    ->setMultiOptions($clientesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $banderasTable = new Banderas();
+        $banderasOptions =  $banderasTable->getBanderasArray();
+
+        $codBandera = $this->_addform->createElement('select', 'codBandera');
+        $codBandera ->setRequired(true)
+                    ->setOrder(3)
+                    ->setLabel('Bandera')
+                    ->setMultiOptions($banderasOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $monedasTable = new Monedas();
+        $monedasOptions =  $monedasTable->getMonedasArray();
+
+        $codMoneda = $this->_addform->createElement('select', 'codMoneda');
+        $codMoneda  ->setRequired(true)
+                    ->setOrder(4)
+                    ->setLabel('Moneda')
+                    ->setMultiOptions($monedasOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $girosTable = new Giros();
+        $girosOptions =  $girosTable->getGirosArray();
+
+        $codGiro = $this->_addform->createElement('select', 'codGiro');
+        $codGiro    ->setRequired(False)
+                    ->setOrder(5)
+                    ->setLabel('Giro')
+                    ->setMultiOptions($girosOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $destinacionesTable = new Destinaciones();
+        $destinacionesOptions =  $destinacionesTable->getDestinacionesArray();
+
+        $codDestinacion = $this->_addform->createElement('select', 'codDestinacion');
+        $codDestinacion ->setRequired(True)
+                        ->setOrder(6)
+                        ->setLabel('Destino')
+                        ->setMultiOptions($destinacionesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+
+        $cargasTable = new Cargas();
+        $cargasOptions =  $cargasTable->getCargasArray();
+
+        $codCarga = $this->_addform->createElement('select', 'codDestinacion');
+        $codCarga   ->setRequired(True)
+                    ->setOrder(7)
+                    ->setLabel('Carga')
+                    ->setMultiOptions($cargasOptions);
+
+
+        $referencia = $this->_addform->createElement('text', 'referencia',
+                                                     array('label' => 'Referencia'));
+        $referencia ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 40))
+                    ->setRequired(False);
+
+        $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
+                                                     array('label' => 'Fecha de Ingreso'));
+        $fechaIngreso   ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+
+        $desMercaderias = $this->_addform->createElement('text', 'desMercaderias',
+                                                     array('label' => 'Descripción Mercadería'));
+        $desMercaderias ->addValidator($alnumWithWS)
+                        ->addValidator('stringLength', false, array(1, 200))
+                        ->setRequired(False);
+
+
+        $valorFactura = $this->_addform->createElement('text', '$valorFactura',
+                                                     array('label' => 'Valor Factura'));
+        $valorFactura   ->addValidator('float')
+                        ->addValidator('stringLength', false, array(1, 40))
+                        ->setRequired(False);
+
+
+        $vencimiento = $this->_addform->createElement('text', 'vencimiento',
+                                                     array('label' => 'Vencimiento'));
+        $vencimiento   ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+        $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
+                                                     array('label' => 'Ingreso a Puerto'));
+        $ingresoPuerto  ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(False);
+
+        $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
+                                                     array('label' => 'Número de Permiso'));
+        $PERnroDoc  ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 30))
+                    ->setRequired(True);
+
+        $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
+                                                     array('label' => 'Permiso Presentado'));
+        $PERpresentado   ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+        $PERfactura = $this->_addform->createElement('text', 'PERfactura',
+                                                     array('label' => 'Permiso Factura'));
+        $PERfactura  ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 40))
+                    ->setRequired(False);
+
+        $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
+                                                     array('label' => 'Permiso Fecha de Factura'));
+        $PERfechaFactura    ->addValidator('date')
+                            ->addValidator('stringLength', false, array(1, 12))
+                            ->setRequired(False);
 
         // Add elements to form:
-        $this->_addform->addElement($date)
-             ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+        $this->_addform ->addElement($orden)
+                        ->addElement($codTransporte)
+                        ->addElement($codCliente)
+                        ->addElement($codBandera)
+                        ->addElement($codMoneda)
+                        ->addElement($codGiro)
+                        ->addElement($codDestinacion)
+                        ->addElement($codCarga)
+                        ->addElement($referencia)
+                        ->addElement($fechaIngreso)
+                        ->addElement($desMercaderias)
+                        ->addElement($valorFactura)
+                        ->addElement($vencimiento)
+                        ->addElement($ingresoPuerto)
+                        ->addElement($PERnroDoc)
+                        ->addElement($PERpresentado)
+                        ->addElement($PERfactura)
+                        ->addElement($PERfechaFactura)
+                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_addform;
     }
 
-    private function getTransporteModForm( $id )
+    private function getExportacionModForm( $id )
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
             return $this->_modform;
         }
 
-        /*Levanto el transporte para completar el form.*/
-        $transportesTable = new Transportes();
-        $row = $transportesTable->getTransporteByID( $id );
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        /*Levanto la exportacion para completar el form.*/
+        $exportacionesTable = new Exportaciones();
+        $row = $exportacionesTable->getExportacionByID( $id );
 
         if ( $row === null )
         {
             /*TODO: Hardcodeado ok?*/
-            $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
+            $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
         }
 
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)->setMethod('post');
 
-        /*Si la db está muerta devuelve NULL.
+        $orden = $this->_modform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden  ->setValue($row->orden() )
+                ->addValidator('int')
+                ->addValidator('stringLength', false, array(1, 11))
+                ->setRequired(true);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $transportesTable = new Transportes();
+        $transportesOptions =  $transportesTable->getTransportesArray();
+
+        $codTransporte = $this->_modform->createElement('select', 'codTransporte');
+        $codTransporte  ->setValue($row->codTransporte() )
+                        ->setRequired(true)
+                        ->setOrder(1)
+                        ->setLabel('Transporte')
+                        ->setMultiOptions($transportesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $clientesTable = new Clientes();
+        $clientesOptions =  $clientesTable->getClientesArray();
+
+        $codCliente = $this->_modform->createElement('select', 'codCliente');
+        $codCliente ->setValue($row->codCliente() )
+                    ->setRequired(true)
+                    ->setOrder(2)
+                    ->setLabel('Cliente')
+                    ->setMultiOptions($clientesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
         $banderasTable = new Banderas();
         $banderasOptions =  $banderasTable->getBanderasArray();
 
         $codBandera = $this->_modform->createElement('select', 'codBandera');
-        $codBandera ->setValue( $row->codBandera() )
+        $codBandera ->setValue($row->codBandera() )
                     ->setRequired(true)
-                    ->setOrder(1)
+                    ->setOrder(3)
                     ->setLabel('Bandera')
                     ->setMultiOptions($banderasOptions);
 
-//         /*TODO: MODIFICAR POR COD_MEDIO CUANDO ESTÉ!*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $monedasTable = new Monedas();
+        $monedasOptions =  $monedasTable->getMonedasArray();
 
-        $codMedio = $this->_modform->createElement('select', 'codMedio');
-        $codMedio   ->setValue( $row->codMedio() )
+        $codMoneda = $this->_modform->createElement('select', 'codMoneda');
+        $codMoneda  ->setValue($row->codMoneda() )
                     ->setRequired(true)
-                    ->setOrder(2)
-                    ->setLabel('Medio')
-                    ->setMultiOptions($banderasOptions);
+                    ->setOrder(4)
+                    ->setLabel('Moneda')
+                    ->setMultiOptions($monedasOptions);
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->setValue($row->name() )
-             ->addValidator($alnumWithWS)
-             ->addValidator('stringLength', false, array(1, 400))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $girosTable = new Giros();
+        $girosOptions =  $girosTable->getGirosArray();
 
-        $observaciones = $this->_modform->createElement('text', 'observaciones',
-                                                         array('label' => 'Observaciones')
-                                                        );
-        $observaciones  ->setValue($row->observaciones() )
+        $codGiro = $this->_modform->createElement('select', 'codGiro');
+        $codGiro    ->setValue($row->codGiro() )
+                    ->setRequired(False)
+                    ->setOrder(5)
+                    ->setLabel('Giro')
+                    ->setMultiOptions($girosOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $destinacionesTable = new Destinaciones();
+        $destinacionesOptions =  $destinacionesTable->getDestinacionesArray();
+
+        $codDestinacion = $this->_modform->createElement('select', 'codDestinacion');
+        $codDestinacion ->setValue($row->codDestinacion() )
+                        ->setRequired(True)
+                        ->setOrder(6)
+                        ->setLabel('Destino')
+                        ->setMultiOptions($destinacionesOptions);
+
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $cargasTable = new Cargas();
+        $cargasOptions =  $cargasTable->getCargasArray();
+
+        $codCarga = $this->_modform->createElement('select', 'codDestinacion');
+        $codCarga   ->setValue($row->codCarga() )
+                    ->setRequired(True)
+                    ->setOrder(7)
+                    ->setLabel('Carga')
+                    ->setMultiOptions($cargasOptions);
+
+
+        $referencia = $this->_modform->createElement('text', 'referencia',
+                                                     array('label' => 'Referencia'));
+        $referencia ->setValue($row->referencia() )
+                    ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 40))
+                    ->setRequired(False);
+
+        $fechaIngreso = $this->_modform->createElement('text', 'fechaIngreso',
+                                                     array('label' => 'Fecha de Ingreso'));
+        $fechaIngreso   ->setValue($row->fechaIngreso() )
+                        ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+
+        $desMercaderias = $this->_modform->createElement('text', 'desMercaderias',
+                                                     array('label' => 'Descripción Mercadería'));
+        $desMercaderias ->setValue($row->desMercaderias() )
                         ->addValidator($alnumWithWS)
-                        ->addValidator('stringLength', false, array(1, 400))
-                        ->setRequired(False)
-                        ->addFilter('StringToLower');
+                        ->addValidator('stringLength', false, array(1, 200))
+                        ->setRequired(False);
+
+
+        $valorFactura = $this->_modform->createElement('text', '$valorFactura',
+                                                     array('label' => 'Valor Factura'));
+        $valorFactura   ->setValue($row->valorFactura() )
+                        ->addValidator('float')
+                        ->addValidator('stringLength', false, array(1, 40))
+                        ->setRequired(False);
+
+
+        $vencimiento = $this->_modform->createElement('text', 'vencimiento',
+                                                     array('label' => 'Vencimiento'));
+        $vencimiento    ->setValue($row->vencimiento() )
+                        ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+        $PERnroDoc = $this->_modform->createElement('text', 'PERnroDoc',
+                                                     array('label' => 'Número de Permiso'));
+        $PERnroDoc  ->setValue($row->PERnroDoc() )
+                    ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 30))
+                    ->setRequired(True);
+
+        $ingresoPuerto = $this->_modform->createElement('text', 'ingresoPuerto',
+                                                     array('label' => 'Ingreso a Puerto'));
+        $ingresoPuerto  ->setValue($row->ingresoPuerto() )
+                        ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(False);
+
+        $PERpresentado = $this->_modform->createElement('text', 'PERpresentado',
+                                                     array('label' => 'Permiso Presentado'));
+        $PERpresentado  ->setValue($row->PERpresentado() )
+                        ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+        $PERfactura = $this->_modform->createElement('text', 'PERfactura',
+                                                     array('label' => 'Permiso Factura'));
+        $PERfactura ->setValue($row->PERfactura() )
+                    ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 40))
+                    ->setRequired(False);
+
+        $PERfechaFactura = $this->_modform->createElement('text', 'PERfechaFactura',
+                                                     array('label' => 'Permiso Fecha de Factura'));
+        $PERfechaFactura    ->setValue($row->PERfechaFactura() )
+                            ->addValidator('date')
+                            ->addValidator('stringLength', false, array(1, 12))
+                            ->setRequired(False);
 
         // Add elements to form:
-        $this->_modform->addElement($name)
-                       ->addElement($codBandera)
-                       ->addElement($codMedio)
-                       ->addElement($observaciones)
-             ->addElement('hidden', 'ModTransporteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+        $this->_modform ->addElement($orden)
+                        ->addElement($codTransporte)
+                        ->addElement($codCliente)
+                        ->addElement($codBandera)
+                        ->addElement($codMoneda)
+                        ->addElement($codGiro)
+                        ->addElement($codDestinacion)
+                        ->addElement($codCarga)
+                        ->addElement($referencia)
+                        ->addElement($fechaIngreso)
+                        ->addElement($desMercaderias)
+                        ->addElement($valorFactura)
+                        ->addElement($vencimiento)
+                        ->addElement($ingresoPuerto)
+                        ->addElement($PERnroDoc)
+                        ->addElement($PERpresentado)
+                        ->addElement($PERfactura)
+                        ->addElement($PERfechaFactura)
+                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_modform;
     }
-
 
 }
 ?>

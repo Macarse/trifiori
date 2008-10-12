@@ -62,6 +62,27 @@ class Cargas extends Zend_Db_Table_Abstract
         return True;
     }
 
+    public function getCargasArray()
+    {
+        $arr = array();
+
+        try
+        {
+            $cargas = $this->fetchAll();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
+
+        foreach ($cargas as $row)
+        {
+            $arr[ $row->id() ] = $row->nroPaquete();
+        }
+
+        return $arr;
+    }
+
 }
 
 ?>
