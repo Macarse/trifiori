@@ -1,0 +1,28 @@
+Instrucciones para levantar el sistema:
+
+    - Editar config/config.ini
+            db.adapter = Opción
+            Opciones:
+                PDO_MYSQL   ->  MySQL
+                PDO_IBM     ->  IBM DB2 / Informix Dynamic Server
+                PDO_MSSQL   ->  Microsoft SQL Server
+                PDO_OCI     ->  Oracle
+                PDO_PGSQL   ->  PostgreSQL
+                PDO_SQLITE  ->  SQLite
+            db.host     = host donde se encuentra el RBDMS
+            db.username = usuario para acceder a la base de datos
+            db.password = password del usuario establecido en db.username
+            db.dbname   = base de datos a utilizar
+
+    - Ejecutar los scripts de creación de tablas e inserción en la BD.
+            Archivos relacionados:
+                mysql/trifiori_mysql.sql
+                mysql/trifiori_inserts.sql
+            Ejemplo, usando la base Trifiori en MySQL:
+                mysql -u db.username -p
+                use Trifiori;
+                source mysql/trifiori_mysql.sql
+                source mysql/trifiori_inserts.sql
+
+    - Establecer como DocumentRoot en Apache el directorio public/ de la
+      aplicación.
