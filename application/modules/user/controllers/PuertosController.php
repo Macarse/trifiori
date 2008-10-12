@@ -12,6 +12,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     public function addpuertosAction()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
         $this->view->headTitle("Agregar Puerto");
 
         /*Errors from the past are deleted*/
@@ -133,6 +134,8 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     private function getPuertoModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -154,7 +157,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
              ->setRequired(true)
              ->addFilter('StringToLower');
@@ -169,6 +172,8 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     private function getPuertoAddForm()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -178,7 +183,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->addValidator('alnum')
+        $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true)
                  ->addFilter('StringToLower');

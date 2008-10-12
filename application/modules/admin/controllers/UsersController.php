@@ -158,6 +158,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     private function getUserAddForm()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -167,12 +169,13 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->addValidator('alnum')
+        $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure username element:
+        
         $username = $this->_addform->createElement('text', 'username', array('label' => 'Usuario'));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
@@ -213,6 +216,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     private function getUserModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -234,7 +239,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($user->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 50))
              ->setRequired(true)
              ->addFilter('StringToLower');

@@ -44,7 +44,7 @@ class Trifiori_Controller_Plugin_Log extends Zend_Controller_Plugin_Abstract
                     $request->getParam('id') . ".";
                 break;
             case strpos($action, "add"):
-                $msg = $msg . " ALTERANDO " . $controller .  "Agregando nuevo.";
+                $msg = $msg . " ALTERANDO " . $controller .  " Agregando nuevo.";
                 break;
             default:
                 $msg = $msg . " accediendo a " . $module . "/" . 

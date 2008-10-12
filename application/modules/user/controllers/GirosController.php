@@ -133,6 +133,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
     private function getGiroModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -154,7 +155,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 100))
              ->setRequired(true)
              ->addFilter('StringToLower');
@@ -169,6 +170,8 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
     private function getGiroAddForm()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -178,7 +181,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->addValidator('alnum')
+        $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true)
                  ->addFilter('StringToLower');

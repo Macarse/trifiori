@@ -185,6 +185,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
     private function getTransporteModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -229,7 +230,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 400))
              ->setRequired(true)
              ->addFilter('StringToLower');
@@ -238,7 +239,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                                          array('label' => 'Observaciones')
                                                         );
         $observaciones  ->setValue($row->observaciones() )
-                        ->addValidator('alnum')
+                        ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
                         ->setRequired(False)
                         ->addFilter('StringToLower');

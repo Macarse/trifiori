@@ -125,6 +125,7 @@ create table ES_CONTRATADO_POR
 /*==============================================================*/
 create table EXPORTACIONES
 (
+   CODIGO_EXP                     int AUTO_INCREMENT             not null,
    ORDEN                          int                            not null,
    CODIGO_TRA                     int                            not null,
    CODIGO_CLI                     int                            not null,
@@ -143,7 +144,8 @@ create table EXPORTACIONES
    PER_PRESENTADO                 date                           not null,
    PER_FACTURA                    varchar(40),
    PER_FECHAFACTURA               date,
-   primary key (ORDEN)
+   primary key (CODIGO_EXP),
+   UNIQUE ORDEN (ORDEN)
 );
 
 /*==============================================================*/
@@ -161,6 +163,7 @@ create table GIROS
 /*==============================================================*/
 create table IMPORTACIONES
 (
+   CODIGO_IMP                     int AUTO_INCREMENT             not null,
    ORDEN_IMP                      int                            not null,
    CODIGO_DES                     int                            not null,
    CODIGO_BAN                     int                            not null,
@@ -187,7 +190,8 @@ create table IMPORTACIONES
    DES_CARGADO                    date                           not null,
    DES_FACTURA                    varchar(50),
    DES_FECHAFACTURA               date,
-   primary key (ORDEN_IMP)
+   primary key (CODIGO_IMP),
+   UNIQUE ORDEN_IMP (ORDEN_IMP)
 );
 
 /*==============================================================*/

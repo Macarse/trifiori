@@ -147,6 +147,8 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     private function getClienteModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -168,14 +170,14 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true)
              ->addFilter('StringToLower');
 
         $dir = $this->_modform->createElement('text', 'dir', array('label' => 'Dirección'));
         $dir ->setValue($row->adress() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false)
              ->addFilter('StringToLower');
@@ -189,7 +191,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         $localidad = $this->_modform->createElement('text', 'localidad', array('label' => 'Localidad'));
         $localidad ->setValue($row->localidad() )
-                   ->addValidator('alnum')
+                   ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false)
                    ->addFilter('StringToLower');
@@ -251,6 +253,8 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     private function getClienteAddForm()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -260,13 +264,13 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->addValidator('alnum')
+        $name->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true)
              ->addFilter('StringToLower');
 
         $dir = $this->_addform->createElement('text', 'dir', array('label' => 'Dirección'));
-        $dir ->addValidator('alnum')
+        $dir ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false)
              ->addFilter('StringToLower');
@@ -278,7 +282,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addFilter('StringToLower');
 
         $localidad = $this->_addform->createElement('text', 'localidad', array('label' => 'Localidad'));
-        $localidad ->addValidator('alnum')
+        $localidad ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false)
                    ->addFilter('StringToLower');

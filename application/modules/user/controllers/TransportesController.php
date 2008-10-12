@@ -141,6 +141,8 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
     private function getTransporteAddForm()
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -174,7 +176,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
-        $name->addValidator('alnum')
+        $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
@@ -182,7 +184,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $observaciones = $this->_addform->createElement('text', 'observaciones',
                                                          array('label' => 'Observaciones')
                                                         );
-        $observaciones  ->addValidator('alnum')
+        $observaciones  ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
                         ->setRequired(False)
                         ->addFilter('StringToLower');
@@ -200,6 +202,8 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
     private function getTransporteModForm( $id )
     {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -245,7 +249,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
-             ->addValidator('alnum')
+             ->addValidator($alnumWithsWS)
              ->addValidator('stringLength', false, array(1, 400))
              ->setRequired(true)
              ->addFilter('StringToLower');
@@ -254,7 +258,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                                                          array('label' => 'Observaciones')
                                                         );
         $observaciones  ->setValue($row->observaciones() )
-                        ->addValidator('alnum')
+                        ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
                         ->setRequired(False)
                         ->addFilter('StringToLower');
