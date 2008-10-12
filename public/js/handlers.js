@@ -45,3 +45,59 @@ function keyCalendar(e, divCalendar)
 		show_hide_div(divCalendar);
 	}
 }
+
+function changeDateInput(idText, msg) {
+	document.getElementById(idText).value = msg;
+}
+
+function dateToLocaleString(dt, cal) {
+			var dStr = dt.getDate();
+			var mStr = dt.getMonth() + 1;
+			var yStr = dt.getFullYear();
+			return (dStr + "-" + mStr + "-" + yStr);
+}
+
+function handlerCalFechaIngreso(type,args,obj) {
+	var selected = args[0];
+	var selDate = this.toDate(selected[0]);
+	 
+	changeDateInput('idFechaIngreso', dateToLocaleString(selDate, this));
+	
+	hide_div('calFechaIngreso');
+};
+
+function handlerCalVencimiento(type,args,obj) {
+	var selected = args[0];
+	var selDate = this.toDate(selected[0]);
+	 
+	changeDateInput('idVencimiento', dateToLocaleString(selDate, this));
+	
+	hide_div('calVencimiento');
+};
+
+function handlerCalIngPuerto(type,args,obj) {
+	var selected = args[0];
+	var selDate = this.toDate(selected[0]);
+	 
+	changeDateInput('idIngPuerto', dateToLocaleString(selDate, this));
+	
+	hide_div('calIngPuerto');
+};
+
+function handlerCalPerPre(type,args,obj) {
+	var selected = args[0];
+	var selDate = this.toDate(selected[0]);
+	 
+	changeDateInput('idPerPre', dateToLocaleString(selDate, this));
+	
+	hide_div('calPerPre');
+};
+
+function handlerCalPerFecFac(type,args,obj) {
+	var selected = args[0];
+	var selDate = this.toDate(selected[0]);
+	 
+	changeDateInput('idPerFecFac', dateToLocaleString(selDate, this));
+	
+	hide_div('calFecFac');
+};

@@ -272,7 +272,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     ->setRequired(False);
 
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
-                                                     array('label' => 'Fecha de Ingreso'));
+                                                     array('label' => 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -293,13 +293,13 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
 
         $vencimiento = $this->_addform->createElement('text', 'vencimiento',
-                                                     array('label' => 'Vencimiento'));
+                                                     array('label' => 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
-                                                     array('label' => 'Ingreso a Puerto'));
+                                                     array('label' => 'Ingreso a Puerto', 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -311,7 +311,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     ->setRequired(True);
 
         $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
-                                                     array('label' => 'Permiso Presentado'));
+                                                     array('label' => 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -323,7 +323,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     ->setRequired(False);
 
         $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
-                                                     array('label' => 'Permiso Fecha de Factura'));
+                                                     array('label' => 'Permiso Fecha de Factura', 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
         $PERfechaFactura    ->addValidator('date')
                             ->addValidator('stringLength', false, array(1, 12))
                             ->setRequired(False);

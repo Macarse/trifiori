@@ -1,7 +1,7 @@
-<table class="bordered">
+<div id="divlistado" class="clistado">
+	<table id="tablelist">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Órden</th>
             <th>Transporte</th>
             <th>Cliente</th>
@@ -20,12 +20,12 @@
             <th>Permiso Presentado</th>
             <th>Permiso Factura</th>
             <th>Permiso Fecha de Factura</th>
+			<th>Modificar</th> <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
         <? foreach($this->Exportaciones as $exportacion) { ?>
         <tr>
-            <td> <?= $exportacion->id() ?> </td>
             <td> <?= $exportacion->orden() ?> </td>
             <td> <?= $exportacion->codTransporteName() ?> </td>
             <td> <?= $exportacion->codClienteName() ?> </td>
@@ -34,7 +34,6 @@
             <td> <?= $exportacion->codGiroName() ?> </td>
             <td> <?= $exportacion->codDestinacionName() ?> </td>
             <td> <?= $exportacion->codCargaName() ?> </td>
-            <td> <?= $exportacion->referencia() ?> </td>
             <td> <?= $exportacion->fechaIngreso() ?> </td>
             <td> <?= $exportacion->desMercaderias() ?> </td>
             <td> <?= $exportacion->valorFactura() ?> </td>
@@ -45,12 +44,70 @@
             <td> <?= $exportacion->PERfactura() ?> </td>
             <td> <?= $exportacion->PERfechaFactura() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
+                <a href="<?= $this->baseUrl . "modexportaciones/id/" . $exportacion->id()?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "modexportaciones/id/" . $exportacion->id()?>">Modificar</a>
+                <a href="<?= $this->baseUrl . "removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
     </tbody>
 </table>
+</div>
+
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"orden",label:"Orden", sortable:true},
+			{key:"trans",label:"Transporte", sortable:true},
+			{key:"cliente",label:"Codigo Cliente", sortable:true},
+			{key:"bandera",label:"Bandera", sortable:true},
+			{key:"mondea",label:"Moneda", sortable:true},
+			{key:"giro",label:"Giro", sortable:true},
+			{key:"carga",label:"Carga", sortable:true},
+			{key:"referencia",label:"Referencia", sortable:true},
+			{key:"feching",label:"Fecha de Ingreso", sortable:true},
+			{key:"descmer",label:"Descripción Mercadería", sortable:true},
+			{key:"valfac",label:"Valor Factura", sortable:true},
+			{key:"venc",label:"Vencimiento", sortable:true},
+			{key:"ingpue",label:"Ingreso a Puerto", sortable:true},
+			{key:"numper",label:"Número de Permiso", sortable:true},
+			{key:"perpre",label:"Permiso Presentado", sortable:true},
+			{key:"perfac",label:"Permiso Factura", sortable:true},
+			{key:"perfecfac",label:"Permiso Fecha de Factura", sortable:true},
+			{key:"mod",label:"Modificar", sortable:false},
+			{key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [{key:"orden"},
+					{key:"trans"},
+					{key:"cliente"},
+					{key:"bandera"},
+					{key:"mondea"},
+					{key:"giro"},
+					{key:"carga"},
+					{key:"referencia"},
+					{key:"feching"},
+					{key:"descmer"},
+					{key:"valfac"},
+					{key:"venc"},
+					{key:"ingpue"},
+					{key:"numper"},
+					{key:"perpre"},
+					{key:"perfac"},
+					{key:"perfecfac"},
+					{key:"mod"},
+					{key:"elim"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"}}
+        );
+    };
+});
+</script>
