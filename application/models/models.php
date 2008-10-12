@@ -21,4 +21,6 @@
     require_once 'PuertosModel.php';
     require_once 'MonedasTable.php';
     require_once 'MonedasModel.php';
+    require_once 'CargasTable.php';
+    require_once 'CargasModel.php';
 ?>
