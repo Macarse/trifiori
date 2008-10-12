@@ -44,9 +44,6 @@ var txtmenuspa =
                             { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
-                            { text: "Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
-                        ],
-                        [
                             { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
@@ -142,6 +139,23 @@ var txtmenuspa =
                     [
                         { text: "Listado de cargas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarcarga', url: "/user/cargas/listcargas"} }}
                     ]
+                ]
+            }
+        },
+        {
+            text: "Destinaciones",
+            submenu:
+            {
+                id: "destinacionesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar Destinación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregardestinacion', url: "/user/destinaciones/adddestinaciones"} }},
+                        { text: "Modificar Destinación", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificardestinacion', url: "/user/destinaciones/listdestinaciones"} }},
+                        { text: "Borrar Destinación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrardestinacion', url: "/user/destinaciones/listdestinaciones"} }}
+                    ],
+                    [
+                        { text: "Listado de Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listardestinaciones', url: "/user/destinaciones/listdestinaciones"} }}]
                 ]
             }
         },

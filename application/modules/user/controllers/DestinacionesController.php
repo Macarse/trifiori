@@ -1,5 +1,5 @@
 <?php
-class user_PuertosController extends Trifiori_User_Controller_Action
+class user_DestinacionesController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
@@ -7,29 +7,29 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     public function indexAction()
     {
-        $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+        $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
     }
 
-    public function addpuertosAction()
+    public function adddestinacionesAction()
     {
-        $this->view->headTitle("Agregar Puerto");
+        $this->view->headTitle("Agregar Destinación");
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
         if ($this->getRequest()->isPost())
         {
-            if (isset($_POST['AddPuertoTrack']))
+            if (isset($_POST['AddDestinacionTrack']))
             {
-                $this->_addform = $this->getPuertoAddForm();
+                $this->_addform = $this->getDestinacionAddForm();
                 if ($this->_addform->isValid($_POST))
                 {
                     $values = $this->_addform->getValues();
 
                     try
                     {
-                        $puertosTable = new Puertos();
-                        $puertosTable->addPuerto($values['name']);
+                        $destinacionesTable = new Destinaciones();
+                        $destinacionesTable->addDestinacion($values['name']);
                     }
                     catch (Zend_Exception $error)
                     {
@@ -39,20 +39,20 @@ class user_PuertosController extends Trifiori_User_Controller_Action
             }
         }
 
-        $this->view->puertoAddForm = $this->getPuertoAddForm();
+        $this->view->destinacionAddForm = $this->getDestinacionAddForm();
     }
 
-    public function listpuertosAction()
+    public function listdestinacionesAction()
     {
-        $this->view->headTitle("Listar Puertos");
+        $this->view->headTitle("Listar Destinaciones");
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
         try
         {
-            $table = new Puertos();
-            $this->view->Puertos = $table->fetchAll();
+            $table = new Destinaciones();
+            $this->view->Destinaciones = $table->fetchAll();
         }
         catch (Zend_Exception $error)
         {
@@ -60,19 +60,19 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         }
     }
 
-    public function removepuertosAction()
+    public function removedestinacionesAction()
     {
         /*TODO: Agregar un "Seguro que desea eliminar?"*/
         if ( $this->getRequest()->getParam('id') === null )
         {
-            $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+            $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
         }
         else
         {
             try
             {
-            $puertosTable = new Puertos();
-            $puertosTable->removePuerto( $this->getRequest()->getParam('id') );
+            $destinacionesTable = new Destinaciones();
+            $destinacionesTable->removeDestinacion( $this->getRequest()->getParam('id') );
             }
             catch (Zend_Exception $error)
             {
@@ -80,12 +80,12 @@ class user_PuertosController extends Trifiori_User_Controller_Action
             }
         }
 
-        $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+        $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
     }
 
-    public function modpuertosAction()
+    public function moddestinacionesAction()
     {
-        $this->view->headTitle("Modificar Puerto");
+        $this->view->headTitle("Modificar Destinación");
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -96,16 +96,16 @@ class user_PuertosController extends Trifiori_User_Controller_Action
             $this->_id = $this->getRequest()->getParam('id');
 
             /*Si el ID no corresponde con la db, hacerlo volver al listado*/
-            if (($this->view->puertoModForm = $this->getPuertoModForm($this->_id)) == null)
+            if (($this->view->destinacionModForm = $this->getDestinacionModForm($this->_id)) == null)
             {
-                $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+                $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
             }
         }
 
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
-            if (isset($_POST['ModPuertoTrack']))
+            if (isset($_POST['ModDestinacionTrack']))
             {
                 if ($this->_modform->isValid($_POST))
                 {
@@ -114,8 +114,8 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
                     try
                     {
-                        $puertosTable = new Puertos();
-                        $puertosTable->modifyPuerto( $this->_id,
+                        $destinacionesTable = new Destinaciones();
+                        $destinacionesTable->modifyDestinacion( $this->_id,
                                             $values['name']);
                     }
                     catch (Zend_Exception $error)
@@ -125,13 +125,13 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
                     /*Se actualizó, volver a mostrar lista de users*/
-                    $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+                    $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
                 }
             }
         }
     }
 
-    private function getPuertoModForm( $id )
+    private function getDestinacionModForm( $id )
     {
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
@@ -140,13 +140,13 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         }
 
         /*Levanto el usuario para completar el form.*/
-        $puertosTable = new Puertos();
-        $row = $puertosTable->getPuertoByID( $id );
+        $destinacionesTable = new Destinaciones();
+        $row = $destinacionesTable->getDestinacionByID( $id );
 
         if ( $row === null )
         {
             /*TODO: Hardcodeado ok?*/
-            $this->_helper->redirector->gotoUrl('user/puertos/listpuertos');
+            $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
         }
 
         $this->_modform = new Zend_Form();
@@ -161,13 +161,13 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
         // Add elements to form:
         $this->_modform->addElement($name)
-             ->addElement('hidden', 'ModPuertoTrack', array('values' => 'logPost'))
+             ->addElement('hidden', 'ModDestinacionTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
 
         return $this->_modform;
     }
 
-    private function getPuertoAddForm()
+    private function getDestinacionAddForm()
     {
         if (null !== $this->_addform)
         {
@@ -185,7 +185,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
         // Add elements to form:
         $this->_addform->addElement($name)
-             ->addElement('hidden', 'AddPuertoTrack', array('values' => 'logPost'))
+             ->addElement('hidden', 'AddDestinacionTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_addform;

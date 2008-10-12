@@ -1,0 +1,18 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Nombre</th> </tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Destinaciones as $destinacion) { ?>
+        <tr> <td> <?= $destinacion->id() ?> </td>
+            <td> <?= $destinacion->name() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removedestinaciones/id/" . $destinacion->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "moddestinaciones/id/" . $destinacion->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>
