@@ -1,0 +1,19 @@
+<table class="bordered">
+    <thead>
+        <tr> <th>ID</th> <th>Nombre</th> <th>Descripción</th></tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Monedas as $moneda) { ?>
+        <tr> <td> <?= $moneda->id() ?> </td>
+            <td> <?= $moneda->name() ?> </td>
+            <td> <?= $moneda->longName() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removemonedas/id/" . $moneda->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modmonedas/id/" . $moneda->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

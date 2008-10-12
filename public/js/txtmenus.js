@@ -18,7 +18,7 @@ var txtmenuadminspa =
                 { text: "Borrar usuario", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarusuario', url:"/admin/users/listusers" }   }},
                 ],
                 [
-                    { text: "Listado de Usuarios", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listusuario', url: "/admin/users/listusers"} }}
+                    { text: "Listado de Usuarios", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarusuario', url: "/admin/users/listusers"} }}
                 ]
             ]
         }
@@ -92,7 +92,7 @@ var txtmenuspa =
                         { text: "Borrar cliente", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarcliente', url: "/user/clientes/listclientes"} }}
                     ],
                     [
-                        { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listclientes', url: "/user/clientes/listclientes"} }}
+                        { text: "Listado de clientes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarclientes', url: "/user/clientes/listclientes"} }}
                     ]
                 ] 
             }
@@ -147,19 +147,23 @@ var txtmenuspa =
             }
         },
         {
-                        text: "Monedas", 
-                        submenu: {  
-                            id: "monedasmenu", 
-                            itemdata: [
-								[
-									{ text: "Agregar monedas", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar monedas", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar monedas", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-								[{ text: "Listado de monedas", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },
+            text: "Monedas",
+            submenu:
+            {
+                id: "monedasmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar monedas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarmoneda', url: "/user/monedas/addmonedas"} }},
+                        { text: "Modificar monedas", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarmoneda', url: "/user/monedas/listmonedas"} }},
+                        { text: "Borrar monedas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarmoneda', url: "/user/monedas/listmonedas"} }}
+                    ],
+                    [
+                        { text: "Listado de monedas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarmoneda', url: "/user/monedas/listmonedas"} }}
+                    ]
+                ]
+            }
+        },
         {
             text: "Transportes",
             submenu:
@@ -173,7 +177,7 @@ var txtmenuspa =
                         { text: "Borrar transporte", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrartransportes', url: "/user/transportes/listtransportes"} }}
                     ],
                     [
-                        { text: "Listado de transportes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listtransporte', url: "/user/transportes/listtransportes"} }}
+                        { text: "Listado de transportes", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listartransporte', url: "/user/transportes/listtransportes"} }}
                     ]
                 ]
             }
@@ -191,7 +195,7 @@ var txtmenuspa =
                     { text: "Borrar bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarbandera', url: "/user/banderas/listbanderas"} }}
                 ],
                 [
-                    { text: "Listado de bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listbandera', url: "/user/banderas/listbanderas"} }}
+                    { text: "Listado de bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarbandera', url: "/user/banderas/listbanderas"} }}
                 ]
             ]
         }
