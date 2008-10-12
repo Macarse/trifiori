@@ -73,7 +73,7 @@ create table CANALES
 /*==============================================================*/
 create table CARGAS
 (
-   CODIGO_CAR                     int                            not null,
+   CODIGO_CAR                     int AUTO_INCREMENT             not null,
    CANTBULTOS_CAR                 int                            not null,
    TIPOENVASE_CAR                 varchar(100)                   not null,
    PESOBRUTO_CAR                  float                          not null,
