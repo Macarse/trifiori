@@ -1,21 +1,54 @@
-<table class="bordered">
+<div id="divlistado" class="clistado">
+	<table id="tablelist">
     <thead>
-        <tr> <th>ID</th> <th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th></tr>
+        <tr><th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th> <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
         <? foreach($this->Transportes as $tran) { ?>
-        <tr> <td> <?= $tran->id() ?> </td>
+        <tr>
+            <td> <?= $tran->name() ?> </td>
             <td> <?= $tran->codBanderaName() ?> </td>
             <td> <?= $tran->codMedioName() ?> </td>
-            <td> <?= $tran->name() ?> </td>
             <td> <?= $tran->observaciones() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "removetransportes/id/" . $tran->id()?>">Eliminar</a>
+                <a href="<?= $this->baseUrl . "modtransportes/id/" . $tran->id()?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "modtransportes/id/" . $tran->id()?>">Modificar</a>
+                <a href="<?= $this->baseUrl . "removetransportes/id/" . $tran->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
     </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"name",label:"Nombre", sortable:true},
+            {key:"flag",label:"Bandera",sortable:true},
+            {key:"medio",label:"Medio", sortable:true},
+			{key:"obs",label:"Observaciones", sortable:false},
+			{key:"mod",label:"Modificar", sortable:false},
+			{key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [         
+	            {key:"name"},   
+				{key:"flag"},
+	            {key:"medio"},
+				{key:"obs"},
+				{key:"mod"},
+				{key:"elim"}]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"}}
+        );
+    };
+});
+</script>
