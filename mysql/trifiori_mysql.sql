@@ -4,7 +4,6 @@
 /* Created on:     11/08/2008 04:48:07 p.m.                     */
 /*==============================================================*/
 
-
 drop table if exists BANDERAS;
 
 drop table if exists CANALES;
@@ -118,6 +117,7 @@ create table ES_CONTRATADO_POR
    CODIGO_BUQ                     int                            not null,
    CODIGO_TRA                     int                            not null,
    primary key (CODIGO_BUQ, CODIGO_TRA)
+
 );
 
 /*==============================================================*/
@@ -130,7 +130,7 @@ create table EXPORTACIONES
    CODIGO_TRA                     int                            not null,
    CODIGO_CLI                     int                            not null,
    CODIGO_BAN                     int                            not null,
-   CODIGO_MON                     char(3)                        not null,
+   CODIGO_MON                     int                            not null,
    CODIGO_GIR                     int,
    CODIGO_DES                     int                            not null,
    CODIGO_CAR                     int                            not null,
@@ -334,4 +334,100 @@ create table USUARIO_MODIFICA_TABLA
    NOMBRE                         varchar(50)                    not null,
    primary key (CODIGO_USU, NOMBRE)
 );
+
+alter table ES_CONTRATADO_POR
+   add constraint FK_ES_CONTR_ES_CONTRA_TRANSPOR foreign key (CODIGO_BUQ)
+      references TRANSPORTES (CODIGO_BUQ);
+
+alter table ES_CONTRATADO_POR
+   add constraint FK_ES_CONTR_ES_CONTRA_PROVEEDO foreign key (CODIGO_TRA)
+      references PROVEEDOR_MEDIO (CODIGO_TRA);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_EXPORTA_CARGAS foreign key (CODIGO_CAR)
+      references CARGAS (CODIGO_CAR);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_EXP_TIENE_DESTINAC foreign key (CODIGO_DES)
+      references DESTINACIONES (CODIGO_DES);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_REALIZA_CLIENTES foreign key (CODIGO_CLI)
+      references CLIENTES (CODIGO_CLI);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_SE_ALMACE_GIROS foreign key (CODIGO_GIR)
+      references GIROS (CODIGO_GIR);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_TIENE_PRO_PROVEEDO foreign key (CODIGO_TRA)
+      references PROVEEDOR_MEDIO (CODIGO_TRA);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_UTILIZA_MONEDAS foreign key (CODIGO_MON)
+      references MONEDAS (CODIGO_MON);
+
+alter table EXPORTACIONES
+   add constraint FK_EXPORTAC_VA_HACIA_BANDERAS foreign key (CODIGO_BAN)
+      references BANDERAS (CODIGO_BAN);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_ES_UN_IMP_DESTINAC foreign key (CODIGO_DES)
+      references DESTINACIONES (CODIGO_DES);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_IMPORTA_CARGAS foreign key (CODIGO_CAR)
+      references CARGAS (CODIGO_CAR);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_REALIZA_I_CLIENTES foreign key (CODIGO_CLI)
+      references CLIENTES (CODIGO_CLI);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_SE_ALMACE_GIROS foreign key (CODIGO_GIR)
+      references GIROS (CODIGO_GIR);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_TIENE_OPP foreign key (CODIGO_OPP)
+      references OPP (CODIGO_OPP);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_TIENE_PRO_PROVEEDO foreign key (CODIGO_TRA)
+      references PROVEEDOR_MEDIO (CODIGO_TRA);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_TIENE_VER_CANALES foreign key (CODIGO_CAN)
+      references CANALES (CODIGO_CAN);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_UTILIZA_I_MONEDAS foreign key (CODIGO_MON)
+      references MONEDAS (CODIGO_MON);
+
+alter table IMPORTACIONES
+   add constraint FK_IMPORTAC_VIENE_DE_BANDERAS foreign key (CODIGO_BAN)
+      references BANDERAS (CODIGO_BAN);
+
+alter table OPP
+   add constraint FK_OPP_TIENE2_IMPORTAC foreign key (ORDEN_IMP)
+      references IMPORTACIONES (ORDEN_IMP);
+
+alter table PASA_POR
+   add constraint FK_PASA_POR_PASA_POR_TRANSPOR foreign key (CODIGO_BUQ)
+      references TRANSPORTES (CODIGO_BUQ);
+
+alter table PASA_POR
+   add constraint FK_PASA_POR_PASA_POR2_PUERTOS foreign key (CODIGO_PUE)
+      references PUERTOS (CODIGO_PUE);
+
+alter table TRANSPORTES
+   add constraint FK_TRANSPOR_SE_ENCUEN_BANDERAS foreign key (CODIGO_BAN)
+      references BANDERAS (CODIGO_BAN);
+
+alter table TRANSPORTES
+   add constraint FK_TRANSPOR_UTILIZA_M_MEDIOS foreign key (CODIGOMED)
+      references MEDIOS (CODIGOMED);
+
+alter table USUARIO_MODIFICA_TABLA
+   add constraint FK_USUARIO__USUARIO_M_TABLAS foreign key (NOMBRE)
+      references TABLAS (NOMBRE);
 
