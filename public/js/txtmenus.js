@@ -37,11 +37,11 @@ var txtmenuspa =
                     itemdata:
                     [
                         [
-                            { text: "Agregar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }},
+                            { text: "Agregar exportacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarexportacion', url: "/user/exportaciones/addexportaciones"} }},
 
-                            { text: "Modificar exportacion", helptext: "", onclick: { fn: onMenuItemClick }},
+                            { text: "Modificar exportacion", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarexportacion', url: "/user/exportaciones/listexportaciones"} }},
 
-                            { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }}
+                            { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarexportacion', url: "/user/exportaciones/listexportaciones"} }}
                         ],
                         [
                             { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
@@ -50,7 +50,7 @@ var txtmenuspa =
                             { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
-                            { text: "Listado de Exportaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
+                            { text: "Listado de Exportaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarexportacion', url: "/user/exportaciones/listexportaciones"} }}
                         ]
                     ] 
                 }

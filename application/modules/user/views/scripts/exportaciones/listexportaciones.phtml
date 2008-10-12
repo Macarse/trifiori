@@ -1,19 +1,54 @@
 <table class="bordered">
     <thead>
-        <tr> <th>ID</th> <th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th></tr>
+        <tr>
+            <th>ID</th>
+            <th>Órden</th>
+            <th>Transporte</th>
+            <th>Cliente</th>
+            <th>Bandera</th>
+            <th>Moneda</th>
+            <th>Giro</th>
+            <th>Destino</th>
+            <th>Carga</th>
+            <th>Referencia</th>
+            <th>Fecha de Ingreso</th>
+            <th>Descripción Mercadería</th>
+            <th>Valor Factura</th>
+            <th>Vencimiento</th>
+            <th>Ingreso a Puerto</th>
+            <th>Número de Permiso</th>
+            <th>Permiso Presentado</th>
+            <th>Permiso Factura</th>
+            <th>Permiso Fecha de Factura</th>
+        </tr>
     </thead>
     <tbody>
-        <? foreach($this->Transportes as $tran) { ?>
-        <tr> <td> <?= $tran->id() ?> </td>
-            <td> <?= $tran->codBanderaName() ?> </td>
-            <td> <?= $tran->codMedioName() ?> </td>
-            <td> <?= $tran->name() ?> </td>
-            <td> <?= $tran->observaciones() ?> </td>
+        <? foreach($this->Exportaciones as $exportacion) { ?>
+        <tr>
+            <td> <?= $exportacion->id() ?> </td>
+            <td> <?= $exportacion->orden() ?> </td>
+            <td> <?= $exportacion->codTransporteName() ?> </td>
+            <td> <?= $exportacion->codClienteName() ?> </td>
+            <td> <?= $exportacion->codBanderaName() ?> </td>
+            <td> <?= $exportacion->codMonedaName() ?> </td>
+            <td> <?= $exportacion->codGiroName() ?> </td>
+            <td> <?= $exportacion->codDestinacionName() ?> </td>
+            <td> <?= $exportacion->codCargaName() ?> </td>
+            <td> <?= $exportacion->referencia() ?> </td>
+            <td> <?= $exportacion->fechaIngreso() ?> </td>
+            <td> <?= $exportacion->desMercaderias() ?> </td>
+            <td> <?= $exportacion->valorFactura() ?> </td>
+            <td> <?= $exportacion->vencimiento() ?> </td>
+            <td> <?= $exportacion->ingresoPuerto() ?> </td>
+            <td> <?= $exportacion->PERnroDoc() ?> </td>
+            <td> <?= $exportacion->PERpresentado() ?> </td>
+            <td> <?= $exportacion->PERfactura() ?> </td>
+            <td> <?= $exportacion->PERfechaFactura() ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "removetransportes/id/" . $tran->id()?>">Eliminar</a>
+                <a href="<?= $this->baseUrl . "removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "modtransportes/id/" . $tran->id()?>">Modificar</a>
+                <a href="<?= $this->baseUrl . "modexportaciones/id/" . $exportacion->id()?>">Modificar</a>
             </td>
         </tr>
         <? } ?>
