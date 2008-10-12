@@ -44,11 +44,6 @@ var txtmenuspa =
                             { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
-                            { text: "Cargas", helptext: "" , onclick: { fn: onMenuItemClick }},
-
-                            { text: "Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick }}
-                        ],
-                        [
                             { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
                         ],
                         [
@@ -126,6 +121,41 @@ var txtmenuspa =
                     [
                         { text: "Listado de giros", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listargiro', url: "/user/giros/listgiros"} }}
                     ]
+                ]
+            }
+        },
+        {
+            text: "Cargas",
+            submenu:
+            {
+                id: "cargasmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar carga", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarcarga', url: "/user/cargas/addcargas"} }},
+                        { text: "Modificar carga", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarcarga', url: "/user/cargas/listcargas"} }},
+                        { text: "Borrar carga", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarcarga', url: "/user/cargas/listcargas"} }}
+                    ],
+                    [
+                        { text: "Listado de cargas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarcarga', url: "/user/cargas/listcargas"} }}
+                    ]
+                ]
+            }
+        },
+        {
+            text: "Destinaciones",
+            submenu:
+            {
+                id: "destinacionesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar Destinación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregardestinacion', url: "/user/destinaciones/adddestinaciones"} }},
+                        { text: "Modificar Destinación", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificardestinacion', url: "/user/destinaciones/listdestinaciones"} }},
+                        { text: "Borrar Destinación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrardestinacion', url: "/user/destinaciones/listdestinaciones"} }}
+                    ],
+                    [
+                        { text: "Listado de Destinaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listardestinaciones', url: "/user/destinaciones/listdestinaciones"} }}]
                 ]
             }
         },

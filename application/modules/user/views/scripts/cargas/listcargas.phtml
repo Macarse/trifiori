@@ -1,0 +1,33 @@
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cantidad Bultos</th>
+            <th>Tipo de Envase</th>
+            <th>Peso</th>
+            <th>Unidad</th>
+            <th>Número de paquete</th>
+            <th>Marca y número</th>
+            <th>Merc. IMCO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <? foreach($this->Cargas as $carga) { ?>
+        <tr> <td> <?= $carga->id() ?> </td>
+            <td> <?= $carga->cantBultos() ?> </td>
+            <td> <?= $carga->tipoEnvase() ?> </td>
+            <td> <?= $carga->peso() ?> </td>
+            <td> <?= $carga->unidad() ?> </td>
+            <td> <?= $carga->nroPaquete() ?> </td>
+            <td> <?= $carga->marcaYnum() ?> </td>
+            <td> <?= $carga->mercIMCO() ?> </td>
+            <td>
+                <a href="<?= $this->baseUrl . "removecargas/id/" . $carga->id()?>">Eliminar</a>
+            </td>
+            <td>
+                <a href="<?= $this->baseUrl . "modcargas/id/" . $carga->id()?>">Modificar</a>
+            </td>
+        </tr>
+        <? } ?>
+    </tbody>
+</table>

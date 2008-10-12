@@ -1,17 +1,17 @@
 <?php
-class Puertos extends Zend_Db_Table_Abstract
+class Destinaciones extends Zend_Db_Table_Abstract
 {
     protected $_name = 'DESTINACIONES';
     protected $_sequence = true;
-    protected $_rowClass = 'PuertosModel';
+    protected $_rowClass = 'DestinacionesModel';
 
-    public function removePuerto( $id )
+    public function removeDestinacion( $id )
     {
         $where = $this->getAdapter()->quoteInto('CODIGO_DES = ?', $id);
         $this->delete( $where );
     }
 
-    public function getPuertoByID( $id )
+    public function getDestinacionByID( $id )
     {
         $where = $this->getAdapter()->quoteInto('CODIGO_DES = ?', $id);
         $row = $this->fetchRow( $where );
@@ -19,7 +19,7 @@ class Puertos extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function addPuerto( $name )
+    public function addDestinacion( $name )
     {
         /*TODO: Validaciones*/
         $data = array('DESCRIPCION_DES' => $name);
@@ -28,7 +28,7 @@ class Puertos extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function modifyPuerto( $id, $name )
+    public function modifyDestinacion( $id, $name )
     {
         try
         {
@@ -46,20 +46,20 @@ class Puertos extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function getPuertosArray()
+    public function getDestinacionesArray()
     {
         $arr = array();
 
         try
         {
-            $puertos = $this->fetchAll();
+            $Destinaciones = $this->fetchAll();
         }
         catch (Zend_Exception $error)
         {
             return NULL;
         }
 
-        foreach ($puertos as $row)
+        foreach ($Destinaciones as $row)
         {
             $arr[ $row->id() ] = $row->name();
         }

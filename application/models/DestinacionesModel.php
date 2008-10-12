@@ -1,8 +1,8 @@
 <?php
 
-class PuertosModel extends Zend_Db_Table_Row_Abstract
+class DestinacionesModel extends Zend_Db_Table_Row_Abstract
 {
-    protected $_tableClass = 'PuertosTable';
+    protected $_tableClass = 'DestinacionesTable';
 
     public function id()
     {

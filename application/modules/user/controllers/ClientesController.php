@@ -237,20 +237,6 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         return $this->_modform;
     }
 
-//             <th>ID</th>            <th>Nombre</th>            <th>Dirección</th>
-//             <th>Código Postal</th>            <th>Localidad</th>            <th>CUIT</th>
-//             <th>Tipo IVA</th>            <th>Tipo Cliente</th>
-// | CODIGO_CLI       | int(11)      | NO   | PRI | NULL    | auto_increment |
-// | NOMBRE_CLI       | varchar(200) | NO   |     | NULL    |                |
-// | DIRECCION_CLI    | varchar(200) | YES  |     | NULL    |                |
-// | CODIGOPOSTAL_CLI | varchar(15)  | YES  |     | NULL    |                |
-// | LOCALIDAD_CLI    | varchar(150) | YES  |     | NULL    |                |
-// | CUIT_CLI         | char(13)     | YES  |     | NULL    |                |
-// | TIPOIVA_CLI      | varchar(100) | YES  |     | NULL    |                |
-// | TIPOCLIENTE_CLI  | varchar(100) | YES  |     | NULL    |                |
-
-
-
     private function getClienteAddForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);

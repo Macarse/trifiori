@@ -17,8 +17,10 @@
     require_once 'LogModel.php';
     require_once 'GirosTable.php';
     require_once 'GirosModel.php';
-    require_once 'PuertosTable.php';
-    require_once 'PuertosModel.php';
+    require_once 'DestinacionesTable.php';
+    require_once 'DestinacionesModel.php';
     require_once 'MonedasTable.php';
     require_once 'MonedasModel.php';
+    require_once 'CargasTable.php';
+    require_once 'CargasModel.php';
 ?>
