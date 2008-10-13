@@ -258,7 +258,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $cargasTable = new Cargas();
         $cargasOptions =  $cargasTable->getCargasArray();
 
-        $codCarga = $this->_addform->createElement('select', 'codDestinacion');
+        $codCarga = $this->_addform->createElement('select', 'codCarga');
         $codCarga   ->setRequired(True)
                     ->setOrder(7)
                     ->setLabel('Carga')
@@ -459,7 +459,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $cargasTable = new Cargas();
         $cargasOptions =  $cargasTable->getCargasArray();
 
-        $codCarga = $this->_modform->createElement('select', 'codDestinacion');
+        $codCarga = $this->_modform->createElement('select', 'codCarga');
         $codCarga   ->setValue($row->codCarga() )
                     ->setRequired(True)
                     ->setOrder(7)
