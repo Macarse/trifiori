@@ -316,10 +316,10 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
+        /*TODO: ADD Validator*/
         $PERfactura = $this->_addform->createElement('text', 'PERfactura',
                                                      array('label' => 'Permiso Factura'));
-        $PERfactura  ->addValidator($alnumWithWS)
-                    ->addValidator('stringLength', false, array(1, 40))
+        $PERfactura ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
         $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
@@ -526,10 +526,10 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
+        /*TODO: ADD Validator*/
         $PERfactura = $this->_modform->createElement('text', 'PERfactura',
                                                      array('label' => 'Permiso Factura'));
         $PERfactura ->setValue($row->PERfactura() )
-                    ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
