@@ -54,6 +54,13 @@ function dateToLocaleString(dt, cal) {
 			var dStr = dt.getDate();
 			var mStr = dt.getMonth() + 1;
 			var yStr = dt.getFullYear();
+			
+			if (mStr < 10)
+				mStr = "0" + mStr;
+				
+			if (dStr < 10)
+				dStr = "0" + dStr;
+			
 			return (yStr + "-" + mStr + "-" + dStr);
 }
 
