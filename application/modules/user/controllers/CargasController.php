@@ -189,7 +189,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
         $peso = $this->_modform->createElement('text', 'peso', array('label' => 'Peso'));
         $peso   ->setValue($row->peso() )
-                ->addValidator('digits')
+                ->addValidator('float')
                 ->addValidator('stringLength', false, array(1, 10))
                 ->setRequired(true);
 
@@ -269,7 +269,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                             ));
 
         $peso = $this->_addform->createElement('text', 'peso', array('label' => 'Peso'));
-        $peso   ->addValidator('digits')
+        $peso   ->addValidator('float')
                 ->addValidator('stringLength', false, array(1, 10))
                 ->setRequired(true);
 

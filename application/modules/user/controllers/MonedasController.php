@@ -162,15 +162,13 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 3))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         $longName = $this->_modform->createElement('text', 'longName', array('label' => 'Descripción'));
         $longName->setValue($row->longName() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
-             ->setRequired(False)
-             ->addFilter('StringToLower');
+             ->setRequired(False);
 
         // Add elements to form:
         $this->_modform->addElement($name)
@@ -196,14 +194,12 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 3))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         $longName = $this->_addform->createElement('text', 'longName', array('label' => 'Descripción'));
         $longName->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
-             ->setRequired(False)
-             ->addFilter('StringToLower');
+             ->setRequired(False);
 
         // Add elements to form:
         $this->_addform->addElement($name)
