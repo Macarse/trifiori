@@ -54,7 +54,7 @@ function dateToLocaleString(dt, cal) {
 			var dStr = dt.getDate();
 			var mStr = dt.getMonth() + 1;
 			var yStr = dt.getFullYear();
-			return (dStr + "-" + mStr + "-" + yStr);
+			return (yStr + "-" + mStr + "-" + dStr);
 }
 
 function handlerCalFechaIngreso(type,args,obj) {
