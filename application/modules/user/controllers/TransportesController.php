@@ -178,16 +178,14 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         $observaciones = $this->_addform->createElement('text', 'observaciones',
                                                          array('label' => 'Observaciones')
                                                         );
         $observaciones  ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
-                        ->setRequired(False)
-                        ->addFilter('StringToLower');
+                        ->setRequired(False);
 
         // Add elements to form:
         $this->_addform->addElement($name)
@@ -251,8 +249,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 400))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         $observaciones = $this->_modform->createElement('text', 'observaciones',
                                                          array('label' => 'Observaciones')
@@ -260,8 +257,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $observaciones  ->setValue($row->observaciones() )
                         ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
-                        ->setRequired(False)
-                        ->addFilter('StringToLower');
+                        ->setRequired(False);
 
         // Add elements to form:
         $this->_modform->addElement($name)

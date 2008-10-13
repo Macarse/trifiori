@@ -304,10 +304,10 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
+        /*TODO: ADD Validator*/
         $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
                                                      array('label' => 'Número de Permiso'));
-        $PERnroDoc  ->addValidator($alnumWithWS)
-                    ->addValidator('stringLength', false, array(1, 30))
+        $PERnroDoc  ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
 
         $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
@@ -347,7 +347,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_addform;
@@ -505,10 +505,10 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
+        /*TODO: ADD validator*/
         $PERnroDoc = $this->_modform->createElement('text', 'PERnroDoc',
                                                      array('label' => 'Número de Permiso'));
         $PERnroDoc  ->setValue($row->PERnroDoc() )
-                    ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
 
@@ -559,7 +559,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('hidden', 'ModExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_modform;

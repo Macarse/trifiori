@@ -43,16 +43,22 @@ div.error
 
 div.cfooter
 {
-	position: absolute;
-	top: 90%;
-	left: 85%;
+	position: fixed;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    bottom: 0;
+    right: 10px;
 }
 
 div.clistado
 {
 	position: relative;
-	left: 30em;
-	top: 5em;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 25%
+    width: 50%;
+    margin: left;
 }
 
 .errors
@@ -126,12 +132,12 @@ div.backgroundimg img
 .ccalperpre
 {
 	position: absolute;
-	left: 62%;
+	left: 64%;
 	top: 6em;
 }
 .ccalfecfac
 {
 	position: absolute;
-	left: 5em;
+	left: 64%;
 	top: 25em;
 }
