@@ -61,15 +61,25 @@ div.clistado
     margin: left;
 }
 
+.errors
+{
+	color: #FF0000;
+	position: relative;
+	left: 2.5em;
+	font-weight: bold;
+	top: 0.5em;
+}
+
+
 div.cformulario
 {
 	border: 2px solid #666666;
 	background-color: #FFFFFF;
-    position: relative;
-    top: 4em;
-    left: 35em;
-    width: 24.5em;
-    height: 20em;
+	position: relative;
+	top: 4em;
+	left: 30%;
+	height: auto;
+	width: 40em;
 }
 
 div.cformulario label
@@ -85,13 +95,13 @@ div.cformulario label
 div.cformulario select
 {
 	position: relative;
-	left: 11em;
+	left: 18em;
 }
 
 div.cformulario input
 {
 	position: relative;
-	left: 11em;
+	left: 18em;
 }
 
 div.backgroundimg img
@@ -99,4 +109,35 @@ div.backgroundimg img
 	position: absolute;
 	top: 30%;
 	left: 28%;
+}
+
+.ccalfechaingreso
+{
+	position: absolute;
+	left: 15%;
+	top: 6em;
+}
+.ccalvencimiento
+{
+	position: absolute;
+	left: 15%;
+	top: 25em;
+}
+.ccalingpuerto
+{
+	position: absolute;
+	left: 15%;
+	top: 44em;
+}
+.ccalperpre
+{
+	position: absolute;
+	left: 64%;
+	top: 6em;
+}
+.ccalfecfac
+{
+	position: absolute;
+	left: 64%;
+	top: 25em;
 }
