@@ -44,10 +44,10 @@ var txtmenuspa =
                             { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarexportacion', url: "/user/exportaciones/listexportaciones"} }}
                         ],
                         [
-                            { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick }}
+                            { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'buscarexportacion', url: "/user/exportaciones/buscarexportaciones"} }}
                         ],
                         [
-                            { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick }}
+                            { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'estadisticaexportacion', url: "/user/exportaciones/estadisticaexportaciones"} }}
                         ],
                         [
                             { text: "Listado de Exportaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarexportacion', url: "/user/exportaciones/listexportaciones"} }}
@@ -56,23 +56,28 @@ var txtmenuspa =
                 }
         },
         {
-                        text: "Importaciones", 
-                        submenu: {  
-                            id: "importacionesmenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar importacion", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar importacion", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar importacion", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [
-									{ text: "Cargas", helptext: "" , onclick: { fn: onMenuItemClick } },
-									{ text: "OPP", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Canales", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-								[{ text: "Listado de importaciones", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
+            text: "Importaciones",
+            submenu:
+            {
+                id: "importacionesmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar importacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarimportacion', url: "/user/importaciones/addimportaciones"} }},
+                        { text: "Modificar importacion", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarimportacion', url: "/user/importaciones/listimportaciones"} }},
+                        { text: "Borrar importacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarimportacion', url: "/user/importaciones/listimportaciones"} }}
+                    ],
+
+/*TODO: Ver qué hacemos con estos.*/
+/*                    [
+                        { text: "OPP", helptext: "" , onclick: { fn: onMenuItemClick }},
+                        { text: "Canales", helptext: "" , onclick: { fn: onMenuItemClick }}
+                    ],*/
+                    [
+                        { text: "Listado de importaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarimportacion', url: "/user/importaciones/listimportaciones"} }}
+                    ]
+                ] 
+            }
         },
         {
             text: "Clientes",
@@ -93,19 +98,23 @@ var txtmenuspa =
             }
         },
         {
-                        text: "Proveedores", 
-                        submenu: {  
-                            id: "proveedormenu", 
-                            itemdata: [
-                                [
-									{ text: "Agregar proveedor", helptext: "" , onclick: { fn: onMenuItemClick }},
-									{ text: "Modificar proveedor", helptext: "", onclick: { fn: onMenuItemClick }},
-									{ text: "Borrar proveedor", helptext: "" , onclick: { fn: onMenuItemClick }}
-								],
-                                [{ text: "Listado de proveedor", helptext: "" , onclick: { fn: onMenuItemClick }}]
-                            ] 
-                        }
-                    },
+            text: "Proveedores",
+            submenu:
+            {
+                id: "proveedormenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar proveedor", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarproveedor', url: "/user/proveedores/addproveedores"} }},
+                        { text: "Modificar proveedor", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarproveedor', url: "/user/proveedores/listproveedores"} }},
+                        { text: "Borrar proveedor", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarproveedor', url: "/user/proveedores/listproveedores"} }}
+                    ],
+                    [
+                        { text: "Listado de proveedor", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarproveedor', url: "/user/proveedores/listproveedores"} }}
+                    ]
+                ]
+            }
+        },
         {
             text: "Giros",
             submenu:
