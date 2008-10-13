@@ -80,7 +80,8 @@ create table CARGAS
    NROPAQUETE_CAR                 varchar(25),
    MARCAYNUMERO                   varchar(100),
    MERC__IMCO                     varchar(100),
-   primary key (CODIGO_CAR)
+   primary key (CODIGO_CAR),
+   unique NROPAQUETE_CAR (NROPAQUETE_CAR)
 );
 
 /*==============================================================*/
@@ -96,7 +97,8 @@ create table CLIENTES
    CUIT_CLI                       char(13),
    TIPOIVA_CLI                    varchar(100),
    TIPOCLIENTE_CLI                varchar(100),
-   primary key (CODIGO_CLI)
+   primary key (CODIGO_CLI),
+   unique CUIT_CLI (CUIT_CLI)
 );
 
 /*==============================================================*/
@@ -106,7 +108,8 @@ create table DESTINACIONES
 (
    CODIGO_DES                     int AUTO_INCREMENT              not null,
    DESCRIPCION_DES                varchar(150),
-   primary key (CODIGO_DES)
+   primary key (CODIGO_DES),
+   unique DESCRIPCION_DES (DESCRIPCION_DES)
 );
 
 /*==============================================================*/
@@ -155,7 +158,8 @@ create table GIROS
 (
    CODIGO_GIR                     int AUTO_INCREMENT             not null,
    SECCION_GIR                    varchar(100)                   not null,
-   primary key (CODIGO_GIR)
+   primary key (CODIGO_GIR),
+   unique SECCION_GIR (SECCION_GIR)
 );
 
 /*==============================================================*/
@@ -212,7 +216,8 @@ create table MEDIOS
 (
    CODIGOMED                      int AUTO_INCREMENT             not null,
    DESCRIPCION_MED                varchar(50)                    not null,
-   primary key (CODIGOMED)
+   primary key (CODIGOMED),
+   UNIQUE DESCRIPCION_MED (DESCRIPCION_MED)
 );
 
 /*==============================================================*/
@@ -223,7 +228,8 @@ create table MONEDAS
    CODIGO_MON                     int AUTO_INCREMENT             not null,
    NAME_MON                       char(3)                        not null,
    DESCRIPCION_MON                varchar(150),
-   primary key (CODIGO_MON)
+   primary key (CODIGO_MON),
+   UNIQUE NAME_MON (NAME_MON)
 );
 
 /*==============================================================*/
@@ -264,7 +270,8 @@ create table PROVEEDOR_MEDIO
    TELEFONOS_TRA                  varchar(150)                   not null,
    FAX_TRA                        varchar(30),
    MAIL_TRA                       varchar(100),
-   primary key (CODIGO_TRA)
+   primary key (CODIGO_TRA),
+   UNIQUE NOMBRE_TRA (NOMBRE_TRA)
 );
 
 /*==============================================================*/
@@ -298,7 +305,8 @@ create table TRANSPORTES
    CODIGOMED                      int                            not null,
    NOMBRE_BUQ                     varchar(100)                   not null,
    OBSERVACIONES_BUQ              text,
-   primary key (CODIGO_BUQ)
+   primary key (CODIGO_BUQ),
+   UNIQUE NOMBRE_BUQ (NOMBRE_BUQ)
 );
 
 /*==============================================================*/
