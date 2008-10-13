@@ -172,36 +172,32 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         $dir = $this->_modform->createElement('text', 'dir', array('label' => 'Dirección'));
         $dir ->setValue($row->adress() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
-             ->setRequired(false)
-             ->addFilter('StringToLower');
+             ->setRequired(false);
 
         $CP = $this->_modform->createElement('text', 'CP', array('label' => 'Código Postal'));
         $CP ->setValue($row->codPostal() )
              ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
-             ->setRequired(false)
-             ->addFilter('StringToLower');
+             ->setRequired(false);
 
         $localidad = $this->_modform->createElement('text', 'localidad', array('label' => 'Localidad'));
         $localidad ->setValue($row->localidad() )
                    ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
-                   ->setRequired(false)
-                   ->addFilter('StringToLower');
+                   ->setRequired(false);
 
+        // Validar CUIT 
         $cuit = $this->_modform->createElement('text', 'cuit', array('label' => 'CUIT'));
         $cuit ->setValue($row->CUIT() )
                    ->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 13))
-                   ->setRequired(false)
-                   ->addFilter('StringToLower');
+                   ->setRequired(false);
 
 
         $tipoIVA = $this->_modform->createElement('select', 'tipoIVA');
@@ -252,32 +248,27 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         $dir = $this->_addform->createElement('text', 'dir', array('label' => 'Dirección'));
         $dir ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
-             ->setRequired(false)
-             ->addFilter('StringToLower');
+             ->setRequired(false);
 
         $CP = $this->_addform->createElement('text', 'CP', array('label' => 'Código Postal'));
         $CP  ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
-             ->setRequired(false)
-             ->addFilter('StringToLower');
+             ->setRequired(false);
 
         $localidad = $this->_addform->createElement('text', 'localidad', array('label' => 'Localidad'));
         $localidad ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
-                   ->setRequired(false)
-                   ->addFilter('StringToLower');
+                   ->setRequired(false);
 
         $cuit = $this->_addform->createElement('text', 'cuit', array('label' => 'CUIT'));
         $cuit   ->addValidator('alnum')
                 ->addValidator('stringLength', false, array(1, 13))
-                ->setRequired(false)
-                ->addFilter('StringToLower');
+                ->setRequired(false);
 
 
         $tipoIVA = $this->_addform->createElement('select', 'tipoIVA');

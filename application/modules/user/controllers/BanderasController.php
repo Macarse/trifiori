@@ -158,8 +158,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         // Add elements to form:
         $this->_modform->addElement($name)
@@ -184,8 +183,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         // Add elements to form:
         $this->_addform->addElement($name)

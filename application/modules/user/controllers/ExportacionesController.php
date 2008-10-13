@@ -347,7 +347,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_addform;
@@ -559,7 +559,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
+                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_modform;
