@@ -268,7 +268,7 @@ create table PROVEEDOR_MEDIO
    NOMBRE_TRA                     varchar(100)                   not null,
    DIRECCION_TRA                  varchar(200)                   not null,
    TELEFONOS_TRA                  varchar(150)                   not null,
-   FAX_TRA                        varchar(30),
+   FAX_TRA                        varchar(150),
    MAIL_TRA                       varchar(100),
    primary key (CODIGO_TRA),
    UNIQUE NOMBRE_TRA (NOMBRE_TRA)
