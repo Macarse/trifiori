@@ -25,4 +25,6 @@
     require_once 'CargasModel.php';
     require_once 'ExportacionesTable.php';
     require_once 'ExportacionesModel.php';
+    require_once 'PuertosTable.php';
+    require_once 'PuertosModel.php';
 ?>
