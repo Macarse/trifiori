@@ -29,4 +29,6 @@
     require_once 'PuertosModel.php';
     require_once 'ProveedoresTable.php';
     require_once 'ProveedoresModel.php';
+    require_once 'CanalesTable.php';
+    require_once 'CanalesModel.php';
 ?>

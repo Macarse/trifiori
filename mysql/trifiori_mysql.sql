@@ -245,7 +245,8 @@ create table OPP
    FRACCIONADO_OPP                varchar(150),
    ESTAMPILLAS_OPP                varchar(150),
    IMPUESTOS_INTERNOS_OPP         varchar(150),
-   primary key (CODIGO_OPP)
+   primary key (CODIGO_OPP),
+   UNIQUE ORDEN_IMP (ORDEN_IMP)
 );
 
 /*==============================================================*/
