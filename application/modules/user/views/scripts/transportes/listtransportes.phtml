@@ -4,23 +4,27 @@
         <tr><th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th> <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Transportes as $tran) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $tran) { ?>
         <tr>
-            <td> <?= $tran->name() ?> </td>
-            <td> <?= $tran->codBanderaName() ?> </td>
-            <td> <?= $tran->codMedioName() ?> </td>
-            <td> <?= $tran->observaciones() ?> </td>
+            <td> <?= $tran["NOMBRE_BUQ"] ?> </td>
+            <td> <?= $tran["CODIGO_BAN"] ?> </td>
+            <td> <?= $tran["CODIGOMED"] ?> </td>
+            <td> <?= $tran["OBSERVACIONES_BUQ"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modtransportes/id/" . $tran->id()?>">Modificar</a>
+                <a href="<?= "/user/transportes/modtransportes/id/" . $tran["CODIGO_BUQ"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removetransportes/id/" . $tran->id()?>">Eliminar</a>
+                <a href="<?= "/user/transportes/removetransportes/id/" . $tran["CODIGO_BUQ"] ?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
