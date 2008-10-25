@@ -8,21 +8,25 @@
             <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Puertos as $puerto) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $puerto) { ?>
         <tr> 
-            <td> <?= $puerto->name() ?> </td>
-            <td> <?= $puerto->ubicacion() ?> </td>
+            <td> <?= $puerto["NOMBRE_PUE"] ?> </td>
+            <td> <?= $puerto["UBICACION_PUE"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modpuertos/id/" . $puerto->id()?>">Modificar</a>
+                <a href="<?= "/user/puertos/modpuertos/id/" . $puerto["CODIGO_PUE"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removepuertos/id/" . $puerto->id()?>">Eliminar</a>
+                <a href="<?= "/user/puertos/removepuertos/id/" . $puerto["CODIGO_PUE"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

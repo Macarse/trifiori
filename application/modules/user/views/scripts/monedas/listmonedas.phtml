@@ -4,21 +4,25 @@
         <tr> <th>Nombre</th> <th>Descripción</th> <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Monedas as $moneda) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $moneda) { ?>
         <tr> 
-            <td> <?= $moneda->name() ?> </td>
-            <td> <?= $moneda->longName() ?> </td>
+            <td> <?= $moneda["NAME_MON"] ?> </td>
+            <td> <?= $moneda["DESCRIPCION_MON"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modmonedas/id/" . $moneda->id()?>">Modificar</a>
+                <a href="<?= "/user/monedas/modmonedas/id/" . $moneda["CODIGO_MON"]?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= $this->baseUrl . "removemonedas/id/" . $moneda->id()?>">Eliminar</a>
+                <a href="<?= "/user/monedas/removemonedas/id/" . $moneda["CODIGO_MON"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

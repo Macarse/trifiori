@@ -4,22 +4,25 @@
 			<tr><th>Nombre</th> <th>Usuario</th> <th>Idioma</th> <th>Modificar</th> <th>Eliminar</th> </tr>
 		</thead>
 		<tbody>
-			<? foreach($this->Users as $user) { ?>
-			<tr><td> <?= $user->name() ?> </td>
-				<td> <?= $user->user() ?> </td>
-				<td> <?= $user->language() ?> </td>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $user) { ?>
+			<tr><td> <?= $user["NOMBRE_USU"] ?> </td>
+				<td> <?= $user["USUARIO_USU"] ?> </td>
+				<td> <?= $user["IDIOMA_USU"] ?> </td>
 				<td>
-					<a href="<?= $this->baseUrl . "modusers/id/" . $user->id()?>">Modificar</a>
+					<a href="<?= "/admin/users/modusers/id/" . $user["CODIGO_USU"]?>">Modificar</a>
 				</td>
 				<td>
-					<a href="<?= $this->baseUrl . "removeusers/id/" . $user->id()?>">Eliminar</a>
+					<a href="<?= "/admin/users/removeusers/id/" . $user["CODIGO_USU"]?>">Eliminar</a>
 				</td>
 			</tr>
 			<? } ?>
+        <? } ?>
 		</tbody>
 	</table>
 </div>
 
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {

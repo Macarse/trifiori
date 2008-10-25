@@ -54,7 +54,10 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         try
         {
             $table = new Monedas();
-            $this->view->Monedas = $table->fetchAll();
+            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($table->select()));
+            $paginator->setCurrentPageNumber($this->_getParam('page'));
+            $paginator->setItemCountPerPage(15);
+            $this->view->paginator = $paginator;
         }
         catch (Zend_Exception $error)
         {

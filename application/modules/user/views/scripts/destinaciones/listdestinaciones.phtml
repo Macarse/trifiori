@@ -4,21 +4,23 @@
         <tr> <th>Nombre</th>  <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Destinaciones as $destinacion) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $destinacion) { ?>
         <tr> 
-            <td> <?= $destinacion->name() ?> </td>
+            <td> <?= $destinacion["DESCRIPCION_DES"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "moddestinaciones/id/" . $destinacion->id()?>">Modificar</a>
+                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion["CODIGO_DES"]?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= $this->baseUrl . "removedestinaciones/id/" . $destinacion->id()?>">Eliminar</a>
+                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion["CODIGO_DES"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
-
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {

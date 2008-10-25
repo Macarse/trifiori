@@ -18,7 +18,10 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
         {
             $where = "MSG like '%ALTERANDO%'";
             $table = new Log();
-            $this->view->Log = $table->fetchAll($where);
+            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($table->select()->where($where)));
+            $paginator->setCurrentPageNumber($this->_getParam('page'));
+            $paginator->setItemCountPerPage(10);
+            $this->view->paginator = $paginator;
         }
         catch (Zend_Exception $error)
         {

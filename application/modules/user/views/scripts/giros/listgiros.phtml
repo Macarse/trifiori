@@ -4,20 +4,24 @@
         <tr> <th>Nombre</th> <th>Modificar</th> <th>Eliminar</th> </tr>
     </thead>
     <tbody>
-        <? foreach($this->Giros as $giro) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $giro) { ?>
         <tr> 
-            <td> <?= $giro->name() ?> </td>
+            <td> <?= $giro["SECCION_GIR"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modgiros/id/" . $giro->id()?>">Modificar</a>
+                <a href="<?= "/user/giros/modgiros/id/" . $giro["CODIGO_GIR"]?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= $this->baseUrl . "removegiros/id/" . $giro->id()?>">Eliminar</a>
+                <a href="<?= "/user/giros/removegiros/id/" . $giro["CODIGO_GIR"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

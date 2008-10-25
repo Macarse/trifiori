@@ -2,7 +2,7 @@
 class Exportaciones extends Zend_Db_Table_Abstract
 {
     protected $_name = 'EXPORTACIONES';
-    protected $_sequence = True;
+    protected $_sequence = true;
     protected $_rowClass = 'ExportacionesModel';
 
     public function removeExportacion( $id )

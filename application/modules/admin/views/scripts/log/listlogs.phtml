@@ -4,15 +4,20 @@
         <tr> <th>ID</th> <th>Nivel</th> <th>Mensaje</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Log as $log) { ?>
-        <tr> <td> <?= $log->id() ?> </td>
-            <td> <?= $log->nivel() ?> </td>
-            <td> <?= $log->msg() ?> </td>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $log) { ?>
+        <tr> <td> <?= $log["CODIGOLOG"] ?> </td>
+            <td> <?= $log["NIVEL"] ?> </td>
+            <td> <?= $log["MSG"] ?> </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
@@ -37,3 +42,4 @@ YAHOO.util.Event.addListener(window, "load", function() {
     };
 });
 </script>
+

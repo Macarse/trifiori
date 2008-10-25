@@ -4,21 +4,24 @@
         <tr><th>Nombre</th> <th>Modificar</th> <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Banderas as $bandera) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $bandera) { ?>
         <tr>
-            <td> <?= $bandera->name() ?> </td>
+            <td> <?= $bandera["NOMBRE_BAN"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modbanderas/id/" . $bandera->id()?>">Modificar</a>
+                <a href="<?= "/user/banderas/modbanderas/id/" . $bandera["CODIGO_BAN"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removebanderas/id/" . $bandera->id()?>">Eliminar</a>
+                <a href="<?= "/user/banderas/removebanderas/id/" . $bandera["CODIGO_BAN"]?>">Eliminar</a>
             </td>			
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
 
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {

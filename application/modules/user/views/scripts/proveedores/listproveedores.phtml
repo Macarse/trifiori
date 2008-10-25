@@ -11,24 +11,28 @@
             <th>Eliminar</th></tr>
     </thead>
     <tbody>
-        <? foreach($this->Proveedores as $proveedor) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $proveedor) { ?>
         <tr> 
-            <td> <?= $proveedor->name() ?> </td>
-            <td> <?= $proveedor->adress() ?> </td>
-            <td> <?= $proveedor->tel() ?> </td>
-            <td> <?= $proveedor->fax() ?> </td>
-            <td> <?= $proveedor->mail() ?> </td>
+            <td> <?= $proveedor["NOMBRE_TRA"] ?> </td>
+            <td> <?= $proveedor["DIRECCION_TRA"] ?> </td>
+            <td> <?= $proveedor["TELEFONOS_TRA"] ?> </td>
+            <td> <?= $proveedor["FAX_TRA"] ?> </td>
+            <td> <?= $proveedor["MAIL_TRA"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modproveedores/id/" . $proveedor->id()?>">Modificar</a>
+                <a href="<?= "/user/proveedores/modproveedores/id/" . $proveedor["CODIGO_TRA"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removeproveedores/id/" . $proveedor->id()?>">Eliminar</a>
+                <a href="<?= "/user/proveedores/removeproveedores/id/" . $proveedor["CODIGO_TRA"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

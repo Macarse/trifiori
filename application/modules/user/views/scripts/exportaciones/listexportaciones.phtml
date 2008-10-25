@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>Órden</th>
-            <th>Transporte</th>
+<!--            <th>Transporte</th>
             <th>Cliente</th>
             <th>Bandera</th>
             <th>Moneda</th>
@@ -11,6 +11,7 @@
             <th>Destino</th>
             <th>Carga</th>
             <th>Referencia</th>
+-->
             <th>Fecha de Ingreso</th>
             <th>Descripción Mercadería</th>
             <th>Valor Factura</th>
@@ -24,59 +25,43 @@
         </tr>
     </thead>
     <tbody>
-        <? foreach($this->Exportaciones as $exportacion) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $exportacion) { ?>
         <tr>
-            <td> <?= $exportacion->orden() ?> </td>
-            <td> <?= $exportacion->codTransporteName() ?> </td>
-            <td> <?= $exportacion->codClienteName() ?> </td>
-            <td> <?= $exportacion->codBanderaName() ?> </td>
-            <td> <?= $exportacion->codMonedaName() ?> </td>
-            <td> <?= $exportacion->codGiroName() ?> </td>
-            <td> <?= $exportacion->codDestinacionName() ?> </td>
-            <td> <?= $exportacion->codCargaName() ?> </td>
-            <td> <?= $exportacion->fechaIngreso() ?> </td>
-            <td> <?= $exportacion->desMercaderias() ?> </td>
-            <td> <?= $exportacion->valorFactura() ?> </td>
-            <td> <?= $exportacion->vencimiento() ?> </td>
-            <td> <?= $exportacion->ingresoPuerto() ?> </td>
-            <td> <?= $exportacion->PERnroDoc() ?> </td>
-            <td> <?= $exportacion->PERpresentado() ?> </td>
-            <td> <?= $exportacion->PERfactura() ?> </td>
-            <td> <?= $exportacion->PERfechaFactura() ?> </td>
+            <td> <?= $exportacion["ORDEN"] ?> </td>
+            <td> <?= $exportacion["FECHAINGRESO"] ?> </td>
+            <td> <?= $exportacion["DESCMERCADERIA"] ?> </td>
+            <td> <?= $exportacion["VALORFACTURA"] ?> </td>
+            <td> <?= $exportacion["INGRESOPUERTO"] ?> </td>
+            <td> <?= $exportacion["PER_NRODOC"] ?> </td>
+            <td> <?= $exportacion["PER_PRESENTADO"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modexportaciones/id/" . $exportacion->id()?>">Modificar</a>
+                <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion["CODIGO_EXP"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
+                <a href="<?= "/user/exportaciones/removeexportaciones/id/" . $exportacion["CODIGO_EXP"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
+
 </table>
 </div>
 
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
             {key:"orden",label:"Orden", sortable:true},
-			{key:"trans",label:"Transporte", sortable:true},
-			{key:"cliente",label:"Codigo Cliente", sortable:true},
-			{key:"bandera",label:"Bandera", sortable:true},
-			{key:"mondea",label:"Moneda", sortable:true},
-			{key:"giro",label:"Giro", sortable:true},
-			{key:"carga",label:"Carga", sortable:true},
-			{key:"referencia",label:"Referencia", sortable:true},
 			{key:"feching",label:"Fecha de Ingreso", sortable:true},
 			{key:"descmer",label:"Descripción Mercadería", sortable:true},
 			{key:"valfac",label:"Valor Factura", sortable:true},
-			{key:"venc",label:"Vencimiento", sortable:true},
 			{key:"ingpue",label:"Ingreso a Puerto", sortable:true},
 			{key:"numper",label:"Número de Permiso", sortable:true},
 			{key:"perpre",label:"Permiso Presentado", sortable:true},
-			{key:"perfac",label:"Permiso Factura", sortable:true},
-			{key:"perfecfac",label:"Permiso Fecha de Factura", sortable:true},
 			{key:"mod",label:"Modificar", sortable:false},
 			{key:"elim",label:"Eliminar", sortable:false}
         ];
@@ -85,22 +70,12 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
         this.myDataSource.responseSchema = {
             fields: [{key:"orden"},
-					{key:"trans"},
-					{key:"cliente"},
-					{key:"bandera"},
-					{key:"mondea"},
-					{key:"giro"},
-					{key:"carga"},
-					{key:"referencia"},
 					{key:"feching"},
 					{key:"descmer"},
 					{key:"valfac"},
-					{key:"venc"},
 					{key:"ingpue"},
 					{key:"numper"},
 					{key:"perpre"},
-					{key:"perfac"},
-					{key:"perfecfac"},
 					{key:"mod"},
 					{key:"elim"}]
 	        };

@@ -52,7 +52,10 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         try
         {
             $table = new Banderas();
-            $this->view->Banderas = $table->fetchAll();
+            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($table->select()));
+            $paginator->setCurrentPageNumber($this->_getParam('page'));
+            $paginator->setItemCountPerPage(20);
+            $this->view->paginator = $paginator;
         }
         catch (Zend_Exception $error)
         {

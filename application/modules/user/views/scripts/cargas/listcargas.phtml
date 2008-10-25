@@ -13,27 +13,29 @@
         </tr>
     </thead>
     <tbody>
-        <? foreach($this->Cargas as $carga) { ?>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $carga) { ?>
         <tr> 
-            <td> <?= $carga->cantBultos() ?> </td>
-            <td> <?= $carga->tipoEnvase() ?> </td>
-            <td> <?= $carga->peso() ?> </td>
-            <td> <?= $carga->unidad() ?> </td>
-            <td> <?= $carga->nroPaquete() ?> </td>
-            <td> <?= $carga->marcaYnum() ?> </td>
-            <td> <?= $carga->mercIMCO() ?> </td>
+            <td> <?= $carga["CANTBULTOS_CAR"] ?> </td>
+            <td> <?= $carga["TIPOENVASE_CAR"] ?> </td>
+            <td> <?= $carga["PESOBRUTO_CAR"] ?> </td>
+            <td> <?= $carga["UNIDAD_CAR"] ?> </td>
+            <td> <?= $carga["NROPAQUETE_CAR"] ?> </td>
+            <td> <?= $carga["MARCAYNUMERO"] ?> </td>
+            <td> <?= $carga["MERC__IMCO"] ?> </td>
             <td>
-                <a href="<?= $this->baseUrl . "modcargas/id/" . $carga->id()?>">Modificar</a>
+                <a href="<?= "/user/cargas/modcargas/id/" . $carga["CODIGO_CAR"]?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= $this->baseUrl . "removecargas/id/" . $carga->id()?>">Eliminar</a>
+                <a href="<?= "/user/cargas/removecargas/id/" . $carga["CODIGO_CAR"]?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
+    <? } ?>
     </tbody>
 </table>
 </div>
-
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
