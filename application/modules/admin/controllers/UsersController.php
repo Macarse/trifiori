@@ -5,6 +5,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
     protected $_addform;
     protected $_modform;
     protected $_id;
+    protected $_rmid;
 
 
     public function indexAction()
@@ -86,21 +87,31 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     public function removeusersAction()
     {
+        $_rmid = $this->getRequest()->getParam('id');
+
         /*TODO: Agregar un "Seguro que desea eliminar?"*/
-        if ( $this->getRequest()->getParam('id') === null )
+        if ( $_rmid === null )
         {
             $this->_helper->redirector->gotoUrl('admin/users/listusers');
         }
         else
         {
-            try
+            /* No se puede borrar el administrador. */
+            if ( $_rmid == 1 )
             {
-            $usersTable = new Users();
-            $usersTable->removeUser( $this->getRequest()->getParam('id') );
+                $this->view->error = "No puede eliminar al administrador.";
             }
-            catch (Exception $error)
+            else
             {
-            $this->view->error = $error;
+                try
+                {
+                $usersTable = new Users();
+                $usersTable->removeUser( $_rmid );
+                }
+                catch (Exception $error)
+                {
+                $this->view->error = $error;
+                }
             }
         }
 
