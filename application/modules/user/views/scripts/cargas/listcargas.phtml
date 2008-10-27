@@ -16,18 +16,18 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $carga) { ?>
         <tr> 
-            <td> <?= $carga["CANTBULTOS_CAR"] ?> </td>
-            <td> <?= $carga["TIPOENVASE_CAR"] ?> </td>
-            <td> <?= $carga["PESOBRUTO_CAR"] ?> </td>
-            <td> <?= $carga["UNIDAD_CAR"] ?> </td>
-            <td> <?= $carga["NROPAQUETE_CAR"] ?> </td>
-            <td> <?= $carga["MARCAYNUMERO"] ?> </td>
-            <td> <?= $carga["MERC__IMCO"] ?> </td>
+            <td> <?= $carga->cantBultos() ?> </td>
+            <td> <?= $carga->tipoEnvase() ?> </td>
+            <td> <?= $carga->peso() ?> </td>
+            <td> <?= $carga->unidad() ?> </td>
+            <td> <?= $carga->nroPaquete() ?> </td>
+            <td> <?= $carga->marcaYnum() ?> </td>
+            <td> <?= $carga->mercIMCO() ?> </td>
             <td>
-                <a href="<?= "/user/cargas/modcargas/id/" . $carga["CODIGO_CAR"]?>">Modificar</a>
+                <a href="<?= "/user/cargas/modcargas/id/" . $carga->id()?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= "/user/cargas/removecargas/id/" . $carga["CODIGO_CAR"]?>">Eliminar</a>
+                <a href="<?= "/user/cargas/removecargas/id/" . $carga->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

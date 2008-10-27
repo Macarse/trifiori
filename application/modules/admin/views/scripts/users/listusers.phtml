@@ -6,14 +6,14 @@
 		<tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $user) { ?>
-			<tr><td> <?= $user["NOMBRE_USU"] ?> </td>
-				<td> <?= $user["USUARIO_USU"] ?> </td>
-				<td> <?= $user["IDIOMA_USU"] ?> </td>
+			<tr><td> <?= $user->name() ?> </td>
+				<td> <?= $user->user() ?> </td>
+				<td> <?= $user->language() ?> </td>
 				<td>
-					<a href="<?= "/admin/users/modusers/id/" . $user["CODIGO_USU"]?>">Modificar</a>
+					<a href="<?= "/admin/users/modusers/id/" . $user->id()?>">Modificar</a>
 				</td>
 				<td>
-					<a href="<?= "/admin/users/removeusers/id/" . $user["CODIGO_USU"]?>">Eliminar</a>
+					<a href="<?= "/admin/users/removeusers/id/" . $user->id()?>">Eliminar</a>
 				</td>
 			</tr>
 			<? } ?>

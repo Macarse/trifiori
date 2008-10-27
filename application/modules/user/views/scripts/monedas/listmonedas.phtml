@@ -7,13 +7,13 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $moneda) { ?>
         <tr> 
-            <td> <?= $moneda["NAME_MON"] ?> </td>
-            <td> <?= $moneda["DESCRIPCION_MON"] ?> </td>
+            <td> <?= $moneda->name() ?> </td>
+            <td> <?= $moneda->longName() ?> </td>
             <td>
-                <a href="<?= "/user/monedas/modmonedas/id/" . $moneda["CODIGO_MON"]?>">Modificar</a>
+                <a href="<?= "/user/monedas/modmonedas/id/" . $moneda->id()?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= "/user/monedas/removemonedas/id/" . $moneda["CODIGO_MON"]?>">Eliminar</a>
+                <a href="<?= "/user/monedas/removemonedas/id/" . $moneda->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

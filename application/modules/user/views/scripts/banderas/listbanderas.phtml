@@ -7,12 +7,12 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $bandera) { ?>
         <tr>
-            <td> <?= $bandera["NOMBRE_BAN"] ?> </td>
+            <td> <?= $bandera->name() ?> </td>
             <td>
-                <a href="<?= "/user/banderas/modbanderas/id/" . $bandera["CODIGO_BAN"]?>">Modificar</a>
+                <a href="<?= "/user/banderas/modbanderas/id/" . $bandera->id()?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= "/user/banderas/removebanderas/id/" . $bandera["CODIGO_BAN"]?>">Eliminar</a>
+                <a href="<?= "/user/banderas/removebanderas/id/" . $bandera->id()?>">Eliminar</a>
             </td>			
         </tr>
         <? } ?>

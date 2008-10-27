@@ -74,7 +74,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         try
         {
             $table = new Users();
-            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($table->select()));
+            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
             $paginator->setCurrentPageNumber($this->_getParam('page'));
             $paginator->setItemCountPerPage(10);
             $this->view->paginator = $paginator;

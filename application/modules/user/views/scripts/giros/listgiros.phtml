@@ -7,12 +7,12 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $giro) { ?>
         <tr> 
-            <td> <?= $giro["SECCION_GIR"] ?> </td>
+            <td> <?= $giro->name() ?> </td>
             <td>
-                <a href="<?= "/user/giros/modgiros/id/" . $giro["CODIGO_GIR"]?>">Modificar</a>
+                <a href="<?= "/user/giros/modgiros/id/" . $giro->id()?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= "/user/giros/removegiros/id/" . $giro["CODIGO_GIR"]?>">Eliminar</a>
+                <a href="<?= "/user/giros/removegiros/id/" . $giro->id()?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

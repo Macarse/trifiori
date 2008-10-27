@@ -7,12 +7,12 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $destinacion) { ?>
         <tr> 
-            <td> <?= $destinacion["DESCRIPCION_DES"] ?> </td>
+            <td> <?= $destinacion->name() ?> </td>
             <td>
-                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion["CODIGO_DES"]?>">Modificar</a>
+                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>">Modificar</a>
             </td>
 			<td>
-                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion["CODIGO_DES"]?>">Eliminar</a>
+                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

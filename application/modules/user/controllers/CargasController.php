@@ -59,7 +59,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         try
         {
             $table = new Cargas();
-            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($table->select()));
+            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
             $paginator->setCurrentPageNumber($this->_getParam('page'));
             $paginator->setItemCountPerPage(15);
             $this->view->paginator = $paginator;

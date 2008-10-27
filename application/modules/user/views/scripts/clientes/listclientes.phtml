@@ -16,18 +16,18 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $cliente) { ?>
         <tr>
-            <td> <?= $cliente["NOMBRE_CLI"] ?> </td>
-            <td> <?= $cliente["DIRECCION_CLI"] ?> </td>
-            <td> <?= $cliente["CODIGOPOSTAL_CLI"] ?> </td>
-            <td> <?= $cliente["LOCALIDAD_CLI"] ?> </td>
-            <td> <?= $cliente["CUIT_CLI"] ?> </td>
-            <td> <?= $cliente["TIPOIVA_CLI"] ?> </td>
-            <td> <?= $cliente["TIPOCLIENTE_CLI"] ?> </td>
+            <td> <?= $cliente->name()?> </td>
+            <td> <?= $cliente->adress() ?> </td>
+            <td> <?= $cliente->codPostal() ?> </td>
+            <td> <?= $cliente->localidad() ?> </td>
+            <td> <?= $cliente->CUIT() ?> </td>
+            <td> <?= $cliente->tipoIVA() ?> </td>
+            <td> <?= $cliente->tipoCliente() ?> </td>
             <td>
-                <a href="<?= "/user/clientes/modclientes/id/" . $cliente["CODIGO_CLI"]?>">Modificar</a>
+                <a href="<?= "/user/clientes/modclientes/id/" . $cliente->id() ?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente["CODIGO_CLI"]?>">Eliminar</a>
+                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente->id() ?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

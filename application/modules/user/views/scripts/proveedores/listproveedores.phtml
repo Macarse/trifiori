@@ -14,16 +14,16 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $proveedor) { ?>
         <tr> 
-            <td> <?= $proveedor["NOMBRE_TRA"] ?> </td>
-            <td> <?= $proveedor["DIRECCION_TRA"] ?> </td>
-            <td> <?= $proveedor["TELEFONOS_TRA"] ?> </td>
-            <td> <?= $proveedor["FAX_TRA"] ?> </td>
-            <td> <?= $proveedor["MAIL_TRA"] ?> </td>
+            <td> <?= $proveedor->name() ?> </td>
+            <td> <?= $proveedor->adress() ?> </td>
+            <td> <?= $proveedor->tel() ?> </td>
+            <td> <?= $proveedor->fax() ?> </td>
+            <td> <?= $proveedor->mail() ?> </td>
             <td>
-                <a href="<?= "/user/proveedores/modproveedores/id/" . $proveedor["CODIGO_TRA"]?>">Modificar</a>
+                <a href="<?= "/user/proveedores/modproveedores/id/" . $proveedor->id() ?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= "/user/proveedores/removeproveedores/id/" . $proveedor["CODIGO_TRA"]?>">Eliminar</a>
+                <a href="<?= "/user/proveedores/removeproveedores/id/" . $proveedor->id() ?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>

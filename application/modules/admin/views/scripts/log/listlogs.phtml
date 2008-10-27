@@ -6,9 +6,9 @@
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $log) { ?>
-        <tr> <td> <?= $log["CODIGOLOG"] ?> </td>
-            <td> <?= $log["NIVEL"] ?> </td>
-            <td> <?= $log["MSG"] ?> </td>
+        <tr> <td> <?= $log->id() ?> </td>
+            <td> <?= $log->nivel() ?> </td>
+            <td> <?= $log->msg() ?> </td>
         </tr>
         <? } ?>
     <? } ?>

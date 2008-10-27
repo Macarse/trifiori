@@ -7,15 +7,15 @@
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $tran) { ?>
         <tr>
-            <td> <?= $tran["NOMBRE_BUQ"] ?> </td>
-            <td> <?= $tran["CODIGO_BAN"] ?> </td>
-            <td> <?= $tran["CODIGOMED"] ?> </td>
-            <td> <?= $tran["OBSERVACIONES_BUQ"] ?> </td>
+            <td> <?= $tran->name() ?> </td>
+            <td> <?= $tran->codBanderaName() ?> </td>
+            <td> <?= $tran->codMedioName() ?> </td>
+            <td> <?= $tran->observaciones() ?> </td>
             <td>
-                <a href="<?= "/user/transportes/modtransportes/id/" . $tran["CODIGO_BUQ"]?>">Modificar</a>
+                <a href="<?= "/user/transportes/modtransportes/id/" . $tran->id() ?>">Modificar</a>
             </td>
             <td>
-                <a href="<?= "/user/transportes/removetransportes/id/" . $tran["CODIGO_BUQ"] ?>">Eliminar</a>
+                <a href="<?= "/user/transportes/removetransportes/id/" . $tran->id() ?>">Eliminar</a>
             </td>
         </tr>
         <? } ?>
