@@ -5,8 +5,6 @@ class Medios extends Zend_Db_Table_Abstract
     protected $_sequence = True;
     protected $_rowClass = 'MediosModel';
 
-    /*TODO: Analizar si vamos a agregar ABM de Medios en user*/
-
     public function getMedioByID( $id )
     {
         $where = $this->getAdapter()->quoteInto('CODIGOMED = ?', $id);

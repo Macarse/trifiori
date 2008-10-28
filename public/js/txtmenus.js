@@ -24,7 +24,7 @@ var txtmenuadminspa =
         }
     },
 
-    { text: "Ultimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarlogs', url:"/admin/log/listlogs"}  }}
+    { text: "Últimas Modificaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarlogs', url:"/admin/log/listlogs"}  }}
 ];
 
 
@@ -37,17 +37,17 @@ var txtmenuspa =
                     itemdata:
                     [
                         [
-                            { text: "Agregar exportacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarexportacion', url: "/user/exportaciones/addexportaciones"} }},
+                            { text: "Agregar exportación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarexportacion', url: "/user/exportaciones/addexportaciones"} }},
 
-                            { text: "Modificar exportacion", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarexportacion', url: "/user/exportaciones/listexportaciones"} }},
+                            { text: "Modificar exportación", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarexportacion', url: "/user/exportaciones/listexportaciones"} }},
 
-                            { text: "Borrar exportacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarexportacion', url: "/user/exportaciones/listexportaciones"} }}
+                            { text: "Borrar exportación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarexportacion', url: "/user/exportaciones/listexportaciones"} }}
                         ],
                         [
                             { text: "Buscar", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'buscarexportacion', url: "/user/exportaciones/buscarexportaciones"} }}
                         ],
                         [
-                            { text: "Estadisticas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'estadisticaexportacion', url: "/user/exportaciones/estadisticaexportaciones"} }}
+                            { text: "Estadísticas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'estadisticaexportacion', url: "/user/exportaciones/estadisticaexportaciones"} }}
                         ],
                         [
                             { text: "Listado de Exportaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarexportacion', url: "/user/exportaciones/listexportaciones"} }}
@@ -63,18 +63,30 @@ var txtmenuspa =
                 itemdata:
                 [
                     [
-                        { text: "Agregar importacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarimportacion', url: "/user/importaciones/addimportaciones"} }},
-                        { text: "Modificar importacion", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarimportacion', url: "/user/importaciones/listimportaciones"} }},
-                        { text: "Borrar importacion", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarimportacion', url: "/user/importaciones/listimportaciones"} }}
+                        { text: "Agregar importación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregarimportacion', url: "/user/importaciones/addimportaciones"} }},
+                        { text: "Modificar importación", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificarimportacion', url: "/user/importaciones/listimportaciones"} }},
+                        { text: "Borrar importación", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarimportacion', url: "/user/importaciones/listimportaciones"} }}
                     ],
-
-/*TODO: Ver qué hacemos con estos.*/
-/*                    [
-                        { text: "OPP", helptext: "" , onclick: { fn: onMenuItemClick }},
-                        { text: "Canales", helptext: "" , onclick: { fn: onMenuItemClick }}
-                    ],*/
                     [
                         { text: "Listado de importaciones", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarimportacion', url: "/user/importaciones/listimportaciones"} }}
+                    ]
+                ] 
+            }
+        },
+        {
+            text: "OPP",
+            submenu:
+            {
+                id: "oppmenu",
+                itemdata:
+                [
+                    [
+                        { text: "Agregar OPP", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'agregaropp', url: "/user/opps/addopps"} }},
+                        { text: "Modificar OPP", helptext: "", onclick: { fn: onMenuItemClick, obj: { id: 'modificaropp', url: "/user/opps/listopps"} }},
+                        { text: "Borrar OPP", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borraropp', url: "/user/opps/listopps"} }}
+                    ],
+                    [
+                        { text: "Listado de OPPs", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarclientes', url: "/user/opps/listopps"} }}
                     ]
                 ] 
             }
@@ -110,7 +122,7 @@ var txtmenuspa =
                         { text: "Borrar proveedor", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarproveedor', url: "/user/proveedores/listproveedores"} }}
                     ],
                     [
-                        { text: "Listado de proveedor", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarproveedor', url: "/user/proveedores/listproveedores"} }}
+                        { text: "Listado de proveedores", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarproveedor', url: "/user/proveedores/listproveedores"} }}
                     ]
                 ]
             }
@@ -181,7 +193,7 @@ var txtmenuspa =
                         { text: "Borrar puerto", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarpuerto', url: "/user/puertos/listpuertos"} }}
                     ],
                     [
-                        { text: "Listado de puerto", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarpuerto', url: "/user/puertos/listpuertos"} }}]
+                        { text: "Listado de puertos", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarpuerto', url: "/user/puertos/listpuertos"} }}]
                 ]
             }
         },
@@ -234,7 +246,7 @@ var txtmenuspa =
                     { text: "Borrar bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'borrarbandera', url: "/user/banderas/listbanderas"} }}
                 ],
                 [
-                    { text: "Listado de bandera", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarbandera', url: "/user/banderas/listbanderas"} }}
+                    { text: "Listado de banderas", helptext: "" , onclick: { fn: onMenuItemClick, obj: { id: 'listarbandera', url: "/user/banderas/listbanderas"} }}
                 ]
             ]
         }

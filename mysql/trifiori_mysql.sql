@@ -176,7 +176,7 @@ create table IMPORTACIONES
    CODIGO_CLI                     int                            not null,
    CODIGO_CAR                     int                            not null,
    CODIGO_TRA                     int                            not null,
-   CODIGO_MON                     char(3)                        not null,
+   CODIGO_MON                     int                            not null,
    CODIGO_OPP                     int,
    REFERENCIA_IMP                 varchar(150)                   not null,
    FECHAINGRESO_IMP               date                           not null,
@@ -238,15 +238,13 @@ create table MONEDAS
 create table OPP
 (
    CODIGO_OPP                     int AUTO_INCREMENT             not null,
-   ORDEN_IMP                      int                            not null,
    DECLARACION_OK_OPP             char(1)                        not null,
    PEDIDO_DE_DINERO_OPP           date                           not null,
    OTROS_OPP                      varchar(255),
    FRACCIONADO_OPP                varchar(150),
    ESTAMPILLAS_OPP                varchar(150),
    IMPUESTOS_INTERNOS_OPP         varchar(150),
-   primary key (CODIGO_OPP),
-   UNIQUE ORDEN_IMP (ORDEN_IMP)
+   primary key (CODIGO_OPP)
 );
 
 /*==============================================================*/
@@ -415,10 +413,6 @@ alter table IMPORTACIONES
 alter table IMPORTACIONES
    add constraint FK_IMPORTAC_VIENE_DE_BANDERAS foreign key (CODIGO_BAN)
       references BANDERAS (CODIGO_BAN);
-
-alter table OPP
-   add constraint FK_OPP_TIENE2_IMPORTAC foreign key (ORDEN_IMP)
-      references IMPORTACIONES (ORDEN_IMP);
 
 alter table PASA_POR
    add constraint FK_PASA_POR_PASA_POR_TRANSPOR foreign key (CODIGO_BUQ)
