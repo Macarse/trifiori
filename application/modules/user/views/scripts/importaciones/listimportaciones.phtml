@@ -1,0 +1,157 @@
+<div id="divlistado" class="clistado">
+    <table id="tablelist">
+    <thead>
+        <tr>
+            <th>Órden</th>
+            <th>Destino</th>
+            <th>Bandera</th>
+            <th>Canal</th>
+            <th>Giro</th>
+            <th>Cliente</th>
+            <th>Carga</th>
+            <th>Transporte</th>
+            <th>Moneda</th>
+            <th>Opp</th>
+            <th>Referencia</th>
+            <th>Fecha de Ingreso</th>
+            <th>Original/Copia</th>
+            <th>Descripción Mercadería</th>
+            <th>Valor Factura</th>
+            <th>Documentación Transporte</th>
+            <th>Ingreso a Puerto</th>
+            <th>Despacho: Nro Documento</th>
+            <th>Despacho: Vencimiento</th>
+            <th>Despacho: B/L</th>
+            <th>Despacho: Declaración</th>
+            <th>Despacho: Presentado</th>
+            <th>Despacho: Salido</th>
+            <th>Despacho: Cargado</th>
+            <th>Despacho: Factura</th>
+            <th>Despacho: Fecha de la Factura</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $importacion) { ?>
+        <tr>
+            <td> <?= $importacion->orden() ?> </td>
+            <td> <?= $importacion->codDestinacionName() ?> </td>
+            <td> <?= $importacion->codBanderaName() ?> </td>
+            <td> <?= $importacion->codCanalName() ?> </td>
+            <td> <?= $importacion->codGiroName() ?> </td>
+            <td> <?= $importacion->codClienteName() ?> </td>
+            <td> <?= $importacion->codCargaName() ?> </td>
+            <td> <?= $importacion->codTransporteName() ?> </td>
+            <td> <?= $importacion->codMonedaName() ?> </td>
+            <td> <?= $importacion->codOppName() ?> </td>
+            <td> <?= $importacion->referencia() ?> </td>
+            <td> <?= $importacion->fechaIngreso() ?> </td>
+            <td> <?= $importacion->originalCopia() ?> </td>
+            <td> <?= $importacion->desMercaderias() ?> </td>
+            <td> <?= $importacion->valorFactura() ?> </td>
+            <td> <?= $importacion->docTransporte() ?> </td>
+            <td> <?= $importacion->ingresoPuerto() ?> </td>
+            <td> <?= $importacion->DESnroDoc() ?> </td>
+            <td> <?= $importacion->DESvencimiento() ?> </td>
+            <td> <?= $importacion->DESbl() ?> </td>
+            <td> <?= $importacion->DESdeclaracion() ?> </td>
+            <td> <?= $importacion->DESpresentado() ?> </td>
+            <td> <?= $importacion->DESsalido() ?> </td>
+            <td> <?= $importacion->DEScargado() ?> </td>
+            <td> <?= $importacion->DESfactura() ?> </td>
+            <td> <?= $importacion->DEsfechaFactura() ?> </td>
+            <td>
+                <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>">Modificar</a>
+            </td>
+            <td>
+                <a href="<?= "/user/importaciones/removeimportaciones/id/" . $importacion->id()?>">Eliminar</a>
+            </td>
+        </tr>
+        <? } ?>
+    <? } ?>
+    </tbody>
+
+</table>
+</div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"orden",label:"Orden", sortable:true},
+            {key:"codDestinacionName",label:"Destino", sortable:true},
+            {key:"codBanderaName",label:"Bandera", sortable:true},
+            {key:"codCanalName",label:"Canal", sortable:true},
+            {key:"codGiroName",label:"Giro", sortable:true},
+            {key:"codClienteName",label:"Cliente", sortable:true},
+            {key:"codCargaName",label:"Carga", sortable:true},
+            {key:"codTransporteName",label:"Transporte", sortable:true},
+            {key:"codMonedaName",label:"Moneda", sortable:true},
+            {key:"codOppName",label:"Opp", sortable:true},
+            {key:"referencia",label:"Referencia", sortable:true},
+            {key:"fechaIngreso", label:"Fecha de Ingreso", sortable:true},
+            {key:"originalCopia",label:"Original/Copia", sortable:true},
+            {key:"desMercaderias",label:"Descripción Mercadería", sortable:true},
+            {key:"valorFactura",label:"Valor Factura", sortable:true},
+            {key:"docTransporte",label:"Documentación Transporte", sortable:true},
+            {key:"ingresoPuerto",label:"Ingreso a Puerto", sortable:true},
+            {key:"DESnroDoc",label:"Despacho: Nro Documento", sortable:true},
+            {key:"DESvencimiento",label:"Despacho: Vencimiento", sortable:true},
+            {key:"DESbl",label:"Despacho: B/L", sortable:true},
+            {key:"DESdeclaracion",label:"Despacho: Declaración", sortable:true},
+            {key:"DESpresentado",label:"Despacho: Presentado", sortable:true},
+            {key:"DESsalido",label:"Despacho: Salido", sortable:true},
+            {key:"DEScargado",label:"Despacho: Cargado", sortable:true},
+            {key:"DESfactura",label:"Despacho: Factura", sortable:true},
+            {key:"DEsfechaFactura",label:"Despacho: Fecha de la Factura", sortable:true},
+            {key:"mod",label:"Modificar", sortable:false},
+            {key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema =
+        {
+            fields:
+            [
+                {key:"orden"},
+                {key:"codDestinacionName"},
+                {key:"codBanderaName"},
+                {key:"codCanalName"},
+                {key:"codGiroName"},
+                {key:"codClienteName"},
+                {key:"codCargaName"},
+                {key:"codTransporteName"},
+                {key:"codMonedaName"},
+                {key:"codOppName"},
+                {key:"referencia"},
+                {key:"fechaIngreso"},
+                {key:"originalCopia"},
+                {key:"desMercaderias"},
+                {key:"valorFactura"},
+                {key:"docTransporte"},
+                {key:"ingresoPuerto"},
+                {key:"DESnroDoc"},
+                {key:"DESvencimiento"},
+                {key:"DESbl"},
+                {key:"DESdeclaracion"},
+                {key:"DESpresentado"},
+                {key:"DESsalido"},
+                {key:"DEScargado"},
+                {key:"DESfactura"},
+                {key:"DEsfechaFactura"},
+                {key:"mod"},
+                {key:"elim"}
+            ]
+        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"orden",dir:"desc"}}
+        );
+    };
+});
+</script>

@@ -5,6 +5,14 @@ class Canales extends Zend_Db_Table_Abstract
     protected $_sequence = true;
     protected $_rowClass = 'CanalesModel';
 
+    public function getCanalByID( $id )
+    {
+        $where = $this->getAdapter()->quoteInto('CODIGO_CAN = ?', $id);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+
     public function getCanalesArray()
     {
         $arr = array();

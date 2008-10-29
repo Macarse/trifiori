@@ -1,5 +1,5 @@
 <div id="divlistado" class="clistado">
-	<table id="tablelist">
+    <table id="tablelist">
     <thead>
         <tr>
             <th>Órden</th>
@@ -11,7 +11,6 @@
             <th>Destino</th>
             <th>Carga</th>
             <th>Referencia</th>
-
             <th>Fecha de Ingreso</th>
             <th>Descripción Mercadería</th>
             <th>Valor Factura</th>
@@ -21,7 +20,8 @@
             <th>Permiso Presentado</th>
             <th>Permiso Factura</th>
             <th>Permiso Fecha de Factura</th>
-			<th>Modificar</th> <th>Eliminar</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
@@ -73,45 +73,49 @@ YAHOO.util.Event.addListener(window, "load", function() {
             {key:"giro",label:"Giro", sortable:true},
             {key:"carga",label:"Carga", sortable:true},
             {key:"referencia",label:"Referencia", sortable:true},
-			{key:"feching",label:"Fecha de Ingreso", sortable:true},
-			{key:"descmer",label:"Descripción Mercadería", sortable:true},
-			{key:"valfac",label:"Valor Factura", sortable:true},
+            {key:"feching",label:"Fecha de Ingreso", sortable:true},
+            {key:"descmer",label:"Descripción Mercadería", sortable:true},
+            {key:"valfac",label:"Valor Factura", sortable:true},
             {key:"venc", label:"Vencimiento", sortable:true},
             {key:"ingpue",label:"Ingreso a Puerto", sortable:true},
-			{key:"numper",label:"Número de Permiso", sortable:true},
-			{key:"perpre",label:"Permiso Presentado", sortable:true},
+            {key:"numper",label:"Número de Permiso", sortable:true},
+            {key:"perpre",label:"Permiso Presentado", sortable:true},
             {key:"perfac",label:"Permiso Factura", sortable:true},
             {key:"perfecfac",label:"Permiso Fecha de Factura", sortable:true},
-			{key:"mod",label:"Modificar", sortable:false},
-			{key:"elim",label:"Eliminar", sortable:false}
+            {key:"mod",label:"Modificar", sortable:false},
+            {key:"elim",label:"Eliminar", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [{key:"orden"},
-                    {key:"trans"},
-                    {key:"cliente"},
-                    {key:"bandera"},
-                    {key:"moneda"},
-                    {key:"giro"},
-                    {key:"carga"},
-                    {key:"referencia"},
-					{key:"feching"},
-					{key:"descmer"},
-					{key:"valfac"},
-                    {key:"venc"},
-					{key:"ingpue"},
-					{key:"numper"},
-					{key:"perpre"},
-                    {key:"perfac"},
-                    {key:"perfecfac"},
-					{key:"mod"},
-					{key:"elim"}]
-	        };
+        this.myDataSource.responseSchema =
+        {
+            fields: 
+            [
+                {key:"orden"},
+                {key:"trans"},
+                {key:"cliente"},
+                {key:"bandera"},
+                {key:"moneda"},
+                {key:"giro"},
+                {key:"carga"},
+                {key:"referencia"},
+                {key:"feching"},
+                {key:"descmer"},
+                {key:"valfac"},
+                {key:"venc"},
+                {key:"ingpue"},
+                {key:"numper"},
+                {key:"perpre"},
+                {key:"perfac"},
+                {key:"perfecfac"},
+                {key:"mod"},
+                {key:"elim"}
+            ]
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"name",dir:"desc"}}
+                {sortedBy:{key:"orden",dir:"desc"}}
         );
     };
 });

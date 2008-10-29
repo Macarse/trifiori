@@ -1,0 +1,44 @@
+<script type="text/javascript">
+		YAHOO.namespace("local.calendar");
+		
+		YAHOO.local.calendar.init = function() {
+			var eLog = YAHOO.util.Dom.get("evtentries");
+	
+			YAHOO.local.calendar.fechaIngreso = new YAHOO.widget.Calendar("fechaIngreso","calFechaIngreso");
+			YAHOO.local.calendar.fechaIngreso.selectEvent.subscribe(handlerCalFechaIngreso, YAHOO.local.calendar.fechaIngreso, true);
+			
+			YAHOO.local.calendar.vencimiento = new YAHOO.widget.Calendar("vencimiento","calVencimiento");
+			YAHOO.local.calendar.vencimiento.selectEvent.subscribe(handlerCalVencimiento, YAHOO.local.calendar.vencimiento, true);
+			
+			YAHOO.local.calendar.ingpuerto = new YAHOO.widget.Calendar("ingpuerto","calIngPuerto");
+			YAHOO.local.calendar.ingpuerto.selectEvent.subscribe(handlerCalIngPuerto, YAHOO.local.calendar.ingpuerto, true);
+			
+			YAHOO.local.calendar.perpre = new YAHOO.widget.Calendar("perpre","calPerPre");
+			YAHOO.local.calendar.perpre.selectEvent.subscribe(handlerCalPerPre, YAHOO.local.calendar.perpre, true);
+			
+			YAHOO.local.calendar.fecfac = new YAHOO.widget.Calendar("fecfac","calFecFac");
+			YAHOO.local.calendar.fecfac.selectEvent.subscribe(handlerCalPerFecFac, YAHOO.local.calendar.fecfac, true);
+	
+			YAHOO.local.calendar.fechaIngreso.render();
+			YAHOO.local.calendar.vencimiento.render();
+			YAHOO.local.calendar.ingpuerto.render();
+			YAHOO.local.calendar.perpre.render();
+			YAHOO.local.calendar.fecfac.render();
+		}
+		
+		YAHOO.util.Event.onDOMReady(YAHOO.local.calendar.init);
+</script>
+
+
+<div style="clear:both"></div>
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<div class="cformulario">
+	<?= $this->importacionAddForm ?>
+</div>
+<div id="calFechaIngreso" style="display:none;" class="ccalfechaingreso"></div>
+<div id="calVencimiento" style="display:none;" class="ccalvencimiento"></div>
+<div id="calIngPuerto" style="display:none;" class="ccalingpuerto"></div>
+<div id="calPerPre" style="display:none;" class="ccalperpre"></div>
+<div id="calFecFac" style="display:none;" class="ccalfecfac"></div>
