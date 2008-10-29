@@ -393,6 +393,7 @@ INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', SHA1('prueba'), 'prueba', 1)
 
 INSERT INTO IDIOMAS VALUES(1, 'en');
 INSERT INTO IDIOMAS VALUES(2, 'es');
+INSERT INTO IDIOMAS VALUES(3, 'fr');
 
 INSERT INTO OPP VALUES(NULL, 'n', STR_TO_DATE('10/10/2007', '%d/%m/%Y'), 'oppA', 'FracA', NULL, 'ImpuestoA');
 INSERT INTO OPP VALUES(NULL, 's', STR_TO_DATE('27/10/2007', '%d/%m/%Y'), 'oppB', 'FracB', NULL, 'ImpuestoB');

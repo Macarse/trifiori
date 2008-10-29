@@ -433,4 +433,3 @@ alter table TRANSPORTES
 alter table USUARIO_MODIFICA_TABLA
    add constraint FK_USUARIO__USUARIO_M_TABLAS foreign key (NOMBRE)
       references TABLAS (NOMBRE);
-
