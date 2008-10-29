@@ -31,4 +31,6 @@
     require_once 'ProveedoresModel.php';
     require_once 'CanalesTable.php';
     require_once 'CanalesModel.php';
+    require_once 'OppsTable.php';
+    require_once 'OppsModel.php';
 ?>

@@ -1,0 +1,78 @@
+<div id="divlistado" class="clistado">
+	<table id="tablelist">
+    <thead>
+        <tr>
+            <th>Declaración Ok</th>
+            <th>Pedido de Dinero</th>
+            <th>Otros Opp</th>
+            <th>Fraccionado Opp</th>
+            <th>Estampillas</th>
+            <th>Impuestos Internos</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $opp) { ?>
+        <tr>
+            <td> <?= $opp->declaracionOk()?> </td>
+            <td> <?= $opp->pedidoDinero() ?> </td>
+            <td> <?= $opp->otrosOpp() ?> </td>
+            <td> <?= $opp->fraccionado() ?> </td>
+            <td> <?= $opp->estampillas() ?> </td>
+            <td> <?= $opp->impuestosInternos() ?> </td>
+            <td>
+                <a href="<?= "/user/opps/modopps/id/" . $opp->id() ?>">Modificar</a>
+            </td>
+            <td>
+                <a href="<?= "/user/opps/removeopps/id/" . $opp->id() ?>">Eliminar</a>
+            </td>
+        </tr>
+        <? } ?>
+    <? } ?>
+    </tbody>
+</table>
+</div>
+
+<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs =
+        [
+            {key:"declaracionOk",label:"Declaración Ok", sortable:true},
+            {key:"pedidoDinero",label:"Pedido de Dinero", sortable:true},
+            {key:"otrosOpp",label:"Otros Opp", sortable:true},
+            {key:"fraccionado",label:"Fraccionado Opp", sortable:true},
+            {key:"estampillas",label:"Estampillas", sortable:true},
+            {key:"impuestosInternos",label:"Impuestos Internos", sortable:true},
+            {key:"mod",label:"Modificar", sortable:false},
+            {key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = {
+            fields: [
+                        {key:"declaracionOk"},
+                        {key:"pedidoDinero"},
+                        {key:"otrosOpp"},
+                        {key:"fraccionado"},
+                        {key:"estampillas"},
+                        {key:"impuestosInternos"},
+                        {key:"mod"},
+                        {key:"elim"}
+                    ]
+	        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs,
+                                                    this.myDataSource,
+                                                    {
+                                                        sortedBy:{key:"pedidoDinero",dir:"desc"}
+                                                    }
+        );
+    };
+});
+</script>

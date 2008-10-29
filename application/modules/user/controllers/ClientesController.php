@@ -151,7 +151,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
     private function getClienteModForm( $id )
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
