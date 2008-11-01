@@ -61,6 +61,16 @@ div.clistado
     margin: left;
 }
 
+div.cdetalle
+{
+    border: 2px solid #666666;
+    background-color: #FFFFF0;
+    position: fixed;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    bottom: 0;
+    left: 10px;
+}
+
 .errors
 {
 	color: #FF0000;
