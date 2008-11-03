@@ -70,7 +70,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         try
         {
-            $table = new Exportaciones();;
+            $table = new Exportaciones();
             $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
             $paginator->setCurrentPageNumber($this->_getParam('page'));
             $paginator->setItemCountPerPage(15);
@@ -79,6 +79,48 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         catch (Zend_Exception $error)
         {
             $this->view->error = $error;
+        }
+    }
+
+    public function detailsAction()
+    {
+        $id = $_GET["id"];
+        $results = null;
+        $this->_helper->viewRenderer->setNoRender();
+        
+        try
+        {
+            $table = new Exportaciones();
+            $where = "CODIGO_EXP = " . $id;
+            $results = $table->fetchAll($where);
+        }
+        catch (Zend_Exception $error)
+        {
+            $this->view->error = $error;
+        }
+        
+        if ($results != null)
+        {
+            foreach ($results as $result)
+            {
+                echo "Orden: " . $result->orden() . "<br />";
+                echo "Transporte: " . $result->codTransporteName() .  "<br />";
+                echo "Cliente: " . $result->codClienteName() . "<br />";
+                echo "Bandera: " . $result->codBanderaName() .  "<br />";
+                echo "Moneda: " . $result->codMonedaName() .  "<br />";
+                echo "Giro: " . $result->codGiroName() .  "<br />";
+                echo "Destinacion: " . $result->codDestinacionName() .  "<br />";
+                echo "Carga: " . $result->codCargaName() .  "<br />";
+                echo "Fecha de Ingreso: " . $result->fechaIngreso() . "<br />";
+                echo "Descripción de la mercadería: " . $result->desMercaderias() .  "<br />";
+                echo "Valor de la factura: " . $result->valorFactura() .  "<br />";
+                echo "Fecha de vencimiento: " . $result->vencimiento() .  "<br />";
+                echo "Fecha de ingreso al puerto: " . $result->ingresoPuerto() .  "<br />";
+                echo "Número de permiso: " . $result->PERnroDoc() .  "<br />";
+                echo "Fecha en que fue presentado: " . $result->PERpresentado() .  "<br />";
+                echo "Número de factura: " . $result->PERfactura() .  "<br />";
+                echo "Fecha de la factura: " . $result->PERfechaFactura() .  "<br />";   
+            }
         }
     }
 

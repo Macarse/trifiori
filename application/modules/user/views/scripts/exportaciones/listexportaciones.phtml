@@ -1,3 +1,4 @@
+<div id="divdetalles" class="cdetalle">ACA VAN LOS DETALLES</div>
 <div id="divlistado" class="clistado">
     <table id="tablelist">
     <thead>
@@ -5,21 +6,22 @@
             <th>Órden</th>
             <th>Transporte</th>
             <th>Cliente</th>
-            <th>Bandera</th>
+<!--            <th>Bandera</th>
             <th>Moneda</th>
-            <th>Giro</th>
+            <th>Giro</th> -->
             <th>Destino</th>
             <th>Carga</th>
             <th>Referencia</th>
             <th>Fecha de Ingreso</th>
             <th>Descripción Mercadería</th>
-            <th>Valor Factura</th>
+<!--            <th>Valor Factura</th>
             <th>Vencimiento</th>
             <th>Ingreso a Puerto</th>
             <th>Número de Permiso</th>
             <th>Permiso Presentado</th>
             <th>Permiso Factura</th>
-            <th>Permiso Fecha de Factura</th>
+            <th>Permiso Fecha de Factura</th> -->
+            <th>Detalle</th>
             <th>Modificar</th>
             <th>Eliminar</th>
         </tr>
@@ -31,20 +33,23 @@
             <td> <?= $exportacion->orden() ?> </td>
             <td> <?= $exportacion->codTransporteName() ?> </td>
             <td> <?= $exportacion->codClienteName() ?> </td>
-            <td> <?= $exportacion->codBanderaName() ?> </td>
+<!--            <td> <?= $exportacion->codBanderaName() ?> </td>
             <td> <?= $exportacion->codMonedaName() ?> </td>
-            <td> <?= $exportacion->codGiroName() ?> </td>
+            <td> <?= $exportacion->codGiroName() ?> </td> -->
             <td> <?= $exportacion->codDestinacionName() ?> </td>
             <td> <?= $exportacion->codCargaName() ?> </td>
             <td> <?= $exportacion->fechaIngreso() ?> </td>
             <td> <?= $exportacion->desMercaderias() ?> </td>
-            <td> <?= $exportacion->valorFactura() ?> </td>
+<!--            <td> <?= $exportacion->valorFactura() ?> </td>
             <td> <?= $exportacion->vencimiento() ?> </td>
             <td> <?= $exportacion->ingresoPuerto() ?> </td>
             <td> <?= $exportacion->PERnroDoc() ?> </td>
             <td> <?= $exportacion->PERpresentado() ?> </td>
             <td> <?= $exportacion->PERfactura() ?> </td>
-            <td> <?= $exportacion->PERfechaFactura() ?> </td>
+            <td> <?= $exportacion->PERfechaFactura() ?> </td> -->
+            <td>
+            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value="Detalle" />
+            </td>
             <td>
                 <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion->id() ?>">Modificar</a>
             </td>
@@ -61,6 +66,7 @@
 
 <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 
+
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
@@ -68,20 +74,21 @@ YAHOO.util.Event.addListener(window, "load", function() {
             {key:"orden",label:"Orden", sortable:true},
             {key:"trans",label:"Transporte", sortable:true},
             {key:"cliente",label:"Codigo Cliente", sortable:true},
-            {key:"bandera",label:"Bandera", sortable:true},
-            {key:"moneda",label:"Moneda", sortable:true},
-            {key:"giro",label:"Giro", sortable:true},
+//            {key:"bandera",label:"Bandera", sortable:true},
+//            {key:"moneda",label:"Moneda", sortable:true},
+//            {key:"giro",label:"Giro", sortable:true},
             {key:"carga",label:"Carga", sortable:true},
             {key:"referencia",label:"Referencia", sortable:true},
             {key:"feching",label:"Fecha de Ingreso", sortable:true},
             {key:"descmer",label:"Descripción Mercadería", sortable:true},
-            {key:"valfac",label:"Valor Factura", sortable:true},
-            {key:"venc", label:"Vencimiento", sortable:true},
-            {key:"ingpue",label:"Ingreso a Puerto", sortable:true},
-            {key:"numper",label:"Número de Permiso", sortable:true},
-            {key:"perpre",label:"Permiso Presentado", sortable:true},
-            {key:"perfac",label:"Permiso Factura", sortable:true},
-            {key:"perfecfac",label:"Permiso Fecha de Factura", sortable:true},
+//            {key:"valfac",label:"Valor Factura", sortable:true},
+//            {key:"venc", label:"Vencimiento", sortable:true},
+//            {key:"ingpue",label:"Ingreso a Puerto", sortable:true},
+//            {key:"numper",label:"Número de Permiso", sortable:true},
+//            {key:"perpre",label:"Permiso Presentado", sortable:true},
+//            {key:"perfac",label:"Permiso Factura", sortable:true},
+//            {key:"perfecfac",label:"Permiso Fecha de Factura", sortable:true},
+            {key:"detalle", label:"Detalle", sortable:false},
             {key:"mod",label:"Modificar", sortable:false},
             {key:"elim",label:"Eliminar", sortable:false}
         ];
@@ -95,20 +102,21 @@ YAHOO.util.Event.addListener(window, "load", function() {
                 {key:"orden"},
                 {key:"trans"},
                 {key:"cliente"},
-                {key:"bandera"},
-                {key:"moneda"},
-                {key:"giro"},
+ //               {key:"bandera"},
+ //               {key:"moneda"},
+ //               {key:"giro"},
                 {key:"carga"},
                 {key:"referencia"},
                 {key:"feching"},
                 {key:"descmer"},
-                {key:"valfac"},
-                {key:"venc"},
-                {key:"ingpue"},
-                {key:"numper"},
-                {key:"perpre"},
-                {key:"perfac"},
-                {key:"perfecfac"},
+  //              {key:"valfac"},
+  //              {key:"venc"},
+  //              {key:"ingpue"},
+  //              {key:"numper"},
+  //              {key:"perpre"},
+  //              {key:"perfac"},
+  //              {key:"perfecfac"},
+                {key:"detalle"},
                 {key:"mod"},
                 {key:"elim"}
             ]
