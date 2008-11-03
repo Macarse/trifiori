@@ -1,3 +1,7 @@
+#ysearch { text-align:center; }
+#ysearchinput { position:relative; width:1em; } /* to center, set static and explicit width: */
+#ysearchcontainer { text-align:left; width:1em; } /* to center, set left-align and explicit width: */
+
 #filemenu.visible .yuimenuitemlabel,
 #editmenu.visible .yuimenuitemlabel {
    *zoom: 1;

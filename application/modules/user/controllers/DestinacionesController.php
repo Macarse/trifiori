@@ -195,6 +195,40 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 
         return $this->_addform;
     }
+	
+	public function getdataAction() {
+       $arr = array();
+	   $aux = array();
+	   
+       $this->_helper->viewRenderer->setNoRender();
+       $this->_helper->layout()->disableLayout();
+	   
+	   if ( $this->getRequest()->getParam('query') != null )
+        {
+            $this->_name = $this->getRequest()->getParam('query');
+
+		   $model = new Destinaciones();
+		   $data = $model->fetchAll("DESCRIPCION_DES LIKE '" .  $this->_name . "%'");
+		   
+           foreach ($data as $row)
+		   {
+               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+	       }
+	
+		   $arr = array("Resultset" => array("Result" => $aux));
+	
+		   try {
+			   $responseDataJsonEncoded = Zend_Json::encode($arr);
+			   $this->getResponse()->setHeader('Content-Type', 'application/json')
+								   ->setBody($responseDataJsonEncoded);
+	
+		   } catch(Zend_Json_Exception $e) {
+			   // handle and generate HTTP error code response, see below
+			   $this->getResponse()->setHeader('Content-Type', 'application/json')
+								   ->setBody('[{Error}]');
+		   }
+		 }
+   }
 
 }
 ?>

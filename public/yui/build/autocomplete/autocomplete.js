@@ -2777,9 +2777,12 @@ YAHOO.widget.DS_XHR.prototype.responseStripAfter = "\n<!-";
  */
 YAHOO.widget.DS_XHR.prototype.doQuery = function(oCallbackFn, sQuery, oParent) {
     var isXML = (this.responseType == YAHOO.widget.DS_XHR.TYPE_XML);
-    var sUri = this.scriptURI+"?"+this.scriptQueryParam+"="+sQuery;
+    //var sUri = this.scriptURI+"?"+this.scriptQueryParam+"="+sQuery;
+	var sUri = this.scriptURI+this.scriptQueryParam+"/"+sQuery;
+
     if(this.scriptQueryAppend.length > 0) {
-        sUri += "&" + this.scriptQueryAppend;
+        //sUri += "&" + this.scriptQueryAppend;
+		sUri += "/" + this.scriptQueryAppend;
     }
     var oResponse = null;
     

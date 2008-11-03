@@ -191,82 +191,41 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
-        $transportesTable = new Transportes();
-        $transportesOptions =  $transportesTable->getTransportesArray();
 
-        $codTransporte = $this->_addform->createElement('select', 'codTransporte');
-        $codTransporte  ->setRequired(true)
-                        ->setOrder(1)
-                        ->setLabel('Transporte')
-                        ->setMultiOptions($transportesOptions);
+		$codTransporte = $this->_addform->createElement('text', 'nameTransporte', array('label' => 'Transporte', 'id' => 'idnameTransporte'));
+		$codTransporte  ->setRequired(true)
+						->setOrder(1);
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
-        $clientesTable = new Clientes();
-        $clientesOptions =  $clientesTable->getClientesArray();
+		$codCliente = $this->_addform->createElement('text', 'nameCliente', array('label' => 'Cliente', 'id' => 'idnameCliente'));
+		$codCliente ->setRequired(true)
+					->setOrder(2);
 
-        $codCliente = $this->_addform->createElement('select', 'codCliente');
-        $codCliente ->setRequired(true)
-                    ->setOrder(2)
-                    ->setLabel('Cliente')
-                    ->setMultiOptions($clientesOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
-
-        $codBandera = $this->_addform->createElement('select', 'codBandera');
+		$codBandera = $this->_addform->createElement('text', 'nameBandera', array('label' => 'Bandera', 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-                    ->setOrder(3)
-                    ->setLabel('Bandera')
-                    ->setMultiOptions($banderasOptions);
+                    ->setOrder(3);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $monedasTable = new Monedas();
-        $monedasOptions =  $monedasTable->getMonedasArray();
 
-        $codMoneda = $this->_addform->createElement('select', 'codMoneda');
-        $codMoneda  ->setRequired(true)
-                    ->setOrder(4)
-                    ->setLabel('Moneda')
-                    ->setMultiOptions($monedasOptions);
+		$codMoneda = $this->_addform->createElement('text', 'nameMoneda', array('label' => 'Moneda', 'id' => 'idnameMoneda'));
+        $codMoneda ->setRequired(true)
+                   ->setOrder(4);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $girosTable = new Giros();
-        $girosOptions =  $girosTable->getGirosArray();
+		$codGiro = $this->_addform->createElement('text', 'nameGiro', array('label' => 'Giro', 'id' => 'idnameGiro'));
+        $codGiro ->setRequired(true)
+                 ->setOrder(5);
 
-        $codGiro = $this->_addform->createElement('select', 'codGiro');
-        $codGiro    ->setRequired(False)
-                    ->setOrder(5)
-                    ->setLabel('Giro')
-                    ->setMultiOptions($girosOptions);
+		$codDestinacion = $this->_addform->createElement('text', 'nameGiro', array('label' => 'Destinacion', 'id' => 'idnameDestinacion'));
+        $codDestinacion ->setRequired(true)
+                 		->setOrder(6);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $destinacionesTable = new Destinaciones();
-        $destinacionesOptions =  $destinacionesTable->getDestinacionesArray();
-
-        $codDestinacion = $this->_addform->createElement('select', 'codDestinacion');
-        $codDestinacion ->setRequired(True)
-                        ->setOrder(6)
-                        ->setLabel('Destino')
-                        ->setMultiOptions($destinacionesOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-
-        $cargasTable = new Cargas();
-        $cargasOptions =  $cargasTable->getCargasArray();
-
-        $codCarga = $this->_addform->createElement('select', 'codCarga');
-        $codCarga   ->setRequired(True)
-                    ->setOrder(7)
-                    ->setLabel('Carga')
-                    ->setMultiOptions($cargasOptions);
-
+		$codCarga = $this->_addform->createElement('text', 'nameCarga', array('label' => 'Carga', 'id' => 'idnameCarga'));
+        $codCarga ->setRequired(true)
+                  ->setOrder(7);
+				 
 
         $referencia = $this->_addform->createElement('text', 'referencia',
                                                      array('label' => 'Referencia'));
@@ -351,6 +310,13 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
                         ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
+						->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
+						->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
+						->addElement('hidden', 'codGiro', array('id' => 'idcodGiro'))
+						->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
+						->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
+						->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
+						->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
         return $this->_addform;
@@ -567,6 +533,39 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         return $this->_modform;
     }
+	
+	public function getdataAction() {
+       $arr = array();
+	   $aux = array();
+	   
+       $this->_helper->viewRenderer->setNoRender();
+       $this->_helper->layout()->disableLayout();
+	   
+	   if ( $this->getRequest()->getParam('query') != null )
+        {
+            $this->_name = $this->getRequest()->getParam('query');
 
+		   $model = new Exportaciones();
+		   $data = $model->fetchAll("ORDEN LIKE '" .  $this->_name . "%'");
+		   
+           foreach ($data as $row)
+		   {
+               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+	       }
+	
+		   $arr = array("Resultset" => array("Result" => $aux));
+	
+		   try {
+			   $responseDataJsonEncoded = Zend_Json::encode($arr);
+			   $this->getResponse()->setHeader('Content-Type', 'application/json')
+								   ->setBody($responseDataJsonEncoded);
+	
+		   } catch(Zend_Json_Exception $e) {
+			   // handle and generate HTTP error code response, see below
+			   $this->getResponse()->setHeader('Content-Type', 'application/json')
+								   ->setBody('[{Error}]');
+		   }
+		 }
+   }
 }
 ?>

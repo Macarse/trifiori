@@ -42,3 +42,73 @@
 <div id="calIngPuerto" style="display:none;" class="ccalingpuerto"></div>
 <div id="calPerPre" style="display:none;" class="ccalperpre"></div>
 <div id="calFecFac" style="display:none;" class="ccalfecfac"></div>
+
+<label for="breed">Breed</label>
+<input id="breed_id" type="hidden" name="breed_id" />
+<input id="breed" type="text" name="item" maxlength="50"/>
+<div id="idbanderasautocomplete"></div>
+<div id="idtransportesautocomplete"></div>
+<div id="idclientesautocomplete"></div>
+<div id="idmonedasautocomplete"></div>
+<div id="iddestautocomplete"></div>
+<div id="idcargasautocomplete"></div>
+
+<script type="text/javascript">
+        var mySchema = ["Resultset.Result","data","id"];
+		
+		// banderas
+        var dataBanderas = new YAHOO.widget.DS_XHR("/user/banderas/getdata/", mySchema);
+        dataBanderas.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteBanderas = new YAHOO.widget.AutoComplete("idnameBandera", "idbanderasautocomplete", dataBanderas);
+        function fnCallback(e, args) {
+            YAHOO.util.Dom.get("idcodBandera").value = args[2][1];
+         }
+        autocompleteBanderas.itemSelectEvent.subscribe(fnCallback);
+		
+		// transportes
+		var dataTransportes = new YAHOO.widget.DS_XHR("/user/transportes/getdata/", mySchema);
+        dataTransportes.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteTransportes = new YAHOO.widget.AutoComplete("idnameTransporte", "idtransportesautocomplete", dataTransportes);
+        function fnCallbackTrans(e, args) {
+            YAHOO.util.Dom.get("idcodTransporte").value = args[2][1];
+         }
+        autocompleteTransportes.itemSelectEvent.subscribe(fnCallbackTrans);
+		
+		// clientes
+		var dataClientes = new YAHOO.widget.DS_XHR("/user/clientes/getdata/", mySchema);
+        dataClientes.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteClientes = new YAHOO.widget.AutoComplete("idnameCliente", "idclientesautocomplete", dataClientes);
+        function fnCallbackClie(e, args) {
+            YAHOO.util.Dom.get("idcodCliente").value = args[2][1];
+         }
+        autocompleteClientes.itemSelectEvent.subscribe(fnCallbackClie);
+
+		// monedas
+		var dataMonedas = new YAHOO.widget.DS_XHR("/user/monedas/getdata/", mySchema);
+        dataMonedas.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteMonedas = new YAHOO.widget.AutoComplete("idnameMoneda", "idmonedasautocomplete", dataMonedas);
+        function fnCallbackMone(e, args) {
+            YAHOO.util.Dom.get("idcodMoneda").value = args[2][1];
+         }
+        autocompleteMonedas.itemSelectEvent.subscribe(fnCallbackMone);
+		
+		// cargas
+		var dataCargas = new YAHOO.widget.DS_XHR("/user/cargas/getdata/", mySchema);
+        dataCargas.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteCargas = new YAHOO.widget.AutoComplete("idnameCarga", "idcargasautocomplete", dataCargas);
+        function fnCallbackCarg(e, args) {
+            YAHOO.util.Dom.get("idcodCarga").value = args[2][1];
+         }
+        autocompleteCargas.itemSelectEvent.subscribe(fnCallbackCarg);
+		
+		// destinaciones
+		var dataDestinaciones = new YAHOO.widget.DS_XHR("/user/destinaciones/getdata/", mySchema);
+        dataDestinaciones.responseType = YAHOO.widget.DS_XHR.TYPE_JSON;
+        var autocompleteDestinaciones = new YAHOO.widget.AutoComplete("idnameDestinacion", "iddestautocomplete", dataDestinaciones);
+        function fnCallbackDest(e, args) {
+            YAHOO.util.Dom.get("idcodDestinacion").value = args[2][1];
+         }
+        autocompleteDestinaciones.itemSelectEvent.subscribe(fnCallbackDest);
+		
+
+</script>
