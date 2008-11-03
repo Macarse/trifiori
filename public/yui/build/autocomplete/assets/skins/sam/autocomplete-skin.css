@@ -11,12 +11,14 @@ version: 2.5.2
 
 /* styles for input field */
 .yui-skin-sam .yui-ac-input {
-    position:absolute;width:100%;
+
 }
 
 /* styles for results container */
 .yui-skin-sam .yui-ac-container {
-    position:absolute;top:1.6em;width:100%;
+    position:relative;
+	width:9.3em;
+	left:45%;
 }
 
 /* styles for header/body/footer wrapper within container */

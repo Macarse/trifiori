@@ -231,42 +231,23 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-
 		$codTransporte = $this->_addform->createElement('text', 'nameTransporte', array('label' => 'Transporte', 'id' => 'idnameTransporte'));
-		$codTransporte  ->setRequired(true)
-						->setOrder(1);
+		$codTransporte  ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
 		$codCliente = $this->_addform->createElement('text', 'nameCliente', array('label' => 'Cliente', 'id' => 'idnameCliente'));
-		$codCliente ->setRequired(true)
-					->setOrder(2);
+		$codCliente ->setRequired(true);
 
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
 		$codBandera = $this->_addform->createElement('text', 'nameBandera', array('label' => 'Bandera', 'id' => 'idnameBandera'));
-        $codBandera ->setRequired(true)
-                    ->setOrder(3);
-
+        $codBandera ->setRequired(true);
 
 		$codMoneda = $this->_addform->createElement('text', 'nameMoneda', array('label' => 'Moneda', 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true)
-                   ->setOrder(4);
-
-		$codGiro = $this->_addform->createElement('text', 'nameGiro', array('label' => 'Giro', 'id' => 'idnameGiro'));
-        $codGiro ->setRequired(true)
-                 ->setOrder(5);
+        $codMoneda ->setRequired(true);
 
 		$codDestinacion = $this->_addform->createElement('text', 'nameGiro', array('label' => 'Destinacion', 'id' => 'idnameDestinacion'));
-        $codDestinacion ->setRequired(true)
-                 		->setOrder(6);
+        $codDestinacion ->setRequired(true);
 
 		$codCarga = $this->_addform->createElement('text', 'nameCarga', array('label' => 'Carga', 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true)
-                  ->setOrder(7);
+        $codCarga ->setRequired(true);
 				 
 
         $referencia = $this->_addform->createElement('text', 'referencia',
@@ -332,15 +313,56 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                             ->addValidator('stringLength', false, array(1, 12))
                             ->setRequired(False);
 
+		$decoradorBandera = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
+		);
+		
+		$decoradorCliente = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idclientesautocomplete'))
+		);
+		
+		$decoradorTransporte = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idtransportesautocomplete'))
+		);
+		
+		$decoradorMoneda = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idmonedasautocomplete'))
+		);
+		
+		$decoradorDestinacion = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'iddestautocomplete'))
+		);
+		
+		$decoradorCarga = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idcargasautocomplete'))
+		);
+
         // Add elements to form:
         $this->_addform ->addElement($orden)
                         ->addElement($codTransporte)
+						->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
                         ->addElement($codCliente)
+						->addElement('hidden', 'autocliente', array( 'decorators' => $decoradorCliente))
                         ->addElement($codBandera)
+                        ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
                         ->addElement($codMoneda)
-                        ->addElement($codGiro)
+						->addElement('hidden', 'automon', array( 'decorators' => $decoradorMoneda))
                         ->addElement($codDestinacion)
+						->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codCarga)
+						->addElement('hidden', 'autocarga', array( 'decorators' => $decoradorCarga))
                         ->addElement($referencia)
                         ->addElement($fechaIngreso)
                         ->addElement($desMercaderias)
@@ -393,90 +415,60 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $transportesTable = new Transportes();
-        $transportesOptions =  $transportesTable->getTransportesArray();
+		$codTransporte = $this->_modform->createElement('text', 'nameTransporte', array('label' => 'Transporte', 'id' => 'idnameTransporte'));
+		$codTransporte  -> setRequired(true);
 
-        $codTransporte = $this->_modform->createElement('select', 'codTransporte');
-        $codTransporte  ->setValue($row->codTransporte() )
-                        ->setRequired(true)
-                        ->setOrder(1)
-                        ->setLabel('Transporte')
-                        ->setMultiOptions($transportesOptions);
+		$codCliente = $this->_modform->createElement('text', 'nameCliente', array('label' => 'Cliente', 'id' => 'idnameCliente'));
+		$codCliente ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $clientesTable = new Clientes();
-        $clientesOptions =  $clientesTable->getClientesArray();
+		$codBandera = $this->_modform->createElement('text', 'nameBandera', array('label' => 'Bandera', 'id' => 'idnameBandera'));
+        $codBandera ->setRequired(true);
 
-        $codCliente = $this->_modform->createElement('select', 'codCliente');
-        $codCliente ->setValue($row->codCliente() )
-                    ->setRequired(true)
-                    ->setOrder(2)
-                    ->setLabel('Cliente')
-                    ->setMultiOptions($clientesOptions);
+		$codMoneda = $this->_modform->createElement('text', 'nameMoneda', array('label' => 'Moneda', 'id' => 'idnameMoneda'));
+        $codMoneda ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
+		$codDestinacion = $this->_modform->createElement('text', 'nameGiro', array('label' => 'Destinacion', 'id' => 'idnameDestinacion'));
+        $codDestinacion ->setRequired(true);
 
-        $codBandera = $this->_modform->createElement('select', 'codBandera');
-        $codBandera ->setValue($row->codBandera() )
-                    ->setRequired(true)
-                    ->setOrder(3)
-                    ->setLabel('Bandera')
-                    ->setMultiOptions($banderasOptions);
+		$codCarga = $this->_modform->createElement('text', 'nameCarga', array('label' => 'Carga', 'id' => 'idnameCarga'));
+        $codCarga ->setRequired(true);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $monedasTable = new Monedas();
-        $monedasOptions =  $monedasTable->getMonedasArray();
 
-        $codMoneda = $this->_modform->createElement('select', 'codMoneda');
-        $codMoneda  ->setValue($row->codMoneda() )
-                    ->setRequired(true)
-                    ->setOrder(4)
-                    ->setLabel('Moneda')
-                    ->setMultiOptions($monedasOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $girosTable = new Giros();
-        $girosOptions =  $girosTable->getGirosArray();
-
-        $codGiro = $this->_modform->createElement('select', 'codGiro');
-        $codGiro    ->setValue($row->codGiro() )
-                    ->setRequired(False)
-                    ->setOrder(5)
-                    ->setLabel('Giro')
-                    ->setMultiOptions($girosOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $destinacionesTable = new Destinaciones();
-        $destinacionesOptions =  $destinacionesTable->getDestinacionesArray();
-
-        $codDestinacion = $this->_modform->createElement('select', 'codDestinacion');
-        $codDestinacion ->setValue($row->codDestinacion() )
-                        ->setRequired(True)
-                        ->setOrder(6)
-                        ->setLabel('Destino')
-                        ->setMultiOptions($destinacionesOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $cargasTable = new Cargas();
-        $cargasOptions =  $cargasTable->getCargasArray();
-
-        $codCarga = $this->_modform->createElement('select', 'codCarga');
-        $codCarga   ->setValue($row->codCarga() )
-                    ->setRequired(True)
-                    ->setOrder(7)
-                    ->setLabel('Carga')
-                    ->setMultiOptions($cargasOptions);
-
+		$decoradorBandera = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
+		);
+		
+		$decoradorCliente = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idclientesautocomplete'))
+		);
+		
+		$decoradorTransporte = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idtransportesautocomplete'))
+		);
+		
+		$decoradorMoneda = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idmonedasautocomplete'))
+		);
+		
+		$decoradorDestinacion = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'iddestautocomplete'))
+		);
+		
+		$decoradorCarga = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'idcargasautocomplete'))
+		);
 
         $referencia = $this->_modform->createElement('text', 'referencia',
                                                      array('label' => 'Referencia'));
@@ -554,12 +546,17 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_modform ->addElement($orden)
                         ->addElement($codTransporte)
+						->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
                         ->addElement($codCliente)
+						->addElement('hidden', 'autocliente', array( 'decorators' => $decoradorCliente))
                         ->addElement($codBandera)
+                        ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera ))
                         ->addElement($codMoneda)
-                        ->addElement($codGiro)
+						->addElement('hidden', 'automon', array( 'decorators' => $decoradorMoneda ))
                         ->addElement($codDestinacion)
+						->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codCarga)
+						->addElement('hidden', 'autocarga', array( 'decorators' => $decoradorCarga))
                         ->addElement($referencia)
                         ->addElement($fechaIngreso)
                         ->addElement($desMercaderias)
@@ -570,6 +567,13 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
+                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
+						->addElement('hidden', 'codBandera', array('id' => 'idcodBandera', 'value' => $row->codBandera()))
+						->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion', 'value' => $row->codDestinacion() ))
+						->addElement('hidden', 'codGiro', array('id' => 'idcodGiro', 'value' => $row->codGiro() ))
+						->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda', 'value' => $row->codMoneda()))
+						->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte', 'value' => $row->codTransporte() ))
+						->addElement('hidden', 'codCliente', array('id' => 'idcodCliente', 'value' => $row->codCliente() ))
                         ->addElement('hidden', 'ModExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
 
