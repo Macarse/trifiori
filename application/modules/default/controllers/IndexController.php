@@ -1,15 +1,7 @@
 <?php
-class IndexController extends Zend_Controller_Action
+class IndexController extends Trifiori_Default_Controller_Action
 {
     protected $_form;
-
-    public function init()
-    {
-        if (!isset($this->_baseUrl))
-        {
-            $this->_baseUrl = $this->_helper->url->url(array());
-        }
-    }
 
     public function indexAction()
     {
@@ -42,7 +34,7 @@ class IndexController extends Zend_Controller_Action
                     $values = $this->_form->getValues();
 
                     if ($registry->database != null)
-                    {                       
+                    {
                         $adapter = new Zend_Auth_Adapter_DbTable($registry->database);
                         $adapter->setTableName('USUARIOS');
                         $adapter->setIdentityColumn('USUARIO_USU');
@@ -54,7 +46,7 @@ class IndexController extends Zend_Controller_Action
 
                         // authentication attempt
                         $auth = Zend_Auth::getInstance();
-                    
+
                         try
                         {
                             $result = $auth->authenticate($adapter);
@@ -65,7 +57,7 @@ class IndexController extends Zend_Controller_Action
                             $this->view->error = $error;
                             $result->validLogin = False;
                         }
-                    
+
                         // authentication succeeded
                         if ($registry->validLogin)
                         {
@@ -87,7 +79,7 @@ class IndexController extends Zend_Controller_Action
                     }
                     else
                     {
-                        $this->view->error = "Imposible conectarse a la base de datos.";
+                        $this->view->error = $this->language->_("Imposible conectarse a la base de datos.");
                     }
                 }
             }
@@ -124,14 +116,14 @@ class IndexController extends Zend_Controller_Action
         $this->_form->setAction($this->_baseUrl)->setMethod('post');
 
         // Create and configure username element:
-        $username = $this->_form->createElement('text', 'username', array('label' => 'Usuario'));
+        $username = $this->_form->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $this->_form->createElement('password', 'password', array('label' => 'Clave'));
+        $password = $this->_form->createElement('password', 'password', array('label' => $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,20))
                  ->setRequired(true);
 
@@ -139,7 +131,7 @@ class IndexController extends Zend_Controller_Action
         $this->_form->addElement($username)
              ->addElement($password)
              ->addElement('hidden', 'loginTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'login', array('label' => 'Ingresar'));
+             ->addElement('submit', 'login', array('label' => $this->language->_('Ingresar')));
         return $this->_form;
     }
 }

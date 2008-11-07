@@ -7,6 +7,9 @@ abstract class Trifiori_Default_Controller_Action extends Zend_Controller_Action
     {
         $this->_helper->layout->setLayout('common');
 
+        $this->language = Zend_Registry::getInstance()->language;
+        $this->view->language = Zend_Registry::getInstance()->language;
+
         if (!isset($this->_baseUrl))
         {
             $this->_baseUrl = $this->_helper->url->url(array());

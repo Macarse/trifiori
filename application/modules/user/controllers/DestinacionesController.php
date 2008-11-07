@@ -12,7 +12,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 
     public function adddestinacionesAction()
     {
-        $this->view->headTitle("Agregar Destinación");
+        $this->view->headTitle($this->language->_("Agregar Destinación"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -44,7 +44,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 
     public function listdestinacionesAction()
     {
-        $this->view->headTitle("Listar Destinaciones");
+        $this->view->headTitle($this->language->_("Listar Destinaciones"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -88,7 +88,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 
     public function moddestinacionesAction()
     {
-        $this->view->headTitle("Modificar Destinación");
+        $this->view->headTitle($this->language->_("Modificar Destinación"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -155,9 +155,11 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_modform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
@@ -166,7 +168,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_modform->addElement($name)
              ->addElement('hidden', 'ModDestinacionTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_modform;
     }
@@ -181,9 +183,11 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);
@@ -191,7 +195,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_addform->addElement($name)
              ->addElement('hidden', 'AddDestinacionTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_addform;
     }

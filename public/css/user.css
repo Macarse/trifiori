@@ -29,6 +29,14 @@
 	margin:0;	
 }
 
+div.errors_js_forms{
+	position:fixed;
+	left:70%;
+	top:10%;
+	border: 1px solid #FF0000;
+	height: auto;
+	width: auto;
+}
 		
 div.error
 {
@@ -63,16 +71,6 @@ div.clistado
     height: 25%
     width: 50%;
     margin: left;
-}
-
-div.cdetalle
-{
-    border: 2px solid #666666;
-    background-color: #FFFFF0;
-    position: fixed;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    bottom: 0;
-    left: 10px;
 }
 
 .errors
@@ -154,4 +152,9 @@ div.backgroundimg img
 	position: absolute;
 	left: 64%;
 	top: 25em;
+}
+
+.required
+{
+	color: #FF0000;
 }

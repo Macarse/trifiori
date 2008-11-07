@@ -4,3 +4,26 @@
 <div class="cformulario">
 	<?= $this->cargaModForm ?>
 </div>
+<div id='form_errorloc' class='errors_js_forms'></div>
+<script type="text/javascript">
+    // validacion
+    var frmvalidator  = new Validator("form");
+
+    //habilito alert con mensajes
+    frmvalidator.EnableOnPageErrorDisplaySingleBox();
+    frmvalidator.EnableMsgsTogether();
+
+    frmvalidator.addValidation("cantBultos","req","<?= $this->language->_("*Ingrese la cantidad de bultos")?>");
+    frmvalidator.addValidation("cantBultos","num","<?= $this->language->_("*La cantidad de bultos debe ser numérica")?>");
+
+    frmvalidator.addValidation("tipoEnvase","req","<?= $this->language->_("*Ingrese un tipo de envase")?>");
+
+    frmvalidator.addValidation("unidad","req","<?= $this->language->_("*Ingrese una unidad")?>");
+
+    frmvalidator.addValidation("peso","req","<?= $this->language->_("*Ingrese un peso")?>");
+    frmvalidator.addValidation("peso","dec","<?= $this->language->_("*El peso debe ser decimal")?>");
+    
+    frmvalidator.addValidation("nroPaquete","req","<?= $this->language->_("*Ingrese un número de paquete")?>");
+    frmvalidator.addValidation("nroPaquete","alnum","<?= $this->language->_("*El número de paquete debe ser alfanumérico")?>");
+
+</script>

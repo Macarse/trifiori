@@ -2,15 +2,15 @@
 	<table id="tablelist">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Código Postal</th>
-            <th>Localidad</th>
-            <th>CUIT</th>
-            <th>Tipo IVA</th>
-            <th>Tipo Cliente</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+            <th> <?= $this->language->_("Nombre")?> </th>
+            <th> <?= $this->language->_("Dirección")?> </th>
+            <th> <?= $this->language->_("Código Postal")?> </th>
+            <th> <?= $this->language->_("Localidad")?> </th>
+            <th> <?= $this->language->_("CUIT")?> </th>
+            <th> <?= $this->language->_("Tipo IVA")?> </th>
+            <th> <?= $this->language->_("Tipo Cliente")?> </th>
+            <th> <?= $this->language->_("Modificar")?> </th>
+            <th> <?= $this->language->_("Eliminar")?> </th>
         </tr>
     </thead>
     <tbody>
@@ -25,10 +25,10 @@
             <td> <?= $cliente->tipoIVA() ?> </td>
             <td> <?= $cliente->tipoCliente() ?> </td>
             <td>
-                <a href="<?= "/user/clientes/modclientes/id/" . $cliente->id() ?>">Modificar</a>
+                <a href="<?= "/user/clientes/modclientes/id/" . $cliente->id() ?>"> <?= $this->language->_("Modificar")?> </a>
             </td>
             <td>
-                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente->id() ?>">Eliminar</a>
+                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente->id() ?>"> <?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -44,15 +44,15 @@ YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs =
         [
-            {key:"name",label:"Nombre", sortable:true},
-            {key:"address",label:"Dirección", sortable:true},
-            {key:"cp",label:"Código Postal", sortable:true},
-            {key:"local",label:"Localidad", sortable:true},
-            {key:"cuit",label:"CUIT", sortable:true},
-            {key:"iva",label:"Tipo Iva", sortable:true},
-            {key:"type",label:"Tipo Cliente", sortable:true},
-            {key:"mod",label:"Modificar", sortable:false},
-            {key:"elim",label:"Eliminar", sortable:false}
+            {key:"name",label: '<?= $this->language->_("Nombre")?>', sortable:true},
+            {key:"address",label: '<?= $this->language->_("Dirección")?>', sortable:true},
+            {key:"cp",label: '<?= $this->language->_("Código Postal")?>', sortable:true},
+            {key:"local",label: '<?= $this->language->_("Localidad")?>', sortable:true},
+            {key:"cuit",label: '<?= $this->language->_("CUIT")?>', sortable:true},
+            {key:"iva",label: '<?= $this->language->_("Tipo Iva")?>', sortable:true},
+            {key:"type",label: '<?= $this->language->_("Tipo Cliente")?>', sortable:true},
+            {key:"mod",label: '<?= $this->language->_("Modificar")?>', sortable:false},
+            {key:"elim",label: '<?= $this->language->_("Eliminar")?>', sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));

@@ -12,7 +12,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     public function addclientesAction()
     {
-        $this->view->headTitle("Agregar Cliente");
+        $this->view->headTitle($this->language->_("Agregar Cliente"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -51,7 +51,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     public function listclientesAction()
     {
-        $this->view->headTitle("Listar Clientes");
+        $this->view->headTitle($this->language->_("Listar Clientes"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -95,7 +95,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     public function modclientesAction()
     {
-        $this->view->headTitle("Modificar Cliente");
+        $this->view->headTitle($this->language->_("Modificar Cliente"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -169,34 +169,36 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_modform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
-        $dir = $this->_modform->createElement('text', 'dir', array('label' => 'Dirección'));
+        $dir = $this->_modform->createElement('text', 'dir', array('label' => $this->language->_('Dirección')));
         $dir ->setValue($row->adress() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false);
 
-        $CP = $this->_modform->createElement('text', 'CP', array('label' => 'Código Postal'));
+        $CP = $this->_modform->createElement('text', 'CP', array('label' => $this->language->_('Código Postal')));
         $CP ->setValue($row->codPostal() )
              ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
              ->setRequired(false);
 
-        $localidad = $this->_modform->createElement('text', 'localidad', array('label' => 'Localidad'));
+        $localidad = $this->_modform->createElement('text', 'localidad', array('label' => $this->language->_('Localidad')));
         $localidad ->setValue($row->localidad() )
                    ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false);
 
         // Validar CUIT 
-        $cuit = $this->_modform->createElement('text', 'cuit', array('label' => 'CUIT'));
+        $cuit = $this->_modform->createElement('text', 'cuit', array('label' => $this->language->_('CUIT')));
         $cuit ->setValue($row->CUIT() )
                    ->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 13))
@@ -207,19 +209,19 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $tipoIVA    ->setValue( $row->tipoIVA() )
                     ->setRequired(false)
                     ->setOrder(1)
-                    ->setLabel('Tipo IVA')
-                    ->setMultiOptions(array('Responsable Inscripto' => 'Responsable Inscripto',
-                                            'Responsable No Inscripto' => 'Responsable No Inscripto'
+                    ->setLabel($this->language->_('Tipo IVA'))
+                    ->setMultiOptions(array('Responsable Inscripto' => $this->language->_('Responsable Inscripto'),
+                                            'Responsable No Inscripto' => $this->language->_('Responsable No Inscripto')
                                             ));
 
         $tipoCliente = $this->_modform->createElement('select', 'tipoCliente');
         $tipoCliente    ->setValue( $row->tipoCliente() )
                         ->setRequired(false)
                         ->setOrder(2)
-                        ->setLabel('Tipo Cliente')
-                        ->setMultiOptions(array('Alto Volumen' => 'Alto Volumen',
-                                                'Bajo Volumen' => 'Bajo Volumen',
-                                                'Promedio' => 'Promedio'
+                        ->setLabel($this->language->_('Tipo Cliente'))
+                        ->setMultiOptions(array('Alto Volumen' => $this->language->_('Alto Volumen'),
+                                                'Bajo Volumen' => $this->language->_('Bajo Volumen'),
+                                                'Promedio' => $this->language->_('Promedio')
                                             ));
 
         // Add elements to form:
@@ -231,7 +233,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'ModClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_modform;
     }
@@ -246,29 +248,31 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
-        $dir = $this->_addform->createElement('text', 'dir', array('label' => 'Dirección'));
+        $dir = $this->_addform->createElement('text', 'dir', array('label' => $this->language->_('Dirección')));
         $dir ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false);
 
-        $CP = $this->_addform->createElement('text', 'CP', array('label' => 'Código Postal'));
+        $CP = $this->_addform->createElement('text', 'CP', array('label' => $this->language->_('Código Postal')));
         $CP  ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
              ->setRequired(false);
 
-        $localidad = $this->_addform->createElement('text', 'localidad', array('label' => 'Localidad'));
+        $localidad = $this->_addform->createElement('text', 'localidad', array('label' => $this->language->_('Localidad')));
         $localidad ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false);
 
-        $cuit = $this->_addform->createElement('text', 'cuit', array('label' => 'CUIT'));
+        $cuit = $this->_addform->createElement('text', 'cuit', array('label' => $this->language->_('CUIT')));
         $cuit   ->addValidator('alnum')
                 ->addValidator('stringLength', false, array(1, 13))
                 ->setRequired(false);
@@ -277,18 +281,18 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $tipoIVA = $this->_addform->createElement('select', 'tipoIVA');
         $tipoIVA    ->setRequired(false)
                     ->setOrder(1)
-                    ->setLabel('Tipo IVA')
-                    ->setMultiOptions(array('Responsable Inscripto' => 'Responsable Inscripto',
-                                            'Responsable No Inscripto' => 'Responsable No Inscripto'
+                    ->setLabel($this->language->_('Tipo IVA'))
+                    ->setMultiOptions(array('Responsable Inscripto' => $this->language->_('Responsable Inscripto'),
+                                            'Responsable No Inscripto' => $this->language->_('Responsable No Inscripto')
                                             ));
 
         $tipoCliente = $this->_addform->createElement('select', 'tipoCliente');
         $tipoCliente    ->setRequired(false)
                         ->setOrder(2)
-                        ->setLabel('Tipo Cliente')
-                        ->setMultiOptions(array('Alto Volumen' => 'Alto Volumen',
-                                                'Bajo Volumen' => 'Bajo Volumen',
-                                                'Promedio' => 'Promedio'
+                        ->setLabel($this->language->_('Tipo Cliente'))
+                        ->setMultiOptions(array('Alto Volumen' => $this->language->_('Alto Volumen'),
+                                                'Bajo Volumen' => $this->language->_('Bajo Volumen'),
+                                                'Promedio' => $this->language->_('Promedio')
                                             ));
 
         // Add elements to form:
@@ -300,7 +304,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'AddClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
 
         return $this->_addform;

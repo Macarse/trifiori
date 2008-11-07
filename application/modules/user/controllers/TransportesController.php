@@ -152,7 +152,9 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -222,7 +224,9 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_modform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
