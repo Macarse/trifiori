@@ -12,7 +12,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
     public function addgirosAction()
     {
-        $this->view->headTitle("Agregar Giro");
+        $this->view->headTitle($this->language->_("Agregar Giro"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -44,7 +44,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
     public function listgirosAction()
     {
-        $this->view->headTitle("Listar Giros");
+        $this->view->headTitle($this->language->_("Listar Giros"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -88,7 +88,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 
     public function modgirosAction()
     {
-        $this->view->headTitle("Modificar Giro");
+        $this->view->headTitle($this->language->_("Modificar Giro"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -158,7 +158,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 100))
@@ -167,7 +167,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_modform->addElement($name)
              ->addElement('hidden', 'ModGiroTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_modform;
     }
@@ -186,7 +186,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true);
@@ -194,7 +194,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_addform->addElement($name)
              ->addElement('hidden', 'AddGiroTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_addform;
     }

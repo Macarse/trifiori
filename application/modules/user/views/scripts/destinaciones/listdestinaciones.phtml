@@ -1,7 +1,11 @@
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
-        <tr> <th>Nombre</th>  <th>Modificar</th> <th>Eliminar</th></tr>
+        <tr>
+            <th> <?= $this->language->_("Nombre") ?> </th>
+            <th> <?= $this->language->_("Modificar") ?> </th>
+            <th> <?= $this->language->_("Eliminar") ?> </th>
+        </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
@@ -9,10 +13,10 @@
         <tr> 
             <td> <?= $destinacion->name() ?> </td>
             <td>
-                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>">Modificar</a>
+                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Modificar")?> </a>
             </td>
 			<td>
-                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>">Eliminar</a>
+                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -32,11 +36,15 @@ YAHOO.util.Event.addListener(window, "load", function() {
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [{key:"name"},
-					{key:"mod"},
-					{key:"elim"}]
-	        };
+        this.myDataSource.responseSchema =
+        {
+            fields:
+            [
+                {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:true},
+                {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
+                {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}
+            ]
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
                 {sortedBy:{key:"name",dir:"desc"},draggableColumns:true}

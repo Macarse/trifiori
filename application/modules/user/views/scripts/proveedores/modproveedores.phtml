@@ -5,23 +5,23 @@
 	<?= $this->proveedorModForm ?>
 </div>
 <div id='form_errorloc' class='errors_js_forms'></div>
-<script type="text/javascript">		
-		// validacion
-		var frmvalidator  = new Validator("form");
+<script type="text/javascript">
+    // validacion
+    var frmvalidator  = new Validator("form");
 
-		//habilito alert con mensajes
-		frmvalidator.EnableOnPageErrorDisplaySingleBox();
-		frmvalidator.EnableMsgsTogether();
+    //habilito alert con mensajes
+    frmvalidator.EnableOnPageErrorDisplaySingleBox();
+    frmvalidator.EnableMsgsTogether();
 
-		frmvalidator.addValidation("name","req","<?= $this->language->_("*Ingrese un nombre")?>");
-		frmvalidator.addValidation("name","alnum_s ","<?= $this->language->_("*El nombre debe ser alfanumérico")?>");
-		frmvalidator.addValidation("name","maxlen=20","<?= $this->language->_("*El nombre debe contener hasta 20 caracteres")?>");
-		
-		frmvalidator.addValidation("adress","req","<?= $this->language->_("*Ingrese una dirección")?>");
-		frmvalidator.addValidation("adress","alnum_s ","<?= $this->language->_("*La dirección debe ser alfanumérica")?>");
-		frmvalidator.addValidation("adress","maxlen=100","<?= $this->language->_("*La dirección debe contener hasta 100 caracteres")?>");
+    frmvalidator.addValidation("name","req","<?= $this->language->_("*Ingrese un nombre")?>");
+    frmvalidator.addValidation("name","alnum_s ","<?= $this->language->_("*El nombre debe ser alfanumÃ©rico")?>");
+    frmvalidator.addValidation("name","maxlen=20","<?= $this->language->_("*El nombre debe contener hasta 20 caracteres")?>");
+    
+    frmvalidator.addValidation("adress","req","<?= $this->language->_("*Ingrese una direcciÃ³n")?>");
+    frmvalidator.addValidation("adress","alnum_s ","<?= $this->language->_("*La direcciÃ³n debe ser alfanumÃ©rica")?>");
+    frmvalidator.addValidation("adress","maxlen=100","<?= $this->language->_("*La direcciÃ³n debe contener hasta 100 caracteres")?>");
 
-		frmvalidator.addValidation("tel","req","<?= $this->language->_("*Ingrese un teléfono")?>");
-		frmvalidator.addValidation("tel","alnum_s ","<?= $this->language->_("*El teléfono debe ser alfanumérico")?>");
+    frmvalidator.addValidation("tel","req","<?= $this->language->_("*Ingrese un telÃ©fono")?>");
+    frmvalidator.addValidation("tel","alnum_s ","<?= $this->language->_("*El telÃ©fono debe ser alfanumÃ©rico")?>");
 
 </script>

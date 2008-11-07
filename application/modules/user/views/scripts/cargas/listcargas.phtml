@@ -2,14 +2,15 @@
 	<table id="tablelist">
     <thead>
         <tr>
-            <th>Cantidad Bultos</th>
-            <th>Tipo de Envase</th>
-            <th>Peso</th>
-            <th>Unidad</th>
-            <th>Número de paquete</th>
-            <th>Marca y número</th>
-            <th>Merc. IMCO</th>
-			<th>Modificar</th> <th>Eliminar</th>
+            <th> <?= $this->language->_("Cantidad Bultos")?> </th>
+            <th> <?= $this->language->_("Tipo de Envase")?> </th>
+            <th> <?= $this->language->_("Peso")?> </th>
+            <th> <?= $this->language->_("Unidad")?> </th>
+            <th> <?= $this->language->_("Número de Paquete")?> </th>
+            <th> <?= $this->language->_("Marca y número")?> </th>
+            <th> <?= $this->language->_("Merc. IMCO")?> </th>
+            <th> <?= $this->language->_("Modificar")?> </th>
+            <th> <?= $this->language->_("Eliminar")?> </th>
         </tr>
     </thead>
     <tbody>
@@ -24,10 +25,10 @@
             <td> <?= $carga->marcaYnum() ?> </td>
             <td> <?= $carga->mercIMCO() ?> </td>
             <td>
-                <a href="<?= "/user/cargas/modcargas/id/" . $carga->id()?>">Modificar</a>
+                <a href="<?= "/user/cargas/modcargas/id/" . $carga->id()?>"> <?= $this->language->_("Modificar")?> </a>
             </td>
             <td>
-                <a href="<?= "/user/cargas/removecargas/id/" . $carga->id()?>">Eliminar</a>
+                <a href="<?= "/user/cargas/removecargas/id/" . $carga->id()?>"> <?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -40,31 +41,34 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"bultos",label:"Cantidad Bultos", sortable:true},
-			{key:"tipoenvase",label:"Tipo de Envase", sortable:true},
-			{key:"peso",label:"Peso", sortable:true},
-			{key:"unidad",label:"Unidad", sortable:true},
-			{key:"nropaq",label:"Número de paquete", sortable:true},
-			{key:"marcayum",label:"Marca y número", sortable:true},
-			{key:"imco",label:"Merc. IMCO", sortable:true},
-			{key:"mod",label:"Modificar", sortable:false},
-			{key:"elim",label:"Eliminar", sortable:false}
+            {key:"bultos",label:" <?= $this->language->_("Cantidad Bultos")?> ", sortable:true},
+            {key:"tipoenvase",label:" <?= $this->language->_("Tipo de Envase")?> ", sortable:true},
+            {key:"peso",label:" <?= $this->language->_("Peso")?> ", sortable:true},
+            {key:"unidad",label:" <?= $this->language->_("Unidad")?> ", sortable:true},
+            {key:"nropaq",label:" <?= $this->language->_("Número de Paquete")?> ", sortable:true},
+            {key:"marcayum",label:" <?= $this->language->_("Marca y número")?> ", sortable:true},
+            {key:"imco",label:" <?= $this->language->_("Merc. IMCO")?> ", sortable:true},
+            {key:"mod",label:" <?= $this->language->_("Modificar")?> ", sortable:false},
+            {key:"elim",label:" <?= $this->language->_("Eliminar")?> ", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [            
-				{key:"bultos"},
-				{key:"tipoenvase"},
-				{key:"peso"},
-				{key:"unidad"},
-				{key:"nropaq"},
-				{key:"marcayum"},
-				{key:"imco"},
-				{key:"mod"},
-				{key:"elim"}]
-	        };
+        this.myDataSource.responseSchema =
+        {
+            fields:
+            [
+                {key:"bultos"},
+                {key:"tipoenvase"},
+                {key:"peso"},
+                {key:"unidad"},
+                {key:"nropaq"},
+                {key:"marcayum"},
+                {key:"imco"},
+                {key:"mod"},
+                {key:"elim"}
+            ]
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
                 {sortedBy:{key:"name",dir:"desc"},draggableColumns:true}

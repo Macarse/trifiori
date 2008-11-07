@@ -12,7 +12,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
     public function addbanderasAction()
     {
-        $this->view->headTitle("Agregar Bandera");
+        $this->view->headTitle($this->language->_("Agregar Bandera"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -44,7 +44,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
     public function listbanderasAction()
     {
-        $this->view->headTitle("Listar Banderas");
+        $this->view->headTitle($this->language->_("Listar Banderas"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -88,7 +88,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
     public function modbanderasAction()
     {
-        $this->view->headTitle("Modificar Bandera");
+        $this->view->headTitle($this->language->_("Modificar Bandera"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -159,7 +159,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
@@ -168,7 +168,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_modform->addElement($name)
              ->addElement('hidden', 'ModBanderaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_modform;
     }
@@ -187,7 +187,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);
@@ -195,7 +195,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_addform->addElement($name)
              ->addElement('hidden', 'AddBanderaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_addform;
     }
