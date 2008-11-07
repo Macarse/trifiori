@@ -35,7 +35,13 @@ class Cargas extends Zend_Db_Table_Abstract
 
         return True;
     }
-
+    
+    public function searchCarga( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("NROPAQUETE_CAR LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyCarga( $id, $cantBultos, $tipoEnvase, $peso, $unidad,
                                  $nroPaquete, $marcaYnum, $mercIMCO )
     {

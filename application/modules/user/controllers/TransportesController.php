@@ -3,6 +3,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -302,6 +303,32 @@ class user_TransportesController extends Trifiori_User_Controller_Action
            // handle and generate HTTP error code response, see below
        }
    }
+   
+   	private function getTransporteSearchForm()
+    {      
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
+
+        $transporte = $this->_searchform->createElement('text', 'cliente', array('label' => $this->language->_('Nombre')));
+        $transporte       ->addValidator($alnumWithWS)
+                     ->addValidator('stringLength', false, array(1, 100));
+
+        // Add elements to form:
+        $this->_searchform->addElement($transporte)
+             ->addElement('hidden', 'SearchTransporteTrack', array('values' => 'logPost'))
+             ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
 
 	public function getdataAction() {
        $arr = array();

@@ -32,6 +32,12 @@ class Transportes extends Zend_Db_Table_Abstract
         return True;
     }
 
+    public function searchTransporte( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("NOMBRE_BUQ LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyTransporte( $id, $codBandera, $codMedio, $name, $observaciones )
     {
         try

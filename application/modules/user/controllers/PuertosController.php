@@ -3,6 +3,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -217,6 +218,32 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 	
+	private function getPuertosSearchForm()
+    {      
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
+
+        $puerto = $this->_searchform->createElement('text', 'cliente', array('label' => $this->language->_('Nombre')));
+        $puerto       ->addValidator($alnumWithWS)
+                     ->addValidator('stringLength', false, array(1, 200));
+
+        // Add elements to form:
+        $this->_searchform->addElement($puerto)
+             ->addElement('hidden', 'SearchPuertoTrack', array('values' => 'logPost'))
+             ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
+    
 	public function getdataAction() {
        $arr = array();
 	   $aux = array();

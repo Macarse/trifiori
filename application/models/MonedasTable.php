@@ -30,6 +30,12 @@ class Monedas extends Zend_Db_Table_Abstract
         return True;
     }
 
+    public function searchMoneda( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("DESCRIPCION_MON LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyMoneda( $id, $name, $longName )
     {
         try
