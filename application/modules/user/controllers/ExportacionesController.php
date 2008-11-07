@@ -263,27 +263,27 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 						->setMethod('post')
 						->setName('form');
 
-        $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden = $this->_addform->createElement('text', 'orden', array('label' => '*' . 'Órden'));
         $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-		$codTransporte = $this->_addform->createElement('text', 'nameTransporte', array('label' => 'Transporte', 'id' => 'idnameTransporte'));
+		$codTransporte = $this->_addform->createElement('text', 'nameTransporte', array('label' => '*' . 'Transporte', 'id' => 'idnameTransporte'));
 		$codTransporte  ->setRequired(true);
 
-		$codCliente = $this->_addform->createElement('text', 'nameCliente', array('label' => 'Cliente', 'id' => 'idnameCliente'));
+		$codCliente = $this->_addform->createElement('text', 'nameCliente', array('label' => '*' . 'Cliente', 'id' => 'idnameCliente'));
 		$codCliente ->setRequired(true);
 
-		$codBandera = $this->_addform->createElement('text', 'nameBandera', array('label' => 'Bandera', 'id' => 'idnameBandera'));
+		$codBandera = $this->_addform->createElement('text', 'nameBandera', array('label' =>'*' .  'Bandera', 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true);
 
-		$codMoneda = $this->_addform->createElement('text', 'nameMoneda', array('label' => 'Moneda', 'id' => 'idnameMoneda'));
+		$codMoneda = $this->_addform->createElement('text', 'nameMoneda', array('label' => '*' . 'Moneda', 'id' => 'idnameMoneda'));
         $codMoneda ->setRequired(true);
 
-		$codDestinacion = $this->_addform->createElement('text', 'nameGiro', array('label' => 'Destinacion', 'id' => 'idnameDestinacion'));
+		$codDestinacion = $this->_addform->createElement('text', 'nameGiro', array('label' => '*' . 'Destinacion', 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true);
 
-		$codCarga = $this->_addform->createElement('text', 'nameCarga', array('label' => 'Carga', 'id' => 'idnameCarga'));
+		$codCarga = $this->_addform->createElement('text', 'nameCarga', array('label' =>'*' .  'Carga', 'id' => 'idnameCarga'));
         $codCarga ->setRequired(true);
 				 
 
@@ -294,7 +294,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     ->setRequired(False);
 
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
-                                                     array('label' => 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+                                                     array('label' =>'*' .  'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -315,7 +315,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
 
         $vencimiento = $this->_addform->createElement('text', 'vencimiento',
-                                                     array('label' => 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
+                                                     array('label' => '*' . 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -328,12 +328,12 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         /*TODO: ADD Validator*/
         $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
-                                                     array('label' => 'Número de Permiso'));
+                                                     array('label' => '*' . 'Número de Permiso'));
         $PERnroDoc  ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
 
         $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
-                                                     array('label' => 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
+                                                     array('label' => '*' . 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -506,28 +506,28 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 				->setMethod('post')
 				->setName('form');
 
-        $orden = $this->_modform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden = $this->_modform->createElement('text', 'orden', array('label' => '*' . 'Órden'));
         $orden  ->setValue($row->orden() )
                 ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-		$codTransporte = $this->_modform->createElement('text', 'nameTransporte', array('label' => 'Transporte', 'id' => 'idnameTransporte'));
+		$codTransporte = $this->_modform->createElement('text', 'nameTransporte', array('label' => '*' . 'Transporte', 'id' => 'idnameTransporte'));
 		$codTransporte  -> setRequired(true);
 
-		$codCliente = $this->_modform->createElement('text', 'nameCliente', array('label' => 'Cliente', 'id' => 'idnameCliente'));
+		$codCliente = $this->_modform->createElement('text', 'nameCliente', array('label' => '*' . 'Cliente', 'id' => 'idnameCliente'));
 		$codCliente ->setRequired(true);
 
-		$codBandera = $this->_modform->createElement('text', 'nameBandera', array('label' => 'Bandera', 'id' => 'idnameBandera'));
+		$codBandera = $this->_modform->createElement('text', 'nameBandera', array('label' => '*' . 'Bandera', 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true);
 
-		$codMoneda = $this->_modform->createElement('text', 'nameMoneda', array('label' => 'Moneda', 'id' => 'idnameMoneda'));
+		$codMoneda = $this->_modform->createElement('text', 'nameMoneda', array('label' => '*' . 'Moneda', 'id' => 'idnameMoneda'));
         $codMoneda ->setRequired(true);
 
-		$codDestinacion = $this->_modform->createElement('text', 'nameGiro', array('label' => 'Destinacion', 'id' => 'idnameDestinacion'));
+		$codDestinacion = $this->_modform->createElement('text', 'nameGiro', array('label' => '*' . 'Destinacion', 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true);
 
-		$codCarga = $this->_modform->createElement('text', 'nameCarga', array('label' => 'Carga', 'id' => 'idnameCarga'));
+		$codCarga = $this->_modform->createElement('text', 'nameCarga', array('label' => '*' . 'Carga', 'id' => 'idnameCarga'));
         $codCarga ->setRequired(true);
 
 
@@ -575,7 +575,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     ->setRequired(False);
 
         $fechaIngreso = $this->_modform->createElement('text', 'fechaIngreso',
-                                                     array('label' => 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+                                                     array('label' => '*' . 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->setValue($row->fechaIngreso() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -599,7 +599,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
 
         $vencimiento = $this->_modform->createElement('text', 'vencimiento',
-                                                     array('label' => 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
+                                                     array('label' => '*' . 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento    ->setValue($row->vencimiento() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -607,7 +607,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         /*TODO: ADD validator*/
         $PERnroDoc = $this->_modform->createElement('text', 'PERnroDoc',
-                                                     array('label' => 'Número de Permiso'));
+                                                     array('label' => '*' . 'Número de Permiso'));
         $PERnroDoc  ->setValue($row->PERnroDoc() )
                     ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
@@ -620,7 +620,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->setRequired(False);
 
         $PERpresentado = $this->_modform->createElement('text', 'PERpresentado',
-                                                     array('label' => 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
+                                                     array('label' => '*' . 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado  ->setValue($row->PERpresentado() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))

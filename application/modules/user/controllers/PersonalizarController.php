@@ -87,7 +87,7 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
         $css    ->setValue($row->codCss() )
                 ->setRequired(true)
                 ->setOrder(1)
-                ->setLabel($this->language->_('Css'))
+                ->setLabel('*' . $this->language->_('Css'))
                 ->setMultiOptions($cssOptions);
 
 
@@ -100,7 +100,7 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
         $lang   ->setValue($row->langNum() )
                 ->setRequired(true)
                 ->setOrder(2)
-                ->setLabel($this->language->_('Idioma'))
+                ->setLabel($this->language->_('*' . 'Idioma'))
                 ->setMultiOptions($langOptions);
 
 
