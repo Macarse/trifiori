@@ -19,6 +19,12 @@ class Banderas extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function searchBandera( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("NOMBRE_BAN LIKE '%" . $name . "%'"); 
+    }
+    
     public function addBandera( $name )
     {
         /*TODO: Validaciones*/

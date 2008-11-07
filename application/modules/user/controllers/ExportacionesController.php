@@ -82,8 +82,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     try
                     {
                         $exportacionesTable = new Exportaciones();
-                        $eaea = $exportacionesTable->searchExportacion($values);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($eaea, $exportacionesTable));
+                        $expo = $exportacionesTable->searchExportacion($values);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
                         //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
                         $paginator->setCurrentPageNumber($this->_getParam('page'));
                         $paginator->setItemCountPerPage(15);
