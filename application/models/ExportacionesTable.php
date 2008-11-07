@@ -52,6 +52,62 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
         return True;
     }
+    
+    public function searchExportacion( $busqueda )
+    {
+        $cliente = $busqueda["searchCliente"];
+        $orden = $busqueda["searchOrden"];
+        $carga = $busqueda["searchCarga"];
+        
+
+        if ($cliente == null && $orden == null && $carga == null)
+        {
+            $query = $this->select();
+        }
+        else if ($cliente == null && $orden == null)
+        {
+            $query = $this->select()->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
+        }
+        else if ($cliente == null && $carga == null)
+        {
+            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'");
+        }
+        else if ($orden == null && $carga == null)
+        {
+            $query = $this->select()->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");
+        }
+        else if ($orden == null)
+        {
+            $query = $this->select()->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
+                        AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
+        }
+        else if ($cliente == null)
+        {
+            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
+        }
+        else if ($carga == null)
+        {
+            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");            
+        }
+        else
+        {
+            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
+                        AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
+        }
+
+        return $query;
+    }
 
     public function modifyExportacion( $id, $orden, $codTransporte, $codCliente,
                                     $codBandera, $codMoneda, $codGiro,

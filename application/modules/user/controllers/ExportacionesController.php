@@ -3,6 +3,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -68,18 +69,51 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
-        try
+        if ($this->getRequest()->isPost())
         {
-            $table = new Exportaciones();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+        
+            if (isset($_POST['SearchExportacionTrack']))
+            {
+                $this->_searchform = $this->getExportacionSearchForm();
+                if ($this->_searchform->isValid($_POST))
+                {
+                    $values = $this->_searchform->getValues();
+
+                    try
+                    {
+                        $exportacionesTable = new Exportaciones();
+                        $eaea = $exportacionesTable->searchExportacion($values);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($eaea, $exportacionesTable));
+                        //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
+                        $paginator->setCurrentPageNumber($this->_getParam('page'));
+                        $paginator->setItemCountPerPage(15);
+                        $this->view->paginator = $paginator;
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
+                }
+            }
+            $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
         }
-        catch (Zend_Exception $error)
+        else
         {
-            $this->view->error = $error;
-        }
+            $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
+
+            try
+            {
+                $table = new Exportaciones();
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
+       }
     }
 
     public function detailsAction()
@@ -385,6 +419,64 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         return $this->_addform;
     }
+
+   private function getExportacionSearchForm()
+   {
+
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+        
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)->setMethod('post');
+
+        $searchOrden = $this->_searchform->createElement('text', 'searchOrden', array('label' => 'Órden'));
+        $searchOrden    ->addValidator('int')
+                        ->addValidator('stringLength', false, array(1, 11));
+                
+        $searchCliente = $this->_searchform->createElement('text', 'searchCliente', array('label' => 'Cliente'));
+        $searchCliente ->addValidator($alnumWithWS);
+                    
+        $searchCarga = $this->_searchform->createElement('text', 'searchCarga', array('label' => 'Carga'));
+        $searchCarga ->addValidator('alnum');
+                   
+		$decoradorSearchOrden = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedaorden'))
+		);
+		
+		$decoradorSearchCliente = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedacliente'))
+		);	
+			
+		$decoradorSearchCarga = array(
+			 'ViewHelper',
+			 'Errors',
+			 array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedacarga'))
+		);
+
+        // Add elements to form:
+        $this->_searchform ->addElement($searchOrden)
+						->addElement('hidden', 'decobusqueda', array( 'decorators' => $decoradorSearchOrden))
+						->addElement($searchCliente)
+						->addElement('hidden', 'decocliente', array( 'decorators' => $decoradorSearchCliente))
+						->addElement($searchCarga)
+						->addElement('hidden', 'decocarga', array( 'decorators' => $decoradorSearchCarga))
+                        ->addElement('hidden', 'SearchExportacionTrack', array('values' => 'logPost'))
+						//->addElement('hidden', 'searchOrden', array('id' => 'idsearchOrden'))
+						//->addElement('hidden', 'searchCliente', array('id' => 'idsearchCliente'))
+						//->addElement('hidden', 'searchCarga', array('id' => 'idsearchCarga'))
+                        ->addElement('submit', 'Buscar', array('label' => 'Buscar'));
+
+        return $this->_searchform;
+    }
+
 
     private function getExportacionModForm( $id )
     {
