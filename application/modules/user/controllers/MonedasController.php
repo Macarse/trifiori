@@ -195,7 +195,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 3))
@@ -230,7 +230,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 3))
                  ->setRequired(true);

@@ -207,7 +207,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
 
         $cantBultos = $this->_modform->createElement('text', 'cantBultos',
-                                            array('label' => $this->language->_('Cantidad de Bultos')));
+                                            array('label' => '*' . $this->language->_('Cantidad de Bultos')));
         $cantBultos ->setValue($row->cantBultos() )
                     ->addValidator('digits')
                     ->addValidator('stringLength', false, array(1, 11))
@@ -218,7 +218,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $tipoEnvase ->setValue($row->tipoEnvase() )
                     ->setRequired(True)
                     ->setOrder(1)
-                    ->setLabel($this->language->_('Tipo Envase'))
+                    ->setLabel('*' . $this->language->_('Tipo Envase'))
                     ->setMultiOptions(array('Envase Flexible' => $this->language->_('Envase Flexible'),
                                             'Caja' => $this->language->_('Caja'),
                                             'Frasco' => $this->language->_('Frasco'),
@@ -226,7 +226,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                             'Lata de Aluminio' => $this->language->_('Lata de Aluminio'),
                                         ));
 
-        $peso = $this->_modform->createElement('text', 'peso', array('label' => $this->language->_('Peso')));
+        $peso = $this->_modform->createElement('text', 'peso', array('label' => '*' . $this->language->_('Peso')));
         $peso   ->setValue($row->peso() )
                 ->addValidator('float')
                 ->addValidator('stringLength', false, array(1, 10))
@@ -236,7 +236,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $unidad ->setValue($row->unidad() )
                 ->setRequired(True)
                 ->setOrder(2)
-                ->setLabel($this->language->_('Unidad'))
+                ->setLabel('*' . $this->language->_('Unidad'))
                 ->setMultiOptions(array('Toneladas' => $this->language->_('Toneladas'),
                                         'Kilogramos' => $this->language->_('Kilogramos'),
                                         'Gramos' => $this->language->_('Gramos')
@@ -292,7 +292,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 						->setMethod('post');
 
         $cantBultos = $this->_addform->createElement('text', 'cantBultos',
-                                            array('label' => $this->language->_('Cantidad de Bultos')));
+                                            array('label' => '*' . $this->language->_('Cantidad de Bultos')));
         $cantBultos->addValidator('digits')
                    ->addValidator('stringLength', false, array(1, 11))
                    ->setRequired(True);
@@ -301,7 +301,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $tipoEnvase = $this->_addform->createElement('select', 'tipoEnvase');
         $tipoEnvase    ->setRequired(True)
                        ->setOrder(1)
-                       ->setLabel($this->language->_('Tipo Envase'))
+                       ->setLabel('*' . $this->language->_('Tipo Envase'))
                        ->setMultiOptions(array('Envase Flexible' => $this->language->_('Envase Flexible'),
                                                 'Caja' => $this->language->_('Caja'),
                                                 'Frasco' => $this->language->_('Frasco'),
@@ -309,7 +309,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                                 'Lata de Aluminio' => $this->language->_('Lata de Aluminio'),
                                             ));
 
-        $peso = $this->_addform->createElement('text', 'peso', array('label' => $this->language->_('Peso')));
+        $peso = $this->_addform->createElement('text', 'peso', array('label' => '*' . $this->language->_('Peso')));
         $peso   ->addValidator('float')
                 ->addValidator('stringLength', false, array(1, 10))
                 ->setRequired(true);
@@ -317,7 +317,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $unidad = $this->_addform->createElement('select', 'unidad');
         $unidad ->setRequired(True)
                 ->setOrder(2)
-                ->setLabel($this->language->_('Unidad'))
+                ->setLabel('*' . $this->language->_('Unidad'))
                 ->setMultiOptions(array('Toneladas' => $this->language->_('Toneladas'),
                                         'Kilogramos' => $this->language->_('Kilogramos'),
                                         'Gramos' => $this->language->_('Gramos')

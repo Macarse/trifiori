@@ -177,13 +177,13 @@ class user_OppsController extends Trifiori_User_Controller_Action
         $declaracionOk = $this->_modform->createElement('select', 'declaracionOk');
         $declaracionOk  ->setValue($row->declaracionOkchar() )
                         ->setOrder(1)
-                        ->setLabel('Declaración Ok')
+                        ->setLabel('*' . 'Declaración Ok')
                         ->setRequired(true)
                         ->setMultiOptions($siNo);
 
 
         $pedidoDinero = $this->_modform->createElement('text', 'pedidoDinero',
-                                                     array('label' => 'Pedido de Dinero',
+                                                     array('label' => '*' . 'Pedido de Dinero',
                                                      'id' => 'idpedidoDinero',
                                                      'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                                                      ));
@@ -254,13 +254,13 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
         $declaracionOk = $this->_addform->createElement('select', 'declaracionOk');
         $declaracionOk  ->setOrder(1)
-                        ->setLabel('Declaración Ok')
+                        ->setLabel('*' . 'Declaración Ok')
                         ->setRequired(true)
                         ->setMultiOptions($siNo);
 
 
         $pedidoDinero = $this->_addform->createElement('text', 'pedidoDinero',
-                                                     array('label' => 'Pedido de Dinero',
+                                                     array('label' => '*' . 'Pedido de Dinero',
                                                      'id' => 'idpedidoDinero',
                                                      'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                                                      ));

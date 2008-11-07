@@ -15,7 +15,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     public function addusersAction()
     {
-        $this->view->headTitle("Agregar Usuario");
+        $this->view->headTitle($this->language->_("Agregar Usuario"));
 
         if ($this->getRequest()->isPost())
         {
@@ -48,16 +48,16 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         }
 
                         /*TODO: Si ocurre un error se muestra que insertó bien*/
-                        $this->view->suceedAddUser = 'Inserción exitosa';
+                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa');
                     }
                     else
                     {
-                        $this->view->error = 'Las contraseñas no son iguales';
+                        $this->view->error = $this->language->_('Las contraseñas no son iguales');
                     }
                 }
                 else
                 {
-                    $this->view->error = 'Ocurrió un error';
+                    $this->view->error = $this->language->_('Ocurrió un error');
                 }
             }
         }
@@ -67,7 +67,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     public function listusersAction()
     {
-        $this->view->headTitle("Listar Usuarios");
+        $this->view->headTitle($this->language->_("Listar Usuarios"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -100,7 +100,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             /* No se puede borrar el administrador. */
             if ( $_rmid == 1 )
             {
-                $this->view->error = "No puede eliminar al administrador.";
+                $this->view->error = $this->language->_("No puede eliminar al administrador.");
             }
             else
             {
@@ -121,7 +121,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     public function modusersAction()
     {
-        $this->view->headTitle("Modificar Usuario");
+        $this->view->headTitle($this->language->_("Modificar Usuario"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -184,7 +184,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $this->_addform = new Zend_Form();
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
@@ -192,18 +192,18 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         // Create and configure username element:
         
-        $username = $this->_addform->createElement('text', 'username', array('label' => 'Usuario'));
+        $username = $this->_addform->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $this->_addform->createElement('password', 'password', array('label' => 'Clave'));
+        $password = $this->_addform->createElement('password', 'password', array('label' => $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
-        $passwordvrfy = $this->_addform->createElement('password', 'passwordvrfy', array('label' => 'Repetir Clave'));
+        $passwordvrfy = $this->_addform->createElement('password', 'passwordvrfy', array('label' => $this->language->_('Repetir Clave')));
         $passwordvrfy->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
@@ -216,7 +216,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $lang = $this->_addform->createElement('select', 'lang');
         $lang   ->setRequired(true)
                 ->setOrder(1)
-                ->setLabel('Idioma')
+                ->setLabel($this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -238,7 +238,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         ->addElement($lang)
                         ->addElement($css)
              ->addElement('hidden', 'AddUserTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
         return $this->_addform;
     }
 
@@ -265,7 +265,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
         $name->setValue($user->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 50))
@@ -273,7 +273,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
              ->addFilter('StringToLower');
 
         // Create and configure username element:
-        $username = $this->_modform->createElement('text', 'username', array('label' => 'Usuario'));
+        $username = $this->_modform->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
         $username->setValue($user->user() )
                  ->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
@@ -281,10 +281,10 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $this->_modform->createElement('password', 'password', array('label' => 'Clave'));
+        $password = $this->_modform->createElement('password', 'password', array('label' => $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,100));
 
-        $passwordvrfy = $this->_modform->createElement('password', 'passwordvrfy', array('label' => 'Repetir Clave'));
+        $passwordvrfy = $this->_modform->createElement('password', 'passwordvrfy', array('label' => $this->language->_('Repetir Clave')));
         $passwordvrfy->addValidator('StringLength', false, array(1,100));
 
 
@@ -297,7 +297,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $lang   ->setValue($user->langNum())
                 ->setRequired(true)
                 ->setOrder(1)
-                ->setLabel('Idioma')
+                ->setLabel($this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -320,7 +320,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
              ->addElement($lang)
              ->addElement($css)
              ->addElement('hidden', 'ModUserTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
 
         return $this->_modform;
     }

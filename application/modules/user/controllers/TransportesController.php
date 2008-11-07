@@ -166,7 +166,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codBandera = $this->_addform->createElement('select', 'codBandera');
         $codBandera ->setRequired(true)
                     ->setOrder(1)
-                    ->setLabel('Bandera')
+                    ->setLabel('*' . 'Bandera')
                     ->setMultiOptions($banderasOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -177,11 +177,11 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codMedio = $this->_addform->createElement('select', 'codMedio');
         $codMedio   ->setRequired(true)
                     ->setOrder(2)
-                    ->setLabel('Medio')
+                    ->setLabel('*' . 'Medio')
                     ->setMultiOptions($mediosOptions);
 
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true);
@@ -238,7 +238,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codBandera ->setValue( $row->codBandera() )
                     ->setRequired(true)
                     ->setOrder(1)
-                    ->setLabel('Bandera')
+                    ->setLabel('*' . 'Bandera')
                     ->setMultiOptions($banderasOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -250,10 +250,10 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codMedio   ->setValue( $row->codMedio() )
                     ->setRequired(true)
                     ->setOrder(2)
-                    ->setLabel('Medio')
+                    ->setLabel('*' . 'Medio')
                     ->setMultiOptions($mediosOptions);
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 400))

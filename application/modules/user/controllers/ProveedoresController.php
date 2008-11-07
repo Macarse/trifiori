@@ -201,19 +201,19 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 100))
              ->setRequired(true);
 
-        $adress = $this->_modform->createElement('text', 'adress', array('label' => 'Dirección'));
+        $adress = $this->_modform->createElement('text', 'adress', array('label' => '*' . 'Dirección'));
         $adress  ->setValue($row->adress() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 200))
                     ->setRequired(True);
 
-        $tel = $this->_modform->createElement('text', 'tel', array('label' => 'Teléfono'));
+        $tel = $this->_modform->createElement('text', 'tel', array('label' => '*' . 'Teléfono'));
         $tel    ->setValue($row->tel() )
                 ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
@@ -256,17 +256,17 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);
 
-        $adress = $this->_addform->createElement('text', 'adress', array('label' => 'Dirección'));
+        $adress = $this->_addform->createElement('text', 'adress', array('label' => '*' . 'Dirección'));
         $adress ->addValidator($alnumWithWS)
                 ->addValidator('stringLength', false, array(1, 200))
                 ->setRequired(True);
 
-        $tel = $this->_addform->createElement('text', 'tel', array('label' => 'Teléfono'));
+        $tel = $this->_addform->createElement('text', 'tel', array('label' => '*' . 'Teléfono'));
         $tel    ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
 

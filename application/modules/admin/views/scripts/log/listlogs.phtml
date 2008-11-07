@@ -1,7 +1,11 @@
 <div id="divmodificaciones" class="clistado">
 <table id="tablemodifications">
     <thead>
-        <tr> <th>ID</th> <th>Nivel</th> <th>Mensaje</th></tr>
+        <tr>
+            <th> <?= $this->language->_("ID") ?> </th>
+            <th> <?= $this->language->_("Nivel") ?> </th>
+            <th> <?= $this->language->_("Mensaje") ?> </th>
+        </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
@@ -23,18 +27,22 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"id",label:"ID",sortable:true},
-            {key:"level",label:"Nivel", sortable:true},
-            {key:"msg",label:"Mensaje", sortable:false}
+            {key:"id",label:" <?= $this->language->_("ID") ?> ",sortable:true},
+            {key:"level",label:" <?= $this->language->_("Nivel") ?> ", sortable:true},
+            {key:"msg",label:" <?= $this->language->_("Mensaje") ?> ", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablemodifications"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [{key:"id"},
-		             {key:"level"},
-         		     {key:"msg"}]
-	        };
+        this.myDataSource.responseSchema =
+        {
+            fields:
+            [
+                {key:"id"},
+                {key:"level"},
+                {key:"msg"}
+            ]
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divmodificaciones", myColumnDefs, this.myDataSource,
                 {sortedBy:{key:"id",dir:"desc"}}

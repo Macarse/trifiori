@@ -10,7 +10,7 @@ class admin_PanelController extends Trifiori_Admin_Controller_Action
 
     public function indexAction()
     {
-        $this->view->headTitle("Panel del Administrador");
+        $this->view->headTitle($this->language->_("Panel del Administrador"));
     }
 
 }

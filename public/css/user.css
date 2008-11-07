@@ -36,6 +36,7 @@ div.errors_js_forms{
 	border: 1px solid #FF0000;
 	height: auto;
 	width: auto;
+	display: none;
 }
 		
 div.error
@@ -51,16 +52,6 @@ div.error
 	width: 30em;
 	text-align: center;
 	vertical-align: middle;
-}
-
-div.detalle
-{
-    position: fixed;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    bottom: 0;
-    left: 10px;
-    background-color: #C0F0F0;
-    z-index: 1;
 }
 
 div.cfooter
@@ -162,9 +153,4 @@ div.backgroundimg img
 	position: absolute;
 	left: 64%;
 	top: 25em;
-}
-
-.required
-{
-	color: #FF0000;
 }
