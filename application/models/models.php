@@ -35,4 +35,6 @@
     require_once 'OppsModel.php';
     require_once 'ImportacionesTable.php';
     require_once 'ImportacionesModel.php';
+    require_once 'CssTable.php';
+    require_once 'CssModel.php';
 ?>

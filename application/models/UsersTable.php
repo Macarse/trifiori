@@ -5,11 +5,12 @@ class Users extends Zend_Db_Table_Abstract
     protected $_sequence = true;
     protected $_rowClass = 'UsersModel';
 
-    public function addUser( $name, $user, $pass, $lang )
+    public function addUser( $name, $user, $pass, $lang, $css )
     {
         $data = array(  'NOMBRE_USU'  => $name,
                         'USUARIO_USU' => $user,
                         'PASSWORD_USU'=> $pass,
+                        'CODIGO_CSS'  => $css,
                         'IDIOMA_USU'  => $lang
                     );
 
@@ -32,7 +33,15 @@ class Users extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function modifyUser( $id, $name, $user, $pass, $lang )
+    public function getUserByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('USUARIO_USU = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+
+    public function modifyUser( $id, $name, $user, $pass, $lang, $css )
     {
         /*TODO: Try Catch*/
         $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
@@ -51,6 +60,7 @@ class Users extends Zend_Db_Table_Abstract
         $this->update(array('NOMBRE_USU'    => $name,
                             'USUARIO_USU'   => $user,
                             'PASSWORD_USU'  => $pass,
+                            'CODIGO_CSS'    => $css,
                             'IDIOMA_USU'    => $lang ), $where );
 
         return True;

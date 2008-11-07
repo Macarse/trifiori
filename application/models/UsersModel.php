@@ -50,6 +50,25 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
         return $this->IDIOMA_USU;
     }
 
+    public function codCssName()
+    {
+        $row = NULL;
+        $cssTable = new Css();
+
+        $row = $cssTable->getCssByID($this->CODIGO_CSS);
+
+        /*TODO: esto es por inconsistencias en la DB :(*/
+        if ($row == NULL)
+            return 'No Name';
+        else
+            return $row->name();
+    }
+
+    public function codCss()
+    {
+        return $this->CODIGO_CSS;
+    }
+
 }
 
 ?>
