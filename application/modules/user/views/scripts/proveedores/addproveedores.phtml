@@ -13,15 +13,15 @@
 		frmvalidator.EnableOnPageErrorDisplaySingleBox();
 		frmvalidator.EnableMsgsTogether();
 
-		frmvalidator.addValidation("name","req","*Ingrese un nombre");
-		frmvalidator.addValidation("name","alnum_s ","*El nombre debe ser alfanumerico");
-		frmvalidator.addValidation("name","maxlen=20","*El nombre debe contener hasta 20 caracteres");
+		frmvalidator.addValidation("name","req","<?= $this->language->_("*Ingrese un nombre")?>");
+		frmvalidator.addValidation("name","alnum_s ","<?= $this->language->_("*El nombre debe ser alfanumérico")?>");
+		frmvalidator.addValidation("name","maxlen=20","<?= $this->language->_("*El nombre debe contener hasta 20 caracteres")?>");
 		
-		frmvalidator.addValidation("adress","req","*Ingrese una direccion");
-		frmvalidator.addValidation("adress","alnum_s ","*La direccion debe ser alfanumerico");
-		frmvalidator.addValidation("adress","maxlen=100","*La direccion debe contener hasta 100 caracteres");
+		frmvalidator.addValidation("adress","req","<?= $this->language->_("*Ingrese una dirección")?>");
+		frmvalidator.addValidation("adress","alnum_s ","<?= $this->language->_("*La dirección debe ser alfanumérica")?>");
+		frmvalidator.addValidation("adress","maxlen=100","<?= $this->language->_("*La dirección debe contener hasta 100 caracteres")?>");
 
-		frmvalidator.addValidation("tel","req","*Ingrese un telefono");
-		frmvalidator.addValidation("tel","alnum_s ","*El telefono debe ser alfanumerico");
+		frmvalidator.addValidation("tel","req","<?= $this->language->_("*Ingrese un teléfono")?>");
+		frmvalidator.addValidation("tel","alnum_s ","<?= $this->language->_("*El teléfono debe ser alfanumérico")?>");
 
 </script>
