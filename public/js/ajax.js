@@ -16,11 +16,17 @@ function ShowDetails(id)
     xmlHttp.send(null);
 }
 
+function HideDetails()
+{
+    document.getElementById("divdetalles").style.display = "none";
+}
+
 function showExpo() 
 { 
     if (xmlHttp.readyState == 4)
     { 
-        document.getElementById("divdetalles").innerHTML = xmlHttp.responseText;
+        document.getElementById("divdetalles").style.display = "block";
+        document.getElementById("divdetalles").innerHTML = "<b><u>X</u></b><br />" + xmlHttp.responseText;
     }
 }
 

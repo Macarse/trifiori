@@ -53,6 +53,16 @@ div.error
 	vertical-align: middle;
 }
 
+div.detalle
+{
+    position: fixed;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    bottom: 0;
+    left: 10px;
+    background-color: #C0F0F0;
+    z-index: 1;
+}
+
 div.cfooter
 {
 	position: fixed;
