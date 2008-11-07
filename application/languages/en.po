@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 02:31-0300\n"
+"POT-Creation-Date: 2008-11-07 03:31-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -24,19 +24,19 @@ msgstr "The page requested does not exist."
 msgid "Un error inesperado ha ocurrido: "
 msgstr "An unexpected error has ocurred."
 
-#: ../application/modules/default/controllers/IndexController.php:90
+#: ../application/modules/default/controllers/IndexController.php:82
 msgid "Imposible conectarse a la base de datos."
 msgstr "Unable to connect to the database."
 
-#: ../application/modules/default/controllers/IndexController.php:127
+#: ../application/modules/default/controllers/IndexController.php:119
 msgid "Usuario"
 msgstr "User"
 
-#: ../application/modules/default/controllers/IndexController.php:134
+#: ../application/modules/default/controllers/IndexController.php:126
 msgid "Clave"
 msgstr "Password"
 
-#: ../application/modules/default/controllers/IndexController.php:142
+#: ../application/modules/default/controllers/IndexController.php:134
 #: ../application/modules/user/controllers/CargasController.php:243
 #: ../application/modules/user/controllers/CargasController.php:321
 msgid "Ingresar"
@@ -129,6 +129,78 @@ msgstr "Trademark and number"
 msgid "Merc. IMCO"
 msgstr "IMCO Goods"
 
+#: ../application/modules/user/controllers/ClientesController.php:15
+msgid "Agregar Cliente"
+msgstr "Add Client"
+
+#: ../application/modules/user/controllers/ClientesController.php:54
+msgid "Listar Clientes"
+msgstr "List Clients"
+
+#: ../application/modules/user/controllers/ClientesController.php:98
+msgid "Modificar Cliente"
+msgstr "Modify Client"
+
+#: ../application/modules/user/controllers/ClientesController.php:176
+#: ../application/modules/user/controllers/ClientesController.php:255
+msgid "Nombre"
+msgstr "Name"
+
+#: ../application/modules/user/controllers/ClientesController.php:182
+#: ../application/modules/user/controllers/ClientesController.php:260
+msgid "Dirección"
+msgstr "Address"
+
+#: ../application/modules/user/controllers/ClientesController.php:188
+#: ../application/modules/user/controllers/ClientesController.php:265
+msgid "Código Postal"
+msgstr "Postal code"
+
+#: ../application/modules/user/controllers/ClientesController.php:194
+#: ../application/modules/user/controllers/ClientesController.php:270
+msgid "Localidad"
+msgstr "City"
+
+#: ../application/modules/user/controllers/ClientesController.php:201
+#: ../application/modules/user/controllers/ClientesController.php:275
+msgid "CUIT"
+msgstr "CUIT"
+
+#: ../application/modules/user/controllers/ClientesController.php:212
+#: ../application/modules/user/controllers/ClientesController.php:284
+msgid "Tipo IVA"
+msgstr "IVA type"
+
+#: ../application/modules/user/controllers/ClientesController.php:213
+#: ../application/modules/user/controllers/ClientesController.php:285
+msgid "Responsable Inscripto"
+msgstr "In-scripted Responsible"
+
+#: ../application/modules/user/controllers/ClientesController.php:214
+#: ../application/modules/user/controllers/ClientesController.php:286
+msgid "Responsable No Inscripto"
+msgstr "No In-scripted Responsible"
+
+#: ../application/modules/user/controllers/ClientesController.php:221
+#: ../application/modules/user/controllers/ClientesController.php:292
+msgid "Tipo Cliente"
+msgstr "Client type"
+
+#: ../application/modules/user/controllers/ClientesController.php:222
+#: ../application/modules/user/controllers/ClientesController.php:293
+msgid "Alto Volumen"
+msgstr "High Volume"
+
+#: ../application/modules/user/controllers/ClientesController.php:223
+#: ../application/modules/user/controllers/ClientesController.php:294
+msgid "Bajo Volumen"
+msgstr "Low Volume"
+
+#: ../application/modules/user/controllers/ClientesController.php:224
+#: ../application/modules/user/controllers/ClientesController.php:295
+msgid "Promedio"
+msgstr "Average"
+
 #: ../application/modules/default/views/scripts/index/login.phtml:5
 msgid "Credenciales incorrectas."
 msgstr "Wrong username or password"
@@ -137,9 +209,86 @@ msgstr "Wrong username or password"
 msgid "Ha ocurrido un error"
 msgstr "An error has ocurred"
 
-#: ../application/modules/user/views/scripts/cargas/index.phtml:1
-msgid "Nada que ver"
-msgstr "Nothing to see"
+#: ../application/modules/user/views/scripts/clientes/modclientes.phtml:16
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:16
+#: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:16
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:16
+msgid "*Ingrese un nombre"
+msgstr "*Insert a name"
+
+#: ../application/modules/user/views/scripts/clientes/modclientes.phtml:17
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:17
+#: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:17
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:17
+msgid "*El nombre debe ser alfanumérico"
+msgstr "*The name must be alphanumeric"
+
+#: ../application/modules/user/views/scripts/clientes/modclientes.phtml:18
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:18
+#: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:18
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:18
+msgid "*El nombre debe contener hasta 20 caracteres"
+msgstr "*The name must have less tan 30 characters"
+
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:12
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:28
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:54
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
+msgid "Modificar"
+msgstr "Modify"
+
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:13
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:31
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:55
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:13
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
+msgid "Eliminar"
+msgstr "Delete"
+
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:52
+msgid "Tipo Iva"
+msgstr "Iva type"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:16
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:16
+msgid "*Ingrese la cantidad de bultos"
+msgstr "*Insert the package quantities"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:17
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:17
+msgid "*La cantidad de bultos debe ser numérica"
+msgstr "*The package quantity must be numeric"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:19
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:19
+msgid "*Ingrese un tipo de envase"
+msgstr "*Insert a type of package"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:21
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:21
+msgid "*Ingrese una unidad"
+msgstr "*Insert a unit"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:23
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:23
+msgid "*Ingrese un peso"
+msgstr "*Insert a weigth"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:24
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:24
+msgid "*El peso debe ser decimal"
+msgstr "*The weigth must be decimal"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:26
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:26
+msgid "*Ingrese un número de paquete"
+msgstr "*Insert a package number"
+
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:27
+#: ../application/modules/user/views/scripts/cargas/modcargas.phtml:27
+msgid "*El número de paquete debe ser alfanumérico"
+msgstr "*The package number must be alphanumeric"
 
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:5
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:44
@@ -149,35 +298,64 @@ msgstr "Package quantities"
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:6
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:45
 msgid "Tipo de Envase"
-msgstr "Type of package"
+msgstr "Type of packaging"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:28
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
-msgid "Modificar"
-msgstr "Modify"
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:16
+msgid "*Ingrese una fecha de pedido de dinero"
+msgstr "*Insert a request money date"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:13
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:31
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
-msgid "Eliminar"
-msgstr "Delete"
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:17
+msgid "*La fecha del pedido de dinero es inválida"
+msgstr "*The request money date is invalid"
 
-#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:16
-msgid "*Ingrese un nombre"
-msgstr "*Insert a name"
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:19
+msgid "*Ingrese un resultado de declaración"
+msgstr "*Insert a declaration result"
 
-#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:17
-msgid "*El nombre debe ser alfanumerico"
-msgstr ""
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:20
+#: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:20
+msgid "*Ingrese una dirección"
+msgstr "*Insert an address"
 
-#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:18
-msgid "*El nombre debe contener hasta 20 caracteres"
-msgstr ""
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:21
+#: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:21
+msgid "*La dirección debe ser alfanumérica"
+msgstr "*The address must be alphanumeric"
+
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:22
+#: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:22
+msgid "*La dirección debe contener hasta 100 caracteres"
+msgstr "*The address must have less than 100 characters"
+
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:24
+#: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:24
+msgid "*Ingrese un teléfono"
+msgstr "*Insert a phone number"
+
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:25
+#: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:25
+msgid "*El teléfono debe ser alfanumérico"
+msgstr "*The telephone must be alphanumeric"
+
+#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:20
+#: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:20
+msgid "*Seleccione una bandera"
+msgstr "*Choose a flag"
+
+#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:22
+#: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:22
+msgid "*Seleccione un medio"
+msgstr "*Choose a medium"
 
 #, fuzzy
 #~ msgid "Número de paquete"
 #~ msgstr "Number of Package"
+
+#, fuzzy
+#~ msgid "*Ingrese un nmero de paquete"
+#~ msgstr "*Insert a name"
+#~ msgid "Nada que ver"
+#~ msgstr "Nothing to see"
 #~ msgid "unidad"
 #~ msgstr "Unity"
 
