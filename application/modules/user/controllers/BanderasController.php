@@ -47,6 +47,8 @@ class user_BanderasController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle($this->language->_("Listar Banderas"));
 
+        $this->view->paginator = null;
+        
         /*Errors from the past are deleted*/
         unset($this->view->error);
         
