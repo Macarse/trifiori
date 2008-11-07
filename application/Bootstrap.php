@@ -36,8 +36,7 @@ class Bootstrap
         error_reporting(E_ALL|E_STRICT);
         ini_set('display_errors', true);
         date_default_timezone_set('America/Buenos_Aires');
-        Zend_Locale::setDefault('en_EN');
-//         Zend_Locale::setDefault('es_AR');
+        Zend_Locale::setDefault('es_AR');
     }
 
     private function setupMVC()
@@ -118,6 +117,7 @@ class Bootstrap
     private function setupTranslate()
     {
         $translate = new Zend_Translate('gettext', $this->root . '/application/languages/en.mo', 'en');
+        $translate->addTranslation($this->root . '/application/languages/es.mo', 'es');
         Zend_Registry::getInstance()->language = $translate;
     }
 

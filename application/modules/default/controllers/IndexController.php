@@ -8,7 +8,30 @@ class IndexController extends Trifiori_Default_Controller_Action
         $this->view->headTitle("Trifiori Login");
         if (Zend_Auth::getInstance()->getIdentity() !== null)
         {
-            if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == "admin")
+
+            $user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
+            $userTable = new Users();
+            $userRow = $userTable->getUserByName($user);
+
+            $locale = new Zend_Locale($userRow->language());
+
+//             $this->language->setLocale('es');
+//             die($this->language->_("Cargas"));
+            //Check if the locale is available
+            if ($locale == 'en_US')
+            {
+                $this->language->setLocale('en');
+                Zend_Registry::getInstance()->language->setLocale('en');
+            }
+            else
+            {
+                $this->language->setLocale('es');
+                Zend_Registry::getInstance()->language->setLocale('en');
+            }
+
+
+
+            if ($this->$user == "admin")
             {
                 $this->_helper->redirector->gotoUrl('admin/panel');
             }

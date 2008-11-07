@@ -37,11 +37,11 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
         o un join con la tabla IDIOMAS */
         if ($this->IDIOMA_USU == 1)
         {
-            return 'en';
+            return 'en_US';
         }
         else
         {
-            return 'es';
+            return 'es_AR';
         }
     }
 
