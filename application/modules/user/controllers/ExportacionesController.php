@@ -475,7 +475,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 						//->addElement('hidden', 'searchOrden', array('id' => 'idsearchOrden'))
 						//->addElement('hidden', 'searchCliente', array('id' => 'idsearchCliente'))
 						//->addElement('hidden', 'searchCarga', array('id' => 'idsearchCarga'))
-                        ->addElement('submit', 'Buscar', array('label' => 'Buscar'));
+                        ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
 
         return $this->_searchform;
     }

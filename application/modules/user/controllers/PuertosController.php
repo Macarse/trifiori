@@ -49,20 +49,51 @@ class user_PuertosController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle("Listar Puertos");
 
+        $this->view->paginator = null;
+        
         /*Errors from the past are deleted*/
         unset($this->view->error);
-
-        try
+        if ($this->getRequest()->isPost())
         {
-            $table = new Puertos();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+            if (isset($_POST['SearchPuertoTrack']))
+            {
+                $this->_searchform = $this->getPuertoSearchForm();
+                if ($this->_searchform->isValid($_POST))
+                {
+                    $values = $this->_searchform->getValues();
+                    
+                    try
+                    {
+                        $puertosT = new Puertos();
+                        $puertos = $puertosT->searchPuerto($values["puerto"]);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($puertos, $puertosT));
+                        $paginator->setCurrentPageNumber($this->_getParam('page'));
+                        $paginator->setItemCountPerPage(15);
+                        $this->view->paginator = $paginator;
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
+                }
+                $this->view->puertoSearchForm = $this->getPuertoSearchForm();
+            }
         }
-        catch (Zend_Exception $error)
+        else
         {
-            $this->view->error = $error;
+            $this->view->puertoSearchForm = $this->getPuertoSearchForm();
+            try
+            {
+                $table = new Puertos();
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
     }
 
@@ -218,7 +249,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 	
-	private function getPuertosSearchForm()
+	private function getPuertoSearchForm()
     {      
         $alnumWithWS = new Zend_Validate_Alnum(True);
         
@@ -232,7 +263,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $puerto = $this->_searchform->createElement('text', 'cliente', array('label' => $this->language->_('Nombre')));
+        $puerto = $this->_searchform->createElement('text', 'puerto', array('label' => $this->language->_('Nombre')));
         $puerto       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 200));
 
