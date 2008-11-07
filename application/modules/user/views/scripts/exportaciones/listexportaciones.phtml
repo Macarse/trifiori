@@ -122,7 +122,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"orden",dir:"desc"}}
+                {sortedBy:{key:"orden",dir:"desc"},draggableColumns:true}
         );
     };
 });

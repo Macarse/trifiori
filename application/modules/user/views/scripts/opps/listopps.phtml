@@ -70,7 +70,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs,
                                                     this.myDataSource,
                                                     {
-                                                        sortedBy:{key:"pedidoDinero",dir:"desc"}
+                                                        sortedBy:{key:"pedidoDinero",dir:"desc"},draggableColumns:true
                                                     }
         );
     };

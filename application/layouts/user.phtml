@@ -1,3 +1,4 @@
+
 <?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
 <html>
 <head>
@@ -18,6 +19,7 @@
     <!-- Dependency source files -->
     <script type="text/javascript" src="/yui/build/utilities/utilities.js"></script>
     <script type="text/javascript" src="/yui/build/container/container.js"></script>
+	<script type="text/javascript" src="/yui/build/container/container_core-min.js"></script>
 	<script type="text/javascript" src="/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 	<script type="text/javascript" src="/yui/build/element/element-beta-min.js"></script>
 	<script type="text/javascript" src="/yui/build/datasource/datasource-beta-min.js"></script>
@@ -28,51 +30,270 @@
 	<script type="text/javascript" src="/yui/build/animation/animation-min.js"></script>
 	<script type="text/javascript" src="/yui/build/json/json-min.js"></script>
 	<script type="text/javascript" src="/yui/build/autocomplete/autocomplete.js"></script>
+	<script type="text/javascript" src="/yui/build/menu/menu-min.js"></script>
 
     <script type="text/javascript" src="/js/handlers.js"></script>
-    <script type="text/javascript" src="/js/txtmenus.js"></script>
     <script type="text/javascript" src="/js/ajax.js"></script>
     <script type="text/javascript" src="/js/gen_validatorv31.js"></script>
 
     <!-- Menu source file -->
-    <script type="text/javascript" src="/yui/build/menu/menu.js"></script>
-    <script type="text/javascript">
-        YAHOO.util.Event.onDOMReady(function () {
-            var oMenuBar = new YAHOO.widget.MenuBar("mymenubar", { 
-                                                        lazyload: true,
-                                                        itemdata: txtmenuspa
-                                                        });
-            oMenuBar.render(document.body);
-
-            function onSubmenuShow() 
-            {
-                var oIFrame, oElement, nOffsetWidth;
-                // Keep the left-most submenu against the left edge of the browser viewport
-                if (this.id == "yahoo")
-                {
-                    YAHOO.util.Dom.setX(this.element, 0);
-                    oIFrame = this.iframe;
-                    if (oIFrame) 
-                    {
-                        YAHOO.util.Dom.setX(oIFrame, 0);
+        <script type="text/javascript">
+            YAHOO.util.Event.onContentReady("menuusuario", function () {
+                var ua = YAHOO.env.ua, oAnim;  // Animation instance
+                function onSubmenuBeforeShow(p_sType, p_sArgs) {
+                    var oBody,oElement,oShadow,oUL;
+                    if (this.parent) {
+                        oElement = this.element;
+                        oShadow = oElement.lastChild;
+                        oShadow.style.height = "0px";
+                        if (oAnim && oAnim.isAnimated()) {
+                            oAnim.stop();
+                            oAnim = null;}
+                        oBody = this.body;
+                        if (this.parent && !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+                            if (ua.gecko || ua.opera) {
+                                oBody.style.width = oBody.clientWidth + "px";
+                            }
+                            if (ua.ie == 7) {
+                                oElement.style.width = oElement.clientWidth + "px";
+                            }
+                        
+                        }
+                        oBody.style.overflow = "hidden";
+                        oUL = oBody.getElementsByTagName("ul")[0];
+                        oUL.style.marginTop = ("-" + oUL.offsetHeight + "px");
                     }
-                    this.cfg.setProperty("x", 0, true);
                 }
 
-                if ((this.id == "filemenu" || this.id == "editmenu") && YAHOO.env.ua.ie)
-                {
-                    oElement = this.element;
-                    nOffsetWidth = oElement.offsetWidth;
-                    oElement.style.width = nOffsetWidth + "px";
-                    oElement.style.width = (nOffsetWidth - (oElement.offsetWidth - nOffsetWidth)) + "px";
+                function onTween(p_sType, p_aArgs, p_oShadow) {
+                    if (this.cfg.getProperty("iframe")) {
+                        this.syncIframe();
+                    }
+                
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
                 }
-            }
-            oMenuBar.subscribe("show", onSubmenuShow);
-        });
-    </script>
 
+                function onAnimationComplete(p_sType, p_aArgs, p_oShadow) {
+                    var oBody = this.body,
+                        oUL = oBody.getElementsByTagName("ul")[0];
+
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
+
+                    oUL.style.marginTop = "";
+                    oBody.style.overflow = "";
+
+                    if (this.parent &&  !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+                        if (ua.gecko || ua.opera) {
+                            oBody.style.width = "";
+                        }
+                        
+                        if (ua.ie == 7) {
+                            this.element.style.width = "";
+                        }
+                    }
+                }
+
+                function onSubmenuShow(p_sType, p_sArgs) {
+                    var oElement,oShadow,oUL;
+                
+                    if (this.parent) {
+                        oElement = this.element;
+                        oShadow = oElement.lastChild;
+                        oUL = this.body.getElementsByTagName("ul")[0];
+                    
+                        oAnim = new YAHOO.util.Anim(oUL, 
+                            { marginTop: { to: 0 } },
+                            .5, YAHOO.util.Easing.easeOut);
+
+                        oAnim.onStart.subscribe(function () {        
+                            oShadow.style.height = "100%";
+                        });
+    
+                        oAnim.animate();
+
+                    if (YAHOO.env.ua.ie) {                            
+                            oShadow.style.height = oElement.offsetHeight + "px";
+                            oAnim.onTween.subscribe(onTween, oShadow, this);
+                        }
+                        oAnim.onComplete.subscribe(onAnimationComplete, oShadow, this);                    
+                    }
+                }
+
+                var oMenuBar = new YAHOO.widget.MenuBar("menuusuario", { 
+                                                            autosubmenudisplay: true, 
+                                                            hidedelay: 750, 
+                                                            lazyload: true });
+                
+                oMenuBar.subscribe("beforeShow", onSubmenuBeforeShow);
+                oMenuBar.subscribe("show", onSubmenuShow);
+
+                oMenuBar.render();                      
+            });
+        </script>
     </head>
     <body class="yui-skin-sam">
+	 <div id="yui-main">
+                    <div class="yui-b">
+                        <!-- start: stack grids here -->
+                       <div id="menuusuario" class="yuimenubar yuimenubarnav">
+                            <div class="bd">
+                                <ul class="first-of-type">
+                                    <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="/user/main-page/logout"><?= $this->language->_("Logout")?></a></li>
+                                    <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuexportaciones"><?= $this->language->_("Exportaciones")?></a>
+                                        <div id="menuexportaciones" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/addexportaciones"><?= $this->language->_("Agregar exportacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Modificar exportacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Borrar exportacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Listado")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#"><?= $this->language->_("Estadisticas")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuimportaciones"><?= $this->language->_("Importaciones")?></a>
+                                        <div id="menuimportaciones" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/addimportaciones"><?= $this->language->_("Agregar importacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Modificar importacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Borrar importacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Listado")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#"><?= $this->language->_("Estadisticas")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuopp"><?= $this->language->_("OPP")?></a>
+                                        <div id="menuopp" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/opps/addopps"><?= $this->language->_("Agregar opp")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/opps/listopps"><?= $this->language->_("Modificar opp")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/opps/listopps"><?= $this->language->_("Borrar opp")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/opps/listopps"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>									
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuclientes"><?= $this->language->_("Clientes")?></a>
+                                        <div id="menuclientes" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/addclientes"><?= $this->language->_("Agregar cliente")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Modificar cliente")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Borrar cliente")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>									
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuproveedores"><?= $this->language->_("Proveedores")?></a>
+                                        <div id="menuproveedores" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/addproveedores"><?= $this->language->_("Agregar proveedor")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Modificar proveedor")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Borrar proveedor")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menugiros"><?= $this->language->_("Giros")?></a>
+                                        <div id="menugiros" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/giros/addgiros"><?= $this->language->_("Agregar giro")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/giros/listgiros"><?= $this->language->_("Modificar giro")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/giros/listgiros"><?= $this->language->_("Borrar giro")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/giros/listgiros"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menucargas"><?= $this->language->_("Cargas")?></a>
+                                        <div id="menucargas" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/cargas/addcargas"><?= $this->language->_("Agregar carga")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/cargas/listcargas"><?= $this->language->_("Modificar carga")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/cargas/listcargas"><?= $this->language->_("Borrar carga")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/cargas/listcargas"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menudestinaciones"><?= $this->language->_("Destinaciones")?></a>
+                                        <div id="menudestinaciones" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/destinaciones/adddestinaciones"><?= $this->language->_("Agregar destinacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/destinaciones/listdestinaciones"><?= $this->language->_("Modificar destinacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/destinaciones/listdestinaciones"><?= $this->language->_("Borrar destinacion")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/destinaciones/listdestinaciones"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menupuertos"><?= $this->language->_("Puertos")?></a>
+                                        <div id="menupuertos" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/puertos/addpuertos"><?= $this->language->_("Agregar puerto")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/puertos/listpuertos"><?= $this->language->_("Modificar puerto")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/puertos/listpuertos"><?= $this->language->_("Borrar puerto")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/puertos/listpuertos"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menumonedas"><?= $this->language->_("Monedas")?></a>
+                                        <div id="menumonedas" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/monedas/addmonedas"><?= $this->language->_("Agregar moneda")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/monedas/listmonedas"><?= $this->language->_("Modificar moneda")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/monedas/listmonedas"><?= $this->language->_("Borrar moneda")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/monedas/listmonedas"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menutransportes"><?= $this->language->_("Transportes")?></a>
+                                        <div id="menutransportes" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/transportes/addtransportes"><?= $this->language->_("Agregar transporte")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/transportes/listtransportes"><?= $this->language->_("Modificar transporte")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/transportes/listtransportes"><?= $this->language->_("Borrar transporte")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/transportes/listtransportes"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menubanderas"><?= $this->language->_("Banderas")?></a>
+                                        <div id="menubanderas" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/banderas/addbanderas"><?= $this->language->_("Agregar bandera")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/banderas/listbanderas"><?= $this->language->_("Modificar bandera")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/banderas/listbanderas"><?= $this->language->_("Borrar bandera")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/banderas/listbanderas"><?= $this->language->_("Listado")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+								</ul>            
+                            </div>
+                        </div>
+		      </div>
+    </div>
     <?= $this->layout()->content ?>
     </body>
 </html>
