@@ -121,6 +121,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $id = $_GET["id"];
         $results = null;
         $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
         
         try
         {
