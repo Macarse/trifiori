@@ -22,6 +22,7 @@ class Bootstrap
         $this->setupDb();
         $this->setupMVC();
         $this->setupIdentity();
+        $this->setupTranslate();
     }
 
     public function run()
@@ -35,7 +36,8 @@ class Bootstrap
         error_reporting(E_ALL|E_STRICT);
         ini_set('display_errors', true);
         date_default_timezone_set('America/Buenos_Aires');
-        Zend_Locale::setDefault('es_AR');
+        Zend_Locale::setDefault('en_EN');
+//         Zend_Locale::setDefault('es_AR');
     }
 
     private function setupMVC()
@@ -97,20 +99,26 @@ class Bootstrap
     private function setupDb()
     {
         $config = Zend_Registry::getInstance()->configuration;
-        
-        try 
-        {     
-            $db = Zend_Db::factory($config->db->adapter, $config->db->toArray());   
+
+        try
+        {
+            $db = Zend_Db::factory($config->db->adapter, $config->db->toArray());
             $db->query("SET NAMES 'utf8'");
-            
+
             Zend_Registry::getInstance()->database = $db;
             Zend_Db_Table::setDefaultAdapter($db);
         }
         catch (Zend_Exception $error)
         {
-            Zend_Registry::getInstance()->database = null;   
+            Zend_Registry::getInstance()->database = null;
         }
 
+    }
+
+    private function setupTranslate()
+    {
+        $translate = new Zend_Translate('gettext', $this->root . '/application/languages/en.mo', 'en');
+        Zend_Registry::getInstance()->language = $translate;
     }
 
     private function setupIdentity()

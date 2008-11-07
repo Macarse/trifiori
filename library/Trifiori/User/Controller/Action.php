@@ -7,6 +7,9 @@ abstract class Trifiori_User_Controller_Action extends Zend_Controller_Action
     {
         $this->_helper->layout->setLayout('user');
 
+        $this->language = Zend_Registry::getInstance()->language;
+        $this->view->language = Zend_Registry::getInstance()->language;
+
         if (!isset($this->_baseUrl))
         {
             $this->_baseUrl = $this->_helper->url->url(array());

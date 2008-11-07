@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: trifiori\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-07 01:54-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Macarse <macarse@gmail.com>\n"
+"Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _;translate\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../application/modules/user/controllers/CargasController.php:15
+msgid "Agregar Carga"
+msgstr "Add Load"
+
+#: ../application/modules/user/controllers/CargasController.php:54
+msgid "Listar Cargas"
+msgstr "List Loads"
+
+#: ../application/modules/user/controllers/CargasController.php:98
+msgid "Modificar Carga"
+msgstr "Modify Load"
+
+#: ../application/modules/user/controllers/CargasController.php:174
+#: ../application/modules/user/controllers/CargasController.php:257
+msgid "Cantidad de Bultos"
+msgstr "Package quantities"
+
+#: ../application/modules/user/controllers/CargasController.php:185
+#: ../application/modules/user/controllers/CargasController.php:266
+msgid "Tipo Envase"
+msgstr "Type packaging"
+
+#: ../application/modules/user/controllers/CargasController.php:186
+#: ../application/modules/user/controllers/CargasController.php:267
+msgid "Envase Flexible"
+msgstr "Flexible package"
+
+#: ../application/modules/user/controllers/CargasController.php:187
+#: ../application/modules/user/controllers/CargasController.php:268
+msgid "Caja"
+msgstr "Box"
+
+#: ../application/modules/user/controllers/CargasController.php:188
+#: ../application/modules/user/controllers/CargasController.php:269
+msgid "Frasco"
+msgstr "Tin"
+
+#: ../application/modules/user/controllers/CargasController.php:189
+#: ../application/modules/user/controllers/CargasController.php:270
+msgid "Tarro"
+msgstr "Tin2"
+
+#: ../application/modules/user/controllers/CargasController.php:190
+#: ../application/modules/user/controllers/CargasController.php:271
+msgid "Lata de Aluminio"
+msgstr "Aluminum tin"
+
+#: ../application/modules/user/controllers/CargasController.php:193
+#: ../application/modules/user/controllers/CargasController.php:274
+msgid "Peso"
+msgstr "Weight"
+
+#: ../application/modules/user/controllers/CargasController.php:203
+#: ../application/modules/user/controllers/CargasController.php:282
+msgid "Unidad"
+msgstr "Unit"
+
+#: ../application/modules/user/controllers/CargasController.php:204
+#: ../application/modules/user/controllers/CargasController.php:283
+msgid "Toneladas"
+msgstr "Ton"
+
+#: ../application/modules/user/controllers/CargasController.php:205
+#: ../application/modules/user/controllers/CargasController.php:284
+msgid "Kilogramos"
+msgstr "Kg"
+
+#: ../application/modules/user/controllers/CargasController.php:206
+#: ../application/modules/user/controllers/CargasController.php:285
+msgid "Gramos"
+msgstr "Gr"
+
+#: ../application/modules/user/controllers/CargasController.php:210
+#: ../application/modules/user/controllers/CargasController.php:289
+msgid "Número de Paquete"
+msgstr "Number of Package"
+
+#: ../application/modules/user/controllers/CargasController.php:218
+#: ../application/modules/user/controllers/CargasController.php:296
+msgid "Marca y número"
+msgstr "Trademark and number"
+
+#: ../application/modules/user/controllers/CargasController.php:226
+#: ../application/modules/user/controllers/CargasController.php:303
+msgid "Merc. IMCO"
+msgstr "IMCO Goods"
+
+#: ../application/modules/user/controllers/CargasController.php:241
+#: ../application/modules/user/controllers/CargasController.php:317
+msgid "Ingresar"
+msgstr "Add"
+
+#: ../application/modules/user/views/scripts/cargas/index.phtml:1
+msgid "Nada que ver"
+msgstr "Nothing to see"
+
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:5
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:44
+msgid "Cantidad Bultos"
+msgstr "Package quantities"
+
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:6
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:45
+msgid "Tipo de Envase"
+msgstr "Type of package"
+
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
+msgid "Modificar"
+msgstr "Modify"
+
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:13
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
+msgid "Eliminar"
+msgstr "Delete"
+
+#, fuzzy
+#~ msgid "Número de paquete"
+#~ msgstr "Number of Package"
+#~ msgid "unidad"
+#~ msgstr "Unity"
+
