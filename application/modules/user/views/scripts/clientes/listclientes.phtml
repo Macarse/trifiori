@@ -1,3 +1,20 @@
+<div class='cInputsTable'>
+	<label for="cColName"><?= $this->language->_("Nombre")?></label>
+	<input type='checkbox' id="cColName" name="cColName" checked>  
+	<label for="cColAddress"><?= $this->language->_("Direccion")?></label>
+	<input type='checkbox' id="cColAddress" name="cColAddress" checked> 
+	<label for="cColCp"><?= $this->language->_("CP")?></label>
+	<input type='checkbox' id="cColCp" name="cColCp" checked> 
+	<label for="cColLocal"><?= $this->language->_("Localidad")?></label>
+	<input type='checkbox' id="cColLocal" name="cColLocal" checked> 
+	<label for="cColCuit"><?= $this->language->_("CUIT")?></label>
+	<input type='checkbox' id="cColCuit" name="cColCuit" checked> 
+	<label for="cColIva"><?= $this->language->_("Tipo IVA")?></label>
+	<input type='checkbox' id="cColIva" name="cColIva" checked>  
+	<label for="cColType"><?= $this->language->_("Tipo Cliente")?></label>
+	<input type='checkbox' id="cColType" name="cColType" checked>  
+</div>
+
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -77,6 +94,51 @@ YAHOO.util.Event.addListener(window, "load", function() {
 
         var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
                 {sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
+		
+		YAHOO.util.Event.addListener("cColName", "click", function (e){
+									   if (document.getElementById('cColName').checked)
+										  myDT.showColumn("name");
+									   else
+										  myDT.hideColumn("name");
+									});
+
+		YAHOO.util.Event.addListener("cColCp", "click", function (e){
+									   if (document.getElementById('cColCp').checked)
+										  myDT.showColumn("cp");
+									   else
+										  myDT.hideColumn("cp");
+									});
+	
+		YAHOO.util.Event.addListener("cColAddress", "click", function (e){
+									   if (document.getElementById('cColAddress').checked)
+										  myDT.showColumn("address");
+									   else
+										  myDT.hideColumn("address");
+									});
+		YAHOO.util.Event.addListener("cColLocal", "click", function (e){
+									   if (document.getElementById('cColLocal').checked)
+										  myDT.showColumn("local");
+									   else
+										  myDT.hideColumn("local");
+									});
+		YAHOO.util.Event.addListener("cColCuit", "click", function (e){
+									   if (document.getElementById('cColCuit').checked)
+										  myDT.showColumn("cuit");
+									   else
+										  myDT.hideColumn("cuit");
+									});
+		YAHOO.util.Event.addListener("cColIva", "click", function (e){
+									   if (document.getElementById('cColIva').checked)
+										  myDT.showColumn("iva");
+									   else
+										  myDT.hideColumn("iva");
+									});
+		YAHOO.util.Event.addListener("cColType", "click", function (e){
+									   if (document.getElementById('cColType').checked)
+										  myDT.showColumn("type");
+									   else
+										  myDT.hideColumn("type");
+									});
     };
 });
 </script>
