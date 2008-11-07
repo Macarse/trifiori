@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 01:54-0300\n"
+"POT-Creation-Date: 2008-11-07 02:31-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -16,6 +16,32 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: ..\n"
 
+#: ../application/modules/default/controllers/ErrorController.php:16
+msgid "La página solicitada no existe"
+msgstr "The page requested does not exist."
+
+#: ../application/modules/default/controllers/ErrorController.php:20
+msgid "Un error inesperado ha ocurrido: "
+msgstr "An unexpected error has ocurred."
+
+#: ../application/modules/default/controllers/IndexController.php:90
+msgid "Imposible conectarse a la base de datos."
+msgstr "Unable to connect to the database."
+
+#: ../application/modules/default/controllers/IndexController.php:127
+msgid "Usuario"
+msgstr "User"
+
+#: ../application/modules/default/controllers/IndexController.php:134
+msgid "Clave"
+msgstr "Password"
+
+#: ../application/modules/default/controllers/IndexController.php:142
+#: ../application/modules/user/controllers/CargasController.php:243
+#: ../application/modules/user/controllers/CargasController.php:321
+msgid "Ingresar"
+msgstr "Add"
+
 #: ../application/modules/user/controllers/CargasController.php:15
 msgid "Agregar Carga"
 msgstr "Add Load"
@@ -28,85 +54,88 @@ msgstr "List Loads"
 msgid "Modificar Carga"
 msgstr "Modify Load"
 
-#: ../application/modules/user/controllers/CargasController.php:174
-#: ../application/modules/user/controllers/CargasController.php:257
+#: ../application/modules/user/controllers/CargasController.php:176
+#: ../application/modules/user/controllers/CargasController.php:261
 msgid "Cantidad de Bultos"
 msgstr "Package quantities"
 
-#: ../application/modules/user/controllers/CargasController.php:185
-#: ../application/modules/user/controllers/CargasController.php:266
+#: ../application/modules/user/controllers/CargasController.php:187
+#: ../application/modules/user/controllers/CargasController.php:270
 msgid "Tipo Envase"
 msgstr "Type packaging"
 
-#: ../application/modules/user/controllers/CargasController.php:186
-#: ../application/modules/user/controllers/CargasController.php:267
+#: ../application/modules/user/controllers/CargasController.php:188
+#: ../application/modules/user/controllers/CargasController.php:271
 msgid "Envase Flexible"
 msgstr "Flexible package"
 
-#: ../application/modules/user/controllers/CargasController.php:187
-#: ../application/modules/user/controllers/CargasController.php:268
+#: ../application/modules/user/controllers/CargasController.php:189
+#: ../application/modules/user/controllers/CargasController.php:272
 msgid "Caja"
 msgstr "Box"
 
-#: ../application/modules/user/controllers/CargasController.php:188
-#: ../application/modules/user/controllers/CargasController.php:269
+#: ../application/modules/user/controllers/CargasController.php:190
+#: ../application/modules/user/controllers/CargasController.php:273
 msgid "Frasco"
 msgstr "Tin"
 
-#: ../application/modules/user/controllers/CargasController.php:189
-#: ../application/modules/user/controllers/CargasController.php:270
+#: ../application/modules/user/controllers/CargasController.php:191
+#: ../application/modules/user/controllers/CargasController.php:274
 msgid "Tarro"
 msgstr "Tin2"
 
-#: ../application/modules/user/controllers/CargasController.php:190
-#: ../application/modules/user/controllers/CargasController.php:271
+#: ../application/modules/user/controllers/CargasController.php:192
+#: ../application/modules/user/controllers/CargasController.php:275
 msgid "Lata de Aluminio"
 msgstr "Aluminum tin"
 
-#: ../application/modules/user/controllers/CargasController.php:193
-#: ../application/modules/user/controllers/CargasController.php:274
+#: ../application/modules/user/controllers/CargasController.php:195
+#: ../application/modules/user/controllers/CargasController.php:278
 msgid "Peso"
 msgstr "Weight"
 
-#: ../application/modules/user/controllers/CargasController.php:203
-#: ../application/modules/user/controllers/CargasController.php:282
+#: ../application/modules/user/controllers/CargasController.php:205
+#: ../application/modules/user/controllers/CargasController.php:286
 msgid "Unidad"
 msgstr "Unit"
 
-#: ../application/modules/user/controllers/CargasController.php:204
-#: ../application/modules/user/controllers/CargasController.php:283
+#: ../application/modules/user/controllers/CargasController.php:206
+#: ../application/modules/user/controllers/CargasController.php:287
 msgid "Toneladas"
 msgstr "Ton"
 
-#: ../application/modules/user/controllers/CargasController.php:205
-#: ../application/modules/user/controllers/CargasController.php:284
+#: ../application/modules/user/controllers/CargasController.php:207
+#: ../application/modules/user/controllers/CargasController.php:288
 msgid "Kilogramos"
 msgstr "Kg"
 
-#: ../application/modules/user/controllers/CargasController.php:206
-#: ../application/modules/user/controllers/CargasController.php:285
+#: ../application/modules/user/controllers/CargasController.php:208
+#: ../application/modules/user/controllers/CargasController.php:289
 msgid "Gramos"
 msgstr "Gr"
 
-#: ../application/modules/user/controllers/CargasController.php:210
-#: ../application/modules/user/controllers/CargasController.php:289
+#: ../application/modules/user/controllers/CargasController.php:212
+#: ../application/modules/user/controllers/CargasController.php:293
 msgid "Número de Paquete"
 msgstr "Number of Package"
 
-#: ../application/modules/user/controllers/CargasController.php:218
-#: ../application/modules/user/controllers/CargasController.php:296
+#: ../application/modules/user/controllers/CargasController.php:220
+#: ../application/modules/user/controllers/CargasController.php:300
 msgid "Marca y número"
 msgstr "Trademark and number"
 
-#: ../application/modules/user/controllers/CargasController.php:226
-#: ../application/modules/user/controllers/CargasController.php:303
+#: ../application/modules/user/controllers/CargasController.php:228
+#: ../application/modules/user/controllers/CargasController.php:307
 msgid "Merc. IMCO"
 msgstr "IMCO Goods"
 
-#: ../application/modules/user/controllers/CargasController.php:241
-#: ../application/modules/user/controllers/CargasController.php:317
-msgid "Ingresar"
-msgstr "Add"
+#: ../application/modules/default/views/scripts/index/login.phtml:5
+msgid "Credenciales incorrectas."
+msgstr "Wrong username or password"
+
+#: ../application/modules/default/views/scripts/error/error.phtml:2
+msgid "Ha ocurrido un error"
+msgstr "An error has ocurred"
 
 #: ../application/modules/user/views/scripts/cargas/index.phtml:1
 msgid "Nada que ver"
@@ -123,14 +152,28 @@ msgid "Tipo de Envase"
 msgstr "Type of package"
 
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:28
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
 msgid "Modificar"
 msgstr "Modify"
 
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:13
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:31
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
 msgid "Eliminar"
 msgstr "Delete"
+
+#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:16
+msgid "*Ingrese un nombre"
+msgstr "*Insert a name"
+
+#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:17
+msgid "*El nombre debe ser alfanumerico"
+msgstr ""
+
+#: ../application/modules/user/views/scripts/banderas/addbanderas.phtml:18
+msgid "*El nombre debe contener hasta 20 caracteres"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Número de paquete"

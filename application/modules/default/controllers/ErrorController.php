@@ -1,6 +1,6 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action
+class ErrorController extends Trifiori_Default_Controller_Action
 {
     public function errorAction()
     {
@@ -13,11 +13,11 @@ class ErrorController extends Zend_Controller_Action
                 // 404 error -- controller or action not found
                 $this->getResponse()->setRawHeader('HTTP/1.1 404 Not Found');
 
-                $content = "La pagina solicitada no existe";
+                $content = $this->language->_("La página solicitada no existe");
                 break;
             default:
                 // application error
-                $content = "Un error inesperado ha ocurrido: ". $errors->exception->getMessage(); 
+                $content = $this->language->_("Un error inesperado ha ocurrido: "). $errors->exception->getMessage(); 
                 break;
         }
 
