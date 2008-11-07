@@ -27,7 +27,13 @@ class Destinaciones extends Zend_Db_Table_Abstract
 
         return True;
     }
-
+    
+    public function searchDestinacion( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("DESCRIPCION_DES LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyDestinacion( $id, $name )
     {
         try

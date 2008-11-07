@@ -12,6 +12,9 @@
 	<label for="cColImco"><?= $this->language->_("Merc. IMCO")?></label>
 	<input type='checkbox' id="cColImco" name="cColImco" checked>  
 </div>
+<div class="busqueda">
+    <?= $this->cargaSearchForm ?>
+</div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -50,7 +53,11 @@
     </tbody>
 </table>
 </div>
-<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
+
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {

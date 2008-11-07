@@ -1,3 +1,9 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<div class="busqueda">
+    <?= $this->proveedorSearchForm ?>
+</div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -32,7 +38,9 @@
 </table>
 </div>
 
-<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

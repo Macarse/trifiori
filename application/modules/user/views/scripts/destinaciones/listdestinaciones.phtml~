@@ -1,9 +1,3 @@
-<? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
-<? } ?>
-<div class="busqueda">
-    <?= $this->giroSearchForm ?>
-</div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -15,14 +9,14 @@
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
-        <? foreach($this->paginator as $giro) { ?>
+        <? foreach($this->paginator as $destinacion) { ?>
         <tr> 
-            <td> <?= $giro->name() ?> </td>
+            <td> <?= $destinacion->name() ?> </td>
             <td>
-                <a href="<?= "/user/giros/modgiros/id/" . $giro->id()?>"><?= $this->language->_("Modificar")?></a>
+                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Modificar")?> </a>
             </td>
 			<td>
-                <a href="<?= "/user/giros/removegiros/id/" . $giro->id()?>"><?= $this->language->_("Eliminar")?></a>
+                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -39,9 +33,9 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:true},
-            {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
-            {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}
+            {key:"name",label:"Nombre", sortable:true},
+			{key:"mod",label:"Modificar", sortable:false},
+			{key:"elim",label:"Eliminar", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
@@ -50,9 +44,9 @@ YAHOO.util.Event.addListener(window, "load", function() {
         {
             fields:
             [
-                {key:"name"},
-                {key:"mod"},
-                {key:"elim"}
+                {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:true},
+                {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
+                {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}
             ]
         };
 

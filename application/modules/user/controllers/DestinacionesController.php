@@ -3,6 +3,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -46,20 +47,51 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle($this->language->_("Listar Destinaciones"));
 
+        $this->view->paginator = null;
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
-        try
+        if ($this->getRequest()->isPost())
         {
-            $table = new Destinaciones();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+            if (isset($_POST['SearchDestinacionTrack']))
+            {
+                $this->_searchform = $this->getDestinacionSearchForm();
+                if ($this->_searchform->isValid($_POST))
+                {
+                    $values = $this->_searchform->getValues();
+                    
+                    try
+                    {
+                        $destinacionesT = new Destinaciones();
+                        $destinaciones = $destinacionesT->searchDestinacion($values["destinacion"]);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($destinaciones, $destinacionesT));
+                        $paginator->setCurrentPageNumber($this->_getParam('page'));
+                        $paginator->setItemCountPerPage(15);
+                        $this->view->paginator = $paginator;
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
+                }
+                $this->view->destinacionSearchForm = $this->getDestinacionSearchForm();
+            }
         }
-        catch (Zend_Exception $error)
+        else
         {
-            $this->view->error = $error;
+            $this->view->destinacionSearchForm = $this->getDestinacionSearchForm();
+            try
+            {
+                $table = new Destinaciones();
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
     }
 
@@ -200,6 +232,32 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 	
+	private function getDestinacionSearchForm()
+    {      
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
+
+        $destinacion = $this->_searchform->createElement('text', 'destinacion', array('label' => $this->language->_('Nombre')));
+        $destinacion       ->addValidator($alnumWithWS)
+                     ->addValidator('stringLength', false, array(1, 200));
+
+        // Add elements to form:
+        $this->_searchform->addElement($destinacion)
+             ->addElement('hidden', 'SearchDestinacionTrack', array('values' => 'logPost'))
+             ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
+    
 	public function getdataAction() {
        $arr = array();
 	   $aux = array();

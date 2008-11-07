@@ -33,7 +33,12 @@ class Proveedores extends Zend_Db_Table_Abstract
         return True;
     }
 
-
+    public function searchProveedor( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("NOMBRE_TRA LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyProveedor( $id, $name, $adress, $tel, $fax, $mail )
     {
         try

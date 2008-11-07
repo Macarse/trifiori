@@ -15,6 +15,9 @@
 	<input type='checkbox' id="cColType" name="cColType" checked>  
 </div>
 
+<div class="busqueda">
+    <?= $this->clienteSearchForm ?>
+</div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -54,7 +57,9 @@
 </table>
 </div>
 
-<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
 
 <div id="myContainer"></div>
 

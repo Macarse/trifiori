@@ -3,6 +3,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -53,20 +54,53 @@ class user_CargasController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle($this->language->_("Listar Cargas"));
 
+        $this->view->paginator = null;
+        
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
-        try
+        if ($this->getRequest()->isPost())
         {
-            $table = new Cargas();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+        
+            if (isset($_POST['SearchCargaTrack']))
+            {
+                $this->_searchform = $this->getCargaSearchForm();
+                if ($this->_searchform->isValid($_POST))
+                {
+                    $values = $this->_searchform->getValues();
+                    
+                    try
+                    {
+                        $cargasT = new Cargas();
+                        $cargas = $cargasT->searchCarga($values["carga"]);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($cargas, $cargasT));
+                        $paginator->setCurrentPageNumber($this->_getParam('page'));
+                        $paginator->setItemCountPerPage(15);
+                        $this->view->paginator = $paginator;
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
+                }
+                $this->view->cargaSearchForm = $this->getCargaSearchForm();
+            }
         }
-        catch (Zend_Exception $error)
+        else
         {
-            $this->view->error = $error;
+            $this->view->cargaSearchForm = $this->getCargaSearchForm();
+            try
+            {
+                $table = new Cargas();
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
     }
 
@@ -323,6 +357,30 @@ class user_CargasController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 
+    private function getCargaSearchForm()
+    {      
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
+
+        $carga = $this->_searchform->createElement('text', 'carga', array('label' => $this->language->_('Nombre')));
+        $carga       ->addValidator('alnum')
+                     ->addValidator('stringLength', false, array(1, 25));
+
+        // Add elements to form:
+        $this->_searchform->addElement($carga)
+             ->addElement('hidden', 'SearchCargaTrack', array('values' => 'logPost'))
+             ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
+    
    public function getdataAction() {
        $arr = array();
 	   $aux = array();

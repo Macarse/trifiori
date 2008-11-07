@@ -27,7 +27,13 @@ class Giros extends Zend_Db_Table_Abstract
 
         return True;
     }
-
+    
+    public function searchGiro( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("SECCION_GIR LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyGiro( $id, $name )
     {
         try

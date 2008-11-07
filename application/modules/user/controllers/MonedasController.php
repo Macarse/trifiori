@@ -3,6 +3,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
 
     public function indexAction()
@@ -48,20 +49,51 @@ class user_MonedasController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle("Listar Monedas");
 
+        $this->view->paginator = null;
         /*Errors from the past are deleted*/
         unset($this->view->error);
 
-        try
+        if ($this->getRequest()->isPost())
         {
-            $table = new Monedas();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+            if (isset($_POST['SearchMonedaTrack']))
+            {
+                $this->_searchform = $this->getMonedaSearchForm();
+                if ($this->_searchform->isValid($_POST))
+                {
+                    $values = $this->_searchform->getValues();
+                    
+                    try
+                    {
+                        $monedasT = new Monedas();
+                        $monedas = $monedasT->searchMoneda($values["moneda"]);
+                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($monedas, $monedasT));
+                        $paginator->setCurrentPageNumber($this->_getParam('page'));
+                        $paginator->setItemCountPerPage(15);
+                        $this->view->paginator = $paginator;
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $error;
+                    }
+                }
+                $this->view->monedaSearchForm = $this->getMonedaSearchForm();
+            }
         }
-        catch (Zend_Exception $error)
+        else
         {
-            $this->view->error = $error;
+            $this->view->monedaSearchForm = $this->getMonedaSearchForm();
+            try
+            {
+                $table = new Monedas();
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
     }
 
@@ -216,7 +248,32 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 
         return $this->_addform;
     }
-	
+    
+    private function getMonedaSearchForm()
+    {      
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+        
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
+
+        $moneda = $this->_searchform->createElement('text', 'moneda', array('label' => $this->language->_('Nombre')));
+        $moneda       ->addValidator($alnumWithWS)
+                     ->addValidator('stringLength', false, array(1, 150));
+
+        // Add elements to form:
+        $this->_searchform->addElement($moneda)
+             ->addElement('hidden', 'SearchMonedaTrack', array('values' => 'logPost'))
+             ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
 	public function getdataAction() {
        $arr = array();
 	   $aux = array();

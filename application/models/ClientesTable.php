@@ -36,7 +36,13 @@ class Clientes extends Zend_Db_Table_Abstract
 
         return True;
     }
-
+    
+    public function searchCliente( $name )
+    {
+        $name = mysql_real_escape_string($name);
+        return $this->select()->where("NOMBRE_CLI LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyCliente( $id, $name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
     {
         try

@@ -1,0 +1,96 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<div class="busqueda">
+    <?= $this->exportacionSearchForm ?>
+</div>
+<div id="divdetalles" onclick="HideDetails()" style="cursor:crosshair"></div>
+<div id="divlistado" class="clistado">
+    <table id="tablelist">
+    <thead>
+        <tr>
+            <th>Órden</th>
+            <th>Transporte</th>
+            <th>Cliente</th>
+            <th>Destino</th>
+            <th>Carga</th>
+            <th>Fecha de Ingreso</th>
+            <th>Descripción Mercadería</th>
+            <th>Detalle</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $exportacion) { ?>
+        <tr>
+            <td> <?= $exportacion->orden() ?> </td>
+            <td> <?= $exportacion->codTransporteName() ?> </td>
+            <td> <?= $exportacion->codClienteName() ?> </td>
+            <td> <?= $exportacion->codDestinacionName() ?> </td>
+            <td> <?= $exportacion->codCargaName() ?> </td>
+            <td> <?= $exportacion->fechaIngreso() ?> </td>
+            <td> <?= $exportacion->desMercaderias() ?> </td>
+            <td>
+            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value="Detalle" />
+            </td>
+            <td>
+                <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion->id() ?>">Modificar</a>
+            </td>
+            <td>
+                <a href="<?= "/user/exportaciones/removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
+            </td>
+        </tr>
+        <? } ?>
+    <? } ?>
+    </tbody>
+
+</table>
+</div>
+
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
+
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+    YAHOO.example.EnhanceFromMarkup = new function() {
+        var myColumnDefs = [
+            {key:"orden",label:"Orden", sortable:true},
+            {key:"trans",label:"Transporte", sortable:true},
+            {key:"cliente",label:"Codigo Cliente", sortable:true},
+            {key:"destinacion",label:"Destinacion", sortable:true},
+            {key:"carga",label:"Carga", sortable:true},
+            {key:"feching",label:"Fecha de Ingreso", sortable:true},
+            {key:"descmer",label:"Descripción Mercadería", sortable:true},
+            {key:"detalle", label:"Detalle", sortable:false},
+            {key:"mod",label:"Modificar", sortable:false},
+            {key:"elim",label:"Eliminar", sortable:false}
+        ];
+
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema =
+        {
+            fields: 
+            [
+                {key:"orden"},
+                {key:"trans"},
+                {key:"cliente"},
+                {key:"destinacion"},
+                {key:"carga"},
+                {key:"feching"},
+                {key:"descmer"},
+                {key:"detalle"},
+                {key:"mod"},
+                {key:"elim"}
+            ]
+        };
+
+        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"orden",dir:"desc"},draggableColumns:true}
+        );
+    };
+});
+</script>
