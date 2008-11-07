@@ -42,7 +42,7 @@
 <div id="calIngPuerto" style="display:none;" class="ccalingpuerto"></div>
 <div id="calPerPre" style="display:none;" class="ccalperpre"></div>
 <div id="calFecFac" style="display:none;" class="ccalfecfac"></div>
-
+<div id='form_errorloc' class='errors_js_forms'></div>
 <script type="text/javascript">
         var mySchema = ["Resultset.Result","data","id"];
 		
@@ -99,6 +99,60 @@
             YAHOO.util.Dom.get("idcodDestinacion").value = args[2][1];
          }
         autocompleteDestinaciones.itemSelectEvent.subscribe(fnCallbackDest);
+		
+		// validacion
+		var frmvalidator  = new Validator("form");
+
+		//habilito alert con mensajes
+		frmvalidator.EnableOnPageErrorDisplaySingleBox();
+		frmvalidator.EnableMsgsTogether();
+		
+		frmvalidator.addValidation("orden","req","*Ingrese el numero de orden");
+		frmvalidator.addValidation("orden","numeric","*La orden debe ser unicamente numerica");
+				  
+		frmvalidator.addValidation("nameTransporte","req","*Elija un transporte");
+		frmvalidator.addValidation("nameTransporte","alnum_s ","*El transporte debe ser alfanumerico");
+				  
+		frmvalidator.addValidation("nameCliente","req","*Elija un cliente");
+		frmvalidator.addValidation("nameCliente","alpha_s","*El cliente debe ser alfanumerico");
+
+		frmvalidator.addValidation("nameBandera","req","*Elija una Bandera");
+		frmvalidator.addValidation("nameBandera","alpha_s","*La bandera debe contener solo letras");
+
+		frmvalidator.addValidation("nameMoneda","req","*Elija una moneda");
+		frmvalidator.addValidation("nameMoneda","alpha_s","*La moneda debe contener solo letras");
+
+		frmvalidator.addValidation("nameGiro","req","*Elija una destinacion");
+		frmvalidator.addValidation("nameGiro","alpha_s","*La destinacion debe contener solo letras");
+
+		frmvalidator.addValidation("nameCarga","req","*Elija una carga");
+		frmvalidator.addValidation("nameCarga","alnum","*La carga debe contener solo letras");
+
+		frmvalidator.addValidation("referencia","alnum_s","*La referencia debe ser alfanumerica");
+
+		frmvalidator.addValidation("fechaIngreso","req","*Ingrese una fecha de ingreso");
+		frmvalidator.addValidation("fechaIngreso","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "*La fecha de ingreso es invalida");
+
+		frmvalidator.addValidation("desMercaderias","req","*Ingrese una descripcion de mercaderia");
+		frmvalidator.addValidation("desMercaderias","alnum_s","*La descripcion de mercaderia debe ser alfanumerica");
+
+		frmvalidator.addValidation("valorFactura","num","*El valor de factura debe ser numerico");
+
+		frmvalidator.addValidation("vencimiento","req","*Ingrese un vencimiento");
+		frmvalidator.addValidation("vencimiento","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "*La fecha de vencimiento es invalida");
+
+		frmvalidator.addValidation("ingresoPuerto","req","*Ingrese un ingreso a puerto");
+		frmvalidator.addValidation("ingresoPuerto","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "*La fecha de ingreso a puerto es invalida");
+
+		frmvalidator.addValidation("PERnroDoc","req","*Ingrese un numero de permiso");
+		frmvalidator.addValidation("PERnroDoc","num","*El numero de permiso debe ser numerico");
+		
+		frmvalidator.addValidation("PERpresentado","req","*Ingrese la fecha del permiso presentado");
+		frmvalidator.addValidation("PERpresentado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","*La fecha del permiso presentado es invalida");
+
+		frmvalidator.addValidation("PERfactura","alnum_s","*El permiso de factura debe ser alfanumerico");
+
+		frmvalidator.addValidation("PERfechaFactura","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","*La fecha de la fecha del permiso de factura es invalida");		
 		
 
 </script>

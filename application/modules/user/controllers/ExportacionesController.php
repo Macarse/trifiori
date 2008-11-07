@@ -224,7 +224,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $alnumWithWS = new Zend_Validate_Alnum(True);
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setMethod('post')
+						->setName('form');
 
         $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
         $orden  ->addValidator('int')
@@ -407,7 +409,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+		$this->_modform->setAction($this->_baseUrl)
+				->setMethod('post')
+				->setName('form');
 
         $orden = $this->_modform->createElement('text', 'orden', array('label' => 'Órden'));
         $orden  ->setValue($row->orden() )
