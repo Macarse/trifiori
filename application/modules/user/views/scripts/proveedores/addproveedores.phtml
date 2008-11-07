@@ -4,3 +4,24 @@
 <div class="cformulario">
 	<?= $this->proveedorAddForm ?>
 </div>
+<div id='form_errorloc' class='errors_js_forms'></div>
+<script type="text/javascript">		
+		// validacion
+		var frmvalidator  = new Validator("form");
+
+		//habilito alert con mensajes
+		frmvalidator.EnableOnPageErrorDisplaySingleBox();
+		frmvalidator.EnableMsgsTogether();
+
+		frmvalidator.addValidation("name","req","*Ingrese un nombre");
+		frmvalidator.addValidation("name","alnum_s ","*El nombre debe ser alfanumerico");
+		frmvalidator.addValidation("name","maxlen=20","*El nombre debe contener hasta 20 caracteres");
+		
+		frmvalidator.addValidation("adress","req","*Ingrese una direccion");
+		frmvalidator.addValidation("adress","alnum_s ","*La direccion debe ser alfanumerico");
+		frmvalidator.addValidation("adress","maxlen=100","*La direccion debe contener hasta 100 caracteres");
+
+		frmvalidator.addValidation("tel","req","*Ingrese un telefono");
+		frmvalidator.addValidation("tel","alnum_s ","*El telefono debe ser alfanumerico");
+
+</script>

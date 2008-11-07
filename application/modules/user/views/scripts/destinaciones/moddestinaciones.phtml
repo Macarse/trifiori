@@ -4,3 +4,16 @@
 <div class="cformulario">
 	<?= $this->destinacionModForm ?>
 </div>
+<div id='form_errorloc' class='errors_js_forms'></div>
+<script type="text/javascript">		
+		// validacion
+		var frmvalidator  = new Validator("form");
+
+		//habilito alert con mensajes
+		frmvalidator.EnableOnPageErrorDisplaySingleBox();
+		frmvalidator.EnableMsgsTogether();
+
+		frmvalidator.addValidation("name","req","*Ingrese un nombre");
+		frmvalidator.addValidation("name","alnum_s ","*El nombre debe ser alfanumerico");
+		frmvalidator.addValidation("name","maxlen=20","*El nombre debe contener hasta 20 caracteres");
+</script>

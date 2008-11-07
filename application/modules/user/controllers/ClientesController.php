@@ -169,7 +169,9 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_modform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
         $name = $this->_modform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->setValue($row->name() )
@@ -246,7 +248,9 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => 'Nombre'));
         $name->addValidator($alnumWithWS)

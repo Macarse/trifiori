@@ -4,3 +4,26 @@
 <div class="cformulario">
 	<?= $this->cargaAddForm ?>
 </div>
+<div id='form_errorloc' class='errors_js_forms'></div>
+<script type="text/javascript">		
+		// validacion
+		var frmvalidator  = new Validator("form");
+
+		//habilito alert con mensajes
+		frmvalidator.EnableOnPageErrorDisplaySingleBox();
+		frmvalidator.EnableMsgsTogether();
+
+		frmvalidator.addValidation("cantBultos","req","*Ingrese la cantidad de bultos");
+		frmvalidator.addValidation("cantBultos","num","*La cantidad de bultos debe ser numerica");
+
+		frmvalidator.addValidation("tipoEnvase","req","*Ingrese un tipo de envase");
+
+		frmvalidator.addValidation("unidad","req","*Ingrese una unidad");
+
+		frmvalidator.addValidation("peso","req","*Ingrese un peso");
+		frmvalidator.addValidation("peso","dec","*El peso debe ser decimal");
+		
+		frmvalidator.addValidation("nroPaquete","req","*Ingrese un numero de paquete");
+		frmvalidator.addValidation("nroPaquete","alnum","*El numero de paquete debe ser alfanumerico");
+
+</script>

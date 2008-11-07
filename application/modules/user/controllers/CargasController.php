@@ -167,7 +167,9 @@ class user_CargasController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_modform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
 
         $cantBultos = $this->_modform->createElement('text', 'cantBultos',
@@ -251,7 +253,9 @@ class user_CargasController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+						->setName('form')
+						->setMethod('post');
 
         $cantBultos = $this->_addform->createElement('text', 'cantBultos',
                                             array('label' => 'Cantidad de Bultos'));
