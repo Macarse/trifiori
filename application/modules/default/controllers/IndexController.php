@@ -41,38 +41,53 @@ class IndexController extends Zend_Controller_Action
                     // process login
                     $values = $this->_form->getValues();
 
-                    $adapter = new Zend_Auth_Adapter_DbTable($registry->database);
-                    $adapter->setTableName('USUARIOS');
-                    $adapter->setIdentityColumn('USUARIO_USU');
-                    $adapter->setCredentialColumn('PASSWORD_USU');
-                    $adapter->setIdentity($values['username']);
-                    $adapter->setCredential(
-                        hash('SHA1', $values['password'])
-                    );
+                    if ($registry->database != null)
+                    {                       
+                        $adapter = new Zend_Auth_Adapter_DbTable($registry->database);
+                        $adapter->setTableName('USUARIOS');
+                        $adapter->setIdentityColumn('USUARIO_USU');
+                        $adapter->setCredentialColumn('PASSWORD_USU');
+                        $adapter->setIdentity($values['username']);
+                        $adapter->setCredential(
+                            hash('SHA1', $values['password'])
+                        );
 
-                    // authentication attempt
-                    $auth = Zend_Auth::getInstance();
-                    $result = $auth->authenticate($adapter);
-
-                    $registry->validLogin = $result->isValid();
+                        // authentication attempt
+                        $auth = Zend_Auth::getInstance();
                     
-                    // authentication succeeded
-                    if ($result->isValid())
-                    {
-                        $auth->getStorage()->write($adapter->getResultRowObject(null, 'password'));
-                        if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == 'admin')
+                        try
                         {
-                            $this->_helper->redirector->gotoUrl('admin/panel');
+                            $result = $auth->authenticate($adapter);
+                            $registry->validLogin = $result->isValid();
+                        }
+                        catch (Zend_Exception $error)
+                        {
+                            $this->view->error = $error;
+                            $result->validLogin = False;
+                        }
+                    
+                        // authentication succeeded
+                        if ($registry->validLogin)
+                        {
+                            $auth->getStorage()->write($adapter->getResultRowObject(null, 'password'));
+                            if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == 'admin')
+                            {
+                                $this->_helper->redirector->gotoUrl('admin/panel');
+                            }
+                            else
+                            {
+                                $this->_helper->redirector->gotoUrl('user/main-page');
+                            }
                         }
                         else
                         {
-                            $this->_helper->redirector->gotoUrl('user/main-page');
+                            // or not! Back to the login page!
+                            $this->view->failedAuthentication = true;
                         }
                     }
                     else
                     {
-                        // or not! Back to the login page!
-                        $this->view->failedAuthentication = true;
+                        $this->view->error = "Imposible conectarse a la base de datos.";
                     }
                 }
             }

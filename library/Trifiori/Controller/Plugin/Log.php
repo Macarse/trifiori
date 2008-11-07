@@ -6,66 +6,79 @@ class Trifiori_Controller_Plugin_Log extends Zend_Controller_Plugin_Abstract
     {
         // mapeo de columnas de la tabla de Logs
         $colMapping = array('NIVEL' => 'priority', 'MSG' => 'message');
+        
         $db = Zend_Registry::get('database');
-        $writer = new Zend_Log_Writer_Db($db, 'LOGS', $colMapping);
+        
+        if ($db != null)
+        {
+            $writer = new Zend_Log_Writer_Db($db, 'LOGS', $colMapping);
 
         
-        $logger = new Zend_Log($writer);
-        Zend_Registry::set('logger', $logger);
+            $logger = new Zend_Log($writer);
+            Zend_Registry::set('logger', $logger);
+        }
     }
 
     public function preDispatch( Zend_Controller_Request_Abstract $request )
-    { 
-        $logger = Zend_Registry::get('logger');
-        $identity = Zend_Auth::getInstance()->getIdentity();
-        
-        if ($identity != null)
+    {
+        $reg = Zend_Registry::getInstance(); 
+        if (isset($reg['logger']))
         {
-            $username = Zend_Registry::getInstance()->identity->USUARIO_USU;
-        }
-        else
-        {
-            $username = Zend_Registry::get('name');
-        }
+            $logger = Zend_Registry::get('logger');
+            $identity = Zend_Auth::getInstance()->getIdentity();
         
-        $module = $request->getModuleName();
-        $controller = $request->getControllerName();
-        $action = $request->getActionName();
+            if ($identity != null)
+            {
+                $username = Zend_Registry::getInstance()->identity->USUARIO_USU;
+            }
+            else
+            {
+                $username = Zend_Registry::get('name');
+            }
         
-        $msg = $username;
-        switch ($action)
-        {   
-            case strpos($action, "remove"):
-                $msg = $msg . " ALTERANDO " . $controller . " Eliminado id " . 
-                    $request->getParam('id') . ".";
-                break;
-            case strpos($action, "mod"):
-                $msg = $msg . " ALTERANDO " . $controller . " Modificando id " . 
-                    $request->getParam('id') . ".";
-                break;
-            case strpos($action, "add"):
-                $msg = $msg . " ALTERANDO " . $controller .  " Agregando nuevo.";
-                break;
-            default:
-                $msg = $msg . " accediendo a " . $module . "/" . 
-                    $controller . "/" . $action;
-                break;
-        }
+            $module = $request->getModuleName();
+            $controller = $request->getControllerName();
+            $action = $request->getActionName();
         
-        $logger->info($msg);    
+            $msg = $username;
+            switch ($action)
+            {   
+                case strpos($action, "remove"):
+                    $msg = $msg . " ALTERANDO " . $controller . " Eliminado id " . 
+                        $request->getParam('id') . ".";
+                    break;
+                case strpos($action, "mod"):
+                    $msg = $msg . " ALTERANDO " . $controller . " Modificando id " . 
+                        $request->getParam('id') . ".";
+                    break;
+                case strpos($action, "add"):
+                    $msg = $msg . " ALTERANDO " . $controller .  " Agregando nuevo.";
+                    break;
+                default:
+                    $msg = $msg . " accediendo a " . $module . "/" . 
+                        $controller . "/" . $action;
+                    break;
+            }
+        
+            $logger->info($msg);
+        }    
     }
     
     public function postDispatch( Zend_Controller_Request_Abstract $request )
     {
-        $logger = Zend_Registry::get('logger');
-
-        if (Zend_Registry::isRegistered('validLogin'))
+        $reg = Zend_Registry::getInstance();
+        if (isset($reg['logger']))
         {
-            $validLogin = Zend_Registry::get('validLogin');
-            if ( !$validLogin )
+            $logger = Zend_Registry::get('logger');
+
+            if (Zend_Registry::isRegistered('validLogin'))
             {
-                $msg = "Login erroneo desde " . $_SERVER['REMOTE_ADDR'];
-                $logger->emerg($msg);
+                $validLogin = Zend_Registry::get('validLogin');
+                if ( !$validLogin )
+                {
+                    $msg = "Login erroneo desde " . $_SERVER['REMOTE_ADDR'];
+                    $logger->emerg($msg);
+                }
             }
         }
 

@@ -97,11 +97,20 @@ class Bootstrap
     private function setupDb()
     {
         $config = Zend_Registry::getInstance()->configuration;
-        $db = Zend_Db::factory($config->db->adapter, $config->db->toArray());
-        $db->query("SET NAMES 'utf8'");
+        
+        try 
+        {     
+            $db = Zend_Db::factory($config->db->adapter, $config->db->toArray());   
+            $db->query("SET NAMES 'utf8'");
+            
+            Zend_Registry::getInstance()->database = $db;
+            Zend_Db_Table::setDefaultAdapter($db);
+        }
+        catch (Zend_Exception $error)
+        {
+            Zend_Registry::getInstance()->database = null;   
+        }
 
-        Zend_Registry::getInstance()->database = $db;
-        Zend_Db_Table::setDefaultAdapter($db);
     }
 
     private function setupIdentity()
