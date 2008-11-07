@@ -38,7 +38,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                             $usuariosTable->addUser(    $values['name'],
                                                         $values['username'],
                                                         hash('SHA1', $values['password']),
-                                                        $values['lang']
+                                                        $values['lang'],
+                                                        $values['css']
                                                     );
                         }
                         catch (Zend_Exception $error)
@@ -154,7 +155,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                                                     $values['name'],
                                                     $values['username'],
                                                     $values['password'],
-                                                    $values['lang']
+                                                    $values['lang'],
+                                                    $values['css']
                                                 );
                     }
                     catch (Zend_Exception $error)
@@ -217,12 +219,24 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel('Idioma')
                 ->setMultiOptions($langOptions);
 
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $cssTable = new Css();
+        $cssOptions =  $cssTable->getCssArray();
+
+        $css = $this->_addform->createElement('select', 'css');
+        $css    ->setRequired(true)
+                ->setOrder(2)
+                ->setLabel($this->language->_('Css'))
+                ->setMultiOptions($cssOptions);
+
         // Add elements to form:
-        $this->_addform->addElement($name)
-             ->addElement($username)
-             ->addElement($password)
-             ->addElement($passwordvrfy)
-             ->addElement($lang)
+        $this->_addform ->addElement($name)
+                        ->addElement($username)
+                        ->addElement($password)
+                        ->addElement($passwordvrfy)
+                        ->addElement($lang)
+                        ->addElement($css)
              ->addElement('hidden', 'AddUserTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
         return $this->_addform;
@@ -286,6 +300,17 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel('Idioma')
                 ->setMultiOptions($langOptions);
 
+       /*TODO: Si la db está muerta devuelve NULL.
+        Ver qué hacer en ese caso.*/
+        $cssTable = new Css();
+        $cssOptions =  $cssTable->getCssArray();
+
+        $css = $this->_modform->createElement('select', 'css');
+        $css    ->setValue($user->codCss() )
+                ->setRequired(true)
+                ->setOrder(2)
+                ->setLabel($this->language->_('Css'))
+                ->setMultiOptions($cssOptions);
 
         // Add elements to form:
         $this->_modform->addElement($name)
@@ -293,6 +318,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
              ->addElement($password)
              ->addElement($passwordvrfy)
              ->addElement($lang)
+             ->addElement($css)
              ->addElement('hidden', 'ModUserTrack', array('values' => 'logPost'))
              ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
 

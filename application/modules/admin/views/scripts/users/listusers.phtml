@@ -1,14 +1,22 @@
 <div id="divlistusers" class="clistado">
-	<table id="tableusers">
-		<thead>
-			<tr><th>Nombre</th> <th>Usuario</th> <th>Idioma</th> <th>Modificar</th> <th>Eliminar</th> </tr>
-		</thead>
-		<tbody>
+    <table id="tableusers">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Idioma</th>
+                <th>CSS</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $user) { ?>
 			<tr><td> <?= $user->name() ?> </td>
 				<td> <?= $user->user() ?> </td>
 				<td> <?= $user->language() ?> </td>
+                                <td> <?= $user->codCssName() ?> </td>
 				<td>
 					<a href="<?= "/admin/users/modusers/id/" . $user->id()?>">Modificar</a>
 				</td>
@@ -30,19 +38,25 @@ YAHOO.util.Event.addListener(window, "load", function() {
             {key:"name",label:"Nombre",sortable:true},
             {key:"user",label:"Usuario", sortable:true},
             {key:"language",label:"Idioma", sortable:false},
-			{key:"modify",label:"Modificar", sortable:false},
-			{key:"eliminate",label:"Eliminar", sortable:false}
+            {key:"css",label:"CSS", sortable:false},
+            {key:"modify",label:"Modificar", sortable:false},
+            {key:"eliminate",label:"Eliminar", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tableusers"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [{key:"name"},
-		             {key:"user"},
-         		     {key:"language"},
-		  	   		 {key:"modify"},
-					 {key:"eliminate"}]
-	        };
+        this.myDataSource.responseSchema =
+        {
+            fields:
+            [
+                {key:"name"},
+                {key:"user"},
+                {key:"language"},
+                {key:"css"},
+                {key:"modify"},
+                {key:"eliminate"}
+            ]
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistusers", myColumnDefs, this.myDataSource,
                 {sortedBy:{key:"name",dir:"desc"}}

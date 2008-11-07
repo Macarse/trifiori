@@ -46,6 +46,8 @@ drop table if exists IDIOMAS;
 
 drop table if exists USUARIO_MODIFICA_TABLA;
 
+drop table if exists CSS;
+
 /*==============================================================*/
 /* Table: BANDERAS                                              */
 /*==============================================================*/
@@ -309,6 +311,17 @@ create table TRANSPORTES
 );
 
 /*==============================================================*/
+/* Table: CSS                                                   */
+/*==============================================================*/
+create table CSS
+(
+   CODIGO_CSS                     int AUTO_INCREMENT             not null,
+   NOMBRE_CSS                     varchar(100)                   not null,
+   primary key (CODIGO_CSS),
+   unique NOMBRE_CSS (NOMBRE_CSS)
+);
+
+/*==============================================================*/
 /* Table: USUARIOS                                              */
 /*==============================================================*/
 create table USUARIOS
@@ -318,6 +331,7 @@ create table USUARIOS
    PASSWORD_USU                   varbinary(128),
    USUARIO_USU                    varchar(30),
    IDIOMA_USU                     int,
+   CODIGO_CSS                     int,
    primary key (CODIGO_USU),
    unique USUARIO_USU (USUARIO_USU)
 );
@@ -349,6 +363,10 @@ alter table ES_CONTRATADO_POR
 alter table ES_CONTRATADO_POR
    add constraint FK_ES_CONTR_ES_CONTRA_PROVEEDO foreign key (CODIGO_TRA)
       references PROVEEDOR_MEDIO (CODIGO_TRA);
+
+alter table USUARIOS
+   add constraint FK_USUARIOS_CSS foreign key (CODIGO_CSS)
+      references CSS (CODIGO_CSS);
 
 alter table EXPORTACIONES
    add constraint FK_EXPORTAC_EXPORTA_CARGAS foreign key (CODIGO_CAR)

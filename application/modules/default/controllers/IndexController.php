@@ -131,7 +131,7 @@ class IndexController extends Trifiori_Default_Controller_Action
         $this->_form->addElement($username)
              ->addElement($password)
              ->addElement('hidden', 'loginTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'login', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'login', array('label' => $this->language->_('Entrar')));
         return $this->_form;
     }
 }
