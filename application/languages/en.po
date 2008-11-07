@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 03:31-0300\n"
+"POT-Creation-Date: 2008-11-07 04:36-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -39,6 +39,10 @@ msgstr "Password"
 #: ../application/modules/default/controllers/IndexController.php:134
 #: ../application/modules/user/controllers/CargasController.php:243
 #: ../application/modules/user/controllers/CargasController.php:321
+#: ../application/modules/user/controllers/DestinacionesController.php:171
+#: ../application/modules/user/controllers/DestinacionesController.php:198
+#: ../application/modules/user/controllers/GirosController.php:170
+#: ../application/modules/user/controllers/GirosController.php:197
 msgid "Ingresar"
 msgstr "Add"
 
@@ -129,6 +133,37 @@ msgstr "Trademark and number"
 msgid "Merc. IMCO"
 msgstr "IMCO Goods"
 
+#: ../application/modules/user/controllers/DestinacionesController.php:15
+msgid "Agregar Destinación"
+msgstr "Add Destination"
+
+#: ../application/modules/user/controllers/DestinacionesController.php:47
+msgid "Listar Destinaciones"
+msgstr "List Destinations"
+
+#: ../application/modules/user/controllers/DestinacionesController.php:91
+msgid "Modificar Destinación"
+msgstr "Modify Destination"
+
+#: ../application/modules/user/controllers/DestinacionesController.php:162
+#: ../application/modules/user/controllers/DestinacionesController.php:190
+#: ../application/modules/user/controllers/GirosController.php:161
+#: ../application/modules/user/controllers/GirosController.php:189
+msgid "Nombre"
+msgstr "Name"
+
+#: ../application/modules/user/controllers/GirosController.php:15
+msgid "Agregar Giro"
+msgstr "Add Turn"
+
+#: ../application/modules/user/controllers/GirosController.php:47
+msgid "Listar Giros"
+msgstr "List Turns"
+
+#: ../application/modules/user/controllers/GirosController.php:91
+msgid "Modificar Giro"
+msgstr "Modify Turn"
+
 #: ../application/modules/user/controllers/ClientesController.php:15
 msgid "Agregar Cliente"
 msgstr "Add Client"
@@ -140,11 +175,6 @@ msgstr "List Clients"
 #: ../application/modules/user/controllers/ClientesController.php:98
 msgid "Modificar Cliente"
 msgstr "Modify Client"
-
-#: ../application/modules/user/controllers/ClientesController.php:176
-#: ../application/modules/user/controllers/ClientesController.php:255
-msgid "Nombre"
-msgstr "Name"
 
 #: ../application/modules/user/controllers/ClientesController.php:182
 #: ../application/modules/user/controllers/ClientesController.php:260
@@ -201,6 +231,18 @@ msgstr "Low Volume"
 msgid "Promedio"
 msgstr "Average"
 
+#: ../application/modules/user/controllers/BanderasController.php:15
+msgid "Agregar Bandera"
+msgstr "Add Flag"
+
+#: ../application/modules/user/controllers/BanderasController.php:47
+msgid "Listar Banderas"
+msgstr "List Flags"
+
+#: ../application/modules/user/controllers/BanderasController.php:91
+msgid "Modificar Bandera"
+msgstr "Modify Flag"
+
 #: ../application/modules/default/views/scripts/index/login.phtml:5
 msgid "Credenciales incorrectas."
 msgstr "Wrong username or password"
@@ -234,6 +276,7 @@ msgstr "*The name must have less tan 30 characters"
 #: ../application/modules/user/views/scripts/clientes/listclientes.phtml:28
 #: ../application/modules/user/views/scripts/clientes/listclientes.phtml:54
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:28
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
 msgid "Modificar"
 msgstr "Modify"
@@ -242,6 +285,7 @@ msgstr "Modify"
 #: ../application/modules/user/views/scripts/clientes/listclientes.phtml:31
 #: ../application/modules/user/views/scripts/clientes/listclientes.phtml:55
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:13
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:31
 #: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
 msgid "Eliminar"
 msgstr "Delete"
