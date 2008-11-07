@@ -16,6 +16,8 @@
     <!-- Dependency source files -->
     <script type="text/javascript" src="/yui/build/utilities/utilities.js"></script>
     <script type="text/javascript" src="/yui/build/container/container.js"></script>
+	<script type="text/javascript" src="/yui/build/container/container_core-min.js"></script>
+	<script type="text/javascript" src="/yui/build/animation/animation-min.js"></script>
 	<script type="text/javascript" src="/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 	<script type="text/javascript" src="/yui/build/element/element-beta-min.js"></script>
 	<script type="text/javascript" src="/yui/build/datasource/datasource-beta-min.js"></script>
@@ -28,42 +30,132 @@
     <!-- Menu source file -->
     <script type="text/javascript" src="/yui/build/menu/menu.js"></script>
     <script type="text/javascript">
-        YAHOO.util.Event.onDOMReady(function () {
-            var oMenuBar = new YAHOO.widget.MenuBar("mymenubar", { 
-                                                        lazyload: true,
-                                                        itemdata: txtmenuadminspa
-                                                        });
-            oMenuBar.render(document.body);
-
-            function onSubmenuShow() 
-            {
-                var oIFrame, oElement, nOffsetWidth;
-                // Keep the left-most submenu against the left edge of the browser viewport
-                if (this.id == "yahoo")
-                {
-                    YAHOO.util.Dom.setX(this.element, 0);
-                    oIFrame = this.iframe;
-                    if (oIFrame) 
-                    {
-                        YAHOO.util.Dom.setX(oIFrame, 0);
+ <!-- Menu source file -->
+        <script type="text/javascript">
+            YAHOO.util.Event.onContentReady("menuadmin", function () {
+                var ua = YAHOO.env.ua, oAnim;  // Animation instance
+                function onSubmenuBeforeShow(p_sType, p_sArgs) {
+                    var oBody,oElement,oShadow,oUL;
+                    if (this.parent) {
+                        oElement = this.element;
+                        oShadow = oElement.lastChild;
+                        oShadow.style.height = "0px";
+                        if (oAnim && oAnim.isAnimated()) {
+                            oAnim.stop();
+                            oAnim = null;}
+                        oBody = this.body;
+                        if (this.parent && !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+                            if (ua.gecko || ua.opera) {
+                                oBody.style.width = oBody.clientWidth + "px";
+                            }
+                            if (ua.ie == 7) {
+                                oElement.style.width = oElement.clientWidth + "px";
+                            }
+                        
+                        }
+                        oBody.style.overflow = "hidden";
+                        oUL = oBody.getElementsByTagName("ul")[0];
+                        oUL.style.marginTop = ("-" + oUL.offsetHeight + "px");
                     }
-                    this.cfg.setProperty("x", 0, true);
                 }
 
-                if ((this.id == "filemenu" || this.id == "editmenu") && YAHOO.env.ua.ie)
-                {
-                    oElement = this.element;
-                    nOffsetWidth = oElement.offsetWidth;
-                    oElement.style.width = nOffsetWidth + "px";
-                    oElement.style.width = (nOffsetWidth - (oElement.offsetWidth - nOffsetWidth)) + "px";
+                function onTween(p_sType, p_aArgs, p_oShadow) {
+                    if (this.cfg.getProperty("iframe")) {
+                        this.syncIframe();
+                    }
+                
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
                 }
-            }
-            oMenuBar.subscribe("show", onSubmenuShow);
-        });
-    </script>
 
+                function onAnimationComplete(p_sType, p_aArgs, p_oShadow) {
+                    var oBody = this.body,
+                        oUL = oBody.getElementsByTagName("ul")[0];
+
+                    if (p_oShadow) {
+                        p_oShadow.style.height = this.element.offsetHeight + "px";
+                    }
+
+                    oUL.style.marginTop = "";
+                    oBody.style.overflow = "";
+
+                    if (this.parent &&  !(this.parent instanceof YAHOO.widget.MenuBarItem)) {
+                        if (ua.gecko || ua.opera) {
+                            oBody.style.width = "";
+                        }
+                        
+                        if (ua.ie == 7) {
+                            this.element.style.width = "";
+                        }
+                    }
+                }
+
+                function onSubmenuShow(p_sType, p_sArgs) {
+                    var oElement,oShadow,oUL;
+                
+                    if (this.parent) {
+                        oElement = this.element;
+                        oShadow = oElement.lastChild;
+                        oUL = this.body.getElementsByTagName("ul")[0];
+                    
+                        oAnim = new YAHOO.util.Anim(oUL, 
+                            { marginTop: { to: 0 } },
+                            .5, YAHOO.util.Easing.easeOut);
+
+                        oAnim.onStart.subscribe(function () {        
+                            oShadow.style.height = "100%";
+                        });
+    
+                        oAnim.animate();
+
+                    if (YAHOO.env.ua.ie) {                            
+                            oShadow.style.height = oElement.offsetHeight + "px";
+                            oAnim.onTween.subscribe(onTween, oShadow, this);
+                        }
+                        oAnim.onComplete.subscribe(onAnimationComplete, oShadow, this);                    
+                    }
+                }
+
+                var oMenuBar = new YAHOO.widget.MenuBar("menuadmin", { 
+                                                            autosubmenudisplay: true, 
+                                                            hidedelay: 750, 
+                                                            lazyload: true });
+                
+                oMenuBar.subscribe("beforeShow", onSubmenuBeforeShow);
+                oMenuBar.subscribe("show", onSubmenuShow);
+
+                oMenuBar.render();                      
+            });
+        </script>
     </head>
     <body class="yui-skin-sam">
+	 <div id="yui-main">
+                    <div class="yui-b">
+                        <!-- start: stack grids here -->
+                       <div id="menuadmin" class="yuimenubar yuimenubarnav">
+                            <div class="bd">
+                                <ul class="first-of-type">
+                                    <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="/admin/panel/logout"><?= $this->language->_("Logout")?></a></li>
+                                    <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuusuarios"><?= $this->language->_("Usuarios")?></a>
+                                        <div id="menuusuarios" class="yuimenu">
+                                            <div class="bd">                    
+                                                <ul>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/admin/users/addusers"><?= $this->language->_("Agregar usuario")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/admin/users/listusers"><?= $this->language->_("Modificar usuario")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/admin/users/listusers"><?= $this->language->_("Borrar usuario")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/admin/users/listusers"><?= $this->language->_("Listado")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#"><?= $this->language->_("Estadisticas")?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>                    
+                                    </li>
+									<li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="/admin/log/listlogs"><?= $this->language->_("Ultimas modificaciones")?></a></li>
+								</ul>            
+                            </div>
+                        </div>
+		      </div>
+    </div>
     <?= $this->layout()->content ?>
     </body>
 </html>
