@@ -10,7 +10,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
 
     public function listlogsAction()
     {
-        $this->view->headTitle("Últimas modificaciones");
+        $this->view->headTitle($this->language->_("Últimas Modificaciones"));
 
         unset($this->view->error);
 
