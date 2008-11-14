@@ -217,10 +217,69 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->setMethod('post')
                         ->setName('form');
 
-        $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
+
+        $orden = $this->_addform->createElement('text', 'orden', array('label' => '*' . $this->language->_('Órden')));
         $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
+
+        $codDestinacion = $this->_addform->createElement('text', 'nameGiro',
+                array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
+        $codDestinacion ->setRequired(true);
+
+        $codBandera = $this->_addform->createElement('text', 'nameBandera',
+                array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
+        $codBandera ->setRequired(true);
+
+        $canalesTable = new Canales();
+        $canalesOptions =  $canalesTable->getCanalesArray();
+
+        $codCanal = $this->_addform->createElement('select', 'codCanal');
+        $codCanal   ->setRequired(true)
+                    ->setOrder(2)
+                    ->setLabel('*' . $this->language->_('Medio'))
+                    ->setMultiOptions($canalesOptions);
+
+        $codGiro = $this->_addform->createElement('text', 'codGiro',
+                array('label' =>'*' .  $this->language->_('Giro'), 'id' => 'idnameGiro'));
+        $codGiro ->setRequired(true);
+
+        $codCliente = $this->_addform->createElement('text', 'nameCliente',
+                array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
+        $codCliente ->setRequired(true);
+
+        $codCarga = $this->_addform->createElement('text', 'nameCarga',
+                array('label' =>'*' .  $this->language->_('Carga'), 'id' => 'idnameCarga'));
+        $codCarga ->setRequired(true);
+
+        $codTransporte = $this->_addform->createElement('text', 'nameTransporte',
+                array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
+        $codTransporte  ->setRequired(true);
+
+        $codMoneda = $this->_addform->createElement('text', 'nameMoneda',
+                array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
+        $codMoneda ->setRequired(true);
+
+
+// $values['codOpp'],
+// $values['referencia'],
+// $values['fechaIngreso'],
+// $values['originalCopia'],
+// $values['desMercaderias'],
+// $values['valorFactura'],
+// $values['docTransporte'],
+// $values['ingresoPuerto'],
+// $values['DESnroDoc'],
+// $values['DESvencimiento'],
+// $values['DESbl'],
+// $values['DESdeclaracion'],
+// $values['DESpresentado'],
+// $values['DESsalido'],
+// $values['DEScargado'],
+// $values['DESfactura'],
+// $values['DEsfechaFactura']
+
+
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/

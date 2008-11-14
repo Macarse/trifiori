@@ -396,9 +396,9 @@ INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', SHA1('prueba'), 'prueba', 1,
 INSERT INTO IDIOMAS VALUES(1, 'en');
 INSERT INTO IDIOMAS VALUES(2, 'es');
 
-INSERT INTO OPP VALUES(NULL, 'n', STR_TO_DATE('10/10/2007', '%d/%m/%Y'), 'oppA', 'FracA', NULL, 'ImpuestoA');
-INSERT INTO OPP VALUES(NULL, 's', STR_TO_DATE('27/10/2007', '%d/%m/%Y'), 'oppB', 'FracB', NULL, 'ImpuestoB');
-INSERT INTO OPP VALUES(NULL, 's', STR_TO_DATE('31/10/2007', '%d/%m/%Y'), 'oppC', 'FracC', NULL, 'ImpuestoC');
+INSERT INTO OPP VALUES(NULL, 182, 'n', STR_TO_DATE('10/10/2007', '%d/%m/%Y'), 'oppA', 'FracA', NULL, 'ImpuestoA');
+INSERT INTO OPP VALUES(NULL, 183, 's', STR_TO_DATE('27/10/2007', '%d/%m/%Y'), 'oppB', 'FracB', NULL, 'ImpuestoB');
+INSERT INTO OPP VALUES(NULL, 1337, 's', STR_TO_DATE('31/10/2007', '%d/%m/%Y'), 'oppC', 'FracC', NULL, 'ImpuestoC');
 
 INSERT INTO IMPORTACIONES VALUES (NULL, 182, 11, 233, 'V', 1, 1, 1, 1, 1, 1, 'Ref', STR_TO_DATE('25/12/2007', '%d/%m/%Y'), 'c', 'Ropa', 1200.25, 'D0CTR4N5', STR_TO_DATE('30/12/2007', '%d/%m/%Y'), 'ADADADA', STR_TO_DATE('13/10/2008', '%d/%m/%Y'), NULL, 'Declara1', STR_TO_DATE('24/10/2007', '%d/%m/%Y'), STR_TO_DATE('24/11/2007', '%d/%m/%Y'), STR_TO_DATE('14/12/2007', '%d/%m/%Y'), 25.54, STR_TO_DATE('14/12/2007', '%d/%m/%Y'));
 INSERT INTO IMPORTACIONES VALUES (NULL, 183, 12, 231, 'R', 2, 2, 2, 2, 2, 2, 'Ref2', STR_TO_DATE('25/11/2007', '%d/%m/%Y'), 'c', 'Zapatillas', 3200.25, '456AAG', STR_TO_DATE('30/10/2007', '%d/%m/%Y'), 'AXADA', STR_TO_DATE('13/09/2008', '%d/%m/%Y'), NULL, 'Declara2', STR_TO_DATE('24/09/2007', '%d/%m/%Y'), STR_TO_DATE('24/10/2007', '%d/%m/%Y'), STR_TO_DATE('14/11/2007', '%d/%m/%Y'), 225.54, STR_TO_DATE('14/11/2007', '%d/%m/%Y'));

@@ -19,7 +19,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
     public function addoppsAction()
     {
-        $this->view->headTitle("Agregar Opp");
+        $this->view->headTitle($this->language->_("Agregar Opp"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -37,7 +37,8 @@ class user_OppsController extends Trifiori_User_Controller_Action
                     try
                     {
                         $oppsTable = new Opps();
-                        $oppsTable->addOpp( $values['declaracionOk'],
+                        $oppsTable->addOpp( $values['name'],
+                                            $values['declaracionOk'],
                                             $values['pedidoDinero'],
                                             $values['otrosOpp'],
                                             $values['fraccionado'],
@@ -59,12 +60,12 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
     public function listoppsAction()
     {
-        $this->view->headTitle("Listar Opps");
+        $this->view->headTitle($this->language->_("Listar Opps"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
 
         try
@@ -107,7 +108,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
     public function modoppsAction()
     {
-        $this->view->headTitle("Modificar Opp");
+        $this->view->headTitle($this->language->_("Modificar Opp"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -138,6 +139,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                     {
                         $oppsTable = new Opps();
                         $oppsTable->modifyOpp(  $this->_id,
+                                                $values['name'],
                                                 $values['declaracionOk'],
                                                 $values['pedidoDinero'],
                                                 $values['otrosOpp'],
@@ -181,26 +183,30 @@ class user_OppsController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Número')));
+        $name   ->setValue($row->name() )
+                ->addValidator('int')
+                ->addValidator('stringLength', false, array(1, 11))
+                ->setRequired(true);
 
-        $siNo = array( 's' => 'Sí', 'n' => 'No');
+        $siNo = array( 's' => $this->language->_('Sí'), 'n' => $this->language->_('No'));
 
         $declaracionOk = $this->_modform->createElement('select', 'declaracionOk');
         $declaracionOk  ->setValue($row->declaracionOkchar() )
                         ->setOrder(1)
-                        ->setLabel('*' . 'Declaración Ok')
+                        ->setLabel('*' . $this->language->_('Declaración Ok'))
                         ->setRequired(true)
                         ->setMultiOptions($siNo);
 
 
         $pedidoDinero = $this->_modform->createElement('text', 'pedidoDinero',
-                                                     array('label' => '*' . 'Pedido de Dinero',
-                                                     'id' => 'idpedidoDinero',
-                                                     'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
-                                                     ));
+                        array('label' => '*' . $this->language->_('Pedido de Dinero'),
+                        'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
+                        ));
         $pedidoDinero   ->setValue($row->pedidoDinero() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -208,14 +214,14 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $otrosOpp = $this->_modform->createElement('text', 'otrosOpp',
-                                                array('label' => 'Otros Opp'));
+                                                array('label' => $this->language->_('Otros Opp')));
         $otrosOpp   ->setValue($row->otrosOpp() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 255))
                     ->setRequired(False);
 
         $fraccionado = $this->_modform->createElement('text', 'fraccionado',
-                                                    array('label' => 'Fraccionado Opp'));
+                                array('label' => $this->language->_('Fraccionado Opp')));
         $fraccionado ->setValue($row->fraccionado() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
@@ -223,29 +229,29 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $estampillas = $this->_modform->createElement('text', 'estampillas',
-                                                    array('label' => 'Estampillas'));
+                                array('label' => $this->language->_('Estampillas')));
         $estampillas ->setValue($row->estampillas() )
                    ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(False);
 
-
         $impuestosInternos = $this->_modform->createElement('text', 'impuestosInternos',
-                                                    array('label' => 'Impuestos Internos'));
+                                                    array('label' => $this->language->_('Impuestos Internos')));
         $impuestosInternos  ->setValue($row->estampillas() )
                             ->addValidator($alnumWithWS)
                             ->addValidator('stringLength', false, array(1, 150))
                             ->setRequired(False);
 
         // Add elements to form:
-        $this->_modform->addElement($declaracionOk)
-             ->addElement($pedidoDinero)
-             ->addElement($otrosOpp)
-             ->addElement($fraccionado)
-             ->addElement($estampillas)
-             ->addElement($impuestosInternos)
-             ->addElement('hidden', 'ModOppTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+        $this->_modform ->addElement($name)
+                        ->addElement($declaracionOk)
+                        ->addElement($pedidoDinero)
+                        ->addElement($otrosOpp)
+                        ->addElement($fraccionado)
+                        ->addElement($estampillas)
+                        ->addElement($impuestosInternos)
+                        ->addElement('hidden', 'ModOppTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -260,37 +266,41 @@ class user_OppsController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_addform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $siNo = array( 's' => 'Sí', 'n' => 'No');
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Número')));
+        $name  ->addValidator('int')
+                ->addValidator('stringLength', false, array(1, 11))
+                ->setRequired(true);
+
+        $siNo = array( 's' => $this->language->_('Sí'), 'n' => $this->language->_('No'));
 
         $declaracionOk = $this->_addform->createElement('select', 'declaracionOk');
         $declaracionOk  ->setOrder(1)
-                        ->setLabel('*' . 'Declaración Ok')
+                        ->setLabel('*' . $this->language->_('Declaración Ok'))
                         ->setRequired(true)
                         ->setMultiOptions($siNo);
 
 
         $pedidoDinero = $this->_addform->createElement('text', 'pedidoDinero',
-                                                     array('label' => '*' . 'Pedido de Dinero',
-                                                     'id' => 'idpedidoDinero',
-                                                     'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
-                                                     ));
+                            array('label' => '*' . $this->language->_('Pedido de Dinero'),
+                            'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
+                            ));
         $pedidoDinero   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
 
         $otrosOpp = $this->_addform->createElement('text', 'otrosOpp',
-                                                array('label' => 'Otros Opp'));
+                            array('label' => $this->language->_('Otros Opp')));
         $otrosOpp   ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 255))
                     ->setRequired(False);
 
         $fraccionado = $this->_addform->createElement('text', 'fraccionado',
-                                                    array('label' => 'Fraccionado Opp'));
+                            array('label' => $this->language->_('Fraccionado Opp')));
 
         $fraccionado    ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 150))
@@ -298,7 +308,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $estampillas = $this->_addform->createElement('text', 'estampillas',
-                                                    array('label' => 'Estampillas'));
+                            array('label' => $this->language->_('Estampillas')));
 
         $estampillas    ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 150))
@@ -306,58 +316,63 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $impuestosInternos = $this->_addform->createElement('text', 'impuestosInternos',
-                                                    array('label' => 'Impuestos Internos'));
+                            array('label' => $this->language->_('Impuestos Internos')));
 
         $impuestosInternos  ->addValidator($alnumWithWS)
                             ->addValidator('stringLength', false, array(1, 150))
                             ->setRequired(False);
 
         // Add elements to form:
-        $this->_addform->addElement($declaracionOk)
-             ->addElement($pedidoDinero)
-             ->addElement($otrosOpp)
-             ->addElement($fraccionado)
-             ->addElement($estampillas)
-             ->addElement($impuestosInternos)
-             ->addElement('hidden', 'AddOppTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+        $this->_addform ->addElement($name)
+                        ->addElement($declaracionOk)
+                        ->addElement($pedidoDinero)
+                        ->addElement($otrosOpp)
+                        ->addElement($fraccionado)
+                        ->addElement($estampillas)
+                        ->addElement($impuestosInternos)
+                        ->addElement('hidden', 'AddOppTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Modificar', array('label' => $this->language->_('Agregar')));
 
 
         return $this->_addform;
     }
-	
-	public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
+
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
        $this->_helper->viewRenderer->setNoRender();
        $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Opps();
-		   $data = $model->fetchAll("PEDIDO_DE_DINERO_OPP LIKE '" .  $this->_name . "%'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->pedidoDinero()));	
-	       }
-	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
+            $model = new Opps();
+            $data = $model->fetchAll("PEDIDO_DE_DINERO_OPP LIKE '" .  $this->_name . "%'");
+
+            foreach ($data as $row)
+            {
+                array_push($aux, array("id" => $row->id(), "data" => $row->pedidoDinero()));	
+            }
+
+            $arr = array("Resultset" => array("Result" => $aux));
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
    }
 }
 ?>

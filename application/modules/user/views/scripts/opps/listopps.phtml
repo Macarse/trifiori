@@ -10,20 +10,22 @@
 	<table id="tablelist">
     <thead>
         <tr>
-            <th>Declaración Ok</th>
-            <th>Pedido de Dinero</th>
-            <th>Otros Opp</th>
-            <th>Fraccionado Opp</th>
-            <th>Estampillas</th>
-            <th>Impuestos Internos</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+            <th> <?= $this->language->_("Número")?> </th>
+            <th> <?= $this->language->_("Declaración Ok")?> </th>
+            <th> <?= $this->language->_("Pedido de Dinero")?> </th>
+            <th> <?= $this->language->_("Otros Opp")?> </th>
+            <th> <?= $this->language->_("Fraccionado Opp")?> </th>
+            <th> <?= $this->language->_("Estampillas")?> </th>
+            <th> <?= $this->language->_("Impuestos Internos")?> </th>
+            <th> <?= $this->language->_("Modificar")?> </th>
+            <th> <?= $this->language->_("Eliminar")?> </th>
         </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $opp) { ?>
         <tr>
+            <td> <?= $opp->name()?> </td>
             <td> <?= $opp->declaracionOk()?> </td>
             <td> <?= $opp->pedidoDinero() ?> </td>
             <td> <?= $opp->otrosOpp() ?> </td>
@@ -31,10 +33,10 @@
             <td> <?= $opp->estampillas() ?> </td>
             <td> <?= $opp->impuestosInternos() ?> </td>
             <td>
-                <a href="<?= "/user/opps/modopps/id/" . $opp->id() ?>">Modificar</a>
+                <a href="<?= "/user/opps/modopps/id/" . $opp->id() ?>"> <?= $this->language->_("Modificar")?> </a>
             </td>
             <td>
-                <a href="<?= "/user/opps/removeopps/id/" . $opp->id() ?>">Eliminar</a>
+                <a href="<?= "/user/opps/removeopps/id/" . $opp->id() ?>"> <?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -50,20 +52,23 @@ YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs =
         [
-            {key:"declaracionOk",label:"Declaración Ok", sortable:true},
-            {key:"pedidoDinero",label:"Pedido de Dinero", sortable:true},
-            {key:"otrosOpp",label:"Otros Opp", sortable:true},
-            {key:"fraccionado",label:"Fraccionado Opp", sortable:true},
-            {key:"estampillas",label:"Estampillas", sortable:true},
-            {key:"impuestosInternos",label:"Impuestos Internos", sortable:true},
-            {key:"mod",label:"Modificar", sortable:false},
-            {key:"elim",label:"Eliminar", sortable:false}
+            {key:"name",label: '<?= $this->language->_("Número")?>', sortable:true},
+            {key:"declaracionOk",label:"<?= $this->language->_("Declaración Ok")?>", sortable:true},
+            {key:"pedidoDinero",label:"<?= $this->language->_("Pedido de Dinero")?>", sortable:true},
+            {key:"otrosOpp",label:"<?= $this->language->_("Otros Opp")?>", sortable:true},
+            {key:"fraccionado",label:"<?= $this->language->_("Fraccionado Opp")?>", sortable:true},
+            {key:"estampillas",label:"<?= $this->language->_("Estampillas")?>", sortable:true},
+            {key:"impuestosInternos",label:"<?= $this->language->_("Impuestos Internos")?>", sortable:true},
+            {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+            {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
         this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
+        this.myDataSource.responseSchema =
+        {
             fields: [
+                        {key:"name"},
                         {key:"declaracionOk"},
                         {key:"pedidoDinero"},
                         {key:"otrosOpp"},
@@ -73,7 +78,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
                         {key:"mod"},
                         {key:"elim"}
                     ]
-	        };
+        };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs,
                                                     this.myDataSource,

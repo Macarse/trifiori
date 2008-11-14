@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 16:41-0300\n"
+"POT-Creation-Date: 2008-11-14 18:08-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -362,38 +362,45 @@ msgstr "Modify Export "
 #: ../application/modules/user/controllers/ExportacionesController.php:280
 #: ../application/modules/user/controllers/ExportacionesController.php:464
 #: ../application/modules/user/controllers/ExportacionesController.php:536
+#: ../application/modules/user/controllers/ImportacionesController.php:221
 msgid "Órden"
 msgstr "Order"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:286
 #: ../application/modules/user/controllers/ExportacionesController.php:543
+#: ../application/modules/user/controllers/ImportacionesController.php:256
 msgid "Transporte"
 msgstr "Transport"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:290
 #: ../application/modules/user/controllers/ExportacionesController.php:469
 #: ../application/modules/user/controllers/ExportacionesController.php:547
+#: ../application/modules/user/controllers/ImportacionesController.php:248
 msgid "Cliente"
 msgstr "Client"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:294
 #: ../application/modules/user/controllers/ExportacionesController.php:551
+#: ../application/modules/user/controllers/ImportacionesController.php:231
 msgid "Bandera"
 msgstr "Flag"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:298
 #: ../application/modules/user/controllers/ExportacionesController.php:555
+#: ../application/modules/user/controllers/ImportacionesController.php:260
 msgid "Moneda"
 msgstr "Currency"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:302
 #: ../application/modules/user/controllers/ExportacionesController.php:559
+#: ../application/modules/user/controllers/ImportacionesController.php:227
 msgid "Destinación"
 msgstr "Destination"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:306
 #: ../application/modules/user/controllers/ExportacionesController.php:473
 #: ../application/modules/user/controllers/ExportacionesController.php:563
+#: ../application/modules/user/controllers/ImportacionesController.php:252
 msgid "Carga"
 msgstr "Load"
 
@@ -446,6 +453,79 @@ msgstr "Permit Receipt"
 #: ../application/modules/user/controllers/ExportacionesController.php:674
 msgid "Permiso Fecha de Factura"
 msgstr "Permit Receipt Date"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:240
+msgid "Medio"
+msgstr "Medium"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:244
+msgid "Giro"
+msgstr "Turn"
+
+#: ../application/modules/user/controllers/OppsController.php:22
+msgid "Agregar Opp"
+msgstr "Add Opp"
+
+#: ../application/modules/user/controllers/OppsController.php:63
+msgid "Listar Opps"
+msgstr "List Opps"
+
+#: ../application/modules/user/controllers/OppsController.php:111
+msgid "Modificar Opp"
+msgstr "Modify Opp"
+
+#: ../application/modules/user/controllers/OppsController.php:190
+#: ../application/modules/user/controllers/OppsController.php:273
+msgid "Número"
+msgstr "Number"
+
+#: ../application/modules/user/controllers/OppsController.php:196
+#: ../application/modules/user/controllers/OppsController.php:278
+msgid "Sí"
+msgstr "Yes"
+
+#: ../application/modules/user/controllers/OppsController.php:196
+#: ../application/modules/user/controllers/OppsController.php:278
+msgid "No"
+msgstr "No"
+
+#: ../application/modules/user/controllers/OppsController.php:201
+#: ../application/modules/user/controllers/OppsController.php:282
+msgid "Declaración Ok"
+msgstr "Declaration Ok"
+
+#: ../application/modules/user/controllers/OppsController.php:207
+#: ../application/modules/user/controllers/OppsController.php:288
+msgid "Pedido de Dinero"
+msgstr "Money request"
+
+#: ../application/modules/user/controllers/OppsController.php:217
+#: ../application/modules/user/controllers/OppsController.php:297
+msgid "Otros Opp"
+msgstr "Other Opp"
+
+#: ../application/modules/user/controllers/OppsController.php:224
+#: ../application/modules/user/controllers/OppsController.php:303
+msgid "Fraccionado Opp"
+msgstr "Fractioned Opp"
+
+#: ../application/modules/user/controllers/OppsController.php:232
+#: ../application/modules/user/controllers/OppsController.php:311
+msgid "Estampillas"
+msgstr "Stamps"
+
+#: ../application/modules/user/controllers/OppsController.php:239
+#: ../application/modules/user/controllers/OppsController.php:319
+msgid "Impuestos Internos"
+msgstr "Internal taxes"
+
+#: ../application/modules/user/controllers/OppsController.php:254
+msgid "Modificar"
+msgstr "Modify"
+
+#: ../application/modules/user/controllers/OppsController.php:334
+msgid "Agregar"
+msgstr "Add"
 
 #: ../application/modules/user/controllers/PersonalizarController.php:13
 msgid "Personalizar"
@@ -755,12 +835,6 @@ msgstr "Message"
 msgid "CSS"
 msgstr "CSS"
 
-#: ../application/modules/admin/views/scripts/users/listusers.phtml:9
-#: ../application/modules/admin/views/scripts/users/listusers.phtml:21
-#: ../application/modules/admin/views/scripts/users/listusers.phtml:42
-msgid "Modificar"
-msgstr "Modify"
-
 #: ../application/modules/admin/views/scripts/users/listusers.phtml:10
 #: ../application/modules/admin/views/scripts/users/listusers.phtml:24
 #: ../application/modules/admin/views/scripts/users/listusers.phtml:43
@@ -926,14 +1000,6 @@ msgstr "Client Code"
 #~ msgstr "Address"
 
 #, fuzzy
-#~ msgid "Agregar opp"
-#~ msgstr "Add Turn"
-
-#, fuzzy
-#~ msgid "Modificar opp"
-#~ msgstr "Modify"
-
-#, fuzzy
 #~ msgid "Borrar opp"
 #~ msgstr "Delete Turn"
 
@@ -976,14 +1042,8 @@ msgstr "Client Code"
 #, fuzzy
 #~ msgid "Modificar bandera"
 #~ msgstr "Modify Flag"
-
-#, fuzzy
-#~ msgid "Estadisticas"
-#~ msgstr "Stadistics"
 #~ msgid "Listar Importaciones"
 #~ msgstr "List Imports"
-#~ msgid "Listar OPPs"
-#~ msgstr "List OPPs"
 #~ msgid "Listar Proveedores"
 #~ msgstr "List Providers"
 #~ msgid "Listar Puertos"
