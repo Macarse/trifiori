@@ -14,16 +14,16 @@
     <table id="tablelist">
     <thead>
         <tr>
-            <th>Órden</th>
-            <th>Transporte</th>
-            <th>Cliente</th>
-            <th>Destino</th>
-            <th>Carga</th>
-            <th>Fecha de Ingreso</th>
-            <th>Descripción Mercadería</th>
-            <th>Detalle</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+            <th> <?= $this->language->_("Órden")?> </th>
+            <th> <?= $this->language->_("Transporte")?> </th>
+            <th> <?= $this->language->_("Cliente")?> </th>
+            <th> <?= $this->language->_("Destino")?> </th>
+            <th> <?= $this->language->_("Carga")?> </th>
+            <th> <?= $this->language->_("Fecha de Ingreso")?> </th>
+            <th> <?= $this->language->_("Descripción Mercadería")?> </th>
+            <th> <?= $this->language->_("Detalle")?> </th>
+            <th> <?= $this->language->_("Modificar")?> </th>
+            <th> <?= $this->language->_("Eliminar")?> </th>
         </tr>
     </thead>
     <tbody>
@@ -38,13 +38,13 @@
             <td> <?= $exportacion->fechaIngreso() ?> </td>
             <td> <?= $exportacion->desMercaderias() ?> </td>
             <td>
-            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value="Detalle" />
+            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value=" <?= $this->language->_("Detalle")?> " />
             </td>
             <td>
-                <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion->id() ?>">Modificar</a>
+                <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion->id() ?>"><?= $this->language->_("Modificar")?> </a>
             </td>
             <td>
-                <a href="<?= "/user/exportaciones/removeexportaciones/id/" . $exportacion->id()?>">Eliminar</a>
+                <a href="<?= "/user/exportaciones/removeexportaciones/id/" . $exportacion->id()?>"><?= $this->language->_("Eliminar")?> </a>
             </td>
         </tr>
         <? } ?>
@@ -61,17 +61,18 @@
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
-        var myColumnDefs = [
-            {key:"orden",label:"Orden", sortable:true},
-            {key:"trans",label:"Transporte", sortable:true},
-            {key:"cliente",label:"Codigo Cliente", sortable:true},
-            {key:"destinacion",label:"Destinacion", sortable:true},
-            {key:"carga",label:"Carga", sortable:true},
-            {key:"feching",label:"Fecha de Ingreso", sortable:true},
-            {key:"descmer",label:"Descripción Mercadería", sortable:true},
-            {key:"detalle", label:"Detalle", sortable:false},
-            {key:"mod",label:"Modificar", sortable:false},
-            {key:"elim",label:"Eliminar", sortable:false}
+        var myColumnDefs =
+        [
+            {key:"orden",label:" <?= $this->language->_("Orden")?> ", sortable:true},
+            {key:"trans",label:" <?= $this->language->_("Transporte")?> ", sortable:true},
+            {key:"cliente",label:" <?= $this->language->_("Codigo Cliente")?> ", sortable:true},
+            {key:"destinacion",label:" <?= $this->language->_("Destinación")?> ", sortable:true},
+            {key:"carga",label:" <?= $this->language->_("Carga")?> ", sortable:true},
+            {key:"feching",label:" <?= $this->language->_("Fecha de Ingreso")?> ", sortable:true},
+            {key:"descmer",label:" <?= $this->language->_("Descripción Mercadería")?> ", sortable:true},
+            {key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
+            {key:"mod",label:" <?= $this->language->_("Modificar")?> ", sortable:false},
+            {key:"elim",label:" <?= $this->language->_("Eliminar")?> ", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));

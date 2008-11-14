@@ -3,6 +3,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
     protected $_flashMessenger = null;
 
@@ -85,7 +86,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
 
         try
@@ -212,7 +213,9 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $alnumWithWS = new Zend_Validate_Alnum(True);
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_addform->setAction($this->_baseUrl)
+                        ->setMethod('post')
+                        ->setName('form');
 
         $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
         $orden  ->addValidator('int')
