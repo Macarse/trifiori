@@ -10,34 +10,34 @@
     <table id="tablelist">
     <thead>
         <tr>
-            <th>Órden</th>
-            <th>Destino</th>
-            <th>Bandera</th>
-            <th>Canal</th>
-            <th>Giro</th>
-            <th>Cliente</th>
-            <th>Carga</th>
-            <th>Transporte</th>
-            <th>Moneda</th>
-            <th>Opp</th>
-            <th>Referencia</th>
-            <th>Fecha de Ingreso</th>
-            <th>Original/Copia</th>
-            <th>Descripción Mercadería</th>
-            <th>Valor Factura</th>
-            <th>Documentación Transporte</th>
-            <th>Ingreso a Puerto</th>
-            <th>Despacho: Nro Documento</th>
-            <th>Despacho: Vencimiento</th>
-            <th>Despacho: B/L</th>
-            <th>Despacho: Declaración</th>
-            <th>Despacho: Presentado</th>
-            <th>Despacho: Salido</th>
-            <th>Despacho: Cargado</th>
-            <th>Despacho: Factura</th>
-            <th>Despacho: Fecha de la Factura</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+        <th><?= $this->language->_("Órden")?></th>
+        <th><?= $this->language->_("Destino")?></th>
+        <th><?= $this->language->_("Bandera")?></th>
+        <th><?= $this->language->_("Canal")?></th>
+        <th><?= $this->language->_("Giro")?></th>
+        <th><?= $this->language->_("Cliente")?></th>
+        <th><?= $this->language->_("Carga")?></th>
+        <th><?= $this->language->_("Transporte")?></th>
+        <th><?= $this->language->_("Moneda")?></th>
+        <th><?= $this->language->_("Opp")?></th>
+        <th><?= $this->language->_("Referencia")?></th>
+        <th><?= $this->language->_("Fecha de Ingreso")?></th>
+        <th><?= $this->language->_("Original/Copia")?></th>
+        <th><?= $this->language->_("Descripción Mercadería")?></th>
+        <th><?= $this->language->_("Valor Factura")?></th>
+        <th><?= $this->language->_("Documentación Transporte")?></th>
+        <th><?= $this->language->_("Ingreso a Puerto")?></th>
+        <th><?= $this->language->_("Despacho: Nro Documento")?></th>
+        <th><?= $this->language->_("Despacho: Vencimiento")?></th>
+        <th><?= $this->language->_("Despacho: B/L")?></th>
+        <th><?= $this->language->_("Despacho: Declaración")?></th>
+        <th><?= $this->language->_("Despacho: Presentado")?></th>
+        <th><?= $this->language->_("Despacho: Salido")?></th>
+        <th><?= $this->language->_("Despacho: Cargado")?></th>
+        <th><?= $this->language->_("Despacho: Factura")?></th>
+        <th><?= $this->language->_("Despacho: Fecha de la Factura")?></th>
+        <th><?= $this->language->_("Modificar")?></th>
+        <th><?= $this->language->_("Eliminar")?></th>
         </tr>
     </thead>
     <tbody>
@@ -71,10 +71,10 @@
             <td> <?= $importacion->DESfactura() ?> </td>
             <td> <?= $importacion->DEsfechaFactura() ?> </td>
             <td>
-                <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>">Modificar</a>
+                <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>"><?= $this->language->_("Modificar")?></a>
             </td>
             <td>
-                <a href="<?= "/user/importaciones/removeimportaciones/id/" . $importacion->id()?>">Eliminar</a>
+                <a href="<?= "/user/importaciones/removeimportaciones/id/" . $importacion->id()?>"><?= $this->language->_("Eliminar")?></a>
             </td>
         </tr>
         <? } ?>
@@ -90,34 +90,34 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"orden",label:"Orden", sortable:true},
-            {key:"codDestinacionName",label:"Destino", sortable:true},
-            {key:"codBanderaName",label:"Bandera", sortable:true},
-            {key:"codCanalName",label:"Canal", sortable:true},
-            {key:"codGiroName",label:"Giro", sortable:true},
-            {key:"codClienteName",label:"Cliente", sortable:true},
-            {key:"codCargaName",label:"Carga", sortable:true},
-            {key:"codTransporteName",label:"Transporte", sortable:true},
-            {key:"codMonedaName",label:"Moneda", sortable:true},
-            {key:"codOppName",label:"Opp", sortable:true},
-            {key:"referencia",label:"Referencia", sortable:true},
-            {key:"fechaIngreso", label:"Fecha de Ingreso", sortable:true},
-            {key:"originalCopia",label:"Original/Copia", sortable:true},
-            {key:"desMercaderias",label:"Descripción Mercadería", sortable:true},
-            {key:"valorFactura",label:"Valor Factura", sortable:true},
-            {key:"docTransporte",label:"Documentación Transporte", sortable:true},
-            {key:"ingresoPuerto",label:"Ingreso a Puerto", sortable:true},
-            {key:"DESnroDoc",label:"Despacho: Nro Documento", sortable:true},
-            {key:"DESvencimiento",label:"Despacho: Vencimiento", sortable:true},
-            {key:"DESbl",label:"Despacho: B/L", sortable:true},
-            {key:"DESdeclaracion",label:"Despacho: Declaración", sortable:true},
-            {key:"DESpresentado",label:"Despacho: Presentado", sortable:true},
-            {key:"DESsalido",label:"Despacho: Salido", sortable:true},
-            {key:"DEScargado",label:"Despacho: Cargado", sortable:true},
-            {key:"DESfactura",label:"Despacho: Factura", sortable:true},
-            {key:"DEsfechaFactura",label:"Despacho: Fecha de la Factura", sortable:true},
-            {key:"mod",label:"Modificar", sortable:false},
-            {key:"elim",label:"Eliminar", sortable:false}
+            {key:"orden",label:"<?= $this->language->_("Orden")?>", sortable:true},
+        {key:"codDestinacionName",label:"<?= $this->language->_("Destino")?>", sortable:true},
+        {key:"codBanderaName",label:"<?= $this->language->_("Bandera")?>", sortable:true},
+        {key:"codCanalName",label:"<?= $this->language->_("Canal")?>", sortable:true},
+        {key:"codGiroName",label:"<?= $this->language->_("Giro")?>", sortable:true},
+        {key:"codClienteName",label:"<?= $this->language->_("Cliente")?>", sortable:true},
+        {key:"codCargaName",label:"<?= $this->language->_("Carga")?>", sortable:true},
+        {key:"codTransporteName",label:"<?= $this->language->_("Transporte")?>", sortable:true},
+        {key:"codMonedaName",label:"<?= $this->language->_("Moneda")?>", sortable:true},
+        {key:"codOppName",label:"<?= $this->language->_("Opp")?>", sortable:true},
+        {key:"referencia",label:"<?= $this->language->_("Referencia")?>", sortable:true},
+        {key:"fechaIngreso", label:"<?= $this->language->_("Fecha de Ingreso")?>", sortable:true},
+        {key:"originalCopia",label:"<?= $this->language->_("Original/Copia")?>", sortable:true},
+        {key:"desMercaderias",label:"<?= $this->language->_("Descripción Mercadería")?>", sortable:true},
+        {key:"valorFactura",label:"<?= $this->language->_("Valor Factura")?>", sortable:true},
+        {key:"docTransporte",label:"<?= $this->language->_("Documentación Transporte")?>", sortable:true},
+        {key:"ingresoPuerto",label:"<?= $this->language->_("Ingreso a Puerto")?>", sortable:true},
+        {key:"DESnroDoc",label:"<?= $this->language->_("Despacho: Nro Documento")?>", sortable:true},
+        {key:"DESvencimiento",label:"<?= $this->language->_("Despacho: Vencimiento")?>", sortable:true},
+        {key:"DESbl",label:"<?= $this->language->_("Despacho: B/L")?>", sortable:true},
+        {key:"DESdeclaracion",label:"<?= $this->language->_("Despacho: Declaración")?>", sortable:true},
+        {key:"DESpresentado",label:"<?= $this->language->_("Despacho: Presentado")?>?", sortable:true},
+        {key:"DESsalido",label:"<?= $this->language->_("Despacho: Salido")?>", sortable:true},
+        {key:"DEScargado",label:"<?= $this->language->_("Despacho: Cargado")?>", sortable:true},
+        {key:"DESfactura",label:"<?= $this->language->_("Despacho: Factura")?>", sortable:true},
+        {key:"DEsfechaFactura",label:"<?= $this->language->_("Despacho: Fecha de la Factura")?>", sortable:true},
+        {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+        {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));

@@ -20,7 +20,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 
     public function addproveedoresAction()
     {
-        $this->view->headTitle("Agregar Proveedor");
+        $this->view->headTitle($this->language->_("Agregar Proveedor"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -59,7 +59,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 
     public function listproveedoresAction()
     {
-        $this->view->headTitle("Listar Proveedores");
+        $this->view->headTitle($this->language->_("Listar Proveedores"));
 
         $this->view->paginator = null;
         /*Errors from the past are deleted*/
@@ -68,40 +68,34 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        if ($this->getRequest()->isPost())
+        $this->_searchform = $this->getProveedorSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            if (isset($_POST['SearchProveedorTrack']))
-            {
-                $this->_searchform = $this->getProveedorSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $proveedoresT = new Proveedores();
-                        $proveedores = $proveedoresT->searchProveedor($values["proveedor"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($proveedores, $proveedoresT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->proveedorSearchForm = $this->getProveedorSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->proveedorSearchForm = $this->getProveedorSearchForm();
             try
             {
-                $table = new Proveedores();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $proveedoresT = new Proveedores();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $proveedores = $proveedoresT->searchProveedor($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $proveedores = $proveedoresT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($proveedores, $proveedoresT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -110,6 +104,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->proveedorSearchForm = $this->getProveedorSearchForm();
     }
 
     public function removeproveedoresAction()
@@ -138,7 +133,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 
     public function modproveedoresAction()
     {
-        $this->view->headTitle("Modificar Proveedor");
+        $this->view->headTitle($this->language->_("Modificar Proveedor"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -215,29 +210,29 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 100))
              ->setRequired(true);
 
-        $adress = $this->_modform->createElement('text', 'adress', array('label' => '*' . 'Dirección'));
+        $adress = $this->_modform->createElement('text', 'adress', array('label' => '*' . $this->language->_('Dirección')));
         $adress  ->setValue($row->adress() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 200))
                     ->setRequired(True);
 
-        $tel = $this->_modform->createElement('text', 'tel', array('label' => '*' . 'Teléfono'));
+        $tel = $this->_modform->createElement('text', 'tel', array('label' => '*' . $this->language->_('Teléfono')));
         $tel    ->setValue($row->tel() )
                 ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
 
-        $fax = $this->_modform->createElement('text', 'fax', array('label' => 'Fax'));
+        $fax = $this->_modform->createElement('text', 'fax', array('label' => $this->language->_('Fax')));
         $fax    ->setValue($row->fax() )
                 ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(False);
 
-        $mail = $this->_modform->createElement('text', 'mail', array('label' => 'E-mail'));
+        $mail = $this->_modform->createElement('text', 'mail', array('label' => $this->language->_('E-mail')));
         $mail   ->setValue($row->mail() )
                 ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
@@ -251,7 +246,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
              ->addElement($fax)
              ->addElement($mail)
              ->addElement('hidden', 'ModProveedorTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -270,25 +265,25 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);
 
-        $adress = $this->_addform->createElement('text', 'adress', array('label' => '*' . 'Dirección'));
+        $adress = $this->_addform->createElement('text', 'adress', array('label' => '*' . $this->language->_('Dirección')));
         $adress ->addValidator($alnumWithWS)
                 ->addValidator('stringLength', false, array(1, 200))
                 ->setRequired(True);
 
-        $tel = $this->_addform->createElement('text', 'tel', array('label' => '*' . 'Teléfono'));
+        $tel = $this->_addform->createElement('text', 'tel', array('label' => '*' . $this->language->_('Teléfono')));
         $tel    ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
 
-        $fax = $this->_addform->createElement('text', 'fax', array('label' => 'Fax'));
+        $fax = $this->_addform->createElement('text', 'fax', array('label' => $this->language->_('Fax')));
         $fax    ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(False);
 
-        $mail = $this->_addform->createElement('text', 'mail', array('label' => 'E-mail'));
+        $mail = $this->_addform->createElement('text', 'mail', array('label' => $this->language->_('E-mail')));
         $mail   ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
                 ->setRequired(False);
@@ -300,7 +295,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
              ->addElement($fax)
              ->addElement($mail)
              ->addElement('hidden', 'AddProveedorTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }
@@ -317,9 +312,9 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $proveedor = $this->_searchform->createElement('text', 'proveedor', array('label' => $this->language->_('Nombre')));
+        $proveedor = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $proveedor       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 100));
 

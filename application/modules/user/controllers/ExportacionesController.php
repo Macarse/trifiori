@@ -426,7 +426,6 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
 						->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
 						->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
-						->addElement('hidden', 'codGiro', array('id' => 'idcodGiro'))
 						->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
 						->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
 						->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
@@ -685,7 +684,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 						->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte', 'value' => $row->codTransporte() ))
 						->addElement('hidden', 'codCliente', array('id' => 'idcodCliente', 'value' => $row->codCliente() ))
                         ->addElement('hidden', 'ModExportacionTrack', array('values' => 'logPost'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                        ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }

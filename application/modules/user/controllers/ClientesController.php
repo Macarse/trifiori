@@ -69,41 +69,34 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
         
-        if ($this->getRequest()->isPost())
-        {
-        
-            if (isset($_POST['SearchClienteTrack']))
-            {
-                $this->_searchform = $this->getClienteSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $clientesT = new Clientes();
-                        $clientes = $clientesT->searchCliente($values["cliente"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($clientes, $clientesT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->clienteSearchForm = $this->getClienteSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->clienteSearchForm = $this->getClienteSearchForm();
+        $this->_searchform = $this->getClienteSearchForm();
+        if ($this->_searchform->isValid($_GET))
+        {   
             try
             {
-                $table = new Clientes();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $clientesT = new Clientes();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $clientes = $clientesT->searchCliente($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $clientes = $clientesT->select();  
+                    Zend_Registry::set('busqueda', "");
+                }
+                
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($clientes, $clientesT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -112,6 +105,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->clienteSearchForm = $this->getClienteSearchForm();
     }
 
     public function removeclientesAction()
@@ -279,7 +273,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'ModClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -350,7 +344,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'AddClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Agregar')));
 
 
         return $this->_addform;
@@ -368,9 +362,9 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $cliente = $this->_searchform->createElement('text', 'cliente', array('label' => $this->language->_('Nombre')));
+        $cliente = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $cliente       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 200));
 
