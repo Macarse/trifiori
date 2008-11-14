@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 18:46-0300\n"
+"POT-Creation-Date: 2008-11-14 14:39-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -47,7 +47,7 @@ msgstr "Modify User"
 #: ../application/modules/admin/controllers/UsersController.php:187
 #: ../application/modules/admin/controllers/UsersController.php:268
 #: ../application/modules/user/controllers/CargasController.php:372
-#: ../application/modules/user/controllers/TransportesController.php:321
+#: ../application/modules/user/controllers/TransportesController.php:352
 #: ../application/modules/user/controllers/DestinacionesController.php:194
 #: ../application/modules/user/controllers/DestinacionesController.php:222
 #: ../application/modules/user/controllers/DestinacionesController.php:249
@@ -56,19 +56,19 @@ msgstr "Modify User"
 #: ../application/modules/user/controllers/GirosController.php:248
 #: ../application/modules/user/controllers/ProveedoresController.php:308
 #: ../application/modules/user/controllers/MonedasController.php:266
-#: ../application/modules/user/controllers/PuertosController.php:235
+#: ../application/modules/user/controllers/PuertosController.php:266
 msgid "Nombre"
 msgstr "Name"
 
 #: ../application/modules/admin/controllers/UsersController.php:195
 #: ../application/modules/admin/controllers/UsersController.php:276
-#: ../application/modules/default/controllers/IndexController.php:132
+#: ../application/modules/default/controllers/IndexController.php:122
 msgid "Usuario"
 msgstr "User"
 
 #: ../application/modules/admin/controllers/UsersController.php:202
 #: ../application/modules/admin/controllers/UsersController.php:284
-#: ../application/modules/default/controllers/IndexController.php:139
+#: ../application/modules/default/controllers/IndexController.php:129
 msgid "Clave"
 msgstr "Password"
 
@@ -114,11 +114,11 @@ msgstr "The page requested does not exist."
 msgid "Un error inesperado ha ocurrido: "
 msgstr "An unexpected error has ocurred."
 
-#: ../application/modules/default/controllers/IndexController.php:95
+#: ../application/modules/default/controllers/IndexController.php:85
 msgid "Imposible conectarse a la base de datos."
 msgstr "Unable to connect to the database."
 
-#: ../application/modules/default/controllers/IndexController.php:147
+#: ../application/modules/default/controllers/IndexController.php:137
 msgid "Entrar"
 msgstr "Enter"
 
@@ -210,12 +210,13 @@ msgid "Merc. IMCO"
 msgstr "IMCO Goods"
 
 #: ../application/modules/user/controllers/CargasController.php:379
-#: ../application/modules/user/controllers/TransportesController.php:328
+#: ../application/modules/user/controllers/TransportesController.php:359
 #: ../application/modules/user/controllers/DestinacionesController.php:256
 #: ../application/modules/user/controllers/GirosController.php:255
 #: ../application/modules/user/controllers/ProveedoresController.php:315
 #: ../application/modules/user/controllers/MonedasController.php:273
-#: ../application/modules/user/controllers/PuertosController.php:242
+#: ../application/modules/user/controllers/PuertosController.php:273
+#: ../application/modules/user/controllers/ExportacionesController.php:478
 msgid "Buscar"
 msgstr "Search"
 
@@ -318,208 +319,204 @@ msgstr "Low Volume"
 msgid "Promedio"
 msgstr "Average"
 
-#: ../application/modules/user/controllers/BanderasController.php:16
+#: ../application/modules/user/controllers/BanderasController.php:23
 msgid "Agregar Bandera"
 msgstr "Add Flag"
 
-#: ../application/modules/user/controllers/BanderasController.php:48
+#: ../application/modules/user/controllers/BanderasController.php:55
 msgid "Listar Banderas"
 msgstr "List Flags"
 
-#: ../application/modules/user/controllers/BanderasController.php:125
+#: ../application/modules/user/controllers/BanderasController.php:123
+msgid "Eliminación exitosa."
+msgstr "Insert Successful."
+
+#: ../application/modules/user/controllers/BanderasController.php:137
 msgid "Modificar Bandera"
 msgstr "Modify Flag"
+
+#: ../application/modules/user/controllers/BanderasController.php:169
+msgid "Modificación exitosa."
+msgstr "Insert Successful."
 
 #: ../application/layouts/user.phtml:145
 #: ../application/layouts/admin.phtml:137
 msgid "Logout"
 msgstr "Logout"
 
-#: ../application/layouts/user.phtml:146
+#: ../application/layouts/user.phtml:147
 msgid "Exportaciones"
 msgstr "Exports"
 
-#: ../application/layouts/user.phtml:150
-msgid "Agregar Exportación"
-msgstr "Add Export"
-
 #: ../application/layouts/user.phtml:151
-msgid "Modificar Exportación"
-msgstr "Modify Export"
+msgid "Agregar Exportación"
+msgstr "Add Export "
 
 #: ../application/layouts/user.phtml:152
-msgid "Borrar Exportación"
-msgstr "Delete Export"
+msgid "Modificar Exportación"
+msgstr "Modify Export "
 
 #: ../application/layouts/user.phtml:153
-msgid "Listar Exportaciones"
-msgstr "List Exports"
+msgid "Borrar Exportación"
+msgstr "Delete Export "
 
 #: ../application/layouts/user.phtml:154
 #: ../application/layouts/user.phtml:167
+#: ../application/layouts/user.phtml:180
+#: ../application/layouts/user.phtml:192
+#: ../application/layouts/user.phtml:204
+#: ../application/layouts/user.phtml:216
+#: ../application/layouts/user.phtml:228
+#: ../application/layouts/user.phtml:240
+#: ../application/layouts/user.phtml:252
+#: ../application/layouts/user.phtml:264
+#: ../application/layouts/user.phtml:276
+#: ../application/layouts/user.phtml:288
+#: ../application/layouts/admin.phtml:145
+msgid "Listado"
+msgstr "List"
+
+#: ../application/layouts/user.phtml:155
+#: ../application/layouts/user.phtml:168
 #: ../application/layouts/admin.phtml:146
 msgid "Estadísticas"
 msgstr "Stadistics"
 
-#: ../application/layouts/user.phtml:159
+#: ../application/layouts/user.phtml:160
 msgid "Importaciones"
 msgstr "Imports"
 
-#: ../application/layouts/user.phtml:163
-msgid "Agregar Importación"
-msgstr "Add Import"
-
 #: ../application/layouts/user.phtml:164
-msgid "Modificar Importación"
-msgstr "Modify Import"
+msgid "Agregar Importación"
+msgstr "Add Import "
 
 #: ../application/layouts/user.phtml:165
-msgid "Borrar Importación"
-msgstr "Delete Import"
+msgid "Modificar Importación"
+msgstr "Modify Import "
 
 #: ../application/layouts/user.phtml:166
-msgid "Listar Importaciones"
-msgstr "List Imports"
+msgid "Borrar Importación"
+msgstr "Delete Import "
 
-#: ../application/layouts/user.phtml:172
+#: ../application/layouts/user.phtml:173
 msgid "OPP"
 msgstr "OPP"
 
-#: ../application/layouts/user.phtml:176
+#: ../application/layouts/user.phtml:177
 msgid "Agregar OPP"
 msgstr "Add OPP"
 
-#: ../application/layouts/user.phtml:177
+#: ../application/layouts/user.phtml:178
 msgid "Modificar OPP"
 msgstr "Modify OPP"
 
-#: ../application/layouts/user.phtml:178
+#: ../application/layouts/user.phtml:179
 msgid "Borrar OPP"
 msgstr "Delete OPP"
 
-#: ../application/layouts/user.phtml:179
-msgid "Listar OPPs"
-msgstr "List OPPs"
-
-#: ../application/layouts/user.phtml:184
+#: ../application/layouts/user.phtml:185
 msgid "Clientes"
 msgstr "Clients"
 
-#: ../application/layouts/user.phtml:190
+#: ../application/layouts/user.phtml:191
 msgid "Borrar Cliente"
-msgstr "Delete Client"
+msgstr "Delete Client "
 
-#: ../application/layouts/user.phtml:196
+#: ../application/layouts/user.phtml:197
 msgid "Proveedores"
 msgstr "Providers"
 
-#: ../application/layouts/user.phtml:200
-msgid "Agregar Proveedor"
-msgstr "Add Provider"
-
 #: ../application/layouts/user.phtml:201
-msgid "Modificar Proveedor"
-msgstr "Modify Provider"
+msgid "Agregar Proveedor"
+msgstr "Add Provider "
 
 #: ../application/layouts/user.phtml:202
-msgid "Borrar Proveedor"
-msgstr "Delete Provider"
+msgid "Modificar Proveedor"
+msgstr "Modify Provider "
 
 #: ../application/layouts/user.phtml:203
-msgid "Listar Proveedores"
-msgstr "List Providers"
+msgid "Borrar Proveedor"
+msgstr "Delete Provider "
 
-#: ../application/layouts/user.phtml:208
+#: ../application/layouts/user.phtml:209
 msgid "Giros"
 msgstr "Turns"
 
-#: ../application/layouts/user.phtml:214
+#: ../application/layouts/user.phtml:215
 msgid "Borrar Giro"
-msgstr "Delete Turn"
+msgstr "Delete Turn "
 
-#: ../application/layouts/user.phtml:220
+#: ../application/layouts/user.phtml:221
 msgid "Cargas"
 msgstr "Loads"
 
-#: ../application/layouts/user.phtml:226
+#: ../application/layouts/user.phtml:227
 msgid "Borrar Carga"
-msgstr "Delete Load"
+msgstr "Delete Load "
 
-#: ../application/layouts/user.phtml:232
+#: ../application/layouts/user.phtml:233
 msgid "Destinaciones"
 msgstr "Destinations"
 
-#: ../application/layouts/user.phtml:238
+#: ../application/layouts/user.phtml:239
 msgid "Borrar Destinación"
-msgstr "Delete Destination"
+msgstr "Delete Destination "
 
-#: ../application/layouts/user.phtml:244
+#: ../application/layouts/user.phtml:245
 msgid "Puertos"
 msgstr "Ports"
 
-#: ../application/layouts/user.phtml:248
-msgid "Agregar Puerto"
-msgstr "Add Port"
-
 #: ../application/layouts/user.phtml:249
-msgid "Modificar Puerto"
-msgstr "Modify Port"
+msgid "Agregar Puerto"
+msgstr "Add Port "
 
 #: ../application/layouts/user.phtml:250
-msgid "Borrar Puerto"
-msgstr "Delete Port"
+msgid "Modificar Puerto"
+msgstr "Modify Port "
 
 #: ../application/layouts/user.phtml:251
-msgid "Listar Puertos"
-msgstr "List Ports"
+msgid "Borrar Puerto"
+msgstr "Delete Port "
 
-#: ../application/layouts/user.phtml:256
+#: ../application/layouts/user.phtml:257
 msgid "Monedas"
 msgstr "Currencies"
 
-#: ../application/layouts/user.phtml:260
-msgid "Agregar Moneda"
-msgstr "Add Currency"
-
 #: ../application/layouts/user.phtml:261
-msgid "Modificar Moneda"
-msgstr "Modify Currency"
+msgid "Agregar Moneda"
+msgstr "Add Currency "
 
 #: ../application/layouts/user.phtml:262
-msgid "Borrar Moneda"
-msgstr "Delete Currency"
+msgid "Modificar Moneda"
+msgstr "Modify Currency "
 
 #: ../application/layouts/user.phtml:263
-msgid "Listar Monedas"
-msgstr "List Currencies"
+msgid "Borrar Moneda"
+msgstr "Delete Currency "
 
-#: ../application/layouts/user.phtml:268
+#: ../application/layouts/user.phtml:269
 msgid "Transportes"
 msgstr "Transports"
 
-#: ../application/layouts/user.phtml:272
-msgid "Agregar Transporte"
-msgstr "Add Transport"
-
 #: ../application/layouts/user.phtml:273
-msgid "Modificar Transporte"
-msgstr "Modify Transport"
+msgid "Agregar Transporte"
+msgstr "Add Transport "
 
 #: ../application/layouts/user.phtml:274
-msgid "Borrar Transporte"
-msgstr "Delete Transport "
+msgid "Modificar Transporte"
+msgstr "Modify Transport "
 
 #: ../application/layouts/user.phtml:275
-msgid "Listar Transportes"
-msgstr "List Transports"
+msgid "Borrar Transporte"
+msgstr "Delete Transport  "
 
-#: ../application/layouts/user.phtml:280
+#: ../application/layouts/user.phtml:281
 msgid "Banderas"
 msgstr "Flags"
 
-#: ../application/layouts/user.phtml:286
+#: ../application/layouts/user.phtml:287
 msgid "Borrar Bandera"
-msgstr "Delete Flag"
+msgstr "Delete Flag "
 
 #: ../application/layouts/admin.phtml:138
 msgid "Usuarios"
@@ -536,10 +533,6 @@ msgstr "Modify User "
 #: ../application/layouts/admin.phtml:144
 msgid "Borrar usuario"
 msgstr "Delete User"
-
-#: ../application/layouts/admin.phtml:145
-msgid "Listado"
-msgstr "List"
 
 #: ../application/layouts/admin.phtml:151
 msgid "Últimas modificaciones"
@@ -616,7 +609,11 @@ msgstr "*The name must be alphanumeric"
 msgid "*El nombre debe contener hasta 20 caracteres"
 msgstr "*The name must have less tan 30 characters"
 
-#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:59
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:6
+msgid "CP"
+msgstr "Zip Code"
+
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:76
 msgid "Tipo Iva"
 msgstr "Iva type"
 
@@ -652,13 +649,15 @@ msgstr "*Insert a package number"
 msgid "*El número de paquete debe ser alfanumérico"
 msgstr "*The package number must be alphanumeric"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:8
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:51
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:2
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:22
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:65
 msgid "Cantidad Bultos"
 msgstr "Package quantities"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:9
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:52
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:4
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:23
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:66
 msgid "Tipo de Envase"
 msgstr "Type of packaging"
 
@@ -703,36 +702,38 @@ msgid "*El teléfono debe ser alfanumérico"
 msgstr "*The telephone must be alphanumeric"
 
 #: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:20
+#: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:20
 msgid "*Seleccione una bandera"
 msgstr "*Choose a flag"
 
 #: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:22
+#: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:22
 msgid "*Seleccione un medio"
 msgstr "*Choose a medium"
 
 #, fuzzy
-#~ msgid "Ultimas modificaciones"
-#~ msgstr "Last Modifications"
+#~ msgid "Direccion"
+#~ msgstr "Address"
 
 #, fuzzy
-#~ msgid "Estadisticas"
-#~ msgstr "Stadistics"
-
-#, fuzzy
-#~ msgid "Listar Girros"
-#~ msgstr "List Turns"
-
-#, fuzzy
-#~ msgid "Previous"
-#~ msgstr "Average"
+#~ msgid "Agregar opp"
+#~ msgstr "Add Turn"
 
 #, fuzzy
 #~ msgid "Modificar opp"
 #~ msgstr "Modify"
 
 #, fuzzy
+#~ msgid "Borrar opp"
+#~ msgstr "Delete Turn"
+
+#, fuzzy
 #~ msgid "Agregar cliente"
 #~ msgstr "Add Client"
+
+#, fuzzy
+#~ msgid "Modificar cliente"
+#~ msgstr "Modify Client"
 
 #, fuzzy
 #~ msgid "Agregar giro"
@@ -765,6 +766,36 @@ msgstr "*Choose a medium"
 #, fuzzy
 #~ msgid "Modificar bandera"
 #~ msgstr "Modify Flag"
+
+#, fuzzy
+#~ msgid "Estadisticas"
+#~ msgstr "Stadistics"
+#~ msgid "Listar Exportaciones"
+#~ msgstr "List Exports"
+#~ msgid "Listar Importaciones"
+#~ msgstr "List Imports"
+#~ msgid "Listar OPPs"
+#~ msgstr "List OPPs"
+#~ msgid "Listar Proveedores"
+#~ msgstr "List Providers"
+#~ msgid "Listar Puertos"
+#~ msgstr "List Ports"
+#~ msgid "Listar Monedas"
+#~ msgstr "List Currencies"
+#~ msgid "Listar Transportes"
+#~ msgstr "List Transports"
+
+#, fuzzy
+#~ msgid "Ultimas modificaciones"
+#~ msgstr "Last Modifications"
+
+#, fuzzy
+#~ msgid "Listar Girros"
+#~ msgstr "List Turns"
+
+#, fuzzy
+#~ msgid "Previous"
+#~ msgstr "Average"
 
 #, fuzzy
 #~ msgid "Número de paquete"
