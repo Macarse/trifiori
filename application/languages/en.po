@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 14:39-0300\n"
+"POT-Creation-Date: 2008-11-14 16:41-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -21,8 +21,17 @@ msgid "Agregar Usuario"
 msgstr "Add User"
 
 #: ../application/modules/admin/controllers/UsersController.php:51
-msgid "Inserción exitosa"
-msgstr "Insert Successful"
+#: ../application/modules/user/controllers/CargasController.php:49
+#: ../application/modules/user/controllers/TransportesController.php:46
+#: ../application/modules/user/controllers/DestinacionesController.php:42
+#: ../application/modules/user/controllers/GirosController.php:42
+#: ../application/modules/user/controllers/ProveedoresController.php:47
+#: ../application/modules/user/controllers/MonedasController.php:44
+#: ../application/modules/user/controllers/PuertosController.php:44
+#: ../application/modules/user/controllers/ExportacionesController.php:61
+#: ../application/modules/user/controllers/ImportacionesController.php:69
+msgid "Inserción exitosa."
+msgstr "Insert Successful."
 
 #: ../application/modules/admin/controllers/UsersController.php:55
 msgid "Las contraseñas no son iguales"
@@ -46,17 +55,17 @@ msgstr "Modify User"
 
 #: ../application/modules/admin/controllers/UsersController.php:187
 #: ../application/modules/admin/controllers/UsersController.php:268
-#: ../application/modules/user/controllers/CargasController.php:372
-#: ../application/modules/user/controllers/TransportesController.php:352
-#: ../application/modules/user/controllers/DestinacionesController.php:194
-#: ../application/modules/user/controllers/DestinacionesController.php:222
-#: ../application/modules/user/controllers/DestinacionesController.php:249
-#: ../application/modules/user/controllers/GirosController.php:193
-#: ../application/modules/user/controllers/GirosController.php:221
-#: ../application/modules/user/controllers/GirosController.php:248
-#: ../application/modules/user/controllers/ProveedoresController.php:308
-#: ../application/modules/user/controllers/MonedasController.php:266
-#: ../application/modules/user/controllers/PuertosController.php:266
+#: ../application/modules/user/controllers/CargasController.php:386
+#: ../application/modules/user/controllers/TransportesController.php:366
+#: ../application/modules/user/controllers/DestinacionesController.php:208
+#: ../application/modules/user/controllers/DestinacionesController.php:236
+#: ../application/modules/user/controllers/DestinacionesController.php:263
+#: ../application/modules/user/controllers/GirosController.php:207
+#: ../application/modules/user/controllers/GirosController.php:235
+#: ../application/modules/user/controllers/GirosController.php:262
+#: ../application/modules/user/controllers/ProveedoresController.php:322
+#: ../application/modules/user/controllers/MonedasController.php:280
+#: ../application/modules/user/controllers/PuertosController.php:281
 msgid "Nombre"
 msgstr "Name"
 
@@ -89,12 +98,14 @@ msgstr "Css"
 
 #: ../application/modules/admin/controllers/UsersController.php:241
 #: ../application/modules/admin/controllers/UsersController.php:323
-#: ../application/modules/user/controllers/CargasController.php:277
-#: ../application/modules/user/controllers/CargasController.php:355
-#: ../application/modules/user/controllers/DestinacionesController.php:203
-#: ../application/modules/user/controllers/DestinacionesController.php:230
-#: ../application/modules/user/controllers/GirosController.php:202
-#: ../application/modules/user/controllers/GirosController.php:229
+#: ../application/modules/user/controllers/CargasController.php:291
+#: ../application/modules/user/controllers/CargasController.php:369
+#: ../application/modules/user/controllers/DestinacionesController.php:217
+#: ../application/modules/user/controllers/DestinacionesController.php:244
+#: ../application/modules/user/controllers/GirosController.php:216
+#: ../application/modules/user/controllers/GirosController.php:243
+#: ../application/modules/user/controllers/ExportacionesController.php:445
+#: ../application/modules/user/controllers/ExportacionesController.php:719
 msgid "Ingresar"
 msgstr "Add"
 
@@ -122,127 +133,319 @@ msgstr "Unable to connect to the database."
 msgid "Entrar"
 msgstr "Enter"
 
-#: ../application/modules/user/controllers/CargasController.php:16
+#: ../application/modules/user/controllers/CargasController.php:23
 msgid "Agregar Carga"
 msgstr "Add Load"
 
-#: ../application/modules/user/controllers/CargasController.php:55
+#: ../application/modules/user/controllers/CargasController.php:64
 msgid "Listar Cargas"
 msgstr "List Loads"
 
 #: ../application/modules/user/controllers/CargasController.php:132
+#: ../application/modules/user/controllers/TransportesController.php:127
+#: ../application/modules/user/controllers/DestinacionesController.php:123
+#: ../application/modules/user/controllers/GirosController.php:123
+#: ../application/modules/user/controllers/ProveedoresController.php:128
+#: ../application/modules/user/controllers/MonedasController.php:125
+#: ../application/modules/user/controllers/PuertosController.php:126
+#: ../application/modules/user/controllers/ExportacionesController.php:187
+#: ../application/modules/user/controllers/ImportacionesController.php:119
+msgid "Eliminación exitosa."
+msgstr "Delete Successful."
+
+#: ../application/modules/user/controllers/CargasController.php:145
 msgid "Modificar Carga"
 msgstr "Modify Load"
 
-#: ../application/modules/user/controllers/CargasController.php:210
-#: ../application/modules/user/controllers/CargasController.php:295
+#: ../application/modules/user/controllers/CargasController.php:184
+#: ../application/modules/user/controllers/TransportesController.php:176
+#: ../application/modules/user/controllers/DestinacionesController.php:168
+#: ../application/modules/user/controllers/GirosController.php:168
+#: ../application/modules/user/controllers/ProveedoresController.php:178
+#: ../application/modules/user/controllers/MonedasController.php:172
+#: ../application/modules/user/controllers/PuertosController.php:173
+#: ../application/modules/user/controllers/ExportacionesController.php:250
+#: ../application/modules/user/controllers/ImportacionesController.php:190
+msgid "Modificación exitosa."
+msgstr "Modify Successful."
+
+#: ../application/modules/user/controllers/CargasController.php:224
+#: ../application/modules/user/controllers/CargasController.php:309
 msgid "Cantidad de Bultos"
 msgstr "Package quantities"
 
-#: ../application/modules/user/controllers/CargasController.php:221
-#: ../application/modules/user/controllers/CargasController.php:304
+#: ../application/modules/user/controllers/CargasController.php:235
+#: ../application/modules/user/controllers/CargasController.php:318
 msgid "Tipo Envase"
 msgstr "Type packaging"
 
-#: ../application/modules/user/controllers/CargasController.php:222
-#: ../application/modules/user/controllers/CargasController.php:305
+#: ../application/modules/user/controllers/CargasController.php:236
+#: ../application/modules/user/controllers/CargasController.php:319
 msgid "Envase Flexible"
 msgstr "Flexible package"
 
-#: ../application/modules/user/controllers/CargasController.php:223
-#: ../application/modules/user/controllers/CargasController.php:306
+#: ../application/modules/user/controllers/CargasController.php:237
+#: ../application/modules/user/controllers/CargasController.php:320
 msgid "Caja"
 msgstr "Box"
 
-#: ../application/modules/user/controllers/CargasController.php:224
-#: ../application/modules/user/controllers/CargasController.php:307
+#: ../application/modules/user/controllers/CargasController.php:238
+#: ../application/modules/user/controllers/CargasController.php:321
 msgid "Frasco"
 msgstr "Tin"
 
-#: ../application/modules/user/controllers/CargasController.php:225
-#: ../application/modules/user/controllers/CargasController.php:308
+#: ../application/modules/user/controllers/CargasController.php:239
+#: ../application/modules/user/controllers/CargasController.php:322
 msgid "Tarro"
 msgstr "Tin2"
 
-#: ../application/modules/user/controllers/CargasController.php:226
-#: ../application/modules/user/controllers/CargasController.php:309
+#: ../application/modules/user/controllers/CargasController.php:240
+#: ../application/modules/user/controllers/CargasController.php:323
 msgid "Lata de Aluminio"
 msgstr "Aluminum tin"
 
-#: ../application/modules/user/controllers/CargasController.php:229
-#: ../application/modules/user/controllers/CargasController.php:312
+#: ../application/modules/user/controllers/CargasController.php:243
+#: ../application/modules/user/controllers/CargasController.php:326
 msgid "Peso"
 msgstr "Weight"
 
-#: ../application/modules/user/controllers/CargasController.php:239
-#: ../application/modules/user/controllers/CargasController.php:320
+#: ../application/modules/user/controllers/CargasController.php:253
+#: ../application/modules/user/controllers/CargasController.php:334
 msgid "Unidad"
 msgstr "Unit"
 
-#: ../application/modules/user/controllers/CargasController.php:240
-#: ../application/modules/user/controllers/CargasController.php:321
+#: ../application/modules/user/controllers/CargasController.php:254
+#: ../application/modules/user/controllers/CargasController.php:335
 msgid "Toneladas"
 msgstr "Ton"
 
-#: ../application/modules/user/controllers/CargasController.php:241
-#: ../application/modules/user/controllers/CargasController.php:322
+#: ../application/modules/user/controllers/CargasController.php:255
+#: ../application/modules/user/controllers/CargasController.php:336
 msgid "Kilogramos"
 msgstr "Kg"
 
-#: ../application/modules/user/controllers/CargasController.php:242
-#: ../application/modules/user/controllers/CargasController.php:323
+#: ../application/modules/user/controllers/CargasController.php:256
+#: ../application/modules/user/controllers/CargasController.php:337
 msgid "Gramos"
 msgstr "Gr"
 
-#: ../application/modules/user/controllers/CargasController.php:246
-#: ../application/modules/user/controllers/CargasController.php:327
+#: ../application/modules/user/controllers/CargasController.php:260
+#: ../application/modules/user/controllers/CargasController.php:341
 msgid "Número de Paquete"
 msgstr "Number of Package"
 
-#: ../application/modules/user/controllers/CargasController.php:254
-#: ../application/modules/user/controllers/CargasController.php:334
+#: ../application/modules/user/controllers/CargasController.php:268
+#: ../application/modules/user/controllers/CargasController.php:348
 msgid "Marca y número"
 msgstr "Trademark and number"
 
-#: ../application/modules/user/controllers/CargasController.php:262
-#: ../application/modules/user/controllers/CargasController.php:341
+#: ../application/modules/user/controllers/CargasController.php:276
+#: ../application/modules/user/controllers/CargasController.php:355
 msgid "Merc. IMCO"
 msgstr "IMCO Goods"
 
-#: ../application/modules/user/controllers/CargasController.php:379
-#: ../application/modules/user/controllers/TransportesController.php:359
-#: ../application/modules/user/controllers/DestinacionesController.php:256
-#: ../application/modules/user/controllers/GirosController.php:255
-#: ../application/modules/user/controllers/ProveedoresController.php:315
-#: ../application/modules/user/controllers/MonedasController.php:273
-#: ../application/modules/user/controllers/PuertosController.php:273
-#: ../application/modules/user/controllers/ExportacionesController.php:478
+#: ../application/modules/user/controllers/CargasController.php:393
+#: ../application/modules/user/controllers/TransportesController.php:373
+#: ../application/modules/user/controllers/DestinacionesController.php:270
+#: ../application/modules/user/controllers/GirosController.php:269
+#: ../application/modules/user/controllers/ProveedoresController.php:329
+#: ../application/modules/user/controllers/MonedasController.php:287
+#: ../application/modules/user/controllers/PuertosController.php:288
+#: ../application/modules/user/controllers/ExportacionesController.php:505
 msgid "Buscar"
 msgstr "Search"
 
-#: ../application/modules/user/controllers/DestinacionesController.php:16
+#: ../application/modules/user/controllers/DestinacionesController.php:23
 msgid "Agregar Destinación"
 msgstr "Add Destination"
 
-#: ../application/modules/user/controllers/DestinacionesController.php:48
+#: ../application/modules/user/controllers/DestinacionesController.php:57
 msgid "Listar Destinaciones"
 msgstr "List Destinations"
 
-#: ../application/modules/user/controllers/DestinacionesController.php:123
+#: ../application/modules/user/controllers/DestinacionesController.php:136
 msgid "Modificar Destinación"
 msgstr "Modify Destination"
 
-#: ../application/modules/user/controllers/GirosController.php:16
+#: ../application/modules/user/controllers/GirosController.php:23
 msgid "Agregar Giro"
 msgstr "Add Turn"
 
-#: ../application/modules/user/controllers/GirosController.php:48
+#: ../application/modules/user/controllers/GirosController.php:57
 msgid "Listar Giros"
 msgstr "List Turns"
 
-#: ../application/modules/user/controllers/GirosController.php:123
+#: ../application/modules/user/controllers/GirosController.php:136
 msgid "Modificar Giro"
 msgstr "Modify Turn"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:23
+msgid "Agregar Exportación"
+msgstr "Add Export "
+
+#: ../application/modules/user/controllers/ExportacionesController.php:76
+msgid "Listar Exportaciones"
+msgstr "List Exports"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:153
+msgid "Órden: "
+msgstr "Order:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:154
+msgid "Transporte: "
+msgstr "Transport:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:155
+msgid "Cliente: "
+msgstr "Client:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:156
+msgid "Bandera: "
+msgstr "Flag:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:157
+msgid "Moneda: "
+msgstr "Currency:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:158
+msgid "Giro: "
+msgstr "Turn:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:159
+msgid "Destinación: "
+msgstr "Destination:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:160
+msgid "Carga: "
+msgstr "Load:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:161
+msgid "Fecha de Ingreso: "
+msgstr "Entering Date:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:162
+msgid "Descripción de la mercadería: "
+msgstr "Merchandise Description:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:163
+msgid "Valor de la factura: "
+msgstr "Receipt Value:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:164
+msgid "Fecha de vencimiento: "
+msgstr "Expiration Date:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:165
+msgid "Fecha de ingreso al puerto: "
+msgstr "Port Entering Date:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:166
+msgid "Número de permiso: "
+msgstr "Permit Number:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:167
+msgid "Fecha en que fue presentado: "
+msgstr "Presentation date:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:168
+msgid "Número de factura: "
+msgstr "Receipt Number:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:169
+msgid "Fecha de la factura: "
+msgstr "Receipt Number:"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:200
+msgid "Modificar Exportación"
+msgstr "Modify Export "
+
+#: ../application/modules/user/controllers/ExportacionesController.php:280
+#: ../application/modules/user/controllers/ExportacionesController.php:464
+#: ../application/modules/user/controllers/ExportacionesController.php:536
+msgid "Órden"
+msgstr "Order"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:286
+#: ../application/modules/user/controllers/ExportacionesController.php:543
+msgid "Transporte"
+msgstr "Transport"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:290
+#: ../application/modules/user/controllers/ExportacionesController.php:469
+#: ../application/modules/user/controllers/ExportacionesController.php:547
+msgid "Cliente"
+msgstr "Client"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:294
+#: ../application/modules/user/controllers/ExportacionesController.php:551
+msgid "Bandera"
+msgstr "Flag"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:298
+#: ../application/modules/user/controllers/ExportacionesController.php:555
+msgid "Moneda"
+msgstr "Currency"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:302
+#: ../application/modules/user/controllers/ExportacionesController.php:559
+msgid "Destinación"
+msgstr "Destination"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:306
+#: ../application/modules/user/controllers/ExportacionesController.php:473
+#: ../application/modules/user/controllers/ExportacionesController.php:563
+msgid "Carga"
+msgstr "Load"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:310
+#: ../application/modules/user/controllers/ExportacionesController.php:604
+msgid "Referencia"
+msgstr "Reference"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:316
+#: ../application/modules/user/controllers/ExportacionesController.php:611
+msgid "Fecha de Ingreso"
+msgstr "Entering Date"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:324
+#: ../application/modules/user/controllers/ExportacionesController.php:620
+msgid "Descripción Mercadería"
+msgstr "Merchandise Description"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:331
+#: ../application/modules/user/controllers/ExportacionesController.php:628
+msgid "Valor Factura"
+msgstr "Receipt Value"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:338
+#: ../application/modules/user/controllers/ExportacionesController.php:636
+msgid "Vencimiento"
+msgstr "Expiration Date"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:345
+#: ../application/modules/user/controllers/ExportacionesController.php:651
+msgid "Ingreso a Puerto"
+msgstr "Port Entry Date"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:353
+#: ../application/modules/user/controllers/ExportacionesController.php:645
+msgid "Número de Permiso"
+msgstr "Permit Number"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:358
+#: ../application/modules/user/controllers/ExportacionesController.php:659
+msgid "Permiso Presentado"
+msgstr "Permit Presented"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:366
+#: ../application/modules/user/controllers/ExportacionesController.php:668
+msgid "Permiso Factura"
+msgstr "Permit Receipt"
+
+#: ../application/modules/user/controllers/ExportacionesController.php:371
+#: ../application/modules/user/controllers/ExportacionesController.php:674
+msgid "Permiso Fecha de Factura"
+msgstr "Permit Receipt Date"
 
 #: ../application/modules/user/controllers/PersonalizarController.php:13
 msgid "Personalizar"
@@ -252,70 +455,70 @@ msgstr "Customize"
 msgid "*Idioma"
 msgstr "*Language"
 
-#: ../application/modules/user/controllers/ClientesController.php:16
+#: ../application/modules/user/controllers/ClientesController.php:23
 msgid "Agregar Cliente"
 msgstr "Add Client"
 
-#: ../application/modules/user/controllers/ClientesController.php:55
+#: ../application/modules/user/controllers/ClientesController.php:63
 msgid "Listar Clientes"
 msgstr "List Clients"
 
-#: ../application/modules/user/controllers/ClientesController.php:131
+#: ../application/modules/user/controllers/ClientesController.php:143
 msgid "Modificar Cliente"
 msgstr "Modify Client"
 
-#: ../application/modules/user/controllers/ClientesController.php:215
-#: ../application/modules/user/controllers/ClientesController.php:293
+#: ../application/modules/user/controllers/ClientesController.php:228
+#: ../application/modules/user/controllers/ClientesController.php:306
 msgid "Dirección"
 msgstr "Address"
 
-#: ../application/modules/user/controllers/ClientesController.php:221
-#: ../application/modules/user/controllers/ClientesController.php:298
+#: ../application/modules/user/controllers/ClientesController.php:234
+#: ../application/modules/user/controllers/ClientesController.php:311
 msgid "Código Postal"
 msgstr "Postal code"
 
-#: ../application/modules/user/controllers/ClientesController.php:227
-#: ../application/modules/user/controllers/ClientesController.php:303
+#: ../application/modules/user/controllers/ClientesController.php:240
+#: ../application/modules/user/controllers/ClientesController.php:316
 msgid "Localidad"
 msgstr "City"
 
-#: ../application/modules/user/controllers/ClientesController.php:234
-#: ../application/modules/user/controllers/ClientesController.php:308
+#: ../application/modules/user/controllers/ClientesController.php:247
+#: ../application/modules/user/controllers/ClientesController.php:321
 msgid "CUIT"
 msgstr "CUIT"
 
-#: ../application/modules/user/controllers/ClientesController.php:245
-#: ../application/modules/user/controllers/ClientesController.php:317
+#: ../application/modules/user/controllers/ClientesController.php:258
+#: ../application/modules/user/controllers/ClientesController.php:330
 msgid "Tipo IVA"
 msgstr "IVA type"
 
-#: ../application/modules/user/controllers/ClientesController.php:246
-#: ../application/modules/user/controllers/ClientesController.php:318
+#: ../application/modules/user/controllers/ClientesController.php:259
+#: ../application/modules/user/controllers/ClientesController.php:331
 msgid "Responsable Inscripto"
 msgstr "In-scripted Responsible"
 
-#: ../application/modules/user/controllers/ClientesController.php:247
-#: ../application/modules/user/controllers/ClientesController.php:319
+#: ../application/modules/user/controllers/ClientesController.php:260
+#: ../application/modules/user/controllers/ClientesController.php:332
 msgid "Responsable No Inscripto"
 msgstr "No In-scripted Responsible"
 
-#: ../application/modules/user/controllers/ClientesController.php:254
-#: ../application/modules/user/controllers/ClientesController.php:325
+#: ../application/modules/user/controllers/ClientesController.php:267
+#: ../application/modules/user/controllers/ClientesController.php:338
 msgid "Tipo Cliente"
 msgstr "Client type"
 
-#: ../application/modules/user/controllers/ClientesController.php:255
-#: ../application/modules/user/controllers/ClientesController.php:326
+#: ../application/modules/user/controllers/ClientesController.php:268
+#: ../application/modules/user/controllers/ClientesController.php:339
 msgid "Alto Volumen"
 msgstr "High Volume"
 
-#: ../application/modules/user/controllers/ClientesController.php:256
-#: ../application/modules/user/controllers/ClientesController.php:327
+#: ../application/modules/user/controllers/ClientesController.php:269
+#: ../application/modules/user/controllers/ClientesController.php:340
 msgid "Bajo Volumen"
 msgstr "Low Volume"
 
-#: ../application/modules/user/controllers/ClientesController.php:257
-#: ../application/modules/user/controllers/ClientesController.php:328
+#: ../application/modules/user/controllers/ClientesController.php:270
+#: ../application/modules/user/controllers/ClientesController.php:341
 msgid "Promedio"
 msgstr "Average"
 
@@ -323,21 +526,13 @@ msgstr "Average"
 msgid "Agregar Bandera"
 msgstr "Add Flag"
 
-#: ../application/modules/user/controllers/BanderasController.php:55
+#: ../application/modules/user/controllers/BanderasController.php:57
 msgid "Listar Banderas"
 msgstr "List Flags"
 
-#: ../application/modules/user/controllers/BanderasController.php:123
-msgid "Eliminación exitosa."
-msgstr "Insert Successful."
-
-#: ../application/modules/user/controllers/BanderasController.php:137
+#: ../application/modules/user/controllers/BanderasController.php:139
 msgid "Modificar Bandera"
 msgstr "Modify Flag"
-
-#: ../application/modules/user/controllers/BanderasController.php:169
-msgid "Modificación exitosa."
-msgstr "Insert Successful."
 
 #: ../application/layouts/user.phtml:145
 #: ../application/layouts/admin.phtml:137
@@ -347,14 +542,6 @@ msgstr "Logout"
 #: ../application/layouts/user.phtml:147
 msgid "Exportaciones"
 msgstr "Exports"
-
-#: ../application/layouts/user.phtml:151
-msgid "Agregar Exportación"
-msgstr "Add Export "
-
-#: ../application/layouts/user.phtml:152
-msgid "Modificar Exportación"
-msgstr "Modify Export "
 
 #: ../application/layouts/user.phtml:153
 msgid "Borrar Exportación"
@@ -589,127 +776,150 @@ msgid "Ha ocurrido un error"
 msgstr "An error has ocurred"
 
 #: ../application/modules/user/views/scripts/clientes/modclientes.phtml:16
-#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:16
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:19
 #: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:16
-#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:16
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:19
 msgid "*Ingrese un nombre"
 msgstr "*Insert a name"
 
 #: ../application/modules/user/views/scripts/clientes/modclientes.phtml:17
-#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:17
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:20
 #: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:17
-#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:17
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:20
 msgid "*El nombre debe ser alfanumérico"
 msgstr "*The name must be alphanumeric"
 
 #: ../application/modules/user/views/scripts/clientes/modclientes.phtml:18
-#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:18
+#: ../application/modules/user/views/scripts/clientes/addclientes.phtml:21
 #: ../application/modules/user/views/scripts/monedas/modmonedas.phtml:18
-#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:18
+#: ../application/modules/user/views/scripts/monedas/addmonedas.phtml:21
 msgid "*El nombre debe contener hasta 20 caracteres"
 msgstr "*The name must have less tan 30 characters"
 
-#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:6
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:14
 msgid "CP"
 msgstr "Zip Code"
 
-#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:76
+#: ../application/modules/user/views/scripts/clientes/listclientes.phtml:84
 msgid "Tipo Iva"
 msgstr "Iva type"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:16
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:19
 msgid "*Ingrese la cantidad de bultos"
 msgstr "*Insert the package quantities"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:17
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:20
 msgid "*La cantidad de bultos debe ser numérica"
 msgstr "*The package quantity must be numeric"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:19
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:22
 msgid "*Ingrese un tipo de envase"
 msgstr "*Insert a type of package"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:21
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:24
 msgid "*Ingrese una unidad"
 msgstr "*Insert a unit"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:23
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:26
 msgid "*Ingrese un peso"
 msgstr "*Insert a weigth"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:24
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:27
 msgid "*El peso debe ser decimal"
 msgstr "*The weigth must be decimal"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:26
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:29
 msgid "*Ingrese un número de paquete"
 msgstr "*Insert a package number"
 
-#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:27
+#: ../application/modules/user/views/scripts/cargas/addcargas.phtml:30
 msgid "*El número de paquete debe ser alfanumérico"
 msgstr "*The package number must be alphanumeric"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:2
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:22
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:65
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:10
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:30
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:73
 msgid "Cantidad Bultos"
 msgstr "Package quantities"
 
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:4
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:23
-#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:66
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:12
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:31
+#: ../application/modules/user/views/scripts/cargas/listcargas.phtml:74
 msgid "Tipo de Envase"
 msgstr "Type of packaging"
 
-#: ../application/modules/user/views/scripts/opps/addopps.phtml:16
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:19
 #: ../application/modules/user/views/scripts/opps/modopps.phtml:16
 msgid "*Ingrese una fecha de pedido de dinero"
 msgstr "*Insert a request money date"
 
-#: ../application/modules/user/views/scripts/opps/addopps.phtml:17
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:20
 #: ../application/modules/user/views/scripts/opps/modopps.phtml:17
 msgid "*La fecha del pedido de dinero es inválida"
 msgstr "*The request money date is invalid"
 
-#: ../application/modules/user/views/scripts/opps/addopps.phtml:19
+#: ../application/modules/user/views/scripts/opps/addopps.phtml:22
 #: ../application/modules/user/views/scripts/opps/modopps.phtml:19
 msgid "*Ingrese un resultado de declaración"
 msgstr "*Insert a declaration result"
 
-#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:20
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:23
 #: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:20
 msgid "*Ingrese una dirección"
 msgstr "*Insert an address"
 
-#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:21
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:24
 #: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:21
 msgid "*La dirección debe ser alfanumérica"
 msgstr "*The address must be alphanumeric"
 
-#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:22
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:25
 #: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:22
 msgid "*La dirección debe contener hasta 100 caracteres"
 msgstr "*The address must have less than 100 characters"
 
-#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:24
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:27
 #: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:24
 msgid "*Ingrese un teléfono"
 msgstr "*Insert a phone number"
 
-#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:25
+#: ../application/modules/user/views/scripts/proveedores/addproveedores.phtml:28
 #: ../application/modules/user/views/scripts/proveedores/modproveedores.phtml:25
 msgid "*El teléfono debe ser alfanumérico"
 msgstr "*The telephone must be alphanumeric"
 
-#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:20
+#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:23
 #: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:20
 msgid "*Seleccione una bandera"
 msgstr "*Choose a flag"
 
-#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:22
+#: ../application/modules/user/views/scripts/transportes/addtransportes.phtml:25
 #: ../application/modules/user/views/scripts/transportes/modtransportes.phtml:22
 msgid "*Seleccione un medio"
 msgstr "*Choose a medium"
+
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:20
+msgid "Destino"
+msgstr "Destination"
+
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:24
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:41
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:73
+msgid "Detalle"
+msgstr "Detail"
+
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:66
+msgid "Orden"
+msgstr "Order"
+
+#: ../application/modules/user/views/scripts/exportaciones/listexportaciones.phtml:68
+msgid "Codigo Cliente"
+msgstr "Client Code"
+
+#~ msgid "Orden: "
+#~ msgstr "Order:"
+#~ msgid "Inserción exitosa"
+#~ msgstr "Insert Successful"
 
 #, fuzzy
 #~ msgid "Direccion"
@@ -770,8 +980,6 @@ msgstr "*Choose a medium"
 #, fuzzy
 #~ msgid "Estadisticas"
 #~ msgstr "Stadistics"
-#~ msgid "Listar Exportaciones"
-#~ msgstr "List Exports"
 #~ msgid "Listar Importaciones"
 #~ msgstr "List Imports"
 #~ msgid "Listar OPPs"
@@ -796,10 +1004,6 @@ msgstr "*Choose a medium"
 #, fuzzy
 #~ msgid "Previous"
 #~ msgstr "Average"
-
-#, fuzzy
-#~ msgid "Número de paquete"
-#~ msgstr "Number of Package"
 
 #, fuzzy
 #~ msgid "*Ingrese un nmero de paquete"
