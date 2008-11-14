@@ -20,7 +20,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     public function addpuertosAction()
     {
-        $this->view->headTitle("Agregar Puerto");
+        $this->view->headTitle($this->language->_("Agregar Puerto"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -56,7 +56,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     public function listpuertosAction()
     {
-        $this->view->headTitle("Listar Puertos");
+        $this->view->headTitle($this->language->_("Listar Puertos"));
 
         $this->view->paginator = null;
         
@@ -136,7 +136,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 
     public function modpuertosAction()
     {
-        $this->view->headTitle("Modificar Puerto");
+        $this->view->headTitle($this->language->_("Modificar Puerto"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -210,13 +210,13 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
-        $ubicacion = $this->_modform->createElement('text', 'ubicacion', array('label' => 'Ubicación'));
+        $ubicacion = $this->_modform->createElement('text', 'ubicacion', array('label' => $this->language->_('Ubicación')));
         $ubicacion  ->setValue($row->ubicacion() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 255))
@@ -226,7 +226,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         $this->_modform->addElement($name)
              ->addElement($ubicacion)
              ->addElement('hidden', 'ModPuertoTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -245,12 +245,12 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);
 
-        $ubicacion = $this->_addform->createElement('text', 'ubicacion', array('label' => 'Ubicación'));
+        $ubicacion = $this->_addform->createElement('text', 'ubicacion', array('label' => $this->language->_('Ubicación')));
         $ubicacion  ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 255))
                     ->setRequired(False);
@@ -259,7 +259,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         $this->_addform->addElement($name)
              ->addElement($ubicacion)
              ->addElement('hidden', 'AddPuertoTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }

@@ -214,7 +214,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_modform->addElement($name)
              ->addElement('hidden', 'ModDestinacionTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -241,7 +241,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         // Add elements to form:
         $this->_addform->addElement($name)
              ->addElement('hidden', 'AddDestinacionTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }

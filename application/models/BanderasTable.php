@@ -56,7 +56,6 @@ class Banderas extends Zend_Db_Table_Abstract
     public function getBanderasArray()
     {
         $arr = array();
-		$aux = array();
 
         try
         {
@@ -69,11 +68,9 @@ class Banderas extends Zend_Db_Table_Abstract
 
         foreach ($banderas as $row)
         {
-			array_push($aux, array("id" => $row->id(), "name" => $row->name()));	
+            $arr[ $row->id() ] = $row->name();
         }
-	
-		$arr = array("Resultset" => array("Result" => $aux));
-		
+
         return $arr;
     }
 

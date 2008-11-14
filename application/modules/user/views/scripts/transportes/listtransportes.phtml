@@ -12,7 +12,7 @@
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
-        <tr><th>Bandera</th> <th>Medio</th> <th>Nombre</th> <th>Observaciones</th> <th>Modificar</th> <th>Eliminar</th></tr>
+        <tr><th><?= $this->language->_("Bandera")?></th> <th><?= $this->language->_("Medio")?></th> <th><?= $this->language->_("Nombre")?></th> <th><?= $this->language->_("Observaciones")?></th> <th><?= $this->language->_("Modificar")?></th> <th><?= $this->language->_("Eliminar")?></th></tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
@@ -43,12 +43,12 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"name",label:"Nombre", sortable:true},
-            {key:"flags",label:"Bandera",sortable:true},
-            {key:"medio",label:"Medio", sortable:true},
-			{key:"obs",label:"Observaciones", sortable:false},
-			{key:"mod",label:"Modificar", sortable:false},
-			{key:"elim",label:"Eliminar", sortable:false}
+            {key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:true},
+        {key:"flags",label:"<?= $this->language->_("Bandera")?>",sortable:true},
+        {key:"medio",label:"<?= $this->language->_("Medio")?>", sortable:true},
+        {key:"obs",label:"<?= $this->language->_("Observaciones")?>", sortable:false},
+        {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+        {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));

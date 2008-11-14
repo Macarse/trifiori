@@ -13,10 +13,10 @@
 	<table id="tablelist">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Ubicación</th>
-            <th>Modificar</th>
-            <th>Eliminar</th></tr>
+        <th><?= $this->language->_("Nombre")?></th>
+        <th><?= $this->language->_("Ubicación")?></th>
+        <th><?= $this->language->_("Modificar")?></th>
+        <th><?= $this->language->_("Eliminar")?></th></tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
@@ -45,10 +45,10 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"name",label:"Nombre", sortable:true},
-            {key:"ubicacion",label:"Ubicación", sortable:true},
-            {key:"mod",label:"Modificar", sortable:false},
-            {key:"elim",label:"Eliminar", sortable:false}
+            {key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:true},
+            {key:"ubicacion",label:"<?= $this->language->_("Ubicación")?>", sortable:true},
+        {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+        {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));

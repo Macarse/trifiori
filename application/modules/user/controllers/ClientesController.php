@@ -279,7 +279,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'ModClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -350,7 +350,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
              ->addElement($tipoIVA)
              ->addElement($tipoCliente)
              ->addElement('hidden', 'AddClienteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Agregar')));
 
 
         return $this->_addform;
