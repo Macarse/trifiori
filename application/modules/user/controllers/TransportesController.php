@@ -20,7 +20,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
     public function addtransportesAction()
     {
-        $this->view->headTitle("Agregar Transporte");
+        $this->view->headTitle($this->language->_("Agregar Transporte"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -58,7 +58,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
     public function listtransportesAction()
     {
-        $this->view->headTitle("Listar Transportes");
+        $this->view->headTitle($this->language->_("Listar Transportes"));
 
         $this->view->paginator = null;
         /*Errors from the past are deleted*/
@@ -211,7 +211,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codBandera = $this->_addform->createElement('select', 'codBandera');
         $codBandera ->setRequired(true)
                     ->setOrder(1)
-                    ->setLabel('*' . 'Bandera')
+                ->setLabel('*' . $this->language->_('Bandera'))
                     ->setMultiOptions($banderasOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -222,17 +222,17 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codMedio = $this->_addform->createElement('select', 'codMedio');
         $codMedio   ->setRequired(true)
                     ->setOrder(2)
-                    ->setLabel('*' . 'Medio')
+                ->setLabel('*' . $this->language->_('Medio'))
                     ->setMultiOptions($mediosOptions);
 
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 100))
                  ->setRequired(true);
 
         $observaciones = $this->_addform->createElement('text', 'observaciones',
-                                                         array('label' => 'Observaciones')
+                array('label' => $this->language->_('Observaciones'))
                                                         );
         $observaciones  ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 400))
@@ -244,7 +244,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                        ->addElement($codMedio)
                        ->addElement($observaciones)
              ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }
@@ -283,7 +283,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codBandera ->setValue( $row->codBandera() )
                     ->setRequired(true)
                     ->setOrder(1)
-                    ->setLabel('*' . 'Bandera')
+                ->setLabel('*' . $this->language->_('Bandera'))
                     ->setMultiOptions($banderasOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -295,17 +295,17 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codMedio   ->setValue( $row->codMedio() )
                     ->setRequired(true)
                     ->setOrder(2)
-                    ->setLabel('*' . 'Medio')
+                ->setLabel('*' . $this->language->_('Medio'))
                     ->setMultiOptions($mediosOptions);
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 400))
              ->setRequired(true);
 
         $observaciones = $this->_modform->createElement('text', 'observaciones',
-                                                         array('label' => 'Observaciones')
+                array('label' => $this->language->_('Observaciones'))
                                                         );
         $observaciones  ->setValue($row->observaciones() )
                         ->addValidator($alnumWithWS)
@@ -318,7 +318,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                        ->addElement($codMedio)
                        ->addElement($observaciones)
              ->addElement('hidden', 'ModTransporteTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }

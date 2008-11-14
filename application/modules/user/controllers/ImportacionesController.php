@@ -20,7 +20,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
     public function addimportacionesAction()
     {
-        $this->view->headTitle("Agregar Importación");
+        $this->view->headTitle($this->language->_("Agregar Importación"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -81,7 +81,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
     public function listimportacionesAction()
     {
-        $this->view->headTitle("Listar Importaciones");
+        $this->view->headTitle($this->language->_("Listar Importaciones"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -129,7 +129,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
     public function modimportacionesAction()
     {
-        $this->view->headTitle("Modificar Importación");
+        $this->view->headTitle($this->language->_("Modificar Importación"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -217,7 +217,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->setMethod('post')
                         ->setName('form');
 
-        $orden = $this->_addform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden = $this->_addform->createElement('text', 'orden', array('label' => $this->language->_('Órden')));
         $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
@@ -302,64 +302,64 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
 
         $referencia = $this->_addform->createElement('text', 'referencia',
-                                                     array('label' => 'Referencia'));
+                array('label' => $this->language->_('Referencia')));
         $referencia ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
-                                                     array('label' => 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+                array('label' => $this->language->_('Fecha de Ingreso'), 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
 
         $desMercaderias = $this->_addform->createElement('text', 'desMercaderias',
-                                                     array('label' => 'Descripción Mercadería'));
+                array('label' => $this->language->_('Descripción Mercadería')));
         $desMercaderias ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 200))
                         ->setRequired(False);
 
 
         $valorFactura = $this->_addform->createElement('text', '$valorFactura',
-                                                     array('label' => 'Valor Factura'));
+                array('label' => $this->language->_('Valor Factura')));
         $valorFactura   ->addValidator('float')
                         ->addValidator('stringLength', false, array(1, 40))
                         ->setRequired(False);
 
 
         $vencimiento = $this->_addform->createElement('text', 'vencimiento',
-                                                     array('label' => 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
+                array('label' => $this->language->_('Vencimiento'), 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
-                                                     array('label' => 'Ingreso a Puerto', 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
+                array('label' => $this->language->_('Ingreso a Puerto'), 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
         /*TODO: ADD Validator*/
         $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
-                                                     array('label' => 'Número de Permiso'));
+                array('label' => $this->language->_('Número de Permiso')));
         $PERnroDoc  ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
 
         $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
-                                                     array('label' => 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
+                array('label' => $this->language->_('Permiso Presentado'), 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         /*TODO: ADD Validator*/
         $PERfactura = $this->_addform->createElement('text', 'PERfactura',
-                                                     array('label' => 'Permiso Factura'));
+                array('label' => $this->language->_('Permiso Factura')));
         $PERfactura ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
         $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
-                                                     array('label' => 'Permiso Fecha de Factura', 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
+                array('label' => $this->language->_('Permiso Fecha de Factura'), 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
         $PERfechaFactura    ->addValidator('date')
                             ->addValidator('stringLength', false, array(1, 12))
                             ->setRequired(False);
@@ -384,7 +384,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
                         ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }
@@ -412,7 +412,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)->setMethod('post');
 
-        $orden = $this->_modform->createElement('text', 'orden', array('label' => 'Órden'));
+        $orden = $this->_modform->createElement('text', 'orden', array('label' => $this->language->_('Órden')));
         $orden  ->setValue($row->orden() )
                 ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
@@ -504,14 +504,14 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
 
         $referencia = $this->_modform->createElement('text', 'referencia',
-                                                     array('label' => 'Referencia'));
+                array('label' => $this->language->_('Referencia')));
         $referencia ->setValue($row->referencia() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
         $fechaIngreso = $this->_modform->createElement('text', 'fechaIngreso',
-                                                     array('label' => 'Fecha de Ingreso', 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+                array('label' => $this->language->_('Fecha de Ingreso'), 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->setValue($row->fechaIngreso() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -519,7 +519,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
 
         $desMercaderias = $this->_modform->createElement('text', 'desMercaderias',
-                                                     array('label' => 'Descripción Mercadería'));
+                array('label' => $this->language->_('Descripción Mercadería')));
         $desMercaderias ->setValue($row->desMercaderias() )
                         ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 200))
@@ -527,7 +527,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
 
         $valorFactura = $this->_modform->createElement('text', '$valorFactura',
-                                                     array('label' => 'Valor Factura'));
+                array('label' => $this->language->_('Valor Factura')));
         $valorFactura   ->setValue($row->valorFactura() )
                         ->addValidator('float')
                         ->addValidator('stringLength', false, array(1, 40))
@@ -535,7 +535,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
 
         $vencimiento = $this->_modform->createElement('text', 'vencimiento',
-                                                     array('label' => 'Vencimiento', 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
+                array('label' => $this->language->_('Vencimiento'), 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento    ->setValue($row->vencimiento() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -543,20 +543,20 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         /*TODO: ADD validator*/
         $PERnroDoc = $this->_modform->createElement('text', 'PERnroDoc',
-                                                     array('label' => 'Número de Permiso'));
+                array('label' => $this->language->_('Número de Permiso')));
         $PERnroDoc  ->setValue($row->PERnroDoc() )
                     ->addValidator('stringLength', false, array(1, 30))
                     ->setRequired(True);
 
         $ingresoPuerto = $this->_modform->createElement('text', 'ingresoPuerto',
-                                                     array('label' => 'Ingreso a Puerto', 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
+                array('label' => $this->language->_('Ingreso a Puerto'), 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->setValue($row->ingresoPuerto() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
         $PERpresentado = $this->_modform->createElement('text', 'PERpresentado',
-                                                     array('label' => 'Permiso Presentado', 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
+                array('label' => $this->language->_('Permiso Presentado'), 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado  ->setValue($row->PERpresentado() )
                         ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
@@ -564,13 +564,13 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         /*TODO: ADD Validator*/
         $PERfactura = $this->_modform->createElement('text', 'PERfactura',
-                                                     array('label' => 'Permiso Factura'));
+                array('label' => $this->language->_('Permiso Factura')));
         $PERfactura ->setValue($row->PERfactura() )
                     ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(False);
 
         $PERfechaFactura = $this->_modform->createElement('text', 'PERfechaFactura',
-                                                     array('label' => 'Permiso Fecha de Factura', 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
+                array('label' => $this->language->_('Permiso Fecha de Factura'), 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
         $PERfechaFactura    ->setValue($row->PERfechaFactura() )
                             ->addValidator('date')
                             ->addValidator('stringLength', false, array(1, 12))
@@ -596,7 +596,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
                         ->addElement('hidden', 'ModImportacionTrack', array('values' => 'logPost'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }

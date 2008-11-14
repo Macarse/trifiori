@@ -288,7 +288,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
              ->addElement($marcaYnum)
              ->addElement($mercIMCO)
              ->addElement('hidden', 'ModCargaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -366,7 +366,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
              ->addElement($marcaYnum)
              ->addElement($mercIMCO)
              ->addElement('hidden', 'AddCargaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
         return $this->_addform;
     }

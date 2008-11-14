@@ -20,7 +20,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 
     public function addmonedasAction()
     {      
-        $this->view->headTitle("Agregar Moneda");
+        $this->view->headTitle($this->language->_("Agregar Moneda"));
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
@@ -209,13 +209,13 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . <?= $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 3))
              ->setRequired(true);
 
-        $longName = $this->_modform->createElement('text', 'longName', array('label' => 'Descripción'));
+        $longName = $this->_modform->createElement('text', 'longName', array('label' => $this->language->_('Descripción')));
         $longName->setValue($row->longName() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
@@ -225,7 +225,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $this->_modform->addElement($name)
              ->addElement($longName)
              ->addElement('hidden', 'ModMonedaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => 'Ingresar'));
+                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
@@ -244,12 +244,12 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . 'Nombre'));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 3))
                  ->setRequired(true);
 
-        $longName = $this->_addform->createElement('text', 'longName', array('label' => 'Descripción'));
+        $longName = $this->_addform->createElement('text', 'longName', array('label' => $this->language->_('Descripción')));
         $longName->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
              ->setRequired(False);
@@ -258,7 +258,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $this->_addform->addElement($name)
              ->addElement($longName)
              ->addElement('hidden', 'AddMonedaTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+             ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
         return $this->_addform;
     }
