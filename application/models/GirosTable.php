@@ -18,6 +18,14 @@ class Giros extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+	public function getGiroBySeccion( $seccion )
+    {
+        $where = $this->getAdapter()->quoteInto('SECCION_GIR = ?', $seccion);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
 
     public function addGiro( $name )
     {

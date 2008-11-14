@@ -18,6 +18,15 @@ class Transportes extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+    public function getTransporteByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NOMBRE_BUQ = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+
 
     public function addTransporte( $codBandera, $codMedio, $name, $observaciones )
     {

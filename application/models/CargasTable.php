@@ -18,6 +18,14 @@ class Cargas extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+    public function getCargaByNroPaq( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NROPAQUETE_CAR = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
 
     public function addCarga( $cantBultos, $tipoEnvase, $peso, $unidad,
                               $nroPaquete, $marcaYnum, $mercIMCO )

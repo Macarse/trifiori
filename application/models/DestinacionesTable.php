@@ -27,6 +27,14 @@ class Destinaciones extends Zend_Db_Table_Abstract
 
         return True;
     }
+	
+    public function getDestinacionByDesc( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('DESCRIPCION_DES = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
     
     public function searchDestinacion( $name )
     {

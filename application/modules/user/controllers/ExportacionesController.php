@@ -40,13 +40,12 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         $exportacionesTable = new Exportaciones();
                         $exportacionesTable->addExportacion(
                                                             $values['orden'],
-                                                            $values['codTransporte'],
+                                                            $values['nameTransporte'],
                                                             $values['nameCliente'],
-                                                            $values['codBandera'],
-                                                            $values['codMoneda'],
-                                                            $values['codGiro'],
-                                                            $values['codDestinacion'],
-                                                            $values['codCarga'],
+                                                            $values['nameBandera'],
+                                                            $values['nameMoneda'],
+                                                            $values['nameDestinacion'],
+                                                            $values['nameCarga'],
                                                             $values['referencia'],
                                                             $values['fechaIngreso'],
                                                             $values['desMercaderias'],
@@ -294,7 +293,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 		$codMoneda = $this->_addform->createElement('text', 'nameMoneda', array('label' => '*' . 'Moneda', 'id' => 'idnameMoneda'));
         $codMoneda ->setRequired(true);
 
-		$codDestinacion = $this->_addform->createElement('text', 'nameGiro', array('label' => '*' . 'Destinacion', 'id' => 'idnameDestinacion'));
+		$codDestinacion = $this->_addform->createElement('text', 'nameDestinacion', array('label' => '*' . 'Destinacion', 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true);
 
 		$codCarga = $this->_addform->createElement('text', 'nameCarga', array('label' =>'*' .  'Carga', 'id' => 'idnameCarga'));

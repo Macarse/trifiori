@@ -18,6 +18,14 @@ class Banderas extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+	public function getBanderaByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NOMBRE_BAN = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
 
     public function searchBandera( $name )
     {

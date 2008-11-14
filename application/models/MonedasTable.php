@@ -18,6 +18,14 @@ class Monedas extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+	public function getMonedaByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NAME_MON = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
 
     public function addMoneda( $name, $longName )
     {
