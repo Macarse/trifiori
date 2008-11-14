@@ -65,40 +65,35 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        if ($this->getRequest()->isPost())
+        $this->_searchform = $this->getMonedaSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            if (isset($_POST['SearchMonedaTrack']))
-            {
-                $this->_searchform = $this->getMonedaSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $monedasT = new Monedas();
-                        $monedas = $monedasT->searchMoneda($values["moneda"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($monedas, $monedasT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->monedaSearchForm = $this->getMonedaSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->monedaSearchForm = $this->getMonedaSearchForm();
             try
             {
-                $table = new Monedas();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $monedasT = new Monedas();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $monedas = $monedasT->searchMoneda($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $monedas = $monedasT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                    
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($monedas, $monedasT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -107,6 +102,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->monedaSearchForm = $this->getMonedaSearchForm();
     }
 
     public function removemonedasAction()
@@ -209,7 +205,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . <?= $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 3))
@@ -275,9 +271,9 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $moneda = $this->_searchform->createElement('text', 'moneda', array('label' => $this->language->_('Nombre')));
+        $moneda = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $moneda       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 150));
 

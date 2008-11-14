@@ -65,49 +65,45 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         unset($this->view->message);
         
         $this->view->message = $this->_flashMessenger->getMessages();
-        
-        if ($this->getRequest()->isPost())
+
+        $this->_searchform = $this->getPuertoSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            if (isset($_POST['SearchPuertoTrack']))
-            {
-                $this->_searchform = $this->getPuertoSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $puertosT = new Puertos();
-                        $puertos = $puertosT->searchPuerto($values["puerto"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($puertos, $puertosT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->puertoSearchForm = $this->getPuertoSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->puertoSearchForm = $this->getPuertoSearchForm();
             try
             {
-                $table = new Puertos();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $puertosT = new Puertos();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $puertos = $puertosT->searchPuerto($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $puertos = $puertosT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($puertos, $puertosT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->view->error = $error;
             }
         }
+                $this->view->puertoSearchForm = $this->getPuertoSearchForm();
     }
 
     public function removepuertosAction()
@@ -276,9 +272,9 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $puerto = $this->_searchform->createElement('text', 'puerto', array('label' => $this->language->_('Nombre')));
+        $puerto = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $puerto       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 200));
 

@@ -71,10 +71,10 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             {
                 $banderasT = new Banderas();
                 
-                if (isset($_GET["bandera"]))
+                if (isset($_GET["consulta"]))
                 {
-                    $banderas = $banderasT->searchBandera($_GET["bandera"]);
-                    Zend_Registry::set('busqueda', $_GET["bandera"]);
+                    $banderas = $banderasT->searchBandera($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
                 }
                 else
                 {
@@ -259,7 +259,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('get');
 
-        $banderas = $this->_searchform->createElement('text', 'bandera', array('label' => $this->language->_('Nombre')));
+        $banderas = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $banderas    ->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150));
 

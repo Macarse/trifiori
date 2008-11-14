@@ -63,40 +63,34 @@ class user_GirosController extends Trifiori_User_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        if ($this->getRequest()->isPost())
+        $this->_searchform = $this->getGiroSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            if (isset($_POST['SearchGiroTrack']))
-            {
-                $this->_searchform = $this->getGiroSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $girosT = new Giros();
-                        $giros = $girosT->searchGiro($values["giro"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($giros, $girosT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->giroSearchForm = $this->getGiroSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->giroSearchForm = $this->getGiroSearchForm();
             try
             {
-                $table = new Giros();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $girosT = new Giros();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $giros = $girosT->searchGiro($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $giros = $girosT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($giros, $girosT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($this->_getParam('page'));
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -105,6 +99,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->giroSearchForm = $this->getGiroSearchForm();
     }
 
     public function removegirosAction()
@@ -257,9 +252,9 @@ class user_GirosController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $giro = $this->_searchform->createElement('text', 'giro', array('label' => $this->language->_('Nombre')));
+        $giro = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $giro       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 100));
 

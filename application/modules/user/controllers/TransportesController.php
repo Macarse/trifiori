@@ -67,40 +67,34 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        if ($this->getRequest()->isPost())
+        $this->_searchform = $this->getTransporteSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            if (isset($_POST['SearchTransporteTrack']))
-            {
-                $this->_searchform = $this->getTransporteSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $transportesT = new Transportes();
-                        $transportes = $transportesT->searchTransporte($values["transporte"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($transportes, $transportesT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->transporteSearchForm = $this->getTransporteSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->transporteSearchForm = $this->getTransporteSearchForm();
             try
             {
-                $table = new Transportes();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $transportesT = new Transportes();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $transportes = $transportesT->searchTransporte($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $transportes = $transportesT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                    
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($transportes, $transportesT));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -109,6 +103,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->transporteSearchForm = $this->getTransporteSearchForm();
     }
 
     public function removetransportesAction()
@@ -361,9 +356,9 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
-        $transporte = $this->_searchform->createElement('text', 'transporte', array('label' => $this->language->_('Nombre')));
+        $transporte = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $transporte       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 100));
 
