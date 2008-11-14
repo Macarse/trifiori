@@ -19,7 +19,7 @@ class Exportaciones extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function addExportacion( $orden, $codTransporte, $codCliente,
+    public function addExportacion( $orden, $codTransporte, $nameCliente,
                                     $codBandera, $codMoneda, $codGiro,
                                     $codDestinacion, $codCarga, $referencia,
                                     $fechaIngreso, $desMercaderias,
@@ -28,6 +28,30 @@ class Exportaciones extends Zend_Db_Table_Abstract
                                     $PERfechaFactura
                                     )
     {
+	
+			// Tengo que obtener los codigos		
+		//clientes
+		$clientes = new Clientes();
+		try
+		{
+			$codCliente = $clientes->getClienteByName($nameCliente);
+			if ($codCliente != NULL)
+			{
+				return $codCliente->id();
+			}
+			else
+			{
+				throw new Exception('No existe el cliente');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+	
         $data = array(  'ORDEN'             => $orden,
                         'CODIGO_TRA'        => $codTransporte,
                         'CODIGO_CLI'        => $codCliente,

@@ -19,6 +19,14 @@ class Clientes extends Zend_Db_Table_Abstract
 
         return $row;
     }
+	
+    public function getClienteByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NOMBRE_CLI = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
 
     public function addCliente($name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
     {
