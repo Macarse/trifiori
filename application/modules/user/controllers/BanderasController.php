@@ -64,42 +64,35 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
         $this->view->message = $this->_flashMessenger->getMessages();
         
-        if ($this->getRequest()->isPost())
-        {
-        
-            if (isset($_POST['SearchBanderaTrack']))
-            {
-                $this->_searchform = $this->getBanderaSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-                    
-                    try
-                    {
-                        $banderasT = new Banderas();
-                        $banderas = $banderasT->searchBandera($values["bandera"]);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($banderas, $banderasT));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-                $this->view->banderaSearchForm = $this->getBanderaSearchForm();
-            }
-        }
-        else
-        {
-            $this->view->banderaSearchForm = $this->getBanderaSearchForm();
+        $this->_searchform = $this->getBanderaSearchForm();
+        if ($this->_searchform->isValid($_GET))
+        {          
             try
             {
-                $table = new Banderas();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
-                $paginator->setItemCountPerPage(20);
+                $banderasT = new Banderas();
+                
+                if (isset($_GET["bandera"]))
+                {
+                    $banderas = $banderasT->searchBandera($_GET["bandera"]);
+                    Zend_Registry::set('busqueda', $_GET["bandera"]);
+                }
+                else
+                {
+                    $banderas = $banderasT->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                //$banderas = $banderasT->searchBandera($values["bandera"]);
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($banderas, $banderasT));
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                //$paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
             catch (Zend_Exception $error)
@@ -107,6 +100,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                 $this->view->error = $error;
             }
         }
+        $this->view->banderaSearchForm = $this->getBanderaSearchForm();
     }
 
     public function removebanderasAction()
@@ -263,7 +257,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $this->_searchform = new Zend_Form();
         $this->_searchform->setAction($this->_baseUrl)
 						->setName('form')
-						->setMethod('post');
+						->setMethod('get');
 
         $banderas = $this->_searchform->createElement('text', 'bandera', array('label' => $this->language->_('Nombre')));
         $banderas    ->addValidator($alnumWithWS)
