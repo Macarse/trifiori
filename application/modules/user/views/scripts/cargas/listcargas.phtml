@@ -1,3 +1,17 @@
+<div class='cInputsTable'>
+	<label for="cColBultos"><?= $this->language->_("Cantidad Bultos")?></label>
+	<input type='checkbox' id="cColBultos" name="cColBultos" checked>  
+	<label for="cColTipoenvase"><?= $this->language->_("Tipo de Envase")?></label>
+	<input type='checkbox' id="cColTipoenvase" name="cColTipoenvase" checked> 
+	<label for="cColPeso"><?= $this->language->_("Peso")?></label>
+	<input type='checkbox' id="cColPeso" name="cColPeso" checked> 
+	<label for="cColnropaq"><?= $this->language->_("Número de Paquete")?></label>
+	<input type='checkbox' id="cColnropaq" name="cColnropaq" checked> 
+	<label for="cColMarcayum"><?= $this->language->_("Marca y número")?></label>
+	<input type='checkbox' id="cColMarcayum" name="cColMarcayum" checked> 
+	<label for="cColImco"><?= $this->language->_("Merc. IMCO")?></label>
+	<input type='checkbox' id="cColImco" name="cColImco" checked>  
+</div>
 <div class="busqueda">
     <?= $this->cargaSearchForm ?>
 </div>
@@ -77,9 +91,54 @@ YAHOO.util.Event.addListener(window, "load", function() {
             ]
         };
 
-        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"name",dir:"desc"},draggableColumns:true}
-        );
+        var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+                {sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
+					
+		YAHOO.util.Event.addListener("cColBultos", "click", function (e){
+									   if (document.getElementById('cColBultos').checked)
+										  myDT.showColumn("bultos");
+									   else
+										  myDT.hideColumn("bultos");
+									});
+
+		YAHOO.util.Event.addListener("cColTipoenvase", "click", function (e){
+									   if (document.getElementById('cColTipoenvase').checked)
+										  myDT.showColumn("tipoenvase");
+									   else
+										  myDT.hideColumn("tipoenvase");
+									});
+	
+		YAHOO.util.Event.addListener("cColPeso", "click", function (e){
+									   if (document.getElementById('cColPeso').checked)
+										  myDT.showColumn("peso");
+									   else
+										  myDT.hideColumn("peso");
+									});
+		YAHOO.util.Event.addListener("cColnropaq", "click", function (e){
+									   if (document.getElementById('cColnropaq').checked)
+										  myDT.showColumn("nropaq");
+									   else
+										  myDT.hideColumn("nropaq");
+									});
+		YAHOO.util.Event.addListener("cColMarcayum", "click", function (e){
+									   if (document.getElementById('cColMarcayum').checked)
+										  myDT.showColumn("marcayum");
+									   else
+										  myDT.hideColumn("marcayum");
+									});
+		YAHOO.util.Event.addListener("cColIva", "click", function (e){
+									   if (document.getElementById('cColIva').checked)
+										  myDT.showColumn("iva");
+									   else
+										  myDT.hideColumn("iva");
+									});
+		YAHOO.util.Event.addListener("cColImco", "click", function (e){
+									   if (document.getElementById('cColImco').checked)
+										  myDT.showColumn("imco");
+									   else
+										  myDT.hideColumn("imco");
+									});
+
     };
 });
 </script>

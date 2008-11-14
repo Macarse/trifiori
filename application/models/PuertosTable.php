@@ -31,7 +31,7 @@ class Puertos extends Zend_Db_Table_Abstract
         return True;
     }
     
-    public function searchPuertos( $name )
+    public function searchPuerto( $name )
     {
         $name = mysql_real_escape_string($name);
         return $this->select()->where("NOMBRE_PUE LIKE '%" . $name . "%'"); 

@@ -5,6 +5,13 @@ class user_BanderasController extends Trifiori_User_Controller_Action
     protected $_modform;
     protected $_searchform;
     protected $_id;
+    protected $_flashMessenger = null;
+
+    public function init()
+    {
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        parent::init();
+    }
 
     public function indexAction()
     {
@@ -51,6 +58,9 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         
         /*Errors from the past are deleted*/
         unset($this->view->error);
+        unset($this->view->message);
+
+        $this->view->message = $this->_flashMessenger->getMessages();
         
         if ($this->getRequest()->isPost())
         {
@@ -94,7 +104,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             {
                 $this->view->error = $error;
             }
-        }    
+        }
     }
 
     public function removebanderasAction()
@@ -110,10 +120,12 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             {
             $banderasTable = new Banderas();
             $banderasTable->removeBandera( $this->getRequest()->getParam('id') );
+            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->view->error = $error;
+            $this->_flashMessenger->addMessage($this->language->_($error));
+            //$this->view->error = $error;
             }
         }
 
@@ -125,7 +137,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $this->view->headTitle($this->language->_("Modificar Bandera"));
 
         /*Errors from the past are deleted*/
-        unset($this->view->error);
+        unset($this->view->error); 
 
         /*Si hay parámetros pedir el form*/
         if ( $this->getRequest()->getParam('id') != null )
@@ -154,10 +166,13 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                         $banderasTable = new Banderas();
                         $banderasTable->modifyBandera( $this->_id,
                                             $values['name']);
+                        $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->view->error = $error;
+                        // hay que ver como traducimos los errores o si mandamos uno 'generico'
+                        $this->_flashMessenger->addMessage($this->language->_($error));
+                        //$this->view->error = $error;
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/

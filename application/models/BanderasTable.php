@@ -22,11 +22,7 @@ class Banderas extends Zend_Db_Table_Abstract
     public function searchBandera( $name )
     {
         $name = mysql_real_escape_string($name);
-        if ($name == null)
-        {
-            $name = " ";
-        }
-        
+
         return $this->select()->where("NOMBRE_BAN LIKE '%" . $name . "%'"); 
     }
     

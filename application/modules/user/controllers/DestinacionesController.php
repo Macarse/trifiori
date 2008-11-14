@@ -257,6 +257,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
+    
 	public function getdataAction() {
        $arr = array();
 	   $aux = array();

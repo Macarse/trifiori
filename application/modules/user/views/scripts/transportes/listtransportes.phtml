@@ -1,3 +1,9 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<div class="busqueda">
+    <?= $this->transporteSearchForm ?>
+</div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
