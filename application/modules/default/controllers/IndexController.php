@@ -8,7 +8,10 @@ class IndexController extends Trifiori_Default_Controller_Action
         $this->view->headTitle("Trifiori Login");
         if (Zend_Auth::getInstance()->getIdentity() !== null)
         {
-            if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == "admin")
+
+            $user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
+
+            if ($this->$user == "admin")
             {
                 $this->_helper->redirector->gotoUrl('admin/panel');
             }

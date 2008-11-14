@@ -20,9 +20,10 @@ class Bootstrap
         $this->setupRegistry();
         $this->readConfig();
         $this->setupDb();
-        $this->setupMVC();
         $this->setupIdentity();
         $this->setupTranslate();
+        $this->setupMVC();
+
     }
 
     public function run()
@@ -36,8 +37,7 @@ class Bootstrap
         error_reporting(E_ALL|E_STRICT);
         ini_set('display_errors', true);
         date_default_timezone_set('America/Buenos_Aires');
-        Zend_Locale::setDefault('en_EN');
-//         Zend_Locale::setDefault('es_AR');
+        Zend_Locale::setDefault('es_AR');
     }
 
     private function setupMVC()
@@ -54,8 +54,11 @@ class Bootstrap
         $this->frontController->addModuleDirectory($this->root.'/application/modules');
 
         // Registrar los plugins de ACL y Log.
-        Zend_Controller_Front::getInstance()->registerPlugin( new    Trifiori_Controller_Plugin_ACL() );
-        Zend_Controller_Front::getInstance()->registerPlugin( new    Trifiori_Controller_Plugin_Log() );
+        $this->frontController->registerPlugin( new Trifiori_Controller_Plugin_ACL() );
+        $this->frontController->registerPlugin( new Trifiori_Controller_Plugin_Log() );
+
+        // Registrar el plugin de Translate.
+        $this->frontController->registerPlugin( new Trifiori_Controller_Plugin_Translate() );
     }
 
     private function setupView()
@@ -118,6 +121,7 @@ class Bootstrap
     private function setupTranslate()
     {
         $translate = new Zend_Translate('gettext', $this->root . '/application/languages/en.mo', 'en');
+        $translate->addTranslation($this->root . '/application/languages/es.mo', 'es');
         Zend_Registry::getInstance()->language = $translate;
     }
 
@@ -132,8 +136,9 @@ class Bootstrap
         }
         else
         {
-            Zend_Registry::getInstance()->identity=$identity;
-            
+            Zend_Registry::set('identity', $identity);
+//             Zend_Registry::getInstance()->identity=$identity;
+
             if ($identity->USUARIO_USU == 'admin')
             {
                 Zend_Registry::getInstance()->name = 'admin';
