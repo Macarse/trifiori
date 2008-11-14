@@ -1,3 +1,11 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+            <? } ?>
+            <? if (isset($this->message)) { ?>
+                <? foreach ($this->message as $msg) { ?>
+                    <div class="msg"><?= $msg ?></div>
+                            <? } ?>
+                            <? } ?>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>

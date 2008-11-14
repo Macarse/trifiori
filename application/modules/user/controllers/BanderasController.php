@@ -24,6 +24,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
+        unset($this->view->message);
 
         if ($this->getRequest()->isPost())
         {
@@ -38,6 +39,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                     {
                         $banderasTable = new Banderas();
                         $banderasTable->addBandera($values['name']);
+                        $this->view->message = $this->language->_("Inserción exitosa.");
                     }
                     catch (Zend_Exception $error)
                     {

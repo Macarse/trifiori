@@ -5,7 +5,14 @@ class user_TransportesController extends Trifiori_User_Controller_Action
     protected $_modform;
     protected $_searchform;
     protected $_id;
+    protected $_flashMessenger = null;
 
+    public function init()
+    {
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        parent::init();
+    }
+    
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
@@ -17,6 +24,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
+        unset($this->view->message);
 
         if ($this->getRequest()->isPost())
         {
@@ -35,6 +43,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                                                             $values['name'],
                                                             $values['observaciones']
                                                         );
+                        $this->view->message = $this->language->_("Inserción exitosa.");
                     }
                     catch (Zend_Exception $error)
                     {
@@ -54,6 +63,9 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $this->view->paginator = null;
         /*Errors from the past are deleted*/
         unset($this->view->error);
+        unset($this->view->message);
+        
+        $this->view->message = $this->_flashMessenger->getMessages();
 
         if ($this->getRequest()->isPost())
         {
@@ -112,10 +124,11 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             {
             $transportesTable = new Transportes();
             $transportesTable->removeTransporte( $this->getRequest()->getParam('id') );
+            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->view->error = $error;
+            $this->_flashMessenger->addMessage($this->language->_($error));
             }
         }
 
@@ -160,10 +173,11 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                                                                 $values['name'],
                                                                 $values['observaciones']
                                                             );
+                        $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->view->error = $error;
+                    $this->_flashMessenger->addMessage($this->language->_($error));
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/

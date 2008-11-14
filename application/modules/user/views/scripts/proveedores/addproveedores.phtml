@@ -1,6 +1,9 @@
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->error ?></div>
-<? } ?>
+            <? } ?>
+            <? if (isset($this->message)) { ?>
+                <div class="msg"><?= $this->message ?></div>
+                        <? } ?>
 <div class="cformulario">
 	<?= $this->proveedorAddForm ?>
 </div>
