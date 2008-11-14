@@ -14,7 +14,7 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?> 
   <?php if ($page != $this->current): ?>
-    <a href="<?= $this->url(array('page' => $page)); ?>"><?= $page; ?></a> | 
+    <a href="<?= $this->url(array('page' => $page)); ?>"><?= $page; ?></a> |
   <?php else: ?>
     <?= $page; ?> | 
   <?php endif; ?>
