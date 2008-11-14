@@ -240,13 +240,15 @@ create table MONEDAS
 create table OPP
 (
    CODIGO_OPP                     int AUTO_INCREMENT             not null,
+   NUMERO_OPP                     int                            not null,
    DECLARACION_OK_OPP             char(1)                        not null,
    PEDIDO_DE_DINERO_OPP           date                           not null,
    OTROS_OPP                      varchar(255),
    FRACCIONADO_OPP                varchar(150),
    ESTAMPILLAS_OPP                varchar(150),
    IMPUESTOS_INTERNOS_OPP         varchar(150),
-   primary key (CODIGO_OPP)
+   primary key (CODIGO_OPP),
+   UNIQUE NUMERO_OPP (NUMERO_OPP)
 );
 
 /*==============================================================*/

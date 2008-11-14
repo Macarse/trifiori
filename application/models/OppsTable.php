@@ -20,16 +20,17 @@ class Opps extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function addOpp($declaracionOk, $pedidoDinero, $otrosOpp,
+    public function addOpp($name, $declaracionOk, $pedidoDinero, $otrosOpp,
                            $fraccionado, $estampillas, $impuestosInternos)
     {
         /*TODO: Validaciones*/
-        $data = array('DECLARACION_OK_OPP'      => $declaracionOk,
-                      'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
-                      'OTROS_OPP'               => $otrosOpp,
-                      'FRACCIONADO_OPP'         => $fraccionado,
-                      'ESTAMPILLAS_OPP'         => $estampillas,
-                      'IMPUESTOS_INTERNOS_OPP'  => $impuestosInternos
+        $data = array(  'NUMERO_OPP'              => $name,
+                        'DECLARACION_OK_OPP'      => $declaracionOk,
+                        'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
+                        'OTROS_OPP'               => $otrosOpp,
+                        'FRACCIONADO_OPP'         => $fraccionado,
+                        'ESTAMPILLAS_OPP'         => $estampillas,
+                        'IMPUESTOS_INTERNOS_OPP'  => $impuestosInternos
                     );
 
         $this->insert($data);
@@ -37,7 +38,7 @@ class Opps extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function modifyOpp( $id, $declaracionOk, $pedidoDinero, $otrosOpp,
+    public function modifyOpp( $id, $name, $declaracionOk, $pedidoDinero, $otrosOpp,
                            $fraccionado, $estampillas, $impuestosInternos)
     {
         try
@@ -51,7 +52,8 @@ class Opps extends Zend_Db_Table_Abstract
             return False;
         }
 
-        $this->update(array(    'DECLARACION_OK_OPP'      => $declaracionOk,
+        $this->update(array(    'NUMERO_OPP'              => $name,
+                                'DECLARACION_OK_OPP'      => $declaracionOk,
                                 'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
                                 'OTROS_OPP'               => $otrosOpp,
                                 'FRACCIONADO_OPP'         => $fraccionado,
@@ -77,7 +79,7 @@ class Opps extends Zend_Db_Table_Abstract
 
         foreach ($opps as $row)
         {
-            $arr[ $row->id() ] = $row->pedidoDinero();
+            $arr[ $row->id() ] = $row->name();
         }
 
         return $arr;

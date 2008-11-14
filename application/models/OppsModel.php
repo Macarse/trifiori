@@ -9,12 +9,17 @@ class OppsModel extends Zend_Db_Table_Row_Abstract
         return $this->CODIGO_OPP;
     }
 
+    public function name()
+    {
+        return $this->NUMERO_OPP;
+    }
+
     public function declaracionOk()
     {
         if ($this->DECLARACION_OK_OPP === 's')
-            return 'Sí';
+            return 'OK';
         else
-            return 'No';
+            return '-';
     }
 
     public function declaracionOkchar()
