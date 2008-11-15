@@ -9,8 +9,8 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
     public function init()
     {
-        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
     }
 
     public function indexAction()
@@ -44,7 +44,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -58,20 +58,20 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $this->view->headTitle($this->language->_("Listar Banderas"));
 
         $this->view->paginator = null;
-        
+
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
 
         $this->view->message = $this->_flashMessenger->getMessages();
-        
+
         $this->_searchform = $this->getBanderaSearchForm();
         if ($this->_searchform->isValid($_GET))
-        {          
+        {
             try
             {
                 $banderasT = new Banderas();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     $banderas = $banderasT->searchBandera($_GET["consulta"]);
@@ -115,14 +115,16 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $banderasTable = new Banderas();
-            $banderasTable->removeBandera( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $banderasTable = new Banderas();
+                $banderasTable->removeBandera( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
-            //$this->view->error = $error;
+                $this->_flashMessenger->addMessage( "<div class=\"errors\">" .
+                    $this->language->_("No se puedo eliminar. Error en la Base de datos.") .
+                    "</div>"
+                    );
             }
         }
 
@@ -134,7 +136,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $this->view->headTitle($this->language->_("Modificar Bandera"));
 
         /*Errors from the past are deleted*/
-        unset($this->view->error); 
+        unset($this->view->error);
 
         /*Si hay parámetros pedir el form*/
         if ( $this->getRequest()->getParam('id') != null )
@@ -167,13 +169,12 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        // hay que ver como traducimos los errores o si mandamos uno 'generico'
-                        $this->_flashMessenger->addMessage($this->language->_($error));
-                        //$this->view->error = $error;
+                        $this->_flashMessenger->addMessage("<div class=\"errors\">".
+                            $this->language->_("No se pudo modificar. Error en la Base de datos.") .
+                            "</div>"
+                                            );
                     }
 
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
                     $this->_helper->redirector->gotoUrl('user/banderas/listbanderas');
                 }
             }
@@ -183,7 +184,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
     private function getBanderaModForm( $id )
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -202,10 +203,11 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name',
+                array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
@@ -222,18 +224,19 @@ class user_BanderasController extends Trifiori_User_Controller_Action
     private function getBanderaAddForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_addform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_addform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue("");
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
@@ -246,24 +249,25 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
         return $this->_addform;
     }
-    
+
     private function getBanderaSearchForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_searchform)
         {
             return $this->_searchform;
         }
 
         $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $this->_searchform  ->setAction($this->_baseUrl)
+                            ->setName('form')
+                            ->setMethod('get');
 
-        $banderas = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
-        $banderas    ->addValidator($alnumWithWS)
-                 ->addValidator('stringLength', false, array(1, 150));
+        $banderas = $this->_searchform->createElement('text', 'consulta',
+            array('label' => $this->language->_('Nombre')));
+        $banderas   ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 150));
 
         // Add elements to form:
         $this->_searchform->addElement($banderas)
@@ -272,39 +276,43 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
-    
-    public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Banderas();
-		   $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%'");
-		   
-           foreach ($banderas as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-	       }
-	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
-   }
+            $model = new Banderas();
+            $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%'");
+
+            foreach ($banderas as $row)
+            {
+                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+            }
+
+            $arr = array("Resultset" => array("Result" => $aux));
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
+    }
 }
 ?>
