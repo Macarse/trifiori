@@ -90,20 +90,64 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        try
+        $this->_searchform = $this->getImportacionSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            $table = new Importaciones();;
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+            try
+            {
+                $importacionesTable = new Importaciones();
+                $impo = $importacionesTable->searchImportacion($_GET);
+                $busqueda = "";
+                
+                if (isset($_GET["searchOrden"]))
+                {
+                    $busqueda = "&searchOrden=" . $_GET["searchOrden"];
+                }
+                else
+                {
+                    $busqueda = "&searchOrden=";
+                }
+                
+                if (isset($_GET["searchCliente"]))
+                {
+                    $busqueda = $busqueda . "&searchCliente=" . $_GET["searchCliente"];
+                }
+                else
+                {
+                    $busqueda = $busqueda . "&searchCliente=";
+                }
+                
+                if (isset($_GET["searchCarga"]))
+                {
+                    $busqueda = $busqueda . "&searchCarga=" . $_GET["searchCarga"];
+                }
+                else
+                {
+                    $busqueda = $busqueda . "&searchCarga=";
+                }
+                
+                Zend_Registry::set('busqueda', $busqueda);
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($impo, $importacionesTable));
+                //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
-        catch (Zend_Exception $error)
-        {
-            $this->view->error = $error;
-        }
+        $this->view->importacionSearchForm = $this->getImportacionSearchForm();
     }
-
+    
     public function removeimportacionesAction()
     {
         /*TODO: Agregar un "Seguro que desea eliminar?"*/
@@ -472,6 +516,65 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 
+    private function getImportacionSearchForm()
+    {
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform->setAction($this->_baseUrl)->setMethod('get');
+
+        $searchOrden = $this->_searchform->createElement('text', 'searchOrden',
+                array('label' => $this->language->_('Órden')));
+        $searchOrden    ->addValidator('int')
+                ->addValidator('stringLength', false, array(1, 11));
+
+        $searchCliente = $this->_searchform->createElement('text', 'searchCliente',
+                array('label' => $this->language->_('Cliente')));
+        $searchCliente ->addValidator($alnumWithWS);
+
+        $searchCarga = $this->_searchform->createElement('text', 'searchCarga',
+                array('label' => $this->language->_('Carga')));
+        $searchCarga ->addValidator('alnum');
+
+        $decoradorSearchOrden = array(
+                                      'ViewHelper',
+                                      'Errors',
+                                      array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedaorden'))
+                                     );
+
+        $decoradorSearchCliente = array(
+                                        'ViewHelper',
+                                        'Errors',
+                                        array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedacliente'))
+                                       );
+
+        $decoradorSearchCarga = array(
+                                      'ViewHelper',
+                                      'Errors',
+                                      array('HtmlTag', array('tag' => 'div', 'id' => 'divbusquedacarga'))
+                                     );
+
+    // Add elements to form:
+            $this->_searchform  ->addElement($searchOrden)
+            ->addElement('hidden', 'decobusqueda', array( 'decorators' => $decoradorSearchOrden))
+            ->addElement($searchCliente)
+            ->addElement('hidden', 'decocliente', array( 'decorators' => $decoradorSearchCliente))
+            ->addElement($searchCarga)
+            ->addElement('hidden', 'decocarga', array( 'decorators' => $decoradorSearchCarga))
+            ->addElement('hidden', 'SearchImportacionTrack', array('values' => 'logPost'))
+                        //->addElement('hidden', 'searchOrden', array('id' => 'idsearchOrden'))
+                        //->addElement('hidden', 'searchCliente', array('id' => 'idsearchCliente'))
+                        //->addElement('hidden', 'searchCarga', array('id' => 'idsearchCarga'))
+            ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+    return $this->_searchform;
+    }
+    
     private function getImportacionModForm( $id )
     {
         /*Esto hace una especie de singleton del form a nivel controlador*/
