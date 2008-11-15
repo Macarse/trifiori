@@ -123,6 +123,7 @@ class Bootstrap
         $translate = new Zend_Translate('gettext', $this->root . '/application/languages/en.mo', 'en');
         $translate->addTranslation($this->root . '/application/languages/es.mo', 'es');
         Zend_Registry::getInstance()->language = $translate;
+        Zend_Form::setDefaultTranslator($translate);
     }
 
     private function setupIdentity()
