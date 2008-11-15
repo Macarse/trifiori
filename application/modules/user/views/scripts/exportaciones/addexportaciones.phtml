@@ -128,8 +128,8 @@
 		frmvalidator.addValidation("nameMoneda","req","<?= $this->language->_("*Elija una moneda")?>");
 		frmvalidator.addValidation("nameMoneda","alpha_s","<?= $this->language->_("*La moneda debe contener sólo letras")?>");
 
-		frmvalidator.addValidation("nameGiro","req","<?= $this->language->_("*Elija una destinación")?>");
-		frmvalidator.addValidation("nameGiro","alpha_s","<?= $this->language->_("*La destinación debe contener sólo letras")?>");
+		frmvalidator.addValidation("nameDestinacion","req","<?= $this->language->_("*Elija una destinación")?>");
+		frmvalidator.addValidation("nameDestinacion","alpha_s","<?= $this->language->_("*La destinación debe contener sólo letras")?>");
 
 		frmvalidator.addValidation("nameCarga","req","<?= $this->language->_("*Elija una carga")?>");
 		frmvalidator.addValidation("nameCarga","alnum","<?= $this->language->_("*La carga debe contener sólo letras")?>");
@@ -146,9 +146,6 @@
 
 		frmvalidator.addValidation("vencimiento","req","<?= $this->language->_("*Ingrese un vencimiento")?>");
 		frmvalidator.addValidation("vencimiento","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "<?= $this->language->_("*La fecha de vencimiento es inválida")?>");
-
-		frmvalidator.addValidation("ingresoPuerto","req","<?= $this->language->_("*Ingrese un ingreso a puerto")?>");
-		frmvalidator.addValidation("ingresoPuerto","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "<?= $this->language->_("*La fecha de ingreso a puerto es inválida")?>");
 
 		frmvalidator.addValidation("PERnroDoc","req","<?= $this->language->_("*Ingrese un número de permiso")?>");
 		frmvalidator.addValidation("PERnroDoc","num","<?= $this->language->_("*El número de permiso debe ser numérico")?>");
