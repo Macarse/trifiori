@@ -80,43 +80,53 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        if ($this->getRequest()->isPost())
+        $this->_searchform = $this->getExportacionSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-
-            if (isset($_POST['SearchExportacionTrack']))
-            {
-                $this->_searchform = $this->getExportacionSearchForm();
-                if ($this->_searchform->isValid($_POST))
-                {
-                    $values = $this->_searchform->getValues();
-
-                    try
-                    {
-                        $exportacionesTable = new Exportaciones();
-                        $expo = $exportacionesTable->searchExportacion($values);
-                        $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
-                        //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        $paginator->setItemCountPerPage(15);
-                        $this->view->paginator = $paginator;
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $error;
-                    }
-                }
-            }
-            $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
-        }
-        else
-        {
-            $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
-
             try
             {
-                $table = new Exportaciones();
-                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $exportacionesTable = new Exportaciones();
+                $expo = $exportacionesTable->searchExportacion($_GET);
+                $busqueda = "";
+                
+                if (isset($_GET["searchOrden"]))
+                {
+                    $busqueda = "&searchOrden=" . $_GET["searchOrden"];
+                }
+                else
+                {
+                    $busqueda = "&searchOrden=";
+                }
+                
+                if (isset($_GET["searchCliente"]))
+                {
+                    $busqueda = $busqueda . "&searchCliente=" . $_GET["searchCliente"];
+                }
+                else
+                {
+                    $busqueda = $busqueda . "&searchCliente=";
+                }
+                
+                if (isset($_GET["searchCarga"]))
+                {
+                    $busqueda = $busqueda . "&searchCarga=" . $_GET["searchCarga"];
+                }
+                else
+                {
+                    $busqueda = $busqueda . "&searchCarga=";
+                }
+                
+                Zend_Registry::set('busqueda', $busqueda);
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
+                //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -124,7 +134,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             {
                 $this->view->error = $error;
             }
-       }
+        }
+        $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
     }
 
     public function detailsAction()
@@ -461,7 +472,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $alnumWithWS = new Zend_Validate_Alnum(True);
 
         $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)->setMethod('post');
+        $this->_searchform->setAction($this->_baseUrl)->setMethod('get');
 
         $searchOrden = $this->_searchform->createElement('text', 'searchOrden',
                 array('label' => $this->language->_('Órden')));

@@ -183,6 +183,21 @@ class Exportaciones extends Zend_Db_Table_Abstract
     
     public function searchExportacion( $busqueda )
     {
+        if (!isset($busqueda["searchCliente"]))
+        {
+            $busqueda["searchCliente"] = "";
+        }
+        
+        if (!isset($busqueda["searchOrden"]))
+        {
+            $busqueda["searchOrden"] = "";
+        }
+        
+        if (!isset($busqueda["searchCarga"]))
+        {
+            $busqueda["searchCarga"] = "";
+        }
+        
         $cliente = mysql_real_escape_string($busqueda["searchCliente"]);
         $orden = mysql_real_escape_string($busqueda["searchOrden"]);
         $carga = mysql_real_escape_string($busqueda["searchCarga"]);
