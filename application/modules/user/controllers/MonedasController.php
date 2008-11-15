@@ -42,6 +42,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                                                     $values['longName']
                                                 );
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {
