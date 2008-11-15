@@ -545,27 +545,39 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         $codTransporte = $this->_modform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
-        $codTransporte  -> setRequired(true);
+        $codTransporte  -> setRequired(true)
+						->setValue($row->codTransporteName() )
+					   ->addValidator(new CV_Validate_Transporte());
 
         $codCliente = $this->_modform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
-        $codCliente ->setRequired(true);
+        $codCliente ->setRequired(true)
+					->setValue($row->codClienteName() )
+					->addValidator(new CV_Validate_Cliente());
 
         $codBandera = $this->_modform->createElement('text', 'nameBandera',
                 array('label' => '*' . $this->language->_('Bandera'), 'id' => 'idnameBandera'));
-        $codBandera ->setRequired(true);
+        $codBandera ->setRequired(true)
+					->setValue($row->codBanderaName() )
+					->addValidator(new CV_Validate_Bandera());
 
         $codMoneda = $this->_modform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true);
+        $codMoneda ->setRequired(true)
+					->setValue($row->codMonedaName() )
+					->addValidator(new CV_Validate_Moneda());
 
-        $codDestinacion = $this->_modform->createElement('text', 'nameGiro',
+        $codDestinacion = $this->_modform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
-        $codDestinacion ->setRequired(true);
+        $codDestinacion ->setRequired(true)
+					->setValue($row->codDestinacionName() )
+					->addValidator(new CV_Validate_Destinacion());
 
         $codCarga = $this->_modform->createElement('text', 'nameCarga',
                 array('label' => '*' . $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true);
+        $codCarga ->setRequired(true)
+					->setValue($row->codCargaName() )
+					->addValidator(new CV_Validate_Carga());
 
 
         $decoradorBandera = array(
