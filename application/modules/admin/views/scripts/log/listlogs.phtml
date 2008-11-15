@@ -1,3 +1,6 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
 <div id="divmodificaciones" class="clistado">
 <table id="tablemodifications">
     <thead>
@@ -19,7 +22,6 @@
     </tbody>
 </table>
 </div>
-
 
 <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 

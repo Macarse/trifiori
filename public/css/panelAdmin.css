@@ -1,3 +1,7 @@
+#ysearch { text-align:center; }
+#ysearchinput { position:relative; width:1em; } /* to center, set static and explicit width: */
+#ysearchcontainer { text-align:left; width:1em; } /* to center, set left-align and explicit width: */
+
 #filemenu.visible .yuimenuitemlabel,
 #editmenu.visible .yuimenuitemlabel {
    *zoom: 1;
@@ -27,9 +31,10 @@ div.cfooter
 
 div.clistado
 {
-	position: relative;
-	left: 30em;
-	top: 5em;
+    position: relative;
+    margin-left: 30%;
+    margin-right: auto;
+
 }
 
 div.cformusuario

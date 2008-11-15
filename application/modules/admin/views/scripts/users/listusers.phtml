@@ -1,3 +1,11 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<? if (isset($this->message)) { ?>
+    <? foreach ($this->message as $msg) { ?>
+        <div class="msg"><?= $msg ?></div>
+    <? } ?>
+<? } ?>
 <div id="divlistusers" class="clistado">
     <table id="tableusers">
         <thead>
@@ -31,6 +39,7 @@
 </div>
 
 <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+                
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {

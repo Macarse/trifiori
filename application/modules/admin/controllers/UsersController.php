@@ -6,7 +6,13 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
     protected $_modform;
     protected $_id;
     protected $_rmid;
+    protected $_flashMessenger = null;
 
+    public function init()
+    {
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+        parent::init();
+    }
 
     public function indexAction()
     {
@@ -71,12 +77,26 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
-
+        unset($this->view->message);
+        
+        $this->view->message = $this->_flashMessenger->getMessages();
+        
         try
         {
             $table = new Users();
+            
             $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
+            
+            if (isset($_GET["page"]))
+            {
+                $paginator->setCurrentPageNumber($this->_getParam('page'));
+            }
+            else
+            {
+                $paginator->setCurrentPageNumber(1);
+            }
+            
+            Zend_Registry::set('busqueda', "");
             $paginator->setItemCountPerPage(10);
             $this->view->paginator = $paginator;
         }
@@ -108,10 +128,12 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 {
                 $usersTable = new Users();
                 $usersTable->removeUser( $_rmid );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
                 }
                 catch (Exception $error)
                 {
-                $this->view->error = $error;
+                $this->_flashMessenger->addMessage($this->language->_($error));
+                //$this->view->error = $error;
                 }
             }
         }
@@ -158,10 +180,12 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                                                     $values['lang'],
                                                     $values['css']
                                                 );
+                        $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->view->error = $error;
+                    $this->_flashMessenger->addMessage($this->language->_($error));
+                    //$this->view->error = $error;
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
@@ -238,7 +262,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         ->addElement($lang)
                         ->addElement($css)
              ->addElement('hidden', 'AddUserTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
         return $this->_addform;
     }
 
@@ -320,7 +344,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
              ->addElement($lang)
              ->addElement($css)
              ->addElement('hidden', 'ModUserTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
