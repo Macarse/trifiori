@@ -284,27 +284,33 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         $codTransporte = $this->_addform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
-        $codTransporte  ->setRequired(true);
+        $codTransporte  ->setRequired(true)
+					   ->addValidator(new CV_Validate_Transporte());
 
         $codCliente = $this->_addform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
-        $codCliente ->setRequired(true);
+        $codCliente ->setRequired(true)
+				   ->addValidator(new CV_Validate_Cliente());
 
         $codBandera = $this->_addform->createElement('text', 'nameBandera',
                 array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
-        $codBandera ->setRequired(true);
+        $codBandera ->setRequired(true)
+				   ->addValidator(new CV_Validate_Bandera());
 
         $codMoneda = $this->_addform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true);
+        $codMoneda ->setRequired(true)
+				   ->addValidator(new CV_Validate_Moneda());
 
         $codDestinacion = $this->_addform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
-        $codDestinacion ->setRequired(true);
+        $codDestinacion ->setRequired(true)
+					   ->addValidator(new CV_Validate_Destinacion());
 
         $codCarga = $this->_addform->createElement('text', 'nameCarga',
                 array('label' =>'*' .  $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true);
+        $codCarga ->setRequired(true)
+				   ->addValidator(new CV_Validate_Carga());
 
         $referencia = $this->_addform->createElement('text', 'referencia',
                 array('label' => $this->language->_('Referencia')));
@@ -440,7 +446,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
                         ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Ingresar'));
+                        ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
         return $this->_addform;
     }
