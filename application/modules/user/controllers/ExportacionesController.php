@@ -289,6 +289,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $orden = $this->_addform->createElement('text', 'orden',
                 array('label' => '*' . $this->language->_('Órden')));
         $orden  ->addValidator('int')
+                ->addValidator(new CV_Validate_ExportacionExiste())
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 

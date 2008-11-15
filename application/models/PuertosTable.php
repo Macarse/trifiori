@@ -19,6 +19,14 @@ class Puertos extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function getPuertoByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NOMBRE_PUE = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+    
     public function addPuerto( $name, $ubicacion )
     {
         /*TODO: Validaciones*/

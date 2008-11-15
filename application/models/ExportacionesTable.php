@@ -19,6 +19,14 @@ class Exportaciones extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function getExportacionByOrden( $id )
+    {
+        $where = $this->getAdapter()->quoteInto('ORDEN = ?', $id);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+    
     public function addExportacion( $orden, $nameTransporte, $nameCliente,
                                     $nameBandera, $nameMoneda,
                                     $codDestinacion, $nameCarga, $referencia,

@@ -273,6 +273,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Número')));
         $name  ->addValidator('int')
+                ->addValidator(new CV_Validate_OPPExiste())
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 

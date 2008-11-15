@@ -240,6 +240,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         $name->setValue("");
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
+                 ->addValidator(new CV_Validate_BanderaExiste())
                  ->setRequired(true);
 
         // Add elements to form:

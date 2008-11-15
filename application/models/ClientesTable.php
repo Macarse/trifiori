@@ -28,6 +28,14 @@ class Clientes extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function getClienteByCUIT( $cuit )
+    {
+        $where = $this->getAdapter()->quoteInto('CUIT_CLI = ?', $cuit);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+      
     public function addCliente($name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
     {
         /*TODO: Validaciones*/

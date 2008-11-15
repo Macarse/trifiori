@@ -245,6 +245,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
+                 ->addValidator(new CV_Validate_PuertoExiste())
                  ->setRequired(true);
 
         $ubicacion = $this->_addform->createElement('text', 'ubicacion', array('label' => $this->language->_('Ubicación')));

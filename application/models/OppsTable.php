@@ -19,7 +19,15 @@ class Opps extends Zend_Db_Table_Abstract
 
         return $row;
     }
+    
+    public function getOppByNumero( $num )
+    {
+        $where = $this->getAdapter()->quoteInto('NUMERO_OPP = ?', $num);
+        $row = $this->fetchRow( $where );
 
+        return $row;
+    }
+    
     public function addOpp($name, $declaracionOk, $pedidoDinero, $otrosOpp,
                            $fraccionado, $estampillas, $impuestosInternos)
     {

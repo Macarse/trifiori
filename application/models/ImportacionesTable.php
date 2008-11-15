@@ -18,7 +18,15 @@ class Importaciones extends Zend_Db_Table_Abstract
 
         return $row;
     }
+    
+    public function getImportacionByOrden( $id )
+    {
+        $where = $this->getAdapter()->quoteInto('ORDEN_IMP = ?', $id);
+        $row = $this->fetchRow( $where );
 
+        return $row;
+    }
+    
     public function addImportacion( $orden, $codDestinacion, $codBandera,
                                     $codCanal, $codGiro, $codCliente,
                                     $codCarga, $codTransporte, $codMoneda,
