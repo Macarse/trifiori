@@ -44,6 +44,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                                                             $values['observaciones']
                                                         );
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {
