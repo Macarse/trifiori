@@ -40,6 +40,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
                         $girosTable = new Giros();
                         $girosTable->addGiro($values['name']);
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {

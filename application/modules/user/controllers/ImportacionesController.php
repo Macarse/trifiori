@@ -41,14 +41,14 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         $importacionesTable->addImportacion(
                                                             $values['orden'],
                                                             $values['codDestinacion'],
-                                                            $values['codBandera'],
+                                                            $values['nameBandera'],
                                                             $values['codCanal'],
                                                             $values['codGiro'],
-                                                            $values['codCliente'],
-                                                            $values['codCarga'],
-                                                            $values['codTransporte'],
-                                                            $values['codMoneda'],
-                                                            $values['codOpp'],
+                                                            $values['nameCliente'],
+                                                            $values['nameCarga'],
+                                                            $values['nameTransporte'],
+                                                            $values['nameMoneda'],
+                                                            $values['nameOpp'],
                                                             $values['referencia'],
                                                             $values['fechaIngreso'],
                                                             $values['originalCopia'],
@@ -67,6 +67,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                                                             $values['DEsfechaFactura']
                                                         );
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {
@@ -162,12 +163,12 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         $importacionesTable->modifyImportacion( $this->_id,
                                                                 $values['orden'],
                                                                 $values['codDestinacion'],
-                                                                $values['codBandera'],
+                                                                $values['nameBandera'],
                                                                 $values['codCanal'],
                                                                 $values['codGiro'],
-                                                                $values['codCliente'],
-                                                                $values['codCarga'],
-                                                                $values['codTransporte'],
+                                                                $values['nameCliente'],
+                                                                $values['nameCarga'],
+                                                                $values['nameTransporte'],
                                                                 $values['codMoneda'],
                                                                 $values['codOpp'],
                                                                 $values['referencia'],
@@ -217,12 +218,13 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->setMethod('post')
                         ->setName('form');
 
-        $orden = $this->_addform->createElement('text', 'orden', array('label' => '*' . $this->language->_('Órden')));
+        $orden = $this->_addform->createElement('text', 'orden',
+                    array('label' => '*' . $this->language->_('Órden')));
         $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-        $codDestinacion = $this->_addform->createElement('text', 'nameGiro',
+        $codDestinacion = $this->_addform->createElement('text', 'codDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true);
 
@@ -235,13 +237,13 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $codCanal = $this->_addform->createElement('select', 'codCanal');
         $codCanal   ->setRequired(true)
-                    ->setOrder(2)
-                    ->setLabel('*' . $this->language->_('Medio'))
+                    ->setOrder(4)
+                    ->setLabel('*' . $this->language->_('Canal'))
                     ->setMultiOptions($canalesOptions);
 
         $codGiro = $this->_addform->createElement('text', 'codGiro',
-                array('label' =>'*' .  $this->language->_('Giro'), 'id' => 'idnameGiro'));
-        $codGiro ->setRequired(true);
+                array('label' => $this->language->_('Giro'), 'id' => 'idnameGiro'));
+        $codGiro ->setRequired(False);
 
         $codCliente = $this->_addform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
@@ -259,190 +261,213 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
         $codMoneda ->setRequired(true);
 
-
-// $values['codOpp'],
-// $values['referencia'],
-// $values['fechaIngreso'],
-// $values['originalCopia'],
-// $values['desMercaderias'],
-// $values['valorFactura'],
-// $values['docTransporte'],
-// $values['ingresoPuerto'],
-// $values['DESnroDoc'],
-// $values['DESvencimiento'],
-// $values['DESbl'],
-// $values['DESdeclaracion'],
-// $values['DESpresentado'],
-// $values['DESsalido'],
-// $values['DEScargado'],
-// $values['DESfactura'],
-// $values['DEsfechaFactura']
-
-
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $transportesTable = new Transportes();
-        $transportesOptions =  $transportesTable->getTransportesArray();
-
-        $codTransporte = $this->_addform->createElement('select', 'codTransporte');
-        $codTransporte  ->setRequired(true)
-                        ->setOrder(1)
-                        ->setLabel('Transporte')
-                        ->setMultiOptions($transportesOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $clientesTable = new Clientes();
-        $clientesOptions =  $clientesTable->getClientesArray();
-
-        $codCliente = $this->_addform->createElement('select', 'codCliente');
-        $codCliente ->setRequired(true)
-                    ->setOrder(2)
-                    ->setLabel('Cliente')
-                    ->setMultiOptions($clientesOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
-
-        $codBandera = $this->_addform->createElement('select', 'codBandera');
-        $codBandera ->setRequired(true)
-                    ->setOrder(3)
-                    ->setLabel('Bandera')
-                    ->setMultiOptions($banderasOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $monedasTable = new Monedas();
-        $monedasOptions =  $monedasTable->getMonedasArray();
-
-        $codMoneda = $this->_addform->createElement('select', 'codMoneda');
-        $codMoneda  ->setRequired(true)
-                    ->setOrder(4)
-                    ->setLabel('Moneda')
-                    ->setMultiOptions($monedasOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $girosTable = new Giros();
-        $girosOptions =  $girosTable->getGirosArray();
-
-        $codGiro = $this->_addform->createElement('select', 'codGiro');
-        $codGiro    ->setRequired(False)
-                    ->setOrder(5)
-                    ->setLabel('Giro')
-                    ->setMultiOptions($girosOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $destinacionesTable = new Destinaciones();
-        $destinacionesOptions =  $destinacionesTable->getDestinacionesArray();
-
-        $codDestinacion = $this->_addform->createElement('select', 'codDestinacion');
-        $codDestinacion ->setRequired(True)
-                        ->setOrder(6)
-                        ->setLabel('Destino')
-                        ->setMultiOptions($destinacionesOptions);
-
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-
-        $cargasTable = new Cargas();
-        $cargasOptions =  $cargasTable->getCargasArray();
-
-        $codCarga = $this->_addform->createElement('select', 'codCarga');
-        $codCarga   ->setRequired(True)
-                    ->setOrder(7)
-                    ->setLabel('Carga')
-                    ->setMultiOptions($cargasOptions);
-
+        $codOpp = $this->_addform->createElement('text', 'nameOpp',
+                array('label' => $this->language->_('Opp'), 'id' => 'idnameOpp'));
+        $codOpp ->setRequired(False);
 
         $referencia = $this->_addform->createElement('text', 'referencia',
-                array('label' => $this->language->_('Referencia')));
+                array('label' => '*' . $this->language->_('Referencia')));
         $referencia ->addValidator($alnumWithWS)
-                    ->addValidator('stringLength', false, array(1, 40))
-                    ->setRequired(False);
+                    ->addValidator('stringLength', false, array(1, 150))
+                    ->setRequired(True);
 
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
-                array('label' => $this->language->_('Fecha de Ingreso'), 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+                array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
+                'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
+        $oriCpy = array( 'c' => $this->language->_('Copia'), 'o' => $this->language->_('Original'));
+
+        $originalCopia = $this->_addform->createElement('select', 'originalCopia');
+        $originalCopia  ->setOrder(20)
+                        ->setLabel('*' . $this->language->_('Original/Copia'))
+                        ->setRequired(true)
+                        ->setMultiOptions($oriCpy);
+
 
         $desMercaderias = $this->_addform->createElement('text', 'desMercaderias',
-                array('label' => $this->language->_('Descripción Mercadería')));
+                array('label' => '*' . $this->language->_('Descripción Mercadería')));
         $desMercaderias ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 200))
-                        ->setRequired(False);
-
-
-        $valorFactura = $this->_addform->createElement('text', '$valorFactura',
-                array('label' => $this->language->_('Valor Factura')));
-        $valorFactura   ->addValidator('float')
-                        ->addValidator('stringLength', false, array(1, 40))
-                        ->setRequired(False);
-
-
-        $vencimiento = $this->_addform->createElement('text', 'vencimiento',
-                array('label' => $this->language->_('Vencimiento'), 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
-        $vencimiento   ->addValidator('date')
-                        ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
+        $valorFactura = $this->_addform->createElement('text', '$valorFactura',
+                array('label' => '*' . $this->language->_('Valor Factura')));
+        $valorFactura   ->addValidator('float')
+                        ->addValidator('stringLength', false, array(1, 40))
+                        ->setRequired(True);
+
+        $docTransporte = $this->_addform->createElement('text', 'docTransporte',
+                    array('label' => '*' . $this->language->_('Documentación Transporte')));
+        $docTransporte  ->addValidator($alnumWithWS)
+                        ->addValidator('stringLength', false, array(1, 30))
+                        ->setRequired(true);
+
+
         $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
-                array('label' => $this->language->_('Ingreso a Puerto'), 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
+                array('label' => $this->language->_('Ingreso a Puerto'),
+                 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
-        /*TODO: ADD Validator*/
-        $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
-                array('label' => $this->language->_('Número de Permiso')));
-        $PERnroDoc  ->addValidator('stringLength', false, array(1, 30))
-                    ->setRequired(True);
+        $DESnroDoc = $this->_addform->createElement('text', 'DESnroDoc',
+                    array('label' => '*' . $this->language->_('Despacho: Número de Documento')));
+        $DESnroDoc  ->addValidator($alnumWithWS)
+                        ->addValidator('stringLength', false, array(1, 40))
+                        ->setRequired(True);
 
-        $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
-                array('label' => $this->language->_('Permiso Presentado'), 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
-        $PERpresentado   ->addValidator('date')
+
+        $DESvencimiento = $this->_addform->createElement('text', 'DESvencimiento',
+                array('label' => $this->language->_('Despacho: Vencimiento'),
+                 'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
+        $DESvencimiento ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(False);
+
+        $DESbl = $this->_addform->createElement('text', 'DESbl',
+                    array('label' => $this->language->_('Despacho: B/L')));
+        $DESbl  ->addValidator($alnumWithWS)
+                ->addValidator('stringLength', false, array(1, 50))
+                ->setRequired(False);
+
+        $DESdeclaracion = $this->_addform->createElement('text', 'DESdeclaracion',
+                    array('label' => '*' . $this->language->_('Despacho: Declaración')));
+        $DESdeclaracion ->addValidator($alnumWithWS)
+                        ->addValidator('stringLength', false, array(1, 10))
+                        ->setRequired(True);
+
+        $DESpresentado = $this->_addform->createElement('text', 'DESpresentado',
+                array('label' => '*' . $this->language->_('Despacho: Presentado'),
+                 'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
+        $DESpresentado ->addValidator('date')
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
-        /*TODO: ADD Validator*/
-        $PERfactura = $this->_addform->createElement('text', 'PERfactura',
-                array('label' => $this->language->_('Permiso Factura')));
-        $PERfactura ->addValidator('stringLength', false, array(1, 40))
-                    ->setRequired(False);
+        $DESsalido = $this->_addform->createElement('text', 'DESsalido',
+                array('label' => '*' . $this->language->_('Despacho: Salido'),
+                 'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
+        $DESsalido ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
 
-        $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
-                array('label' => $this->language->_('Permiso Fecha de Factura'), 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
-        $PERfechaFactura    ->addValidator('date')
-                            ->addValidator('stringLength', false, array(1, 12))
-                            ->setRequired(False);
+        $DEScargado = $this->_addform->createElement('text', 'DEScargado',
+                array('label' => '*' . $this->language->_('Despacho: Cargado'),
+                 'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
+        $DEScargado ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(True);
+
+        $DESfactura = $this->_addform->createElement('text', 'DESfactura',
+                    array('label' => $this->language->_('Despacho: Factura')));
+        $DESfactura ->addValidator($alnumWithWS)
+                        ->addValidator('stringLength', false, array(1, 50))
+                        ->setRequired(False);
+
+        $DEsfechaFactura = $this->_addform->createElement('text', 'DEsfechaFactura',
+                array('label' => $this->language->_('Despacho: Fecha Factura'),
+                 'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
+        $DEsfechaFactura ->addValidator('date')
+                        ->addValidator('stringLength', false, array(1, 12))
+                        ->setRequired(False);
+
+
+        $decoradorDestinacion = array(
+                                    'ViewHelper',
+                                    'Errors',
+                                    array('HtmlTag', array('tag' => 'div', 'id' => 'iddestautocomplete'))
+                                    );
+
+        $decoradorBandera = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
+                                );
+
+        $decoradorGiro = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idgirosautocomplete'))
+                                );
+
+        $decoradorCliente = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idclientesautocomplete'))
+                                );
+
+        $decoradorCarga = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idcargasautocomplete'))
+                                );
+
+        $decoradorTransporte = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idtransportesautocomplete'))
+                                );
+
+        $decoradorMoneda = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idmonedasautocomplete'))
+                                );
+
+        $decoradorOpp = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idoppsautocomplete'))
+                                );
 
         // Add elements to form:
         $this->_addform ->addElement($orden)
-                        ->addElement($codTransporte)
-                        ->addElement($codCliente)
-                        ->addElement($codBandera)
-                        ->addElement($codMoneda)
-                        ->addElement($codGiro)
                         ->addElement($codDestinacion)
+                        ->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
+                        ->addElement($codBandera)
+                        ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
+                        ->addElement($codCanal)
+                        ->addElement($codGiro)
+                        ->addElement('hidden', 'autogiros', array( 'decorators' => $decoradorGiro))
+                        ->addElement($codCliente)
+                        ->addElement('hidden', 'autocliente', array( 'decorators' => $decoradorCliente))
                         ->addElement($codCarga)
+                        ->addElement('hidden', 'autocarga', array( 'decorators' => $decoradorCarga))
+                        ->addElement($codTransporte)
+                        ->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
+                        ->addElement($codMoneda)
+                        ->addElement('hidden', 'automon', array( 'decorators' => $decoradorMoneda))
+                        ->addElement($codOpp)
+                        ->addElement('hidden', 'autoopp', array( 'decorators' => $decoradorOpp))
                         ->addElement($referencia)
                         ->addElement($fechaIngreso)
+                        ->addElement($originalCopia)
                         ->addElement($desMercaderias)
                         ->addElement($valorFactura)
-                        ->addElement($vencimiento)
+                        ->addElement($docTransporte)
                         ->addElement($ingresoPuerto)
-                        ->addElement($PERnroDoc)
-                        ->addElement($PERpresentado)
-                        ->addElement($PERfactura)
-                        ->addElement($PERfechaFactura)
+                        ->addElement($DESnroDoc)
+                        ->addElement($DESvencimiento)
+                        ->addElement($DESbl)
+                        ->addElement($DESdeclaracion)
+                        ->addElement($DESpresentado)
+                        ->addElement($DESsalido)
+                        ->addElement($DEScargado)
+                        ->addElement($DESfactura)
+                        ->addElement($DEsfechaFactura)
                         ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
-                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
+//                         ->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
+//                         ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
+//                         ->addElement('hidden', 'codGiro', array('id' => 'idcodGiro'))
+//                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
+//                         ->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
+//                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
+//                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
+//                         ->addElement('hidden', 'codOpp', array('id' => 'idcodOpp'))
+                        ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
+
 
         return $this->_addform;
     }

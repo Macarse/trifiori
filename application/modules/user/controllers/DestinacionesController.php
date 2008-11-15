@@ -40,6 +40,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
                         $destinacionesTable = new Destinaciones();
                         $destinacionesTable->addDestinacion($values['name']);
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {

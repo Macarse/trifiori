@@ -40,6 +40,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                         $banderasTable = new Banderas();
                         $banderasTable->addBandera($values['name']);
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {
@@ -233,6 +234,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
 						->setMethod('post');
 
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name->setValue("");
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->setRequired(true);

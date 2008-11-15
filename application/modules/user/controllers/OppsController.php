@@ -46,6 +46,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                                             $values['impuestosInternos']
                                             );
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {

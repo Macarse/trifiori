@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 20:41-0300\n"
+"POT-Creation-Date: 2008-11-14 22:46-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Macarse <macarse@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -149,7 +149,7 @@ msgstr "List Loads"
 #: ../application/modules/user/controllers/MonedasController.php:121
 #: ../application/modules/user/controllers/PuertosController.php:122
 #: ../application/modules/user/controllers/ExportacionesController.php:186
-#: ../application/modules/user/controllers/ImportacionesController.php:119
+#: ../application/modules/user/controllers/ImportacionesController.php:120
 msgid "Eliminación exitosa."
 msgstr "Delete Successful."
 
@@ -165,7 +165,7 @@ msgstr "Modify Load"
 #: ../application/modules/user/controllers/MonedasController.php:168
 #: ../application/modules/user/controllers/PuertosController.php:169
 #: ../application/modules/user/controllers/ExportacionesController.php:249
-#: ../application/modules/user/controllers/ImportacionesController.php:190
+#: ../application/modules/user/controllers/ImportacionesController.php:191
 msgid "Modificación exitosa."
 msgstr "Modify Successful."
 
@@ -252,7 +252,7 @@ msgstr "IMCO Goods"
 #: ../application/modules/user/controllers/MonedasController.php:224
 #: ../application/modules/user/controllers/PuertosController.php:225
 #: ../application/modules/user/controllers/ExportacionesController.php:711
-#: ../application/modules/user/controllers/ImportacionesController.php:657
+#: ../application/modules/user/controllers/ImportacionesController.php:682
 msgid "Modificar"
 msgstr "Modify"
 
@@ -262,7 +262,6 @@ msgstr "Modify"
 #: ../application/modules/user/controllers/GirosController.php:238
 #: ../application/modules/user/controllers/ProveedoresController.php:298
 #: ../application/modules/user/controllers/PuertosController.php:258
-#: ../application/modules/user/controllers/ImportacionesController.php:445
 msgid "Agregar"
 msgstr "Add"
 
@@ -289,13 +288,12 @@ msgstr "List Transports"
 #: ../application/modules/user/controllers/TransportesController.php:281
 #: ../application/modules/user/controllers/ExportacionesController.php:294
 #: ../application/modules/user/controllers/ExportacionesController.php:549
-#: ../application/modules/user/controllers/ImportacionesController.php:230
+#: ../application/modules/user/controllers/ImportacionesController.php:232
 msgid "Bandera"
 msgstr "Flag"
 
 #: ../application/modules/user/controllers/TransportesController.php:220
 #: ../application/modules/user/controllers/TransportesController.php:293
-#: ../application/modules/user/controllers/ImportacionesController.php:239
 msgid "Medio"
 msgstr "Medium"
 
@@ -469,110 +467,105 @@ msgstr "Modify Export "
 #: ../application/modules/user/controllers/ExportacionesController.php:280
 #: ../application/modules/user/controllers/ExportacionesController.php:462
 #: ../application/modules/user/controllers/ExportacionesController.php:534
-#: ../application/modules/user/controllers/ImportacionesController.php:220
-#: ../application/modules/user/controllers/ImportacionesController.php:473
+#: ../application/modules/user/controllers/ImportacionesController.php:222
+#: ../application/modules/user/controllers/ImportacionesController.php:498
 msgid "Órden"
 msgstr "Order"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:286
 #: ../application/modules/user/controllers/ExportacionesController.php:541
-#: ../application/modules/user/controllers/ImportacionesController.php:255
+#: ../application/modules/user/controllers/ImportacionesController.php:257
 msgid "Transporte"
 msgstr "Transport"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:290
 #: ../application/modules/user/controllers/ExportacionesController.php:467
 #: ../application/modules/user/controllers/ExportacionesController.php:545
-#: ../application/modules/user/controllers/ImportacionesController.php:247
+#: ../application/modules/user/controllers/ImportacionesController.php:249
 msgid "Cliente"
 msgstr "Client"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:298
 #: ../application/modules/user/controllers/ExportacionesController.php:553
-#: ../application/modules/user/controllers/ImportacionesController.php:259
+#: ../application/modules/user/controllers/ImportacionesController.php:261
 msgid "Moneda"
 msgstr "Currency"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:302
 #: ../application/modules/user/controllers/ExportacionesController.php:557
-#: ../application/modules/user/controllers/ImportacionesController.php:226
+#: ../application/modules/user/controllers/ImportacionesController.php:228
 msgid "Destinación"
 msgstr "Destination"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:306
 #: ../application/modules/user/controllers/ExportacionesController.php:471
 #: ../application/modules/user/controllers/ExportacionesController.php:561
-#: ../application/modules/user/controllers/ImportacionesController.php:251
+#: ../application/modules/user/controllers/ImportacionesController.php:253
 msgid "Carga"
 msgstr "Load"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:310
 #: ../application/modules/user/controllers/ExportacionesController.php:602
-#: ../application/modules/user/controllers/ImportacionesController.php:363
-#: ../application/modules/user/controllers/ImportacionesController.php:565
+#: ../application/modules/user/controllers/ImportacionesController.php:269
+#: ../application/modules/user/controllers/ImportacionesController.php:590
 msgid "Referencia"
 msgstr "Reference"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:316
 #: ../application/modules/user/controllers/ExportacionesController.php:609
-#: ../application/modules/user/controllers/ImportacionesController.php:369
-#: ../application/modules/user/controllers/ImportacionesController.php:572
+#: ../application/modules/user/controllers/ImportacionesController.php:275
+#: ../application/modules/user/controllers/ImportacionesController.php:597
 msgid "Fecha de Ingreso"
 msgstr "Entering Date"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:323
 #: ../application/modules/user/controllers/ExportacionesController.php:618
-#: ../application/modules/user/controllers/ImportacionesController.php:376
-#: ../application/modules/user/controllers/ImportacionesController.php:580
+#: ../application/modules/user/controllers/ImportacionesController.php:291
+#: ../application/modules/user/controllers/ImportacionesController.php:605
 msgid "Descripción Mercadería"
 msgstr "Merchandise Description"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:330
 #: ../application/modules/user/controllers/ExportacionesController.php:626
-#: ../application/modules/user/controllers/ImportacionesController.php:383
-#: ../application/modules/user/controllers/ImportacionesController.php:588
+#: ../application/modules/user/controllers/ImportacionesController.php:297
+#: ../application/modules/user/controllers/ImportacionesController.php:613
 msgid "Valor Factura"
 msgstr "Receipt Value"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:337
 #: ../application/modules/user/controllers/ExportacionesController.php:634
-#: ../application/modules/user/controllers/ImportacionesController.php:390
-#: ../application/modules/user/controllers/ImportacionesController.php:596
+#: ../application/modules/user/controllers/ImportacionesController.php:621
 msgid "Vencimiento"
 msgstr "Expiration Date"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:344
 #: ../application/modules/user/controllers/ExportacionesController.php:649
-#: ../application/modules/user/controllers/ImportacionesController.php:396
-#: ../application/modules/user/controllers/ImportacionesController.php:610
+#: ../application/modules/user/controllers/ImportacionesController.php:310
+#: ../application/modules/user/controllers/ImportacionesController.php:635
 msgid "Ingreso a Puerto"
 msgstr "Port Entry Date"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:352
 #: ../application/modules/user/controllers/ExportacionesController.php:643
-#: ../application/modules/user/controllers/ImportacionesController.php:403
-#: ../application/modules/user/controllers/ImportacionesController.php:604
+#: ../application/modules/user/controllers/ImportacionesController.php:629
 msgid "Número de Permiso"
 msgstr "Permit Number"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:357
 #: ../application/modules/user/controllers/ExportacionesController.php:657
-#: ../application/modules/user/controllers/ImportacionesController.php:408
-#: ../application/modules/user/controllers/ImportacionesController.php:617
+#: ../application/modules/user/controllers/ImportacionesController.php:642
 msgid "Permiso Presentado"
 msgstr "Permit Presented"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:365
 #: ../application/modules/user/controllers/ExportacionesController.php:666
-#: ../application/modules/user/controllers/ImportacionesController.php:415
-#: ../application/modules/user/controllers/ImportacionesController.php:625
+#: ../application/modules/user/controllers/ImportacionesController.php:650
 msgid "Permiso Factura"
 msgstr "Permit Receipt"
 
 #: ../application/modules/user/controllers/ExportacionesController.php:370
 #: ../application/modules/user/controllers/ExportacionesController.php:672
-#: ../application/modules/user/controllers/ImportacionesController.php:420
-#: ../application/modules/user/controllers/ImportacionesController.php:631
+#: ../application/modules/user/controllers/ImportacionesController.php:656
 msgid "Permiso Fecha de Factura"
 msgstr "Permit Receipt Date"
 
@@ -580,17 +573,77 @@ msgstr "Permit Receipt Date"
 msgid "Agregar Importación"
 msgstr "Add Import "
 
-#: ../application/modules/user/controllers/ImportacionesController.php:84
+#: ../application/modules/user/controllers/ImportacionesController.php:85
 msgid "Listar Importaciones"
 msgstr "List Imports"
 
-#: ../application/modules/user/controllers/ImportacionesController.php:132
+#: ../application/modules/user/controllers/ImportacionesController.php:133
 msgid "Modificar Importación"
 msgstr "Modify Import "
 
-#: ../application/modules/user/controllers/ImportacionesController.php:243
+#: ../application/modules/user/controllers/ImportacionesController.php:241
+msgid "Canal"
+msgstr "Channel"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:245
 msgid "Giro"
 msgstr "Turn"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:265
+msgid "Opp"
+msgstr "Opp"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:281
+msgid "Copia"
+msgstr "Copy"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:281
+msgid "Original"
+msgstr "Original"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:285
+msgid "Original/Copia"
+msgstr "Original/Copy"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:303
+msgid "Documentación Transporte"
+msgstr "Transport Documentation"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:317
+msgid "Despacho: Número de Documento"
+msgstr "Dispatch: Document Number "
+
+#: ../application/modules/user/controllers/ImportacionesController.php:324
+msgid "Despacho: Vencimiento"
+msgstr "Dispatch: Expiration Date"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:331
+msgid "Despacho: B/L"
+msgstr "Dispatch: B/L"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:337
+msgid "Despacho: Declaración"
+msgstr "Dispatch: Declaration"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:343
+msgid "Despacho: Presentado"
+msgstr "Dispatch: Presented"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:350
+msgid "Despacho: Salido"
+msgstr "Dispatch: Gone"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:357
+msgid "Despacho: Cargado"
+msgstr "Dispatch: Loaded"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:364
+msgid "Despacho: Factura"
+msgstr "Dispatch Receipt"
+
+#: ../application/modules/user/controllers/ImportacionesController.php:370
+msgid "Despacho: Fecha Factura"
+msgstr "Dispatch: Receipt Date "
 
 #: ../application/modules/user/controllers/OppsController.php:22
 msgid "Agregar Opp"
@@ -1012,65 +1065,10 @@ msgstr "Type of packaging"
 msgid "Destino"
 msgstr "Destination"
 
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:16
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:96
-msgid "Canal"
-msgstr "Channel"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:22
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:102
-msgid "Opp"
-msgstr "Opp"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:25
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:105
-msgid "Original/Copia"
-msgstr "Original/Copy"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:28
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:108
-msgid "Documentación Transporte"
-msgstr "Transport Documentation"
-
 #: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:30
 #: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:110
 msgid "Despacho: Nro Documento"
 msgstr "Dispatch: Document Number"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:31
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:111
-msgid "Despacho: Vencimiento"
-msgstr "Dispatch: Expiration Date"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:32
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:112
-msgid "Despacho: B/L"
-msgstr "Dispatch: B/L"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:33
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:113
-msgid "Despacho: Declaración"
-msgstr "Dispatch: Declaration"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:34
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:114
-msgid "Despacho: Presentado"
-msgstr "Dispatch: Presented"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:35
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:115
-msgid "Despacho: Salido"
-msgstr "Dispatch: Gone"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:36
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:116
-msgid "Despacho: Cargado"
-msgstr "Dispatch: Loaded"
-
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:37
-#: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:117
-msgid "Despacho: Factura"
-msgstr "Dispatch Receipt"
 
 #: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:38
 #: ../application/modules/user/views/scripts/importaciones/listimportaciones.phtml:118
