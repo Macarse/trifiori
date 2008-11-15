@@ -717,7 +717,6 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera', 'value' => $row->codBandera()))
                         ->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion', 'value' => $row->codDestinacion() ))
                         ->addElement('hidden', 'codGiro', array('id' => 'idcodGiro', 'value' => $row->codGiro() ))
