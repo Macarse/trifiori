@@ -296,32 +296,32 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $codTransporte = $this->_addform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
         $codTransporte  ->setRequired(true)
-					   ->addValidator(new CV_Validate_Transporte());
+                        ->addValidator(new CV_Validate_Transporte());
 
         $codCliente = $this->_addform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
         $codCliente ->setRequired(true)
-				   ->addValidator(new CV_Validate_Cliente());
+                    ->addValidator(new CV_Validate_Cliente());
 
         $codBandera = $this->_addform->createElement('text', 'nameBandera',
                 array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-				   ->addValidator(new CV_Validate_Bandera());
+                    ->addValidator(new CV_Validate_Bandera());
 
         $codMoneda = $this->_addform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true)
-				   ->addValidator(new CV_Validate_Moneda());
+        $codMoneda  ->setRequired(true)
+                    ->addValidator(new CV_Validate_Moneda());
 
         $codDestinacion = $this->_addform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true)
-					   ->addValidator(new CV_Validate_Destinacion());
+                        ->addValidator(new CV_Validate_Destinacion());
 
         $codCarga = $this->_addform->createElement('text', 'nameCarga',
                 array('label' =>'*' .  $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true)
-				   ->addValidator(new CV_Validate_Carga());
+        $codCarga   ->setRequired(true)
+                    ->addValidator(new CV_Validate_Carga());
 
         $referencia = $this->_addform->createElement('text', 'referencia',
                 array('label' => $this->language->_('Referencia')));
@@ -332,7 +332,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
                 array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
                 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
-        $fechaIngreso   ->addValidator('date')
+        $fechaIngreso   ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -353,14 +353,14 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $vencimiento = $this->_addform->createElement('text', 'vencimiento',
                 array('label' => '*' . $this->language->_('Vencimiento'),
                 'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
-        $vencimiento   ->addValidator('date')
+        $vencimiento   ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
                 array('label' => $this->language->_('Ingreso a Puerto'),
                  'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
-        $ingresoPuerto  ->addValidator('date')
+        $ingresoPuerto  ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -373,7 +373,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $PERpresentado = $this->_addform->createElement('text', 'PERpresentado',
                 array('label' => '*' . $this->language->_('Permiso Presentado'),
                 'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
-        $PERpresentado   ->addValidator('date')
+        $PERpresentado   ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -386,7 +386,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $PERfechaFactura = $this->_addform->createElement('text', 'PERfechaFactura',
                 array('label' => $this->language->_('Permiso Fecha de Factura'),
                 'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
-        $PERfechaFactura    ->addValidator('date')
+        $PERfechaFactura    ->addValidator(new CV_Validate_Fecha())
                             ->addValidator('stringLength', false, array(1, 12))
                             ->setRequired(False);
 
@@ -638,7 +638,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     array('label' => '*' . $this->language->_('Fecha de Ingreso'),
                     'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->setValue($row->fechaIngreso() )
-                        ->addValidator('date')
+                        ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -663,7 +663,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         array('label' => '*' . $this->language->_('Vencimiento'),
                         'id' => 'idVencimiento', 'onKeyPress' => "keyCalendar(event,'calVencimiento');"));
         $vencimiento    ->setValue($row->vencimiento() )
-                        ->addValidator('date')
+                        ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -678,7 +678,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     array('label' => $this->language->_('Ingreso a Puerto'),
                     'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->setValue($row->ingresoPuerto() )
-                        ->addValidator('date')
+                        ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -686,7 +686,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     array('label' => '*' . $this->language->_('Permiso Presentado'),
                     'id' => 'idPerPre', 'onKeyPress' => "keyCalendar(event,'calPerPre');"));
         $PERpresentado  ->setValue($row->PERpresentado() )
-                        ->addValidator('date')
+                        ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -701,7 +701,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     array('label' => $this->language->_('Permiso Fecha de Factura'),
                     'id' => 'idPerFecFac', 'onKeyPress' => "keyCalendar(event,'calFecFac');"));
         $PERfechaFactura    ->setValue($row->PERfechaFactura() )
-                            ->addValidator('date')
+                            ->addValidator(new CV_Validate_Fecha())
                             ->addValidator('stringLength', false, array(1, 12))
                             ->setRequired(False);
 
