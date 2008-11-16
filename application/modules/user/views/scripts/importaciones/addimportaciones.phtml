@@ -798,12 +798,12 @@
 	frmvalidator.addValidation("DESdeclaracion","alnum_s","<?= $this->language->_("*La descripción de declaración debe ser alfanumérica")?>");
 
 	frmvalidator.addValidation("idDESSalido","req","<?= $this->language->_("*Ingrese la fecha del despacho salido")?>");
-// 	frmvalidator.addValidation("idDESSalido","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho salido es inválida")?>");
+	frmvalidator.addValidation("idDESSalido","regexp=^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|[12][0-9]|3[01])\-(19|20)([0-9]{2})$","<?= $this->language->_("*La fecha del despacho salido es inválida")?>");
 
 	frmvalidator.addValidation("idDESPresentado","req","<?= $this->language->_("*Ingrese la fecha del despacho presentado")?>");
-// 	frmvalidator.addValidation("idDESPresentado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho presentado es inválida")?>");
+	frmvalidator.addValidation("idDESPresentado","regexp=^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|[12][0-9]|3[01])\-(19|20)([0-9]{2})$","<?= $this->language->_("*La fecha del despacho presentado es inválida")?>");
 
 	frmvalidator.addValidation("idDESCargado","req","<?= $this->language->_("*Ingrese la fecha del despacho cargado")?>");
-// 	frmvalidator.addValidation("idDEScargado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho cargado es inválida")?>");		
+	frmvalidator.addValidation("idDEScargado","regexp=^(0[1-9]|[12][0-9]|3[01])\-(0[1-9]|[12][0-9]|3[01])\-(19|20)([0-9]{2})$","<?= $this->language->_("*La fecha del despacho cargado es inválida")?>");		
 
 </script>
