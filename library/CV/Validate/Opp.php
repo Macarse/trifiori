@@ -7,7 +7,7 @@ class CV_Validate_Opp extends Zend_Validate_Abstract
 
     public function isValid($value)
     {
-        $errorMsg = Zend_Registry::getInstance()->language->_('Opp Invalido');
+        $errorMsg = Zend_Registry::getInstance()->language->_('Opp Inválido');
         $this->_messageTemplates = array(self::MSG_OPP => $errorMsg);
 
         $this->_setValue($value);
