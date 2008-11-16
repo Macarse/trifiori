@@ -5,18 +5,108 @@
                 <div class="msg"><?= $this->message ?></div>
                         <? } ?>
 <script type="text/javascript">
-		YAHOO.namespace("local.calendar");
-		
-		YAHOO.local.calendar.init = function() {
-			var eLog = YAHOO.util.Dom.get("evtentries");
-	
-			YAHOO.local.calendar.fechaIngreso = new YAHOO.widget.Calendar("idFechaIngreso","calFechaIngreso");
-			YAHOO.local.calendar.fechaIngreso.selectEvent.subscribe(handlerCalFechaIngreso, YAHOO.local.calendar.fechaIngreso, true);
-	
-			YAHOO.local.calendar.fechaIngreso.render();
-		}
-		
-		YAHOO.util.Event.onDOMReady(YAHOO.local.calendar.init);
+    YAHOO.namespace("local.calendar");
+
+    YAHOO.local.calendar.init = function()
+    {
+        var eLog = YAHOO.util.Dom.get("evtentries");
+        YAHOO.local.calendar.fechaIngreso = new YAHOO.widget.Calendar("idFechaIngreso","calFechaIngreso");
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MDY_DAY_POSITION", 1);
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MDY_MONTH_POSITION", 2);
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MDY_YEAR_POSITION", 3);
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("DATE_FIELD_DELIMITER", "-");
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MD_DAY_POSITION", 1);
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MD_MONTH_POSITION", 2);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MONTHS_SHORT",
+            [
+                "<?= $this->language->_("Ene")?>",
+                "<?= $this->language->_("Feb")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Abr")?>",
+                "<?= $this->language->_("May")?>",
+                "<?= $this->language->_("Jun")?>",
+                "<?= $this->language->_("Jul")?>",
+                "<?= $this->language->_("Ago")?>",
+                "<?= $this->language->_("Sep")?>",
+                "<?= $this->language->_("Oct")?>",
+                "<?= $this->language->_("Nov")?>",
+                "<?= $this->language->_("Dic")?>"
+            ]);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("MONTHS_LONG",
+            [
+                "<?= $this->language->_("Enero")?>",
+                "<?= $this->language->_("Febrero")?>",
+                "<?= $this->language->_("Marzo")?>",
+                "<?= $this->language->_("Abril")?>",
+                "<?= $this->language->_("Mayo")?>",
+                "<?= $this->language->_("Junio")?>",
+                "<?= $this->language->_("Julio")?>",
+                "<?= $this->language->_("Agosto")?>",
+                "<?= $this->language->_("Septiembre")?>",
+                "<?= $this->language->_("Octubre")?>",
+                "<?= $this->language->_("Noviembre")?>",
+                "<?= $this->language->_("Diciembre")?>"
+            ]);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("WEEKDAYS_1CHAR",
+            [
+                "<?= $this->language->_("D")?>",
+                "<?= $this->language->_("L")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("J")?>",
+                "<?= $this->language->_("V")?>",
+                "<?= $this->language->_("S")?>"
+            ]);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("WEEKDAYS_SHORT",
+            [
+                "<?= $this->language->_("Do")?>",
+                "<?= $this->language->_("Lu")?>",
+                "<?= $this->language->_("Ma")?>",
+                "<?= $this->language->_("Mi")?>",
+                "<?= $this->language->_("Ju")?>",
+                "<?= $this->language->_("Vi")?>",
+                "<?= $this->language->_("Sa")?>"
+            ]);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("WEEKDAYS_MEDIUM",
+            [
+                "<?= $this->language->_("Dom")?>",
+                "<?= $this->language->_("Lun")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Mie")?>",
+                "<?= $this->language->_("Jue")?>",
+                "<?= $this->language->_("Vie")?>",
+                "<?= $this->language->_("Sab")?>"
+            ]);
+
+        YAHOO.local.calendar.fechaIngreso.cfg.setProperty("WEEKDAYS_LONG",
+            [
+                "<?= $this->language->_("Domingo")?>",
+                "<?= $this->language->_("Lunes")?>",
+                "<?= $this->language->_("Martes")?>",
+                "<?= $this->language->_("Miércoles")?>",
+                "<?= $this->language->_("Jueves")?>",
+                "<?= $this->language->_("Viernes")?>",
+                "<?= $this->language->_("Sábado")?>"
+            ]);
+
+        <? if ($this->language->getLocale() == 'es') { ?>
+            YAHOO.local.calendar.fechaIngreso.selectEvent.subscribe(handlerCalFechaIngresoES,
+                YAHOO.local.calendar.fechaIngreso, true);
+        <? } else if ($this->language->getLocale() == 'en') {?>
+            YAHOO.local.calendar.fechaIngreso.selectEvent.subscribe(handlerCalFechaIngresoEN,
+                YAHOO.local.calendar.fechaIngreso, true);
+        <? } ?>
+
+        YAHOO.local.calendar.fechaIngreso.render();
+    }
+
+    YAHOO.util.Event.onDOMReady(YAHOO.local.calendar.init);
 </script>
 
 
