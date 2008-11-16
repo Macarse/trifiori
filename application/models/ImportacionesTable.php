@@ -29,6 +29,10 @@ class Importaciones extends Zend_Db_Table_Abstract
 
     protected function translateDate($value)
     {
+
+        if ($value == '')
+            return $value;
+
         $lang = Zend_Registry::getInstance()->language->getLocale();
 
         if( $lang == 'es' )
@@ -65,7 +69,7 @@ class Importaciones extends Zend_Db_Table_Abstract
         $DEScargado = $this->translateDate($DEScargado);
         $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
 
-			// Tengo que obtener los codigos		
+		// Tengo que obtener los codigos		
 		//clientes
 		$clientes = new Clientes();
 		try
@@ -201,11 +205,6 @@ class Importaciones extends Zend_Db_Table_Abstract
 			{
 				$codGiro = $codGiro->id();
 			}
-			else
-			{
-				throw new Exception('No existe el giro');
-				return False;
-			}
 		}
 		catch (Zend_Exception $e)
         {
@@ -221,11 +220,6 @@ class Importaciones extends Zend_Db_Table_Abstract
 			if ($codOpp != NULL)
 			{
 				$codOpp = $codOpp->id();
-			}
-			else
-			{
-				throw new Exception('No existe la Opp');
-				return False;
 			}
 		}
 		catch (Zend_Exception $e)
@@ -269,10 +263,10 @@ class Importaciones extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function modifyImportacion( $id, $orden, $codDestinacion, $codBandera,
-                                    $codCanal, $codGiro, $codCliente,
-                                    $codCarga, $codTransporte, $codMoneda,
-                                    $codOpp, $referencia, $fechaIngreso,
+    public function modifyImportacion( $id, $orden, $nameDestinacion, $nameBandera,
+                                    $codCanal, $nameGiro, $nameCliente,
+                                    $nameCarga, $nameTransporte, $nameMoneda,
+                                    $nameOpp, $referencia, $fechaIngreso,
                                     $originalCopia, $desMercaderias,
                                     $valorFactura, $docTransporte,
                                     $ingresoPuerto, $DESnroDoc,
@@ -297,6 +291,166 @@ class Importaciones extends Zend_Db_Table_Abstract
         $DESpresentado = $this->translateDate($DESpresentado);
         $DEScargado = $this->translateDate($DEScargado);
         $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
+
+		// Tengo que obtener los codigos		
+		//clientes
+		$clientes = new Clientes();
+		try
+		{
+			$codCliente = $clientes->getClienteByName($nameCliente);
+			if ($codCliente != NULL)
+			{
+				$codCliente = $codCliente->id();
+			}
+			else
+			{
+				throw new Exception('No existe el cliente');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+		//Cargas
+		$cargas = new Cargas();
+		try
+		{
+			$codCarga = $cargas->getCargaByNroPaq($nameCarga);
+			if ($codCarga != NULL)
+			{
+				$codCarga = $codCarga->id();
+			}
+			else
+			{
+				throw new Exception('No existe la carga');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+		//Banderas
+		$banderas = new Banderas();
+		try
+		{
+			$codBandera = $banderas->getBanderaByName($nameBandera);
+			if ($codBandera != NULL)
+			{
+				$codBandera = $codBandera->id();
+			}
+			else
+			{
+				throw new Exception('No existe la Bandera');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+		//Monedas
+		$monedas = new Monedas();
+		try
+		{
+			$codMoneda = $monedas->getMonedaByName($nameMoneda);
+			if ($codMoneda != NULL)
+			{
+				$codMoneda = $codMoneda->id();
+			}
+			else
+			{
+				throw new Exception('No existe la Moneda');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+		//Transportes
+		$transporte = new Transportes();
+		try
+		{
+			$codTransporte = $transporte->getTransporteByName($nameTransporte);
+			if ($codTransporte != NULL)
+			{
+				$codTransporte = $codTransporte->id();
+			}
+			else
+			{
+				throw new Exception('No existe el Transporte');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+		
+		//Destinaciones
+		$destinacion = new Destinaciones();
+		try
+		{
+			$codDestinacion = $destinacion->getDestinacionByDesc($nameDestinacion);
+			if ($codDestinacion != NULL)
+			{
+				$codDestinacion = $codDestinacion->id();
+			}
+			else
+			{
+				throw new Exception('No existe la destinacion');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
+		//Giro
+		$giro = new Giros();
+		try
+		{
+			$codGiro = $giro->getGiroBySeccion($nameGiro);
+			if ($codGiro != NULL)
+			{
+				$codGiro = $codGiro->id();
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
+		//Opp
+		$opp = new Opps();
+		try
+		{
+			$codOpp = $opp->getOppByNumero($nameOpp);
+			if ($codOpp != NULL)
+			{
+				$codOpp = $codOpp->id();
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
 
         $this->update(array(
                         'ORDEN_IMP'             => $orden,
