@@ -40,10 +40,10 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         $importacionesTable = new Importaciones();
                         $importacionesTable->addImportacion(
                                                             $values['orden'],
-                                                            $values['codDestinacion'],
+                                                            $values['nameDestinacion'],
                                                             $values['nameBandera'],
                                                             $values['codCanal'],
-                                                            $values['codGiro'],
+                                                            $values['nameGiro'],
                                                             $values['nameCliente'],
                                                             $values['nameCarga'],
                                                             $values['nameTransporte'],
@@ -206,15 +206,15 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         $importacionesTable = new Importaciones();
                         $importacionesTable->modifyImportacion( $this->_id,
                                                                 $values['orden'],
-                                                                $values['codDestinacion'],
+                                                                $values['nameDestinacion'],
                                                                 $values['nameBandera'],
                                                                 $values['codCanal'],
-                                                                $values['codGiro'],
+                                                                $values['nameGiro'],
                                                                 $values['nameCliente'],
                                                                 $values['nameCarga'],
                                                                 $values['nameTransporte'],
-                                                                $values['codMoneda'],
-                                                                $values['codOpp'],
+                                                                $values['nameMoneda'],
+                                                                $values['nameOpp'],
                                                                 $values['referencia'],
                                                                 $values['fechaIngreso'],
                                                                 $values['originalCopia'],
@@ -265,16 +265,20 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $orden = $this->_addform->createElement('text', 'orden',
                     array('label' => '*' . $this->language->_('Órden')));
         $orden  ->addValidator('int')
+                ->addValidator(new CV_Validate_ImportacionExiste())
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
-        $codDestinacion = $this->_addform->createElement('text', 'codDestinacion',
+        $codDestinacion = $this->_addform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
-        $codDestinacion ->setRequired(true);
+        $codDestinacion ->setRequired(true)
+                        ->addValidator(new CV_Validate_Destinacion());
+
 
         $codBandera = $this->_addform->createElement('text', 'nameBandera',
                 array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
-        $codBandera ->setRequired(true);
+        $codBandera ->setRequired(true)
+                    ->addValidator(new CV_Validate_Bandera());
 
         $canalesTable = new Canales();
         $canalesOptions =  $canalesTable->getCanalesArray();
@@ -286,27 +290,33 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $codGiro = $this->_addform->createElement('text', 'nameGiro',
                 array('label' => $this->language->_('Giro'), 'id' => 'idnameGiro'));
-        $codGiro ->setRequired(False);
+        $codGiro ->setRequired(False)
+                 ->addValidator(new CV_Validate_Giro());
 
         $codCliente = $this->_addform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
-        $codCliente ->setRequired(true);
+        $codCliente ->setRequired(true)
+                    ->addValidator(new CV_Validate_Cliente());
 
         $codCarga = $this->_addform->createElement('text', 'nameCarga',
                 array('label' =>'*' .  $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true);
+        $codCarga ->setRequired(true)
+                    ->addValidator(new CV_Validate_Carga());
 
         $codTransporte = $this->_addform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
-        $codTransporte  ->setRequired(true);
+        $codTransporte  ->setRequired(true)
+						->addValidator(new CV_Validate_Transporte());
 
         $codMoneda = $this->_addform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true);
+        $codMoneda ->setRequired(true)
+                    ->addValidator(new CV_Validate_Moneda());
 
         $codOpp = $this->_addform->createElement('text', 'nameOpp',
                 array('label' => $this->language->_('Opp'), 'id' => 'idnameOpp'));
-        $codOpp ->setRequired(False);
+        $codOpp ->setRequired(False)
+                ->addValidator(new CV_Validate_Opp());
 
         $referencia = $this->_addform->createElement('text', 'referencia',
                 array('label' => '*' . $this->language->_('Referencia')));
@@ -501,14 +511,6 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
                         ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
-//                         ->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
-//                         ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
-//                         ->addElement('hidden', 'codGiro', array('id' => 'idcodGiro'))
-//                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
-//                         ->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
-//                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
-//                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
-//                         ->addElement('hidden', 'codOpp', array('id' => 'idcodOpp'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
 
@@ -599,199 +601,194 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->setMethod('post')
                         ->setName('form');
 
+        
         $orden = $this->_modform->createElement('text', 'orden',
                     array('label' => '*' . $this->language->_('Órden')));
-        $orden  ->setValue($row->orden() )
-                ->addValidator('int')
+        $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
+				->setValue($row->orden() )
                 ->setRequired(true);
 
         $codDestinacion = $this->_modform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true)
-                        ->setValue($row->codDestinacionName() )
+						->setValue($row->codDestinacionName() )
                         ->addValidator(new CV_Validate_Destinacion());
 
 
         $codBandera = $this->_modform->createElement('text', 'nameBandera',
-                array('label' => '*' . $this->language->_('Bandera'), 'id' => 'idnameBandera'));
+                array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-                    ->setValue($row->codBanderaName() )
+					->setValue($row->codBanderaName() )
                     ->addValidator(new CV_Validate_Bandera());
-
 
         $canalesTable = new Canales();
         $canalesOptions =  $canalesTable->getCanalesArray();
 
         $codCanal = $this->_modform->createElement('select', 'codCanal');
-        $codCanal   ->setValue($row->codCanal() )
-                   ->setRequired(true)
-                    ->setOrder(4)
+        $codCanal   ->setRequired(true)
+					->setValue($row->codCanal() )
                     ->setLabel('*' . $this->language->_('Canal'))
                     ->setMultiOptions($canalesOptions);
 
         $codGiro = $this->_modform->createElement('text', 'nameGiro',
                 array('label' => $this->language->_('Giro'), 'id' => 'idnameGiro'));
-        $codGiro    ->setValue($row->codGiroName() )
-//         TODO:PABLOKsssss!!!!
-//                         Para cuando lo hagas
-//                     ->addValidator(new CV_Validate_Giro())
-                    ->setRequired(False);
+        $codGiro ->setRequired(False)
+	 			 ->setValue($row->codGiroName() )
+                 ->addValidator(new CV_Validate_Giro());
 
         $codCliente = $this->_modform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
         $codCliente ->setRequired(true)
-                    ->setValue($row->codClienteName() )
+					->setValue($row->codClienteName() )
                     ->addValidator(new CV_Validate_Cliente());
 
         $codCarga = $this->_modform->createElement('text', 'nameCarga',
-                array('label' => '*' . $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga   ->setRequired(true)
-                    ->setValue($row->codCargaName() )
-                    ->addValidator(new CV_Validate_Carga());
+                array('label' =>'*' .  $this->language->_('Carga'), 'id' => 'idnameCarga'));
+        $codCarga ->setRequired(true)
+				  ->setValue($row->codCargaName() )
+                  ->addValidator(new CV_Validate_Carga());
 
         $codTransporte = $this->_modform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
-        $codTransporte  -> setRequired(true)
-                        ->setValue($row->codTransporteName() )
-                        ->addValidator(new CV_Validate_Transporte());
+        $codTransporte  ->setRequired(true)
+						->setValue($row->codTransporteName() )
+						->addValidator(new CV_Validate_Transporte());
 
         $codMoneda = $this->_modform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda  ->setRequired(true)
-                    ->setValue($row->codMonedaName() )
-                    ->addValidator(new CV_Validate_Moneda());
+        $codMoneda ->setRequired(true)
+				   ->setValue($row->codMonedaName() )
+                   ->addValidator(new CV_Validate_Moneda());
 
-        $codOpp = $this->_modform->createElement('text', 'nameMoneda',
-                array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codOpp ->setValue($row->codOppName() )
-//         TODO:PABLOKsssss!!!!
-//                         Para cuando lo hagas
-//                 ->addValidator(new CV_Validate_Opp());
-                ->setRequired(False);
+        $codOpp = $this->_modform->createElement('text', 'nameOpp',
+                array('label' => $this->language->_('Opp'), 'id' => 'idnameOpp'));
+        $codOpp ->setRequired(False)
+				->setValue($row->codOppName() )
+                ->addValidator(new CV_Validate_Opp());
 
         $referencia = $this->_modform->createElement('text', 'referencia',
                 array('label' => '*' . $this->language->_('Referencia')));
-        $referencia ->setValue($row->referencia() )
-                    ->addValidator($alnumWithWS)
+        $referencia ->addValidator($alnumWithWS)
+					->setValue($row->referencia() )
                     ->addValidator('stringLength', false, array(1, 150))
                     ->setRequired(True);
 
         $fechaIngreso = $this->_modform->createElement('text', 'fechaIngreso',
-                    array('label' => '*' . $this->language->_('Fecha de Ingreso'),
-                    'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
-        $fechaIngreso   ->setValue($row->fechaIngreso() )
-                        ->addValidator('date')
+                array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
+                'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
+        $fechaIngreso   ->addValidator('date')
+						->setValue($row->fechaIngreso() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $oriCpy = array( 'c' => $this->language->_('Copia'), 'o' => $this->language->_('Original'));
 
         $originalCopia = $this->_modform->createElement('select', 'originalCopia');
-        $originalCopia  ->setValue($row->originalCopia() )
-                        ->setOrder(20)
+        $originalCopia  ->setOrder(20)
+						->setValue($row->originalCopia() )
                         ->setLabel('*' . $this->language->_('Original/Copia'))
                         ->setRequired(true)
                         ->setMultiOptions($oriCpy);
 
 
         $desMercaderias = $this->_modform->createElement('text', 'desMercaderias',
-                        array('label' => '*' . $this->language->_('Descripción Mercadería')));
-        $desMercaderias ->setValue($row->desMercaderias() )
-                        ->addValidator($alnumWithWS)
+                array('label' => '*' . $this->language->_('Descripción Mercadería')));
+        $desMercaderias ->addValidator($alnumWithWS)
+						->setValue($row->desMercaderias() )
                         ->addValidator('stringLength', false, array(1, 200))
                         ->setRequired(True);
 
         $valorFactura = $this->_modform->createElement('text', '$valorFactura',
-                        array('label' => '*' . $this->language->_('Valor Factura')));
-        $valorFactura   ->setValue($row->valorFactura() )
-                        ->addValidator('float')
+                array('label' => '*' . $this->language->_('Valor Factura')));
+        $valorFactura   ->addValidator('float')
+						->setValue($row->valorFactura() )
                         ->addValidator('stringLength', false, array(1, 40))
                         ->setRequired(True);
 
         $docTransporte = $this->_modform->createElement('text', 'docTransporte',
                     array('label' => '*' . $this->language->_('Documentación Transporte')));
-        $docTransporte  ->setValue($row->docTransporte() )
-                        ->addValidator($alnumWithWS)
+        $docTransporte  ->addValidator($alnumWithWS)
+						->setValue($row->docTransporte() )
                         ->addValidator('stringLength', false, array(1, 30))
                         ->setRequired(true);
 
+
         $ingresoPuerto = $this->_modform->createElement('text', 'ingresoPuerto',
-                    array('label' => $this->language->_('Ingreso a Puerto'),
-                    'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
-        $ingresoPuerto  ->setValue($row->ingresoPuerto() )
-                        ->addValidator('date')
+                array('label' => $this->language->_('Ingreso a Puerto'),
+                 'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
+        $ingresoPuerto  ->addValidator('date')
+						->setValue($row->ingresoPuerto() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
         $DESnroDoc = $this->_modform->createElement('text', 'DESnroDoc',
                     array('label' => '*' . $this->language->_('Despacho: Número de Documento')));
-        $DESnroDoc  ->setValue($row->DESnroDoc() )
-                    ->addValidator($alnumWithWS)
+        $DESnroDoc  ->addValidator($alnumWithWS)
+					->setValue($row->DESnroDoc() )
                     ->addValidator('stringLength', false, array(1, 40))
                     ->setRequired(True);
-
 
         $DESvencimiento = $this->_modform->createElement('text', 'DESvencimiento',
                 array('label' => $this->language->_('Despacho: Vencimiento'),
                  'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
-        $DESvencimiento ->setValue($row->DESvencimiento() )
-                        ->addValidator('date')
+        $DESvencimiento ->addValidator('date')
+						->setValue($row->DESvencimiento() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
         $DESbl = $this->_modform->createElement('text', 'DESbl',
                     array('label' => $this->language->_('Despacho: B/L')));
-        $DESbl  ->setValue($row->DESbl() )
-                ->addValidator($alnumWithWS)
+        $DESbl  ->addValidator($alnumWithWS)
+				->setValue($row->DESbl() )
                 ->addValidator('stringLength', false, array(1, 50))
                 ->setRequired(False);
 
         $DESdeclaracion = $this->_modform->createElement('text', 'DESdeclaracion',
                     array('label' => '*' . $this->language->_('Despacho: Declaración')));
-        $DESdeclaracion ->setValue($row->DESdeclaracion() )
-                        ->addValidator($alnumWithWS)
+        $DESdeclaracion ->addValidator($alnumWithWS)
+						->setValue($row->DESdeclaracion() )
                         ->addValidator('stringLength', false, array(1, 10))
                         ->setRequired(True);
 
         $DESpresentado = $this->_modform->createElement('text', 'DESpresentado',
                 array('label' => '*' . $this->language->_('Despacho: Presentado'),
                  'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
-        $DESpresentado  ->setValue($row->DESpresentado() )
-                        ->addValidator('date')
-                        ->addValidator('stringLength', false, array(1, 12))
-                        ->setRequired(True);
+        $DESpresentado ->addValidator('date')
+					   ->setValue($row->DESpresentado() )
+                       ->addValidator('stringLength', false, array(1, 12))
+                       ->setRequired(True);
 
         $DESsalido = $this->_modform->createElement('text', 'DESsalido',
                 array('label' => '*' . $this->language->_('Despacho: Salido'),
                  'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
-        $DESsalido  ->setValue($row->DESsalido() )
-                    ->addValidator('date')
-                    ->addValidator('stringLength', false, array(1, 12))
-                    ->setRequired(True);
+        $DESsalido ->addValidator('date')
+				   ->setValue($row->DESsalido() )
+                   ->addValidator('stringLength', false, array(1, 12))
+                   ->setRequired(True);
 
         $DEScargado = $this->_modform->createElement('text', 'DEScargado',
                 array('label' => '*' . $this->language->_('Despacho: Cargado'),
                  'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
-        $DEScargado ->setValue($row->DEScargado() )
-                    ->addValidator('date')
-                    ->addValidator('stringLength', false, array(1, 12))
-                    ->setRequired(True);
+        $DEScargado ->addValidator('date')
+					->setValue($row->DEScargado() )
+					->addValidator('stringLength', false, array(1, 12))
+					->setRequired(True);
 
         $DESfactura = $this->_modform->createElement('text', 'DESfactura',
                     array('label' => $this->language->_('Despacho: Factura')));
-        $DESfactura ->setValue($row->DESfactura() )
-                    ->addValidator($alnumWithWS)
-                    ->addValidator('stringLength', false, array(1, 50))
-                    ->setRequired(False);
+        $DESfactura ->addValidator($alnumWithWS)
+					->setValue($row->DESfactura() )
+					->addValidator('stringLength', false, array(1, 50))
+					->setRequired(False);
 
         $DEsfechaFactura = $this->_modform->createElement('text', 'DEsfechaFactura',
                 array('label' => $this->language->_('Despacho: Fecha Factura'),
                  'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
-        $DEsfechaFactura    ->setValue($row->DEsfechaFactura() )
-                            ->addValidator('date')
-                            ->addValidator('stringLength', false, array(1, 12))
-                            ->setRequired(False);
+        $DEsfechaFactura ->addValidator('date')
+						 ->setValue($row->DEsfechaFactura() )
+ 						 ->addValidator('stringLength', false, array(1, 12))
+						 ->setRequired(False);
 
 
         $decoradorDestinacion = array(
@@ -848,7 +845,6 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codBandera)
                         ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
-                        ->addElement($codCanal)
                         ->addElement($codGiro)
                         ->addElement('hidden', 'autogiros', array( 'decorators' => $decoradorGiro))
                         ->addElement($codCliente)
@@ -861,6 +857,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'automon', array( 'decorators' => $decoradorMoneda))
                         ->addElement($codOpp)
                         ->addElement('hidden', 'autoopp', array( 'decorators' => $decoradorOpp))
+                        ->addElement($codCanal)
                         ->addElement($referencia)
                         ->addElement($fechaIngreso)
                         ->addElement($originalCopia)
@@ -878,15 +875,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
                         ->addElement('hidden', 'ModImportacionTrack', array('values' => 'logPost'))
-//                         ->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
-//                         ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
-//                         ->addElement('hidden', 'codGiro', array('id' => 'idcodGiro'))
-//                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
-//                         ->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
-//                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
-//                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
-//                         ->addElement('hidden', 'codOpp', array('id' => 'idcodOpp'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Modificar'));
+                        ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
         return $this->_modform;
     }

@@ -352,11 +352,11 @@ class user_OppsController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
             $model = new Opps();
-            $data = $model->fetchAll("PEDIDO_DE_DINERO_OPP LIKE '" .  $this->_name . "%'");
+            $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%'");
 
             foreach ($data as $row)
             {
-                array_push($aux, array("id" => $row->id(), "data" => $row->pedidoDinero()));	
+                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
             }
 
             $arr = array("Resultset" => array("Result" => $aux));
