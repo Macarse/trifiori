@@ -21,7 +21,7 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
     public function addExportacion( $orden, $nameTransporte, $nameCliente,
                                     $nameBandera, $nameMoneda,
-                                    $codDestinacion, $nameCarga, $referencia,
+                                    $nameDestinacion, $nameCarga, $referencia,
                                     $fechaIngreso, $desMercaderias,
                                     $valorFactura, $vencimiento, $ingresoPuerto,
                                     $PERnroDoc, $PERpresentado, $PERfactura,
@@ -139,14 +139,14 @@ class Exportaciones extends Zend_Db_Table_Abstract
 		$destinacion = new Destinaciones();
 		try
 		{
-			$codDestinacion = $destinacion->getDestinacionByDesc($value);
+			$codDestinacion = $destinacion->getDestinacionByDesc($nameDestinacion);
 			if ($codDestinacion != NULL)
 			{
 				$codDestinacion = $codDestinacion->id();
 			}
 			else
 			{
-				throw new Exception('No existe el cliente');
+				throw new Exception('No existe la destinacion');
 				return False;
 			}
 		}
@@ -376,6 +376,28 @@ class Exportaciones extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
 		}
+
+		//Destinaciones
+		$destinacion = new Destinaciones();
+		try
+		{
+			$codDestinacion = $destinacion->getDestinacionByDesc($nameDestinacion);
+			if ($codDestinacion != NULL)
+			{
+				$codDestinacion = $codDestinacion->id();
+			}
+			else
+			{
+				throw new Exception('No existe la destinacion');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
 
         $this->update(array(
                         'ORDEN'             => $orden,
