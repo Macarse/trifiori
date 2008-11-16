@@ -4,6 +4,24 @@ class ExportacionesModel extends Zend_Db_Table_Row_Abstract
 {
     protected $_tableClass = 'ExportacionesTable';
 
+    protected function localizeDate($value)
+    {
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        $date = new Zend_Date($value, 'YYYY-MM-dd');
+
+        if( $lang == 'es' )
+        {
+            $retVal = $date->get('dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $retVal = $date->get('MM-dd-YYYY');
+        }
+
+        return $retVal;
+    }
+
     public function id()
     {
         return $this->CODIGO_EXP;
@@ -155,7 +173,7 @@ class ExportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function fechaIngreso()
     {
-        return $this->FECHAINGRESO;
+        return $this->localizeDate($this->FECHAINGRESO);
     }
 
     public function desMercaderias()
@@ -170,12 +188,12 @@ class ExportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function vencimiento()
     {
-        return $this->VENCIMIENTO;
+        return $this->localizeDate($this->VENCIMIENTO);
     }
 
     public function ingresoPuerto()
     {
-        return $this->INGRESOPUERTO;
+        return $this->localizeDate($this->INGRESOPUERTO);
     }
 
     public function PERnroDoc()
@@ -185,7 +203,7 @@ class ExportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function PERpresentado()
     {
-        return $this->PER_PRESENTADO;
+        return $this->localizeDate($this->PER_PRESENTADO);
     }
 
     public function PERfactura()
@@ -195,7 +213,7 @@ class ExportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function PERfechaFactura()
     {
-        return $this->PER_FECHAFACTURA;
+        return $this->localizeDate($this->PER_FECHAFACTURA);
     }
 
 }

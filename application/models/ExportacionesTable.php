@@ -26,7 +26,25 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
         return $row;
     }
-    
+
+    protected function translateDate($value)
+    {
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        if( $lang == 'es' )
+        {
+            $date = new Zend_Date($value,'dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $date = new Zend_Date($value,'MM-dd-YYYY');
+        }
+
+        $retVal = $date->get('YYYY-MM-dd');
+
+        return $retVal;
+    }
+
     public function addExportacion( $orden, $nameTransporte, $nameCliente,
                                     $nameBandera, $nameMoneda,
                                     $nameDestinacion, $nameCarga, $referencia,
@@ -36,8 +54,15 @@ class Exportaciones extends Zend_Db_Table_Abstract
                                     $PERfechaFactura
                                     )
     {
-	
-		// Tengo que obtener los codigos		
+
+    $fechaIngreso = $this->translateDate($fechaIngreso);
+    $vencimiento = $this->translateDate($vencimiento);
+    $ingresoPuerto = $this->translateDate($ingresoPuerto);
+    $PERpresentado = $this->translateDate($PERpresentado);
+    $PERfechaFactura = $this->translateDate($PERfechaFactura);
+
+
+		// Tengo que obtener los codigos
 		//clientes
 		$clientes = new Clientes();
 		try
@@ -278,7 +303,13 @@ class Exportaciones extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
         }
-		
+
+        $fechaIngreso = $this->translateDate($fechaIngreso);
+        $vencimiento = $this->translateDate($vencimiento);
+        $ingresoPuerto = $this->translateDate($ingresoPuerto);
+        $PERpresentado = $this->translateDate($PERpresentado);
+        $PERfechaFactura = $this->translateDate($PERfechaFactura);
+
 		// Tengo que obtener los codigos		
 		//clientes
 		$clientes = new Clientes();
