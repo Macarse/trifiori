@@ -197,7 +197,21 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
         else
             return $row->pedidoDinero();
     }
+    
+    public function codOppNum()
+    {
+        $row = NULL;
+        $oppsTable = new Opps();
 
+        $row = $oppsTable->getOppByID($this->CODIGO_OPP);
+
+        /*TODO: esto es por inconsistencias en la DB :(*/
+        if ($row == NULL)
+                return 'No Opp';
+        else
+            return $row->name();
+    }
+    
     public function codOpp()
     {
         return $this->CODIGO_OPP;
