@@ -239,11 +239,11 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                    ->setRequired(false);
 
         // Validar CUIT 
-        $cuit = $this->_modform->createElement('text', 'cuit', array('label' => $this->language->_('CUIT')));
+        $cuit = $this->_modform->createElement('text', 'cuit', array('label' => '*' . $this->language->_('CUIT')));
         $cuit ->setValue($row->CUIT() )
                    ->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 13))
-                   ->setRequired(false);
+                   ->setRequired(true);
 
 
         $tipoIVA = $this->_modform->createElement('select', 'tipoIVA');
@@ -314,11 +314,11 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false);
 
-        $cuit = $this->_addform->createElement('text', 'cuit', array('label' => $this->language->_('CUIT')));
+        $cuit = $this->_addform->createElement('text', 'cuit', array('label' => '*' .  $this->language->_('CUIT')));
         $cuit   ->addValidator('alnum')
                 ->addValidator(new CV_Validate_ClienteExiste())
                 ->addValidator('stringLength', false, array(1, 13))
-                ->setRequired(false);
+                ->setRequired(true);
 
 
         $tipoIVA = $this->_addform->createElement('select', 'tipoIVA');
