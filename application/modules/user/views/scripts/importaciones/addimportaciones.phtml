@@ -297,6 +297,390 @@
 
         YAHOO.local.calendar.DESvencimiento.render();
 
+//       DESpresentado
+        YAHOO.local.calendar.DESpresentado = new YAHOO.widget.Calendar("idDESPresentado","calDesPresentado");
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MDY_DAY_POSITION", 1);
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MDY_MONTH_POSITION", 2);
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MDY_YEAR_POSITION", 3);
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("DATE_FIELD_DELIMITER", "-");
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MD_DAY_POSITION", 1);
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MD_MONTH_POSITION", 2);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MONTHS_SHORT",
+            [
+                "<?= $this->language->_("Ene")?>",
+                "<?= $this->language->_("Feb")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Abr")?>",
+                "<?= $this->language->_("May")?>",
+                "<?= $this->language->_("Jun")?>",
+                "<?= $this->language->_("Jul")?>",
+                "<?= $this->language->_("Ago")?>",
+                "<?= $this->language->_("Sep")?>",
+                "<?= $this->language->_("Oct")?>",
+                "<?= $this->language->_("Nov")?>",
+                "<?= $this->language->_("Dic")?>"
+            ]);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("MONTHS_LONG",
+            [
+                "<?= $this->language->_("Enero")?>",
+                "<?= $this->language->_("Febrero")?>",
+                "<?= $this->language->_("Marzo")?>",
+                "<?= $this->language->_("Abril")?>",
+                "<?= $this->language->_("Mayo")?>",
+                "<?= $this->language->_("Junio")?>",
+                "<?= $this->language->_("Julio")?>",
+                "<?= $this->language->_("Agosto")?>",
+                "<?= $this->language->_("Septiembre")?>",
+                "<?= $this->language->_("Octubre")?>",
+                "<?= $this->language->_("Noviembre")?>",
+                "<?= $this->language->_("Diciembre")?>"
+            ]);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("WEEKDAYS_1CHAR",
+            [
+                "<?= $this->language->_("D")?>",
+                "<?= $this->language->_("L")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("J")?>",
+                "<?= $this->language->_("V")?>",
+                "<?= $this->language->_("S")?>"
+            ]);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("WEEKDAYS_SHORT",
+            [
+                "<?= $this->language->_("Do")?>",
+                "<?= $this->language->_("Lu")?>",
+                "<?= $this->language->_("Ma")?>",
+                "<?= $this->language->_("Mi")?>",
+                "<?= $this->language->_("Ju")?>",
+                "<?= $this->language->_("Vi")?>",
+                "<?= $this->language->_("Sa")?>"
+            ]);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("WEEKDAYS_MEDIUM",
+            [
+                "<?= $this->language->_("Dom")?>",
+                "<?= $this->language->_("Lun")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Mie")?>",
+                "<?= $this->language->_("Jue")?>",
+                "<?= $this->language->_("Vie")?>",
+                "<?= $this->language->_("Sab")?>"
+            ]);
+
+        YAHOO.local.calendar.DESpresentado.cfg.setProperty("WEEKDAYS_LONG",
+            [
+                "<?= $this->language->_("Domingo")?>",
+                "<?= $this->language->_("Lunes")?>",
+                "<?= $this->language->_("Martes")?>",
+                "<?= $this->language->_("Miércoles")?>",
+                "<?= $this->language->_("Jueves")?>",
+                "<?= $this->language->_("Viernes")?>",
+                "<?= $this->language->_("Sábado")?>"
+            ]);
+
+        <? if ($this->language->getLocale() == 'es') { ?>
+            YAHOO.local.calendar.DESpresentado.selectEvent.subscribe(handlerCalDESpresentadoES,
+                YAHOO.local.calendar.DESpresentado, true);
+        <? } else if ($this->language->getLocale() == 'en') {?>
+            YAHOO.local.calendar.DESpresentado.selectEvent.subscribe(handlerCalDESpresentadoEN,
+                YAHOO.local.calendar.DESpresentado, true);
+        <? } ?>
+
+        YAHOO.local.calendar.DESpresentado.render();
+
+//       DESsalido
+        YAHOO.local.calendar.DESsalido = new YAHOO.widget.Calendar("idDESSalido","calDESsalido");
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MDY_DAY_POSITION", 1);
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MDY_MONTH_POSITION", 2);
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MDY_YEAR_POSITION", 3);
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("DATE_FIELD_DELIMITER", "-");
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MD_DAY_POSITION", 1);
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MD_MONTH_POSITION", 2);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MONTHS_SHORT",
+            [
+                "<?= $this->language->_("Ene")?>",
+                "<?= $this->language->_("Feb")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Abr")?>",
+                "<?= $this->language->_("May")?>",
+                "<?= $this->language->_("Jun")?>",
+                "<?= $this->language->_("Jul")?>",
+                "<?= $this->language->_("Ago")?>",
+                "<?= $this->language->_("Sep")?>",
+                "<?= $this->language->_("Oct")?>",
+                "<?= $this->language->_("Nov")?>",
+                "<?= $this->language->_("Dic")?>"
+            ]);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("MONTHS_LONG",
+            [
+                "<?= $this->language->_("Enero")?>",
+                "<?= $this->language->_("Febrero")?>",
+                "<?= $this->language->_("Marzo")?>",
+                "<?= $this->language->_("Abril")?>",
+                "<?= $this->language->_("Mayo")?>",
+                "<?= $this->language->_("Junio")?>",
+                "<?= $this->language->_("Julio")?>",
+                "<?= $this->language->_("Agosto")?>",
+                "<?= $this->language->_("Septiembre")?>",
+                "<?= $this->language->_("Octubre")?>",
+                "<?= $this->language->_("Noviembre")?>",
+                "<?= $this->language->_("Diciembre")?>"
+            ]);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("WEEKDAYS_1CHAR",
+            [
+                "<?= $this->language->_("D")?>",
+                "<?= $this->language->_("L")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("J")?>",
+                "<?= $this->language->_("V")?>",
+                "<?= $this->language->_("S")?>"
+            ]);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("WEEKDAYS_SHORT",
+            [
+                "<?= $this->language->_("Do")?>",
+                "<?= $this->language->_("Lu")?>",
+                "<?= $this->language->_("Ma")?>",
+                "<?= $this->language->_("Mi")?>",
+                "<?= $this->language->_("Ju")?>",
+                "<?= $this->language->_("Vi")?>",
+                "<?= $this->language->_("Sa")?>"
+            ]);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("WEEKDAYS_MEDIUM",
+            [
+                "<?= $this->language->_("Dom")?>",
+                "<?= $this->language->_("Lun")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Mie")?>",
+                "<?= $this->language->_("Jue")?>",
+                "<?= $this->language->_("Vie")?>",
+                "<?= $this->language->_("Sab")?>"
+            ]);
+
+        YAHOO.local.calendar.DESsalido.cfg.setProperty("WEEKDAYS_LONG",
+            [
+                "<?= $this->language->_("Domingo")?>",
+                "<?= $this->language->_("Lunes")?>",
+                "<?= $this->language->_("Martes")?>",
+                "<?= $this->language->_("Miércoles")?>",
+                "<?= $this->language->_("Jueves")?>",
+                "<?= $this->language->_("Viernes")?>",
+                "<?= $this->language->_("Sábado")?>"
+            ]);
+
+        <? if ($this->language->getLocale() == 'es') { ?>
+            YAHOO.local.calendar.DESsalido.selectEvent.subscribe(handlerCalDESsalidoES,
+                YAHOO.local.calendar.DESsalido, true);
+        <? } else if ($this->language->getLocale() == 'en') {?>
+            YAHOO.local.calendar.DESsalido.selectEvent.subscribe(handlerCalDESsalidoEN,
+                YAHOO.local.calendar.DESsalido, true);
+        <? } ?>
+
+        YAHOO.local.calendar.DESsalido.render();
+
+//       DEScargado
+        YAHOO.local.calendar.DEScargado = new YAHOO.widget.Calendar("idDESCargado","calDEScargado");
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MDY_DAY_POSITION", 1);
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MDY_MONTH_POSITION", 2);
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MDY_YEAR_POSITION", 3);
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("DATE_FIELD_DELIMITER", "-");
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MD_DAY_POSITION", 1);
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MD_MONTH_POSITION", 2);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MONTHS_SHORT",
+            [
+                "<?= $this->language->_("Ene")?>",
+                "<?= $this->language->_("Feb")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Abr")?>",
+                "<?= $this->language->_("May")?>",
+                "<?= $this->language->_("Jun")?>",
+                "<?= $this->language->_("Jul")?>",
+                "<?= $this->language->_("Ago")?>",
+                "<?= $this->language->_("Sep")?>",
+                "<?= $this->language->_("Oct")?>",
+                "<?= $this->language->_("Nov")?>",
+                "<?= $this->language->_("Dic")?>"
+            ]);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("MONTHS_LONG",
+            [
+                "<?= $this->language->_("Enero")?>",
+                "<?= $this->language->_("Febrero")?>",
+                "<?= $this->language->_("Marzo")?>",
+                "<?= $this->language->_("Abril")?>",
+                "<?= $this->language->_("Mayo")?>",
+                "<?= $this->language->_("Junio")?>",
+                "<?= $this->language->_("Julio")?>",
+                "<?= $this->language->_("Agosto")?>",
+                "<?= $this->language->_("Septiembre")?>",
+                "<?= $this->language->_("Octubre")?>",
+                "<?= $this->language->_("Noviembre")?>",
+                "<?= $this->language->_("Diciembre")?>"
+            ]);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("WEEKDAYS_1CHAR",
+            [
+                "<?= $this->language->_("D")?>",
+                "<?= $this->language->_("L")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("J")?>",
+                "<?= $this->language->_("V")?>",
+                "<?= $this->language->_("S")?>"
+            ]);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("WEEKDAYS_SHORT",
+            [
+                "<?= $this->language->_("Do")?>",
+                "<?= $this->language->_("Lu")?>",
+                "<?= $this->language->_("Ma")?>",
+                "<?= $this->language->_("Mi")?>",
+                "<?= $this->language->_("Ju")?>",
+                "<?= $this->language->_("Vi")?>",
+                "<?= $this->language->_("Sa")?>"
+            ]);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("WEEKDAYS_MEDIUM",
+            [
+                "<?= $this->language->_("Dom")?>",
+                "<?= $this->language->_("Lun")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Mie")?>",
+                "<?= $this->language->_("Jue")?>",
+                "<?= $this->language->_("Vie")?>",
+                "<?= $this->language->_("Sab")?>"
+            ]);
+
+        YAHOO.local.calendar.DEScargado.cfg.setProperty("WEEKDAYS_LONG",
+            [
+                "<?= $this->language->_("Domingo")?>",
+                "<?= $this->language->_("Lunes")?>",
+                "<?= $this->language->_("Martes")?>",
+                "<?= $this->language->_("Miércoles")?>",
+                "<?= $this->language->_("Jueves")?>",
+                "<?= $this->language->_("Viernes")?>",
+                "<?= $this->language->_("Sábado")?>"
+            ]);
+
+        <? if ($this->language->getLocale() == 'es') { ?>
+            YAHOO.local.calendar.DEScargado.selectEvent.subscribe(handlerCalDEScargadoES,
+                YAHOO.local.calendar.DEScargado, true);
+        <? } else if ($this->language->getLocale() == 'en') {?>
+            YAHOO.local.calendar.DEScargado.selectEvent.subscribe(handlerCalDEScargadoEN,
+                YAHOO.local.calendar.DEScargado, true);
+        <? } ?>
+
+        YAHOO.local.calendar.DEScargado.render();
+
+//       DEsfechaFactura
+        YAHOO.local.calendar.DEsfechaFactura = new YAHOO.widget.Calendar("idDESFechaFactura","calDEsfechaFactura");
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MDY_DAY_POSITION", 1);
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MDY_MONTH_POSITION", 2);
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MDY_YEAR_POSITION", 3);
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("DATE_FIELD_DELIMITER", "-");
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MD_DAY_POSITION", 1);
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MD_MONTH_POSITION", 2);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MONTHS_SHORT",
+            [
+                "<?= $this->language->_("Ene")?>",
+                "<?= $this->language->_("Feb")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Abr")?>",
+                "<?= $this->language->_("May")?>",
+                "<?= $this->language->_("Jun")?>",
+                "<?= $this->language->_("Jul")?>",
+                "<?= $this->language->_("Ago")?>",
+                "<?= $this->language->_("Sep")?>",
+                "<?= $this->language->_("Oct")?>",
+                "<?= $this->language->_("Nov")?>",
+                "<?= $this->language->_("Dic")?>"
+            ]);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("MONTHS_LONG",
+            [
+                "<?= $this->language->_("Enero")?>",
+                "<?= $this->language->_("Febrero")?>",
+                "<?= $this->language->_("Marzo")?>",
+                "<?= $this->language->_("Abril")?>",
+                "<?= $this->language->_("Mayo")?>",
+                "<?= $this->language->_("Junio")?>",
+                "<?= $this->language->_("Julio")?>",
+                "<?= $this->language->_("Agosto")?>",
+                "<?= $this->language->_("Septiembre")?>",
+                "<?= $this->language->_("Octubre")?>",
+                "<?= $this->language->_("Noviembre")?>",
+                "<?= $this->language->_("Diciembre")?>"
+            ]);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("WEEKDAYS_1CHAR",
+            [
+                "<?= $this->language->_("D")?>",
+                "<?= $this->language->_("L")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("M")?>",
+                "<?= $this->language->_("J")?>",
+                "<?= $this->language->_("V")?>",
+                "<?= $this->language->_("S")?>"
+            ]);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("WEEKDAYS_SHORT",
+            [
+                "<?= $this->language->_("Do")?>",
+                "<?= $this->language->_("Lu")?>",
+                "<?= $this->language->_("Ma")?>",
+                "<?= $this->language->_("Mi")?>",
+                "<?= $this->language->_("Ju")?>",
+                "<?= $this->language->_("Vi")?>",
+                "<?= $this->language->_("Sa")?>"
+            ]);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("WEEKDAYS_MEDIUM",
+            [
+                "<?= $this->language->_("Dom")?>",
+                "<?= $this->language->_("Lun")?>",
+                "<?= $this->language->_("Mar")?>",
+                "<?= $this->language->_("Mie")?>",
+                "<?= $this->language->_("Jue")?>",
+                "<?= $this->language->_("Vie")?>",
+                "<?= $this->language->_("Sab")?>"
+            ]);
+
+        YAHOO.local.calendar.DEsfechaFactura.cfg.setProperty("WEEKDAYS_LONG",
+            [
+                "<?= $this->language->_("Domingo")?>",
+                "<?= $this->language->_("Lunes")?>",
+                "<?= $this->language->_("Martes")?>",
+                "<?= $this->language->_("Miércoles")?>",
+                "<?= $this->language->_("Jueves")?>",
+                "<?= $this->language->_("Viernes")?>",
+                "<?= $this->language->_("Sábado")?>"
+            ]);
+
+        <? if ($this->language->getLocale() == 'es') { ?>
+            YAHOO.local.calendar.DEsfechaFactura.selectEvent.subscribe(handlerCalDEsfechaFacturaES,
+                YAHOO.local.calendar.DEsfechaFactura, true);
+        <? } else if ($this->language->getLocale() == 'en') {?>
+            YAHOO.local.calendar.DEsfechaFactura.selectEvent.subscribe(handlerCalDEsfechaFacturaEN,
+                YAHOO.local.calendar.DEsfechaFactura, true);
+        <? } ?>
+
+        YAHOO.local.calendar.DEsfechaFactura.render();
+
     }
 
     YAHOO.util.Event.onDOMReady(YAHOO.local.calendar.init);
@@ -315,6 +699,10 @@
 <div id="calIngPuerto" style="display:none;" class="ccalingpuerto"></div>
 <div id="calPerPre" style="display:none;" class="ccalperpre"></div>
 <div id="calDesVencimiento" style="display:none;" class="ccalfecfac"></div>
+<div id="calDesPresentado" style="display:none;" class="ccalfecfac"></div>
+<div id="calDESsalido" style="display:none;" class="ccalfecfac"></div>
+<div id="calDEScargado" style="display:none;" class="ccalfecfac"></div>
+<div id="calDEsfechaFactura" style="display:none;" class="ccalfecfac"></div>
 <div id='form_errorloc' class='errors_js_forms'></div>
 <script type="text/javascript">		
 

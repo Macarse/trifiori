@@ -88,6 +88,88 @@ function handlerCalFechaIngresoEN(type,args,obj)
     hide_div('calFechaIngreso');
 };
 
+function handlerCalDESpresentadoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESPresentado', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDesPresentado');
+};
+
+function handlerCalDESpresentadoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESPresentado', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calDesPresentado');
+};
+
+function handlerCalDESsalidoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESSalido', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDESsalido');
+};
+
+function handlerCalDESsalidoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESSalido', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calDESsalido');
+};
+
+
+function handlerCalDEScargadoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESCargado', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDEScargado');
+};
+
+function handlerCalDEScargadoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESCargado', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calDEScargado');
+};
+
+function handlerCalDEsfechaFacturaEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESFechaFactura', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDEsfechaFactura');
+};
+
+function handlerCalDEsfechaFacturaES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESFechaFactura', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calDEsfechaFactura');
+};
+
+
 function handlerCalVencimiento(type,args,obj) {
 	var selected = args[0];
 	var selDate = this.toDate(selected[0]);
@@ -112,9 +194,9 @@ function handlerCalIngPuertoEN(type,args,obj)
     var selected = args[0];
     var selDate = this.toDate(selected[0]);
 
-    changeDateInput('idDESVencimiento', dateToLocaleString(selDate, this, 'en'));
+    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'en'));
 
-    hide_div('calDesVencimiento');
+    hide_div('calIngPuerto');
 };
 
 function handlerCalDesVencimientoEN(type,args,obj)
@@ -132,9 +214,9 @@ function handlerCalDesVencimientoES(type,args,obj)
     var selected = args[0];
     var selDate = this.toDate(selected[0]);
 
-    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'es'));
+    changeDateInput('idDESVencimiento', dateToLocaleString(selDate, this, 'es'));
 
-    hide_div('calIngPuerto');
+    hide_div('calDesVencimiento');
 };
 
 function handlerCalPerPre(type,args,obj) {
