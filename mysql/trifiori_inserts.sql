@@ -254,7 +254,7 @@ INSERT INTO CARGAS VALUES(6, 214, 'Caja', 44.3, 'kg', '55MCMA', 'Stagg', 'Maniac
 INSERT INTO CARGAS VALUES(7, 45, 'Caja', 10.5, 'kg', '334NNNW48', 'Furia', '2112');
 INSERT INTO CARGAS VALUES(8, 235, 'Lata de Aluminio', 341.3, 'kg', '23NASB8', 'Myra', 'Rush');
 INSERT INTO CARGAS VALUES(9, 100, 'Caja', 950, 'kg', '4XXXW48', 'Avedis', 'Sarasa');
-INSERT INTO CARGAS VALUES(10, 5, 'Lata de Aluminio', 3.1, 'kg', 'T3CABE', 'Constantinople', 'Alfileres');
+INSERT INTO CARGAS VALUES(10, 5, 'Lata de Aluminio', 3.1, 'kg', 'T3C0', 'Constantinople', 'Alfileres');
 INSERT INTO CARGAS VALUES(11, 1, 'Caja', 4.3, 'kg', '3A44MM8', 'Zildjian', 'FNM');
 INSERT INTO CARGAS VALUES(12, 4000, 'Caja', 5299.1, 'kg', '400XW48', 'Vic Firth', 'Mudhoney');
 INSERT INTO CARGAS VALUES(13, 600, 'Caja', 934.4, 'kg', 'MMNBAS8', 'Pro Mark', 'Ludwig');
