@@ -169,14 +169,24 @@ function handlerCalDEsfechaFacturaES(type,args,obj)
     hide_div('calDEsfechaFactura');
 };
 
+function handlerCalvencimientoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
 
-function handlerCalVencimiento(type,args,obj) {
-	var selected = args[0];
-	var selDate = this.toDate(selected[0]);
-	 
-	changeDateInput('idVencimiento', dateToLocaleString(selDate, this));
-	
-	hide_div('calVencimiento');
+    changeDateInput('idVencimiento', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calVencimiento');
+};
+
+function handlerCalvencimientoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idVencimiento', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calVencimiento');
 };
 
 function handlerCalIngPuertoES(type,args,obj)
@@ -219,20 +229,64 @@ function handlerCalDesVencimientoES(type,args,obj)
     hide_div('calDesVencimiento');
 };
 
-function handlerCalPerPre(type,args,obj) {
-	var selected = args[0];
-	var selDate = this.toDate(selected[0]);
-	 
-	changeDateInput('idPerPre', dateToLocaleString(selDate, this));
-	
-	hide_div('calPerPre');
+
+function handlerCalingresoPuertoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calIngPuerto');
 };
 
-function handlerCalPerFecFac(type,args,obj) {
-	var selected = args[0];
-	var selDate = this.toDate(selected[0]);
-	 
-	changeDateInput('idPerFecFac', dateToLocaleString(selDate, this));
-	
-	hide_div('calFecFac');
+function handlerCalingresoPuertoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calIngPuerto');
+};
+
+
+function handlerCalperpreEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idPerPre', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calPerPre');
+};
+
+function handlerCalperpreES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idPerPre', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calPerPre');
+};
+
+function handlerCalfecfacEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idPerFecFac', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calFecFac');
+};
+
+function handlerCalfecfacES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idPerFecFac', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calFecFac');
 };
