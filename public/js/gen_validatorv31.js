@@ -63,7 +63,7 @@ function form_submit_handler()
 {
    var bRet = true;
     document.error_disp_handler.clear_msgs();
-	for(var itr=0;itr < this.elements.length;itr++)
+	for(var itr=this.elements.length-1 ;itr > 0;itr--)
 	{
 		if(this.elements[itr].validationset &&
 	   !this.elements[itr].validationset.validate())
