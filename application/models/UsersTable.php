@@ -40,7 +40,14 @@ class Users extends Zend_Db_Table_Abstract
 
         return $row;
     }
+    
+    public function searchUser( $name )
+    {
+        $name = mysql_real_escape_string($name);
 
+        return $this->select()->where("USUARIO_USU LIKE '%" . $name . "%'"); 
+    }
+    
     public function modifyUser( $id, $name, $user, $pass, $lang, $css )
     {
         /*TODO: Try Catch*/

@@ -6,6 +6,9 @@
         <div class="msg"><?= $msg ?></div>
     <? } ?>
 <? } ?>
+<div class="busqueda">
+    <?= $this->userSearchForm ?>
+</div>   
 <div id="divlistusers" class="clistado">
     <table id="tableusers">
         <thead>
@@ -38,7 +41,9 @@
         </table>
 </div>
 
-<?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
                 
 <script type="text/javascript">
 YAHOO.util.Event.addListener(window, "load", function() {

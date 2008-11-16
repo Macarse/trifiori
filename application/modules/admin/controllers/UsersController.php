@@ -4,6 +4,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
     protected $_rmid;
     protected $_flashMessenger = null;
@@ -82,29 +83,44 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         
         $this->view->message = $this->_flashMessenger->getMessages();
         
-        try
+        $this->_searchform = $this->getUserSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            $table = new Users();
-            
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            
-            if (isset($_GET["page"]))
+            try
             {
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $table = new Users();
+                 
+                if (isset($_GET["consulta"]))
+                {
+                    $user = $table->searchUser($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $user = $table->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($user, $table));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($this->_getParam('page'));
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
             }
-            else
+            catch (Zend_Exception $error)
             {
-                $paginator->setCurrentPageNumber(1);
+                $this->view->error = $error;
             }
-            
-            Zend_Registry::set('busqueda', "");
-            $paginator->setItemCountPerPage(10);
-            $this->view->paginator = $paginator;
         }
-        catch (Zend_Exception $error)
-        {
-            $this->view->error = $error;
-        }
+        $this->view->userSearchForm = $this->getUserSearchForm();
     }
 
     public function removeusersAction()
@@ -267,6 +283,33 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         return $this->_addform;
     }
 
+    private function getUserSearchForm()
+    {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform  ->setAction($this->_baseUrl)
+                ->setName('form')
+                ->setMethod('get');
+
+        $user = $this->_searchform->createElement('text', 'consulta',
+                array('label' => $this->language->_('Nombre de Usuario')));
+        $user   ->addValidator($alnumWithWS)
+                ->addValidator('stringLength', false, array(1, 100));
+
+        // Add elements to form:
+                $this->_searchform->addElement($user)
+                ->addElement('hidden', 'SearchUserTrack', array('values' => 'logPost'))
+                ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
+    
     private function getUserModForm( $id )
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
