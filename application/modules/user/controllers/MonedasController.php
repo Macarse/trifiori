@@ -275,7 +275,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('get');
 
-        $moneda = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
+        $moneda = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Descripción')));
         $moneda       ->addValidator($alnumWithWS)
                      ->addValidator('stringLength', false, array(1, 150));
 

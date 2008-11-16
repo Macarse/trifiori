@@ -333,11 +333,11 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                         ));
 
         $nroPaquete = $this->_addform->createElement('text', 'nroPaquete',
-                                            array('label' => $this->language->_('Número de Paquete')));
+                                            array('label' => '*' . $this->language->_('Número de Paquete')));
         $nroPaquete->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 25))
                    ->addValidator(new CV_Validate_CargaExiste())
-                   ->setRequired(False);
+                   ->setRequired(True);
 
 
         $marcaYnum = $this->_addform->createElement('text', 'marcaYnum',
@@ -379,7 +379,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('get');
 
-        $carga = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
+        $carga = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Número de Paquete')));
         $carga       ->addValidator('alnum')
                      ->addValidator('stringLength', false, array(1, 25));
 
