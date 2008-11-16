@@ -29,6 +29,10 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
     protected function translateDate($value)
     {
+
+        if ($value == '')
+            return $value;
+
         $lang = Zend_Registry::getInstance()->language->getLocale();
 
         if( $lang == 'es' )
