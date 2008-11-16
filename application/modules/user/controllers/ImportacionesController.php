@@ -265,7 +265,6 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $orden = $this->_addform->createElement('text', 'orden',
                     array('label' => '*' . $this->language->_('Órden')));
         $orden  ->addValidator('int')
-                ->addValidator(new CV_Validate_ImportacionExiste())
                 ->addValidator('stringLength', false, array(1, 11))
                 ->setRequired(true);
 
@@ -282,7 +281,6 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $codCanal = $this->_addform->createElement('select', 'codCanal');
         $codCanal   ->setRequired(true)
-                    ->setOrder(4)
                     ->setLabel('*' . $this->language->_('Canal'))
                     ->setMultiOptions($canalesOptions);
 
@@ -473,7 +471,6 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codBandera)
                         ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
-                        ->addElement($codCanal)
                         ->addElement($codGiro)
                         ->addElement('hidden', 'autogiros', array( 'decorators' => $decoradorGiro))
                         ->addElement($codCliente)
@@ -486,6 +483,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'automon', array( 'decorators' => $decoradorMoneda))
                         ->addElement($codOpp)
                         ->addElement('hidden', 'autoopp', array( 'decorators' => $decoradorOpp))
+                        ->addElement($codCanal)
                         ->addElement($referencia)
                         ->addElement($fechaIngreso)
                         ->addElement($originalCopia)
