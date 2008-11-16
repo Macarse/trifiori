@@ -93,55 +93,55 @@
 	frmvalidator.EnableOnPageErrorDisplaySingleBox();
 	frmvalidator.EnableMsgsTogether();
 	
-	frmvalidator.addValidation("orden","req","*Ingrese el número de orden");
-	frmvalidator.addValidation("orden","numeric","<?= $this->language->_("*La órden debe ser únicamente númerica")?>");
+	frmvalidator.addValidation("orden","req","*Ingrese el nï¿½mero de orden");
+	frmvalidator.addValidation("orden","numeric","<?= $this->language->_("*La ï¿½rden debe ser ï¿½nicamente nï¿½merica")?>");
 			  
 	frmvalidator.addValidation("idnameTransporte","req","<?= $this->language->_("*Elija un transporte")?>");
-	frmvalidator.addValidation("idnameTransporte","alnum_s ","<?= $this->language->_("*El transporte debe ser alfanumérico")?>");
+	frmvalidator.addValidation("idnameTransporte","alnum_s ","<?= $this->language->_("*El transporte debe ser alfanumï¿½rico")?>");
 			  
 	frmvalidator.addValidation("idnameCliente","req","<?= $this->language->_("*Elija un cliente")?>");
-	frmvalidator.addValidation("idnameCliente","alpha_s","<?= $this->language->_("*El cliente debe ser alfanumérico")?>");
+	frmvalidator.addValidation("idnameCliente","alpha_s","<?= $this->language->_("*El cliente debe ser alfanumï¿½rico")?>");
 
 	frmvalidator.addValidation("idnameBandera","req","<?= $this->language->_("*Elija una Bandera")?>");
-	frmvalidator.addValidation("idnameBandera","alpha_s","<?= $this->language->_("*La bandera debe contener sólo letras")?>");
+	frmvalidator.addValidation("idnameBandera","alpha_s","<?= $this->language->_("*La bandera debe contener sï¿½lo letras")?>");
 
 	frmvalidator.addValidation("idnameMoneda","req","<?= $this->language->_("*Elija una moneda")?>");
-	frmvalidator.addValidation("idnameMoneda","alpha_s","<?= $this->language->_("*La moneda debe contener sólo letras")?>");
+	frmvalidator.addValidation("idnameMoneda","alpha_s","<?= $this->language->_("*La moneda debe contener sï¿½lo letras")?>");
 
-	frmvalidator.addValidation("idnameDestinacion","req","<?= $this->language->_("*Elija una destinación")?>");
-	frmvalidator.addValidation("idnameDestinacion","alpha_s","<?= $this->language->_("*La destinación debe contener sólo letras")?>");
+	frmvalidator.addValidation("idnameDestinacion","req","<?= $this->language->_("*Elija una destinaciï¿½n")?>");
+	frmvalidator.addValidation("idnameDestinacion","alpha_s","<?= $this->language->_("*La destinaciï¿½n debe contener sï¿½lo letras")?>");
 
 	frmvalidator.addValidation("idnameCarga","req","<?= $this->language->_("*Elija una carga")?>");
-	frmvalidator.addValidation("idnameCarga","alnum","<?= $this->language->_("*La carga debe contener sólo letras")?>");
+	frmvalidator.addValidation("idnameCarga","alnum","<?= $this->language->_("*La carga debe contener sï¿½lo letras")?>");
 
 	frmvalidator.addValidation("referencia","req","<?= $this->language->_("*Ingrese una referencia")?>");
-	frmvalidator.addValidation("referencia","alnum_s","<?= $this->language->_("*La referencia debe ser alfanumérica")?>");
+	frmvalidator.addValidation("referencia","alnum_s","<?= $this->language->_("*La referencia debe ser alfanumï¿½rica")?>");
 
 	frmvalidator.addValidation("idFechaIngreso","req","<?= $this->language->_("*Ingrese una fecha de ingreso")?>");
-	frmvalidator.addValidation("idFechaIngreso","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "<?= $this->language->_("*La fecha de ingreso es inválida")?>");
+// 	frmvalidator.addValidation("idFechaIngreso","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$", "<?= $this->language->_("*La fecha de ingreso es invï¿½lida")?>");
 
-	frmvalidator.addValidation("desMercaderias","req","<?= $this->language->_("*Ingrese una descripción de mercadería")?>");
-	frmvalidator.addValidation("desMercaderias","alnum_s","<?= $this->language->_("*La descripción de mercadería debe ser alfanumérica")?>");
+	frmvalidator.addValidation("desMercaderias","req","<?= $this->language->_("*Ingrese una descripciï¿½n de mercaderï¿½a")?>");
+	frmvalidator.addValidation("desMercaderias","alnum_s","<?= $this->language->_("*La descripciï¿½n de mercaderï¿½a debe ser alfanumï¿½rica")?>");
 
 	frmvalidator.addValidation("valorFactura","req","<?= $this->language->_("*Ingrese un valor de factura")?>");
-	frmvalidator.addValidation("valorFactura","dec","<?= $this->language->_("*El valor de factura debe ser numérico")?>");
+	frmvalidator.addValidation("valorFactura","dec","<?= $this->language->_("*El valor de factura debe ser numï¿½rico")?>");
 
 	frmvalidator.addValidation("DESnroDoc","req","<?= $this->language->_("*Ingrese un nÃºmero de despacho")?>");
 	frmvalidator.addValidation("DESnroDoc","alnum","<?= $this->language->_("*El nÃºmero de despacho debe ser numÃ©rico")?>");
 
 	frmvalidator.addValidation("docTransporte","req","<?= $this->language->_("*Ingrese una documentacion de transporte")?>");
-	frmvalidator.addValidation("docTransporte","alnum_s","<?= $this->language->_("*La documentacion de transporte debe ser alfanumérica")?>");
+	frmvalidator.addValidation("docTransporte","alnum_s","<?= $this->language->_("*La documentacion de transporte debe ser alfanumï¿½rica")?>");
 
-	frmvalidator.addValidation("DESdeclaracion","req","<?= $this->language->_("*Ingrese una descripción de declaracion")?>");
-	frmvalidator.addValidation("DESdeclaracion","alnum_s","<?= $this->language->_("*La descripción de declaracion debe ser alfanumérica")?>");
+	frmvalidator.addValidation("DESdeclaracion","req","<?= $this->language->_("*Ingrese una descripciï¿½n de declaracion")?>");
+	frmvalidator.addValidation("DESdeclaracion","alnum_s","<?= $this->language->_("*La descripciï¿½n de declaracion debe ser alfanumï¿½rica")?>");
 
 	frmvalidator.addValidation("idDESSalido","req","<?= $this->language->_("*Ingrese la fecha del despacho salido")?>");
-	frmvalidator.addValidation("idDESSalido","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho salido es inválida")?>");
+// 	frmvalidator.addValidation("idDESSalido","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho salido es invï¿½lida")?>");
 
 	frmvalidator.addValidation("idDESPresentado","req","<?= $this->language->_("*Ingrese la fecha del despacho presentado")?>");
-	frmvalidator.addValidation("idDESPresentado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho presentado es inválida")?>");
+// 	frmvalidator.addValidation("idDESPresentado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho presentado es invï¿½lida")?>");
 
 	frmvalidator.addValidation("idDESCargado","req","<?= $this->language->_("*Ingrese la fecha del despacho cargado")?>");
-	frmvalidator.addValidation("idDEScargado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho cargado es inválida")?>");		
+// 	frmvalidator.addValidation("idDEScargado","regexp=^(19|20)([0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$","<?= $this->language->_("*La fecha del despacho cargado es invï¿½lida")?>");		
 
 </script>

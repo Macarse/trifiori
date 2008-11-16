@@ -327,7 +327,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $fechaIngreso = $this->_addform->createElement('text', 'fechaIngreso',
                 array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
                 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
-        $fechaIngreso   ->addValidator('date')
+        $fechaIngreso   ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -362,7 +362,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $ingresoPuerto = $this->_addform->createElement('text', 'ingresoPuerto',
                 array('label' => $this->language->_('Ingreso a Puerto'),
                  'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
-        $ingresoPuerto  ->addValidator('date')
+        $ingresoPuerto  ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -376,7 +376,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DESvencimiento = $this->_addform->createElement('text', 'DESvencimiento',
                 array('label' => $this->language->_('Despacho: Vencimiento'),
                  'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
-        $DESvencimiento ->addValidator('date')
+        $DESvencimiento ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -395,21 +395,21 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DESpresentado = $this->_addform->createElement('text', 'DESpresentado',
                 array('label' => '*' . $this->language->_('Despacho: Presentado'),
                  'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
-        $DESpresentado ->addValidator('date')
+        $DESpresentado ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $DESsalido = $this->_addform->createElement('text', 'DESsalido',
                 array('label' => '*' . $this->language->_('Despacho: Salido'),
                  'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
-        $DESsalido ->addValidator('date')
+        $DESsalido ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
         $DEScargado = $this->_addform->createElement('text', 'DEScargado',
                 array('label' => '*' . $this->language->_('Despacho: Cargado'),
                  'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
-        $DEScargado ->addValidator('date')
+        $DEScargado ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -422,7 +422,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DEsfechaFactura = $this->_addform->createElement('text', 'DEsfechaFactura',
                 array('label' => $this->language->_('Despacho: Fecha Factura'),
                  'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
-        $DEsfechaFactura ->addValidator('date')
+        $DEsfechaFactura ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -677,7 +677,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $fechaIngreso = $this->_modform->createElement('text', 'fechaIngreso',
                 array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
                 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
-        $fechaIngreso   ->addValidator('date')
+        $fechaIngreso   ->addValidator(new CV_Validate_Fecha())
 						->setValue($row->fechaIngreso() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -717,7 +717,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $ingresoPuerto = $this->_modform->createElement('text', 'ingresoPuerto',
                 array('label' => $this->language->_('Ingreso a Puerto'),
                  'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
-        $ingresoPuerto  ->addValidator('date')
+        $ingresoPuerto  ->addValidator(new CV_Validate_Fecha())
 						->setValue($row->ingresoPuerto() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -732,7 +732,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DESvencimiento = $this->_modform->createElement('text', 'DESvencimiento',
                 array('label' => $this->language->_('Despacho: Vencimiento'),
                  'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
-        $DESvencimiento ->addValidator('date')
+        $DESvencimiento ->addValidator(new CV_Validate_Fecha())
 						->setValue($row->DESvencimiento() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -754,7 +754,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DESpresentado = $this->_modform->createElement('text', 'DESpresentado',
                 array('label' => '*' . $this->language->_('Despacho: Presentado'),
                  'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
-        $DESpresentado ->addValidator('date')
+        $DESpresentado ->addValidator(new CV_Validate_Fecha())
 					   ->setValue($row->DESpresentado() )
                        ->addValidator('stringLength', false, array(1, 12))
                        ->setRequired(True);
@@ -762,7 +762,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DESsalido = $this->_modform->createElement('text', 'DESsalido',
                 array('label' => '*' . $this->language->_('Despacho: Salido'),
                  'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
-        $DESsalido ->addValidator('date')
+        $DESsalido ->addValidator(new CV_Validate_Fecha())
 				   ->setValue($row->DESsalido() )
                    ->addValidator('stringLength', false, array(1, 12))
                    ->setRequired(True);
@@ -770,7 +770,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DEScargado = $this->_modform->createElement('text', 'DEScargado',
                 array('label' => '*' . $this->language->_('Despacho: Cargado'),
                  'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
-        $DEScargado ->addValidator('date')
+        $DEScargado ->addValidator(new CV_Validate_Fecha())
 					->setValue($row->DEScargado() )
 					->addValidator('stringLength', false, array(1, 12))
 					->setRequired(True);
@@ -785,7 +785,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $DEsfechaFactura = $this->_modform->createElement('text', 'DEsfechaFactura',
                 array('label' => $this->language->_('Despacho: Fecha Factura'),
                  'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
-        $DEsfechaFactura ->addValidator('date')
+        $DEsfechaFactura ->addValidator(new CV_Validate_Fecha())
 						 ->setValue($row->DEsfechaFactura() )
  						 ->addValidator('stringLength', false, array(1, 12))
 						 ->setRequired(False);

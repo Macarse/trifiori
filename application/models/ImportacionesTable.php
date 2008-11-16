@@ -18,7 +18,7 @@ class Importaciones extends Zend_Db_Table_Abstract
 
         return $row;
     }
-    
+
     public function getImportacionByOrden( $id )
     {
         $where = $this->getAdapter()->quoteInto('ORDEN_IMP = ?', $id);
@@ -26,7 +26,25 @@ class Importaciones extends Zend_Db_Table_Abstract
 
         return $row;
     }
-    
+
+    protected function translateDate($value)
+    {
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        if( $lang == 'es' )
+        {
+            $date = new Zend_Date($value,'dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $date = new Zend_Date($value,'MM-dd-YYYY');
+        }
+
+        $retVal = $date->get('YYYY-MM-dd');
+
+        return $retVal;
+    }
+
     public function addImportacion( $orden, $nameDestinacion, $nameBandera,
                                     $codCanal, $nameGiro, $nameCliente,
                                     $nameCarga, $nameTransporte, $nameMoneda,
@@ -39,7 +57,14 @@ class Importaciones extends Zend_Db_Table_Abstract
                                     $DESfactura, $DEsfechaFactura
                                     )
     {
-	
+
+        $fechaIngreso = $this->translateDate($fechaIngreso);
+        $ingresoPuerto = $this->translateDate($ingresoPuerto);
+        $DESvencimiento = $this->translateDate($DESvencimiento);
+        $DESpresentado = $this->translateDate($DESpresentado);
+        $DEScargado = $this->translateDate($DEScargado);
+        $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
+
 			// Tengo que obtener los codigos		
 		//clientes
 		$clientes = new Clientes();
@@ -265,6 +290,13 @@ class Importaciones extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
         }
+
+        $fechaIngreso = $this->translateDate($fechaIngreso);
+        $ingresoPuerto = $this->translateDate($ingresoPuerto);
+        $DESvencimiento = $this->translateDate($DESvencimiento);
+        $DESpresentado = $this->translateDate($DESpresentado);
+        $DEScargado = $this->translateDate($DEScargado);
+        $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
 
         $this->update(array(
                         'ORDEN_IMP'             => $orden,

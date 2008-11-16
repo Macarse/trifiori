@@ -4,6 +4,24 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 {
     protected $_tableClass = 'ImportacionesTable';
 
+    protected function localizeDate($value)
+    {
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        $date = new Zend_Date($value, 'YYYY-MM-dd');
+
+        if( $lang == 'es' )
+        {
+            $retVal = $date->get('dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $retVal = $date->get('MM-dd-YYYY');
+        }
+
+        return $retVal;
+    }
+
     public function id()
     {
         return $this->CODIGO_IMP;
@@ -192,7 +210,7 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function fechaIngreso()
     {
-        return $this->FECHAINGRESO_IMP;
+        return $this->localizeDate($this->FECHAINGRESO_IMP);
     }
 
     public function originalCopia()
@@ -217,7 +235,7 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function ingresoPuerto()
     {
-        return $this->INGRESOPUERTO_IMP;
+        return $this->localizeDate($this->INGRESOPUERTO_IMP);
     }
 
     public function DESnroDoc()
@@ -227,7 +245,7 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function DESvencimiento()
     {
-        return $this->DES_VENCIMIENTO;
+        return $this->localizeDate($this->DES_VENCIMIENTO);
     }
 
     public function DESbl()
@@ -242,17 +260,17 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function DESpresentado()
     {
-        return $this->DES_PRESENTADO;
+        return $this->localizeDate($this->DES_PRESENTADO);
     }
 
     public function DESsalido()
     {
-        return $this->DES_SALIDO;
+        return $this->localizeDate($this->DES_SALIDO);
     }
 
     public function DEScargado()
     {
-        return $this->DES_CARGADO;
+        return $this->localizeDate($this->DES_CARGADO);
     }
 
     public function DESfactura()
@@ -262,7 +280,7 @@ class ImportacionesModel extends Zend_Db_Table_Row_Abstract
 
     public function DEsfechaFactura()
     {
-        return $this->DES_FECHAFACTURA;
+        return $this->localizeDate($this->DES_FECHAFACTURA);
     }
 
 }
