@@ -511,7 +511,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
                         ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
 
         return $this->_addform;
@@ -875,7 +875,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
                         ->addElement('hidden', 'ModImportacionTrack', array('values' => 'logPost'))
-                        ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
+                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }

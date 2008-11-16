@@ -108,7 +108,7 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
         $this->_modform ->addElement($css)
                         ->addElement($lang)
              ->addElement('hidden', 'ModPersonalizarTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Ingresar')));
+             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Aceptar')));
 
         return $this->_modform;
     }
