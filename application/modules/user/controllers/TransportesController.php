@@ -38,7 +38,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     try
                     {
                         $transportesTable = new Transportes();
-                        $transportesTable->addTransporte(   $values['codBandera'],
+                        $transportesTable->addTransporte(   $values['nameBandera'],
                                                             $values['codMedio'],
                                                             $values['name'],
                                                             $values['observaciones']
@@ -164,7 +164,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     {
                         $transportesTable = new Transportes();
                         $transportesTable->modifyTransporte(    $this->_id,
-                                                                $values['codBandera'],
+                                                                $values['nameBandera'],
                                                                 $values['codMedio'],
                                                                 $values['name'],
                                                                 $values['observaciones']
@@ -199,16 +199,10 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 						->setMethod('post');
 
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
-
-        $codBandera = $this->_addform->createElement('select', 'codBandera');
+        $codBandera = $this->_addform->createElement('text', 'nameBandera',
+                array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-                    ->setOrder(1)
-                ->setLabel('*' . $this->language->_('Bandera'))
-                    ->setMultiOptions($banderasOptions);
+                    ->addValidator(new CV_Validate_Bandera());
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
@@ -217,7 +211,6 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 
         $codMedio = $this->_addform->createElement('select', 'codMedio');
         $codMedio   ->setRequired(true)
-                    ->setOrder(2)
                 ->setLabel('*' . $this->language->_('Medio'))
                     ->setMultiOptions($mediosOptions);
 
@@ -235,9 +228,17 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 400))
                         ->setRequired(False);
 
-        // Add elements to form:
+        $decoradorBandera = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
+                                );
+
+		
+		// Add elements to form:
         $this->_addform->addElement($name)
                        ->addElement($codBandera)
+                        ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
                        ->addElement($codMedio)
                        ->addElement($observaciones)
              ->addElement('hidden', 'AddTransporteTrack', array('values' => 'logPost'))
@@ -271,17 +272,11 @@ class user_TransportesController extends Trifiori_User_Controller_Action
 						->setName('form')
 						->setMethod('post');
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $banderasTable = new Banderas();
-        $banderasOptions =  $banderasTable->getBanderasArray();
-
-        $codBandera = $this->_modform->createElement('select', 'codBandera');
-        $codBandera ->setValue( $row->codBandera() )
-                    ->setRequired(true)
-                    ->setOrder(1)
-                ->setLabel('*' . $this->language->_('Bandera'))
-                    ->setMultiOptions($banderasOptions);
+        $codBandera = $this->_modform->createElement('text', 'nameBandera',
+                array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
+        $codBandera ->setRequired(true)
+					->setValue($row->codBanderaName() )
+                    ->addValidator(new CV_Validate_Bandera());
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/
@@ -291,7 +286,6 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codMedio = $this->_modform->createElement('select', 'codMedio');
         $codMedio   ->setValue( $row->codMedio() )
                     ->setRequired(true)
-                    ->setOrder(2)
                 ->setLabel('*' . $this->language->_('Medio'))
                     ->setMultiOptions($mediosOptions);
 
@@ -309,9 +303,16 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 400))
                         ->setRequired(False);
 
+        $decoradorBandera = array(
+                                'ViewHelper',
+                                'Errors',
+                                array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
+                                );
+
         // Add elements to form:
         $this->_modform->addElement($name)
                        ->addElement($codBandera)
+                        ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
                        ->addElement($codMedio)
                        ->addElement($observaciones)
              ->addElement('hidden', 'ModTransporteTrack', array('values' => 'logPost'))

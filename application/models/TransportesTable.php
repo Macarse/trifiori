@@ -28,8 +28,30 @@ class Transportes extends Zend_Db_Table_Abstract
     }
 
 
-    public function addTransporte( $codBandera, $codMedio, $name, $observaciones )
+    public function addTransporte( $nameBandera, $codMedio, $name, $observaciones )
     {
+		//Banderas
+
+		$banderas = new Banderas();
+		try
+		{
+			$codBandera = $banderas->getBanderaByName($nameBandera);
+			if ($codBandera != NULL)
+			{
+				$codBandera = $codBandera->id();
+			}
+			else
+			{
+				throw new Exception('No existe la Bandera');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
         $data = array(  'CODIGO_BAN'         => $codBandera,
                         'CODIGOMED'          => $codMedio,
                         'NOMBRE_BUQ'         => $name,
@@ -47,7 +69,7 @@ class Transportes extends Zend_Db_Table_Abstract
         return $this->select()->where("NOMBRE_BUQ LIKE '%" . $name . "%'"); 
     }
     
-    public function modifyTransporte( $id, $codBandera, $codMedio, $name, $observaciones )
+    public function modifyTransporte( $id, $nameBandera, $codMedio, $name, $observaciones )
     {
         try
         {
@@ -59,6 +81,28 @@ class Transportes extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
         }
+
+		//Banderas
+		$banderas = new Banderas();
+		try
+		{
+			$codBandera = $banderas->getBanderaByName($nameBandera);
+			if ($codBandera != NULL)
+			{
+				$codBandera = $codBandera->id();
+			}
+			else
+			{
+				throw new Exception('No existe la Bandera');
+				return False;
+			}
+		}
+		catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+		}
+
 
         $this->update(array(
                             'CODIGO_BAN'         => $codBandera,
