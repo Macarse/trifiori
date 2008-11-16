@@ -97,13 +97,44 @@ function handlerCalVencimiento(type,args,obj) {
 	hide_div('calVencimiento');
 };
 
-function handlerCalIngPuerto(type,args,obj) {
-	var selected = args[0];
-	var selDate = this.toDate(selected[0]);
-	 
-	changeDateInput('idIngPuerto', dateToLocaleString(selDate, this));
-	
-	hide_div('calIngPuerto');
+function handlerCalIngPuertoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calIngPuerto');
+};
+
+function handlerCalIngPuertoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESVencimiento', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDesVencimiento');
+};
+
+function handlerCalDesVencimientoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idDESVencimiento', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calDesVencimiento');
+};
+
+function handlerCalDesVencimientoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idIngPuerto', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calIngPuerto');
 };
 
 function handlerCalPerPre(type,args,obj) {
