@@ -3,6 +3,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 {
     protected $_addform;
     protected $_modform;
+    protected $_searchform;
     protected $_id;
     protected $_flashMessenger = null;
 
@@ -63,24 +64,52 @@ class user_OppsController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle($this->language->_("Listar Opps"));
 
+        $this->view->paginator = null;
+
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
 
         $this->view->message = $this->_flashMessenger->getMessages();
 
-        try
+        $this->_searchform = $this->getOPPSearchForm();
+        if ($this->_searchform->isValid($_GET))
         {
-            $table = new Opps();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select(), $table));
-            $paginator->setCurrentPageNumber($this->_getParam('page'));
-            $paginator->setItemCountPerPage(15);
-            $this->view->paginator = $paginator;
+            try
+            {
+                $table = new Opps();
+                
+                if (isset($_GET["consulta"]))
+                {
+                    $opps = $table->searchOpp($_GET["consulta"]);
+                    Zend_Registry::set('busqueda', $_GET["consulta"]);
+                }
+                else
+                {
+                    $opps = $table->select();
+                    Zend_Registry::set('busqueda', "");
+                }
+                
+                $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($opps, $table));
+                
+                if (isset($_GET["page"]))
+                {
+                    $paginator->setCurrentPageNumber($_GET["page"]);
+                }
+                else
+                {
+                    $paginator->setCurrentPageNumber(1);
+                }
+                
+                $paginator->setItemCountPerPage(15);
+                $this->view->paginator = $paginator;
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->view->error = $error;
+            }
         }
-        catch (Zend_Exception $error)
-        {
-            $this->view->error = $error;
-        }
+        $this->view->oppSearchForm = $this->getOPPSearchForm();
     }
 
     public function removeoppsAction()
@@ -339,6 +368,33 @@ class user_OppsController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 
+    private function getOPPSearchForm()
+    {
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        if (null !== $this->_searchform)
+        {
+            return $this->_searchform;
+        }
+
+        $this->_searchform = new Zend_Form();
+        $this->_searchform  ->setAction($this->_baseUrl)
+                ->setName('form')
+                ->setMethod('get');
+
+        $opps = $this->_searchform->createElement('text', 'consulta',
+                array('label' => $this->language->_('Número')));
+        $opps   ->addValidator($alnumWithWS)
+                ->addValidator('stringLength', false, array(1, 150));
+
+        // Add elements to form:
+        $this->_searchform->addElement($opps)
+                ->addElement('hidden', 'SearchOPPTrack', array('values' => 'logPost'))
+                ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+
+        return $this->_searchform;
+    }
+    
     public function getdataAction()
     {
         $arr = array();
@@ -352,11 +408,11 @@ class user_OppsController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
             $model = new Opps();
-            $data = $model->fetchAll("PEDIDO_DE_DINERO_OPP LIKE '" .  $this->_name . "%'");
+            $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%'");
 
             foreach ($data as $row)
             {
-                array_push($aux, array("id" => $row->id(), "data" => $row->pedidoDinero()));	
+                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
             }
 
             $arr = array("Resultset" => array("Result" => $aux));

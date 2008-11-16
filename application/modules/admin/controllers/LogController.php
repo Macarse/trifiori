@@ -18,7 +18,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
         {
             $where = "MSG like '%ALTERANDO%'";
             $table = new Log();
-            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select()->where($where), $table));
+            $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($table->select()->where($where)->order("CODIGOLOG DESC"), $table));
             
             Zend_Registry::set('busqueda', "");
             
@@ -30,7 +30,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
             {
                 $paginator->setCurrentPageNumber(1);
             }
-            $paginator->setItemCountPerPage(10);
+            $paginator->setItemCountPerPage(20);
             $this->view->paginator = $paginator;
         }
         catch (Zend_Exception $error)

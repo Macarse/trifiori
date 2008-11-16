@@ -841,11 +841,11 @@ msgstr "'%value%' no contiene únicamente dígitos"
 
 #: ../application/languages/zend_validate.php:28
 msgid "emailAddressInvalid"
-msgstr ""
+msgstr "'%value%' no es un correo electrónico válido"
 
 #: ../application/languages/zend_validate.php:29
 msgid "emailAddressInvalidHostname"
-msgstr ""
+msgstr "'%hostname%' no es un host válido para la dirección de correo electrónico"
 
 #: ../application/languages/zend_validate.php:30
 msgid "emailAddressInvalidMxRecord"
@@ -853,15 +853,15 @@ msgstr ""
 
 #: ../application/languages/zend_validate.php:31
 msgid "emailAddressDotAtom"
-msgstr ""
+msgstr "'%localPart%' no concuerda con el formato dot-atom"
 
 #: ../application/languages/zend_validate.php:32
 msgid "emailAddressQuotedString"
-msgstr ""
+msgstr "'%localPart%' no concuerda con el formato pactado"
 
 #: ../application/languages/zend_validate.php:33
 msgid "emailAddressInvalidLocalPart"
-msgstr ""
+msgstr "'%localPart%' es inválido"
 
 #: ../application/languages/zend_validate.php:36
 msgid "notFloat"

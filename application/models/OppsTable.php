@@ -28,6 +28,13 @@ class Opps extends Zend_Db_Table_Abstract
         return $row;
     }
     
+    public function searchOpp( $num )
+    {
+        $num = mysql_real_escape_string($num);
+
+        return $this->select()->where("NUMERO_OPP LIKE '%" . $num . "%'"); 
+    }
+    
     public function addOpp($name, $declaracionOk, $pedidoDinero, $otrosOpp,
                            $fraccionado, $estampillas, $impuestosInternos)
     {
