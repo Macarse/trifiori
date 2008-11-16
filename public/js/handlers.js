@@ -50,27 +50,42 @@ function changeDateInput(idText, msg) {
 	document.getElementById(idText).value = msg;
 }
 
-function dateToLocaleString(dt, cal) {
-			var dStr = dt.getDate();
-			var mStr = dt.getMonth() + 1;
-			var yStr = dt.getFullYear();
-			
-			if (mStr < 10)
-				mStr = "0" + mStr;
-				
-			if (dStr < 10)
-				dStr = "0" + dStr;
-			
-			return (yStr + "-" + mStr + "-" + dStr);
+function dateToLocaleString(dt, cal, lang)
+{
+    var dStr = dt.getDate();
+    var mStr = dt.getMonth() + 1;
+    var yStr = dt.getFullYear();
+
+    if (mStr < 10)
+            mStr = "0" + mStr;
+
+    if (dStr < 10)
+            dStr = "0" + dStr;
+
+    if (lang == 'es')
+        return (dStr + "-" + mStr + "-" + yStr);
+    else
+        return (mStr + "-" + dStr + "-" + yStr);
 }
 
-function handlerCalFechaIngreso(type,args,obj) {
-	var selected = args[0];
-	var selDate = this.toDate(selected[0]);
-	 
-	changeDateInput('idFechaIngreso', dateToLocaleString(selDate, this));
-	
-	hide_div('calFechaIngreso');
+function handlerCalFechaIngresoES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaIngreso', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calFechaIngreso');
+};
+
+function handlerCalFechaIngresoEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaIngreso', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calFechaIngreso');
 };
 
 function handlerCalVencimiento(type,args,obj) {

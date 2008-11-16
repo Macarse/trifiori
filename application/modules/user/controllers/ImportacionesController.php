@@ -664,7 +664,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $codOpp = $this->_modform->createElement('text', 'nameOpp',
                 array('label' => $this->language->_('Opp'), 'id' => 'idnameOpp'));
         $codOpp ->setRequired(False)
-				->setValue($row->codOppName() )
+				->setValue($row->codOppNum() )
                 ->addValidator(new CV_Validate_Opp());
 
         $referencia = $this->_modform->createElement('text', 'referencia',
