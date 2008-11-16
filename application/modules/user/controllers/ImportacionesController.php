@@ -375,7 +375,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $DESvencimiento = $this->_addform->createElement('text', 'DESvencimiento',
                 array('label' => $this->language->_('Despacho: Vencimiento'),
-                 'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
+                 'id' => 'idDESVencimiento', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
         $DESvencimiento ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -731,7 +731,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         $DESvencimiento = $this->_modform->createElement('text', 'DESvencimiento',
                 array('label' => $this->language->_('Despacho: Vencimiento'),
-                 'id' => 'idDESVencimineto', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
+                 'id' => 'idDESVencimiento', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
         $DESvencimiento ->addValidator(new CV_Validate_Fecha())
 						->setValue($row->DESvencimiento() )
                         ->addValidator('stringLength', false, array(1, 12))
