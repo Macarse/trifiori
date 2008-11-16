@@ -244,6 +244,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 3))
+                 ->addValidator(new CV_Validate_MonedaExiste())
                  ->setRequired(true);
 
         $longName = $this->_addform->createElement('text', 'longName', array('label' => $this->language->_('Descripción')));

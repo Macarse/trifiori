@@ -19,6 +19,14 @@ class Destinaciones extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function getDestinacionByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('DESCRIPCION_DES = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+    
     public function addDestinacion( $name )
     {
         /*TODO: Validaciones*/

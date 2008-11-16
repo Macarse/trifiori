@@ -336,6 +336,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                             array('label' => $this->language->_('Número de Paquete')));
         $nroPaquete->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 25))
+                   ->addValidator(new CV_Validate_CargaExiste())
                    ->setRequired(False);
 
 

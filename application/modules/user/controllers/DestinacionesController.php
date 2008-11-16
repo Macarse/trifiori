@@ -232,6 +232,7 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
+                 ->addValidator(new CV_Validate_DestinacionExiste())
                  ->setRequired(true);
 
         // Add elements to form:

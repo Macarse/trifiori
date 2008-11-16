@@ -295,6 +295,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
+             ->addValidator(new CV_Validate_ClienteExisteNombre())
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
@@ -315,6 +316,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         $cuit = $this->_addform->createElement('text', 'cuit', array('label' => $this->language->_('CUIT')));
         $cuit   ->addValidator('alnum')
+                ->addValidator(new CV_Validate_ClienteExiste())
                 ->addValidator('stringLength', false, array(1, 13))
                 ->setRequired(false);
 

@@ -19,6 +19,14 @@ class Proveedores extends Zend_Db_Table_Abstract
         return $row;
     }
 
+    public function getProveedorByName( $name )
+    {
+        $where = $this->getAdapter()->quoteInto('NOMBRE_TRA = ?', $name);
+        $row = $this->fetchRow( $where );
+
+        return $row;
+    }
+    
     public function addProveedor( $name, $adress, $tel, $fax, $mail )
     {
         /*TODO: Validaciones*/
