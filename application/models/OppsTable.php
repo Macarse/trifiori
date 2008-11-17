@@ -34,10 +34,35 @@ class Opps extends Zend_Db_Table_Abstract
 
         return $this->select()->where("NUMERO_OPP LIKE '%" . $num . "%'"); 
     }
-    
+
+    protected function translateDate($value)
+    {
+
+        if ($value == '')
+            return $value;
+
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        if( $lang == 'es' )
+        {
+            $date = new Zend_Date($value,'dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $date = new Zend_Date($value,'MM-dd-YYYY');
+        }
+
+        $retVal = $date->get('YYYY-MM-dd');
+
+        return $retVal;
+    }
+
     public function addOpp($name, $declaracionOk, $pedidoDinero, $otrosOpp,
                            $fraccionado, $estampillas, $impuestosInternos)
     {
+
+        $pedidoDinero = $this->translateDate($pedidoDinero);
+
         /*TODO: Validaciones*/
         $data = array(  'NUMERO_OPP'              => $name,
                         'DECLARACION_OK_OPP'      => $declaracionOk,
@@ -66,6 +91,8 @@ class Opps extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
         }
+
+        $pedidoDinero = $this->translateDate($pedidoDinero);
 
         $this->update(array(    'NUMERO_OPP'              => $name,
                                 'DECLARACION_OK_OPP'      => $declaracionOk,

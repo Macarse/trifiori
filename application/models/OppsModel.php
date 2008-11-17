@@ -4,6 +4,24 @@ class OppsModel extends Zend_Db_Table_Row_Abstract
 {
     protected $_tableClass = 'OppsTable';
 
+    protected function localizeDate($value)
+    {
+        $lang = Zend_Registry::getInstance()->language->getLocale();
+
+        $date = new Zend_Date($value, 'YYYY-MM-dd');
+
+        if( $lang == 'es' )
+        {
+            $retVal = $date->get('dd-MM-YYYY');
+        }
+        else if( $lang == 'en' )
+        {
+            $retVal = $date->get('MM-dd-YYYY');
+        }
+
+        return $retVal;
+    }
+
     public function id()
     {
         return $this->CODIGO_OPP;
@@ -29,7 +47,7 @@ class OppsModel extends Zend_Db_Table_Row_Abstract
 
     public function pedidoDinero()
     {
-        return $this->PEDIDO_DE_DINERO_OPP;
+        return $this->localizeDate($this->PEDIDO_DE_DINERO_OPP);
     }
 
     public function otrosOpp()

@@ -238,7 +238,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                         'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                         ));
         $pedidoDinero   ->setValue($row->pedidoDinero() )
-                        ->addValidator('date')
+                        ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -319,7 +319,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                             array('label' => '*' . $this->language->_('Pedido de Dinero'),
                             'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                             ));
-        $pedidoDinero   ->addValidator('date')
+        $pedidoDinero   ->addValidator(new CV_Validate_Fecha())
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
