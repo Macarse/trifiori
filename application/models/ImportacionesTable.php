@@ -67,6 +67,7 @@ class Importaciones extends Zend_Db_Table_Abstract
         $DESvencimiento = $this->translateDate($DESvencimiento);
         $DESpresentado = $this->translateDate($DESpresentado);
         $DEScargado = $this->translateDate($DEScargado);
+        $DESsalido = $this->translateDate($DESsalido);
         $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
 
 		// Tengo que obtener los codigos		
@@ -290,6 +291,7 @@ class Importaciones extends Zend_Db_Table_Abstract
         $DESvencimiento = $this->translateDate($DESvencimiento);
         $DESpresentado = $this->translateDate($DESpresentado);
         $DEScargado = $this->translateDate($DEScargado);
+        $DESsalido = $this->translateDate($DESsalido);
         $DEsfechaFactura = $this->translateDate($DEsfechaFactura);
 
 		// Tengo que obtener los codigos		
