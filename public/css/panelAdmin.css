@@ -39,36 +39,37 @@ div.clistado
 
 div.cformusuario
 {
-	border: 2px solid #666666;
-	background-color: #FFFFFF;
-	position: relative;
-	top: 4em;
-	left: 35em;
-	width: 24.5em;
-	height: 20em;
+    border: 2px solid #666666;
+    background-color: #FFFFFF;
+    position: relative;
+    top: 4em;
+    left: 30%;
+    height: auto;
+    width: 30em;
 }
 
 div.cformusuario label
 {
-	position: relative;
-	top: 1.4em;
-	left: 2.5em;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: small;
+    position: relative;
+    top: 1.4em;
+    left: -10em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: small;
 }
 
 div.cformusuario select
 {
 	position: relative;
-	left: 11em;
+	left: 5em;
 }
 
 div.cformusuario input
 {
 	position: relative;
-	left: 11em;
+	left: 5em;
 }
+
 
 div.backgroundimg img
 {
