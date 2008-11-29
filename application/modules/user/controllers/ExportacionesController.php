@@ -163,23 +163,23 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         {
             foreach ($results as $result)
             {
-                echo $this->language->_("Órden: ") . $result->orden() . "<br />";
-                echo $this->language->_("Transporte: ") . $result->codTransporteName() .  "<br />";
-                echo $this->language->_("Cliente: ") . $result->codClienteName() . "<br />";
-                echo $this->language->_("Bandera: ") . $result->codBanderaName() .  "<br />";
-                echo $this->language->_("Moneda: ") . $result->codMonedaName() .  "<br />";
-                echo $this->language->_("Giro: ") . $result->codGiroName() .  "<br />";
-                echo $this->language->_("Destinación: ") . $result->codDestinacionName() .  "<br />";
-                echo $this->language->_("Carga: ") . $result->codCargaName() .  "<br />";
-                echo $this->language->_("Fecha de Ingreso: ") . $result->fechaIngreso() . "<br />";
-                echo $this->language->_("Descripción de la mercadería: ") . $result->desMercaderias() .  "<br />";
-                echo $this->language->_("Valor de la factura: ") . $result->valorFactura() .  "<br />";
-                echo $this->language->_("Fecha de vencimiento: ") . $result->vencimiento() .  "<br />";
-                echo $this->language->_("Fecha de ingreso al puerto: ") . $result->ingresoPuerto() .  "<br />";
-                echo $this->language->_("Número de permiso: ") . $result->PERnroDoc() .  "<br />";
-                echo $this->language->_("Fecha en que fue presentado: ") . $result->PERpresentado() .  "<br />";
-                echo $this->language->_("Número de factura: ") . $result->PERfactura() .  "<br />";
-                echo $this->language->_("Fecha de la factura: ") . $result->PERfechaFactura() .  "<br />";   
+                echo "<b>" . $this->language->_("Órden: ") . "</b>" . $result->orden() . "<br />";
+                echo "<b>" . $this->language->_("Transporte: ") . "</b>" . $result->codTransporteName() .  "<br />";
+                echo "<b>" . $this->language->_("Cliente: ") . "</b>" . $result->codClienteName() . "<br />";
+                echo "<b>" . $this->language->_("Bandera: ") . "</b>" . $result->codBanderaName() .  "<br />";
+                echo "<b>" . $this->language->_("Moneda: ") . "</b>" . $result->codMonedaName() .  "<br />";
+                echo "<b>" . $this->language->_("Giro: ") . "</b>" . $result->codGiroName() .  "<br />";
+                echo "<b>" . $this->language->_("Destinación: ") . "</b>" . $result->codDestinacionName() .  "<br />";
+                echo "<b>" . $this->language->_("Carga: ") . "</b>" . $result->codCargaName() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de Ingreso: ") . "</b>" . $result->fechaIngreso() . "<br />";
+                echo "<b>" . $this->language->_("Descripción de la mercadería: ") . "</b>" . $result->desMercaderias() .  "<br />";
+                echo "<b>" . $this->language->_("Valor de la factura: ") . "</b>" . $result->valorFactura() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de vencimiento: ") . "</b>" . $result->vencimiento() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de ingreso al puerto: ") . "</b>" . $result->ingresoPuerto() .  "<br />";
+                echo "<b>" . $this->language->_("Número de permiso: ") . "</b>" . $result->PERnroDoc() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha en que fue presentado: ") . "</b>" . $result->PERpresentado() .  "<br />";
+                echo "<b>" . $this->language->_("Número de factura: ") . "</b>" . $result->PERfactura() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" . $result->PERfechaFactura() .  "<br />";   
             }
         }
         echo "</div>";

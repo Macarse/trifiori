@@ -37,7 +37,7 @@ function showExpo()
             underlay:"shadow",
             fixedcenter:true, 
             constraintoviewport:true, 
-            draggable:true
+            draggable:false
         } );
         YAHOO.expodetalles.container.panel1.render();
     }
