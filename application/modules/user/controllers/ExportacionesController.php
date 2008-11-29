@@ -156,6 +156,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             $this->view->error = $error;
         }
 
+        echo "<div class=\"hd\">" . $this->language->_("Detalles de Exportación") . "</div>";
+        
+        echo "<div class=\"bd\">";
         if ($results != null)
         {
             foreach ($results as $result)
@@ -179,6 +182,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 echo $this->language->_("Fecha de la factura: ") . $result->PERfechaFactura() .  "<br />";   
             }
         }
+        echo "</div>";
+        echo "<div class=\"ft\">" . $this->language->_("Trifiori 2008") . "</div>";
     }
 
     public function removeexportacionesAction()

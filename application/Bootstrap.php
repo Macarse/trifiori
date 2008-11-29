@@ -3,8 +3,8 @@
 require_once 'Zend/Loader.php';
 require_once 'models/models.php';
 
-/**
- * this class provides a starting point for the Zend Framework MVC and general environemnt setup
+/*
+ * this class provides a starting point for the Zend Framework MVC and general environment setup
  */
 class Bootstrap
 {
@@ -63,7 +63,7 @@ class Bootstrap
 
     private function setupView()
     {
-        // Makes oages rendered are in UTF-8 encoding
+        // Makes sure pages rendered are in UTF-8 encoding
         $view = new Zend_View;
         $view->setEncoding('UTF-8');
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer($view);
@@ -73,11 +73,6 @@ class Bootstrap
                 'layoutPath' => $this->root . '/application/layouts',
                 'layout' => 'common'
         ));
-
-        /*TODO: Ver si hay que usar y cómo.
-        Save View to use in PreDispatch Hook
-        Zend_Registry::set('view', $view);
-        */
     }
 
     private function sendResponse(Zend_Controller_Response_Http $response)
@@ -138,7 +133,6 @@ class Bootstrap
         else
         {
             Zend_Registry::set('identity', $identity);
-//             Zend_Registry::getInstance()->identity=$identity;
 
             if ($identity->USUARIO_USU == 'admin')
             {

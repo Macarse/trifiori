@@ -25,8 +25,21 @@ function showExpo()
 { 
     if (xmlHttp.readyState == 4)
     { 
+        YAHOO.namespace("expodetalles.container");
+
         document.getElementById("divdetalles").style.display = "block";
-        document.getElementById("divdetalles").innerHTML = "<b><u>X</u></b><br />" + xmlHttp.responseText;
+        document.getElementById("divdetalles").innerHTML = xmlHttp.responseText;
+
+        YAHOO.expodetalles.container.panel1 = new YAHOO.widget.Panel("divdetalles",
+        {   width:"400px", 
+            modal:true,
+            visible:true, 
+            underlay:"shadow",
+            fixedcenter:true, 
+            constraintoviewport:true, 
+            draggable:true
+        } );
+        YAHOO.expodetalles.container.panel1.render();
     }
 }
 

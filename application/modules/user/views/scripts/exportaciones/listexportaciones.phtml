@@ -1,16 +1,15 @@
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->error ?></div>
-            <? } ?>
-            <? if (isset($this->message)) { ?>
-                <? foreach ($this->message as $msg) { ?>
-                    <div class="msg"><?= $msg ?></div>
-                            <? } ?>
-                            <? } ?>
-
+<? } ?>
+<? if (isset($this->message)) { ?>
+    <? foreach ($this->message as $msg) { ?>
+        <div class="msg"><?= $msg ?></div>
+    <? } ?>
+<? } ?>
 <div class="busqueda">
     <?= $this->exportacionSearchForm ?>
 </div>
-<div id="divdetalles" class="detalle" onclick="HideDetails()" style="cursor:crosshair"></div>
+<div id="divdetalles"></div>
 <div id="divlistado" class="clistado">
     <table id="tablelist">
     <thead>
