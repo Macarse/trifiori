@@ -10,6 +10,7 @@
 <div class="busqueda">
     <?= $this->importacionSearchForm ?>
 </div>
+<div id="divdetalles"></div>
 <div id="divlistado" class="clistado">
     <table id="tablelist">
     <thead>
@@ -23,6 +24,7 @@
         <th><?= $this->language->_("Ingreso a Puerto")?></th>
         <th><?= $this->language->_("Despacho: Nro Documento")?></th>
         <th><?= $this->language->_("Despacho: Vencimiento")?></th>
+        <th> <?= $this->language->_("Detalle")?> </th>
         <th><?= $this->language->_("Modificar")?></th>
         <th><?= $this->language->_("Eliminar")?></th>
         </tr>
@@ -40,6 +42,9 @@
             <td> <?= $importacion->ingresoPuerto() ?> </td>
             <td> <?= $importacion->DESnroDoc() ?> </td>
             <td> <?= $importacion->DESvencimiento() ?> </td>
+            <td>
+            <input type="button" id="botonLindo" onclick="ShowDetailsImp( <?= $importacion->id() ?> )" value=" <?= $this->language->_("Detalle")?> " />
+            </td>
             <td>
                 <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>"><?= $this->language->_("Modificar")?></a>
             </td>
@@ -71,6 +76,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         {key:"ingresoPuerto",label:"<?= $this->language->_("Ingreso a Puerto")?>", sortable:true},
         {key:"DESnroDoc",label:"<?= $this->language->_("Despacho: Nro Documento")?>", sortable:true},
         {key:"DESvencimiento",label:"<?= $this->language->_("Despacho: Vencimiento")?>", sortable:true},
+        {key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
         {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
         {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
@@ -90,6 +96,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
                 {key:"ingresoPuerto"},
                 {key:"DESnroDoc"},
                 {key:"DESvencimiento"},
+                {key:"detalle"},
                 {key:"mod"},
                 {key:"elim"}
             ]

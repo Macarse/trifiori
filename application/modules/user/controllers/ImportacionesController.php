@@ -517,6 +517,54 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 
+    public function detailsAction()
+    {
+        $id = $_GET["id"];
+        $results = null;
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        try
+        {
+            $table = new Importaciones();
+            $where = "CODIGO_IMP = " . $id;
+            $results = $table->fetchAll($where);
+        }
+        catch (Zend_Exception $error)
+        {
+            $this->view->error = $error;
+        }
+
+        echo "<div class=\"hd\">" . $this->language->_("Detalles de Importación") . "</div>";
+        
+        echo "<div class=\"bd\">";
+        if ($results != null)
+        {
+            foreach ($results as $result)
+            {
+                echo "<b>" . $this->language->_("Órden: ") . "</b>" . $result->orden() . "<br />";
+                echo "<b>" . $this->language->_("Transporte: ") . "</b>" . $result->codTransporteName() .  "<br />";
+                echo "<b>" . $this->language->_("Cliente: ") . "</b>" . $result->codClienteName() . "<br />";
+                echo "<b>" . $this->language->_("Bandera: ") . "</b>" . $result->codBanderaName() .  "<br />";
+                echo "<b>" . $this->language->_("Moneda: ") . "</b>" . $result->codMonedaName() .  "<br />";
+                echo "<b>" . $this->language->_("Giro: ") . "</b>" . $result->codGiroName() .  "<br />";
+                echo "<b>" . $this->language->_("Destinación: ") . "</b>" . $result->codDestinacionName() .  "<br />";
+                echo "<b>" . $this->language->_("Carga: ") . "</b>" . $result->codCargaName() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de Ingreso: ") . "</b>" . $result->fechaIngreso() . "<br />";
+                echo "<b>" . $this->language->_("Descripción de la mercadería: ") . "</b>" . $result->desMercaderias() .  "<br />";
+                echo "<b>" . $this->language->_("Valor de la factura: ") . "</b>" . $result->valorFactura() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de vencimiento: ") . "</b>" . $result->DESvencimiento() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de ingreso al puerto: ") . "</b>" . $result->ingresoPuerto() .  "<br />";
+                echo "<b>" . $this->language->_("OPP: ") . "</b>" . $result->codOppNum() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha en que fue presentado: ") . "</b>" . $result->DESpresentado() .  "<br />";
+                echo "<b>" . $this->language->_("Número de factura: ") . "</b>" . $result->DESfactura() .  "<br />";
+                echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" . $result->DEsfechaFactura() .  "<br />";   
+            }
+        }
+        echo "</div>";
+        echo "<div class=\"ft\">" . $this->language->_("Trifiori 2008") . "</div>";
+    }
+    
     private function getImportacionSearchForm()
     {
         if (null !== $this->_searchform)

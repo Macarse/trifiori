@@ -16,6 +16,22 @@ function ShowDetails(id)
     xmlHttp.send(null);
 }
 
+function ShowDetailsImp(id)
+{
+    xmlHttp = GetXmlHttpObject();
+    if (xmlHttp == null)
+    {
+        alert ("El browser no soporta ajax :(");
+        return;
+    }
+    
+    var url = "/user/importaciones/details";
+    url = url + "?id=" + id;
+    xmlHttp.onreadystatechange = showExpo;
+    xmlHttp.open("GET", url, true);
+    xmlHttp.send(null);
+}
+
 function HideDetails()
 {
     document.getElementById("divdetalles").style.display = "none";
