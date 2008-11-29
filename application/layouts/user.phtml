@@ -140,6 +140,19 @@
 													 correctScope:true } );
 	
 	    kl2.enable();
+	    
+        function clientCallback(e) { document.location = "/user/clientes/addclientes"; }
+        var kl3 = new YAHOO.util.KeyListener(document, { ctrl:true, alt:true, keys:67 }, 
+												   { fn:clientCallback, 
+													 correctScope:true } );
+	    kl3.enable();
+	    
+        function provCallback(e) { document.location = "/user/proveedores/addproveedores"; }
+        var kl4 = new YAHOO.util.KeyListener(document, { ctrl:true, alt:true, keys:80 }, 
+												   { fn:provCallback, 
+													 correctScope:true } );
+	    kl4.enable()
+	    
         function impoCallback(e) { document.location = "/user/importaciones/addimportaciones"; }
         var kl1 = new YAHOO.util.KeyListener(document, { ctrl:true, alt:true, keys:73 }, 
 												   { fn:impoCallback, 
@@ -197,7 +210,7 @@
                                         <div id="menuclientes" class="yuimenu">
                                             <div class="bd">                    
                                                 <ul>
-                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/addclientes"><?= $this->language->_("Agregar Cliente")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/addclientes"><?= $this->language->_("Agregar Cliente")?><em class="helptext">Ctrl + Alt + C</em></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Modificar Cliente")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Borrar Cliente")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/clientes/listclientes"><?= $this->language->_("Listado")?></a></li>
@@ -209,7 +222,7 @@
                                         <div id="menuproveedores" class="yuimenu">
                                             <div class="bd">                    
                                                 <ul>
-                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/addproveedores"><?= $this->language->_("Agregar Proveedor")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/addproveedores"><?= $this->language->_("Agregar Proveedor")?><em class="helptext">Ctrl + Alt + P</em></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Modificar Proveedor")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Borrar Proveedor")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/proveedores/listproveedores"><?= $this->language->_("Listado")?></a></li>
