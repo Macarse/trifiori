@@ -31,7 +31,8 @@
 
 div.errors_js_forms{
 	position:fixed;
-	left:70%;
+	background-color:#ffdfdf;
+	right:0;
 	top:10%;
 	border: 1px solid #FF0000;
 	height: auto;
