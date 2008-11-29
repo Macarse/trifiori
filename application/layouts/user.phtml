@@ -133,6 +133,20 @@
                 oMenuBar.render();                      
             });
         </script>
+        <script type="text/javascript">
+        function expoCallback(e) { document.location = "/user/exportaciones/addexportaciones"; }
+        var kl2 = new YAHOO.util.KeyListener(document, { ctrl:true, alt:true, keys:69 }, 
+												   { fn:expoCallback, 
+													 correctScope:true } );
+	
+	    kl2.enable();
+        function impoCallback(e) { document.location = "/user/importaciones/addimportaciones"; }
+        var kl1 = new YAHOO.util.KeyListener(document, { ctrl:true, alt:true, keys:73 }, 
+												   { fn:impoCallback, 
+													 correctScope:true } );
+	
+	    kl1.enable();
+	    </script>
     </head>
     <body class="yui-skin-sam">
 	 <div id="yui-main">
@@ -147,7 +161,7 @@
                                         <div id="menuexportaciones" class="yuimenu">
                                             <div class="bd">                    
                                                 <ul>
-                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/addexportaciones"><?= $this->language->_("Agregar Exportación")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/addexportaciones"><?= $this->language->_("Agregar Exportación")?> <em class="helptext">Ctrl + Alt + E</em></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Modificar Exportación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Borrar Exportación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Listado")?></a></li>
@@ -159,7 +173,7 @@
                                         <div id="menuimportaciones" class="yuimenu">
                                             <div class="bd">                    
                                                 <ul>
-                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/addimportaciones"><?= $this->language->_("Agregar Importación")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/addimportaciones"><?= $this->language->_("Agregar Importación")?> <em class="helptext">Ctrl + Alt + I</em></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Modificar Importación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Borrar Importación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/importaciones/listimportaciones"><?= $this->language->_("Listado")?></a></li>
