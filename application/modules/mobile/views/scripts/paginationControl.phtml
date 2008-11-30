@@ -1,0 +1,31 @@
+<!-- 
+See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
+-->
+<? $this->language = Zend_Registry::getInstance()->language; ?>
+<? $this->busqueda = Zend_Registry::getInstance()->busqueda; ?>
+<?php if ($this->pageCount): ?> 
+<div class="paginationControl">
+<!-- Previous page link --> 
+<?php if (isset($this->previous)): ?> 
+        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->previous; ?>">&lt; <?= $this->language->_("Anterior") ?> </a> |
+<?php else: ?> 
+  <span class="disabled">&lt; <?= $this->language->_("Anterior") ?> </span> |
+<?php endif; ?> 
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?> 
+  <?php if ($page != $this->current): ?>
+    <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $page; ?>"><?= $page; ?></a>
+  <?php else: ?>
+    <?= $page; ?> | 
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link --> 
+<?php if (isset($this->next)): ?> 
+        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->next; ?>"> <?= $this->language->_("Próximo") ?>  &gt;</a>
+<?php else: ?> 
+  <span class="disabled"> <?= $this->language->_("Próximo") ?>  &gt;</span>
+<?php endif; ?> 
+</div> 
+<?php endif; ?>

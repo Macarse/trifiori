@@ -1,0 +1,28 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+
+<div class="busqueda">
+    <?= $this->exportacionSearchForm ?>
+</div>
+
+<div id="divlistado" class="clistado">
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $exportacion) { ?>
+            <?= $this->language->_("Órden") . ": " . $exportacion->orden() ?> <br />
+            <?= $this->language->_("Transporte") . ": " . $exportacion->codTransporteName() ?> <br />
+            <?= $this->language->_("Cliente") . ": " . $exportacion->codClienteName() ?> <br />
+            <?= $this->language->_("Destino") . ": " . $exportacion->codDestinacionName() ?> <br />
+            <?= $this->language->_("Carga") . ": " . $exportacion->codCargaName() ?> <br />
+            <?= $this->language->_("Fecha de Ingreso") . ": " .$exportacion->fechaIngreso() ?> <br /><br /><br />
+        <? } ?>
+    <? } ?>
+</div>
+
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
+
+<br />
+<a href="<?= "/mobile/user/index" ?>"> <?= $this->language->_("Menu Principal")?> </a><br />
+<a href="<?= "/mobile/index/logout" ?>"> <?= $this->language->_("Logout")?> </a>

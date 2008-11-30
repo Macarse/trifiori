@@ -1,0 +1,22 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<div class="busqueda">
+    <?= $this->logSearchForm ?>
+</div>      
+<div id="divmodificaciones" class="clistado">
+    <? if (count($this->paginator)) { ?>
+        <? foreach($this->paginator as $log) { ?>
+            <?= $this->language->_("ID") . ": " . $log->id() ?> <br />
+            <td> <?= $this->language->_("Nivel") . ": " .$log->nivel() ?> <br />
+            <td> <?= $this->language->_("Mensaje") . ": " . $log->msg() ?> <br /><br />
+        <? } ?>
+    <? } ?>
+</div>
+
+<?php if (count($this->paginator)) { ?>
+    <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
+<?php } ?>
+
+<a href="<?= "/mobile/admin/index" ?>"> <?= $this->language->_("Menu Principal")?> </a><br />
+<a href="<?= "/mobile/index/logout" ?>"> <?= $this->language->_("Logout")?> </a>

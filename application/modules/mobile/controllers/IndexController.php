@@ -13,11 +13,11 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
 
             if ($this->$user == "admin")
             {
-                $this->_helper->redirector->gotoUrl('mobile/user');
+                $this->_helper->redirector->gotoUrl('mobile/admin');
             }
             else
             {
-                $this->_helper->redirector->gotoUrl('mobile/admin');
+                $this->_helper->redirector->gotoUrl('mobile/user');
             }
         }
     }

@@ -19,6 +19,8 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         /* Guest */
         $acl->allow('guest', 'default');
         $acl->allow('guest', 'mobile');
+//         $acl->allow('guest', 'mobile', array('index'));
+//         $acl->deny('guest', 'mobile', array('admin', 'listusers', 'listexpo'));
         $acl->deny('guest', 'user');
         $acl->deny('guest', 'admin');
 
@@ -26,6 +28,8 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         $acl->allow('user', 'default');
         $acl->allow('user', 'user');
         $acl->allow('user', 'mobile');
+//         $acl->allow('user', 'mobile', array('index', 'listexpo', 'listcli'));
+//         $acl->deny('user', 'mobile', array('admin', 'listusers'));
         $acl->deny('user', 'admin');
 
         /* Administrador */
@@ -40,13 +44,22 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
     public function preDispatch( Zend_Controller_Request_Abstract $request )
     {
         $module = $request->getModuleName();
+        $controller = $request->getControllerName();
         $acl = Zend_Registry::get('acl');
         $username = Zend_Registry::get('name');
         
-        if ( !$acl->isAllowed($username, $module) )
+        if ( !$acl->isAllowed($username, $module, $controller) )
         {
-            $request->setModuleName('default')->setControllerName('index')
-                ->setActionName('index');
+            if ($module == 'mobile')
+            {
+                $request->setModuleName('mobile')->setControllerName('index')
+                    ->setActionName('index');
+            }
+            else
+            {
+                $request->setModuleName('default')->setControllerName('index')
+                    ->setActionName('index');
+            }
         }
     }
 }
