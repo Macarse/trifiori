@@ -19,8 +19,8 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         /* Guest */
         $acl->allow('guest', 'default');
         $acl->allow('guest', 'mobile');
-//         $acl->allow('guest', 'mobile', array('index'));
-//         $acl->deny('guest', 'mobile', array('admin', 'listusers', 'listexpo'));
+        $acl->allow('guest', 'mobile', array('index'));
+        $acl->deny('guest', 'mobile', array('admin', 'user'));
         $acl->deny('guest', 'user');
         $acl->deny('guest', 'admin');
 
@@ -28,8 +28,8 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         $acl->allow('user', 'default');
         $acl->allow('user', 'user');
         $acl->allow('user', 'mobile');
-//         $acl->allow('user', 'mobile', array('index', 'listexpo', 'listcli'));
-//         $acl->deny('user', 'mobile', array('admin', 'listusers'));
+        $acl->allow('user', 'mobile', array('index', 'user'));
+        $acl->deny('user', 'mobile', array('admin'));
         $acl->deny('user', 'admin');
 
         /* Administrador */
