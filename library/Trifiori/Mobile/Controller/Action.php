@@ -5,7 +5,7 @@ abstract class Trifiori_Mobile_Controller_Action extends Zend_Controller_Action
 
     public function init()
     {
-//        $this->_helper->layout->setLayout('common');
+        $this->_helper->layout->setLayout('mobile');
 
         $this->language = Zend_Registry::getInstance()->language;
         $this->view->language = Zend_Registry::getInstance()->language;
