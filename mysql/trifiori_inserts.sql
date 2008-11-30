@@ -333,12 +333,12 @@ INSERT INTO GIROS VALUES(5, 'Puerto Madero');
 INSERT INTO GIROS VALUES(6, 'Ituzaingo');
 INSERT INTO GIROS VALUES(7, 'Sarandi');
 
-INSERT INTO PUERTOS VALUES(1, 'San Martin', 'Buenos Aires');
-INSERT INTO PUERTOS VALUES(2, 'San Antonio de Padua', 'Buenos Aires');
-INSERT INTO PUERTOS VALUES(3, 'Catedral', 'Buenos Aires');
-INSERT INTO PUERTOS VALUES(4, 'Kingston', 'Jamaica');
-INSERT INTO PUERTOS VALUES(5, 'Darsena Norte', 'Buenos Aires');
-INSERT INTO PUERTOS VALUES(6, 'Rosario', 'Santa Fe');
+INSERT INTO PUERTOS VALUES(1, 'Buenos Aires', 'Buenos Aires', '-34.34' , '-58.23');
+INSERT INTO PUERTOS VALUES(2, 'Dock Sud', 'Buenos Aires','-34.39', '-58.20');
+INSERT INTO PUERTOS VALUES(3, 'La Plata', 'Buenos Aires', '-34.50' ,'-57.52');
+INSERT INTO PUERTOS VALUES(4, 'Madrin', 'Chubut','-42.46' , '-65.02');
+INSERT INTO PUERTOS VALUES(5, 'Santa Fe', 'Santa Fe', '-31.39' , '-60.42');
+INSERT INTO PUERTOS VALUES(6, 'Rio Gallegos', 'Santa Cruz', '-51.36' , '-69.13');
 
 INSERT INTO TRANSPORTES VALUES(1, 32, 2, 'RC Poseidon IV', NULL);
 INSERT INTO TRANSPORTES VALUES(2, 32, 2, 'RC Zoolander', NULL);

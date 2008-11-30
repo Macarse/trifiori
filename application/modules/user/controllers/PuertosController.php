@@ -39,7 +39,9 @@ class user_PuertosController extends Trifiori_User_Controller_Action
                     {
                         $puertosTable = new Puertos();
                         $puertosTable->addPuerto($values['name'],
-                                                 $values['ubicacion']
+                                                 $values['ubicacion'],
+                                                 $values['latitud'],
+                                                 $values['longitud']
                                                 );
                         $this->view->message = $this->language->_("Inserción exitosa.");
                         $this->_addform = null;
@@ -165,7 +167,9 @@ class user_PuertosController extends Trifiori_User_Controller_Action
                         $puertosTable = new Puertos();
                         $puertosTable->modifyPuerto(    $this->_id,
                                                         $values['name'],
-                                                        $values['ubicacion']
+                                                        $values['ubicacion'],
+                                                        $values['latitud'],
+                                                        $values['longitud']
                                                     );
                         $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
                     }
@@ -219,9 +223,22 @@ class user_PuertosController extends Trifiori_User_Controller_Action
                     ->addValidator('stringLength', false, array(1, 255))
                     ->setRequired(False);
 
+        $latitud = $this->_modform->createElement('text', 'latitud', array('label' => $this->language->_('Latitud')));
+        $latitud  ->setValue($row->latitud() )
+                    ->addValidator('float')
+                    ->addValidator('stringLength', false, array(1, 15))
+                    ->setRequired(False);
+
+        $longitud = $this->_modform->createElement('text', 'longitud', array('label' => $this->language->_('Longitud')));
+        $longitud  ->setValue($row->longitud() )
+                    ->addValidator('float')
+                    ->addValidator('stringLength', false, array(1, 15))
+                    ->setRequired(False);
         // Add elements to form:
         $this->_modform->addElement($name)
              ->addElement($ubicacion)
+             ->addElement($latitud)
+             ->addElement($longitud)
              ->addElement('hidden', 'ModPuertoTrack', array('values' => 'logPost'))
                 ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
@@ -253,9 +270,21 @@ class user_PuertosController extends Trifiori_User_Controller_Action
                     ->addValidator('stringLength', false, array(1, 255))
                     ->setRequired(False);
 
+        $latitud = $this->_addform->createElement('text', 'latitud', array('label' => $this->language->_('Latitud')));
+        $latitud    ->addValidator('float')
+                    ->addValidator('stringLength', false, array(1, 15))
+                    ->setRequired(False);
+
+        $longitud = $this->_addform->createElement('text', 'longitud', array('label' => $this->language->_('Longitud')));
+        $longitud   ->addValidator('float')
+                    ->addValidator('stringLength', false, array(1, 15))
+                    ->setRequired(False);
+
         // Add elements to form:
         $this->_addform->addElement($name)
              ->addElement($ubicacion)
+             ->addElement($longitud)
+             ->addElement($latitud)
              ->addElement('hidden', 'AddPuertoTrack', array('values' => 'logPost'))
                 ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
@@ -288,38 +317,33 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         return $this->_searchform;
     }
     
-	public function getdataAction() {
-       $arr = array();
-	   $aux = array();
+	public function getgeolocAction() {
+	$arr = array();
+	$aux = array();
 	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
+	$this->_helper->viewRenderer->setNoRender();
+	$this->_helper->layout()->disableLayout();
 	   
-	   if ( $this->getRequest()->getParam('query') != null )
-        {
-            $this->_name = $this->getRequest()->getParam('query');
-
-		   $model = new Cargas();
-		   $data = $model->fetchAll("NOMBRE_PUE LIKE '" .  $this->_name . "%'");
+	$model = new Puertos();
+	$data = $model->fetchAll();
 		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+	foreach ($data as $row){
+               array_push($aux, array("id" => $row->id(), "name" => $row->name(), "lat" => $row->latitud(), "long" => $row->longitud()));	
 	       }
 	
-		   $arr = array("Resultset" => array("Result" => $aux));
+	$arr = array("Resultset" => array("Result" => $aux));
 	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
+	try {
+		$responseDataJsonEncoded = Zend_Json::encode($arr);
+		$this->getResponse()->setHeader('Content-Type', 'application/json')
+			->setBody($responseDataJsonEncoded);
 	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
+	} catch(Zend_Json_Exception $e) {
+		// handle and generate HTTP error code response, see below
+		$this->getResponse()->setHeader('Content-Type', 'application/json')
+			->setBody('[{Error}]');
 		   }
-		 }
-   }
+	}
+
 }
 ?>

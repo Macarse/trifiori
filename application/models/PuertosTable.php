@@ -27,12 +27,13 @@ class Puertos extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function addPuerto( $name, $ubicacion )
+    public function addPuerto( $name, $ubicacion, $latitud, $longitud )
     {
         /*TODO: Validaciones*/
         $data = array(  'NOMBRE_PUE' => $name,
                         'UBICACION_PUE' => $ubicacion,
-
+                        'LONGITUD_PUE' => $latitud,
+                        'LATITUD_PUE' => $longitud,
                     );
         $this->insert($data);
 
@@ -45,7 +46,7 @@ class Puertos extends Zend_Db_Table_Abstract
         return $this->select()->where("NOMBRE_PUE LIKE '%" . $name . "%'"); 
     }
     
-    public function modifyPuerto( $id, $name, $ubicacion )
+    public function modifyPuerto( $id, $name, $ubicacion, $latitud, $longitud )
     {
         try
         {
@@ -60,6 +61,8 @@ class Puertos extends Zend_Db_Table_Abstract
 
         $this->update(array('NOMBRE_PUE'    => $name,
                             'UBICACION_PUE'    => $ubicacion,
+                            'LATITUD_PUE'    => $latitud,
+                            'LONGITUD_PUE'    => $longitud,
                             ), $where );
 
         return True;

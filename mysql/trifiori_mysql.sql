@@ -291,6 +291,8 @@ create table PUERTOS
    CODIGO_PUE                     int AUTO_INCREMENT             not null,
    NOMBRE_PUE                     varchar(200)                   not null,
    UBICACION_PUE                  varchar(255),
+   LATITUD_PUE                    varchar(15),
+   LONGITUD_PUE                   varchar(15),
    primary key (CODIGO_PUE)
 );
 

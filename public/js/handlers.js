@@ -1,5 +1,7 @@
 // JavaScript Document
 
+var map = null;
+
 function onMenuItemClick(p_sType, p_aArgs, p_Data) 
 {
     /*
@@ -290,3 +292,91 @@ function handlerCalfecfacES(type,args,obj)
 
     hide_div('calFecFac');
 };
+
+function errorAjax(xhr)
+{
+	alert('surgio un error');
+}
+
+function showMap(latitud, longitud)
+{
+	/* cargo el mapa */
+	loadMap(latitud,longitud);
+	/* agrego las ubicaciones */
+	loadAjax("http://localhost/user/puertos/getgeoloc", '', 'GET', loadGkeysMap, null, errorAjax);
+}
+
+function loadGkeysMap(xhr)
+{
+	var data;
+	var name, lat, lon;
+
+	total = 0;
+	/* armo el objeto y si no puedo mando error */
+	try {
+		data = (eval("(" + xhr.responseText + ")"));
+		data = data.Resultset.Result;
+		for (var i = 0; i < data.length; i++) 
+		{
+		   name = data[i].name;
+		   lat = data[i].lat;
+		   lon = data[i].long;
+ 		   addMarkerMap(map, lat, lon, name);
+		}
+	} catch (e) {
+           alert(xhr.message);
+	}
+
+}
+
+
+
+function loadMap(latitud,longitud)
+{
+        YAHOO.namespace("map.container");
+
+        YAHOO.map.container.panel = new YAHOO.widget.Panel("divmap",
+        {   width:"620px", 
+            modal:true,
+            visible:true, 
+            underlay:"shadow",
+            fixedcenter:true, 
+            constraintoviewport:true, 
+            draggable:false
+        } );
+	YAHOO.map.container.panel.setHeader("Mapa");
+	YAHOO.map.container.panel.setBody("<div id='map' style='width: 600px; height: 400px'></div>");
+	YAHOO.map.container.panel.setFooter("Trifiori");
+
+        YAHOO.map.container.panel.render();
+
+	if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+	var point = new GLatLng(latitud,longitud);
+	map.setCenter(point, 10);
+
+	map.addControl(new GLargeMapControl());
+        map.addControl(new GMapTypeControl());
+
+       }
+       else
+       {
+       	    document.getElementById('divmap').innerHTML="Su navegador no soporta mapas";
+       }
+}
+
+function addtag(point, address) {
+        var marker = new GMarker(point);
+        GEvent.addListener(marker, "click", function() {
+	marker.openInfoWindowHtml('<b>' + address + '</b>'); } );
+        return marker;
+}
+
+
+function addMarkerMap(map, x, y, label)
+{
+	var point = new GLatLng(x,y);
+	var marker = addtag(point, label);
+	map.addOverlay(marker);
+}
+

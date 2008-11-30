@@ -18,6 +18,17 @@ class PuertosModel extends Zend_Db_Table_Row_Abstract
     {
         return $this->UBICACION_PUE;
     }
+
+    public function latitud()
+    {
+        return $this->LATITUD_PUE;
+    }
+
+    public function longitud()
+    {
+        return $this->LONGITUD_PUE;
+    }
+    
 }
 
 ?>

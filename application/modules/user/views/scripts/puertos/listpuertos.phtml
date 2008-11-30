@@ -9,12 +9,15 @@
 <div class="busqueda">
     <?= $this->puertoSearchForm ?>
 </div>
+<div id="divmap"></div>
+<div id="test"></div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
         <tr>
         <th><?= $this->language->_("Nombre")?></th>
         <th><?= $this->language->_("Ubicación")?></th>
+        <th><?= $this->language->_("Mapa")?></th>
         <th><?= $this->language->_("Modificar")?></th>
         <th><?= $this->language->_("Eliminar")?></th></tr>
     </thead>
@@ -24,6 +27,7 @@
         <tr> 
             <td> <?= $puerto->name() ?> </td>
             <td> <?= $puerto->ubicacion() ?> </td>
+	    <td> <a href="#" onclick="showMap(<?= $puerto->latitud() ?>,<?= $puerto->longitud() ?>);">Ver Mapa</a> </td>
             <td>
                 <a href="<?= "/user/puertos/modpuertos/id/" . $puerto->id() ?>">Modificar</a>
             </td>
@@ -47,6 +51,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         var myColumnDefs = [
             {key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:true},
             {key:"ubicacion",label:"<?= $this->language->_("Ubicación")?>", sortable:true},
+	{key:"mapa",label:"<?= $this->language->_("Mapa")?>", sortable:true},
         {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
         {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
         ];
@@ -57,6 +62,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
             fields: [
                     {key:"name"},
                     {key:"ubicacion"},
+		    {key:"mapa"},
                     {key:"mod"},
                     {key:"elim"}
                     ]
