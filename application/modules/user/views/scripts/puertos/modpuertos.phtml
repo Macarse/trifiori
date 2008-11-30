@@ -16,4 +16,10 @@
     frmvalidator.addValidation("name","req","<?= $this->language->_("*Ingrese un nombre")?>");
     frmvalidator.addValidation("name","alnum_s ","<?= $this->language->_("*El nombre debe ser alfanumérico")?>");
     frmvalidator.addValidation("name","maxlen=20","<?= $this->language->_("*El nombre debe contener hasta 20 caracteres")?>");
+
+    frmvalidator.addValidation("latitud","dec ","<?= $this->language->_("*La latitud debe ser decimal")?>");
+    frmvalidator.addValidation("latitud","maxlen=15","<?= $this->language->_("*La latitud puede contener hasta 15 valores")?>");
+
+    frmvalidator.addValidation("longitud","dec ","<?= $this->language->_("*La longitud debe ser decimal")?>");
+    frmvalidator.addValidation("longitud","maxlen=15","<?= $this->language->_("*La longitud puede contener hasta 15 valores")?>");
 </script>
