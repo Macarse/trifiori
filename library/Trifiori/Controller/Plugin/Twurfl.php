@@ -9,7 +9,7 @@ class Trifiori_Controller_Plugin_Twurfl extends Zend_Controller_Plugin_Abstract 
         $tw->getDeviceCapabilitiesFromAgent(
                         $request->getHeader('User-Agent'));
 		if($tw->browser_is_wap) {
-			$request->setModuleName('mobile');                        
+			$request->setModuleName('mobile'); 
 		}
 	}
 }

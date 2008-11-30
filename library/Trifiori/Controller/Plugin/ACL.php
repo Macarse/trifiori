@@ -14,8 +14,11 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         $acl->add(new Zend_Acl_Resource('user'));
         $acl->add(new Zend_Acl_Resource('admin'));
 
+        $acl->add(new Zend_Acl_Resource('mobile'));
+
         /* Guest */
         $acl->allow('guest', 'default');
+        $acl->allow('guest', 'mobile');
         $acl->deny('guest', 'user');
         $acl->deny('guest', 'admin');
 

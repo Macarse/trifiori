@@ -1,9 +1,13 @@
 <?php
-class IndexController extends Trifiori_Mobile_Controller_Action
+class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
 {
     protected $_form;
 
     public function indexAction()
+    {
+        $this->view->headTitle("TRIFIORI LOGIN MOBILE");
+    }
+/*    public function indexAction()
     {
         $this->view->headTitle("Trifiori Login MOBILE");
         if (Zend_Auth::getInstance()->getIdentity() !== null)
@@ -137,4 +141,5 @@ class IndexController extends Trifiori_Mobile_Controller_Action
              ->addElement('submit', 'login', array('label' => $this->language->_('Entrar')));
         return $this->_form;
     }
+    */
 }

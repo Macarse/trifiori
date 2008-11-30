@@ -153,7 +153,7 @@ define("IMAGE_DIR","device_pix/");
  * Enable or disable the WURFL cache.  This can increase performance under
  * heavy database load or slow Web Server <-> DB networks
  */
-define("WURFL_CACHE_ENABLE", true);
+define("WURFL_CACHE_ENABLE", false);
 /**
  * Enable or disable the WURFL patch. This setting takes effect immediately - 
  * no database or patch update is required.
