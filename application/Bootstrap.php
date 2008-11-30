@@ -59,6 +59,9 @@ class Bootstrap
 
         // Registrar el plugin de Translate.
         $this->frontController->registerPlugin( new Trifiori_Controller_Plugin_Translate() );
+        
+        // Mobile!
+        $this->frontController->registerPlugin(new Trifiori_Controller_Plugin_Twurfl());
     }
 
     private function setupView()

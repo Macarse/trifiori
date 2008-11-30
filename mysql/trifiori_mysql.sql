@@ -4,6 +4,12 @@
 /* Created on:     11/08/2008 04:48:07 p.m.                     */
 /*==============================================================*/
 
+drop database IF EXISTS trifiori;
+
+create database IF NOT EXISTS trifiori;
+
+use trifiori;
+
 drop table if exists BANDERAS;
 
 drop table if exists CANALES;
@@ -453,3 +459,12 @@ alter table TRANSPORTES
 alter table USUARIO_MODIFICA_TABLA
    add constraint FK_USUARIO__USUARIO_M_TABLAS foreign key (NOMBRE)
       references TABLAS (NOMBRE);
+
+GRANT ALL on trifiori.* to 'trifiori'@'localhost' identified by 'carlosgay';
+
+/* nananananana tera!!! */
+
+CREATE database IF NOT EXISTS `tera-wurfl`;
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON `tera-wurfl`.* TO 'wurfl'@'localhost' identified by 'wurfl';
+
