@@ -5,11 +5,7 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
 
     public function indexAction()
     {
-        $this->view->headTitle("TRIFIORI LOGIN MOBILE");
-    }
-/*    public function indexAction()
-    {
-        $this->view->headTitle("Trifiori Login MOBILE");
+        $this->view->headTitle("Trifiori MOBILE");
         if (Zend_Auth::getInstance()->getIdentity() !== null)
         {
 
@@ -17,11 +13,11 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
 
             if ($this->$user == "admin")
             {
-                $this->_helper->redirector->gotoUrl('admin/panel');
+                $this->_helper->redirector->gotoUrl('mobile/user');
             }
             else
             {
-                $this->_helper->redirector->gotoUrl('user/main-page');
+                $this->_helper->redirector->gotoUrl('mobile/admin');
             }
         }
     }
@@ -71,11 +67,11 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
                             $auth->getStorage()->write($adapter->getResultRowObject(null, 'password'));
                             if (Zend_Auth::getInstance()->getIdentity()->USUARIO_USU == 'admin')
                             {
-                                $this->_helper->redirector->gotoUrl('admin/panel');
+                                $this->_helper->redirector->gotoUrl('mobile/admin');
                             }
                             else
                             {
-                                $this->_helper->redirector->gotoUrl('user/main-page');
+                                $this->_helper->redirector->gotoUrl('mobile/user');
                             }
                         }
                         else
@@ -141,5 +137,4 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
              ->addElement('submit', 'login', array('label' => $this->language->_('Entrar')));
         return $this->_form;
     }
-    */
 }

@@ -25,12 +25,14 @@ class Trifiori_Controller_Plugin_ACL extends Zend_Controller_Plugin_Abstract
         /* Usuario */
         $acl->allow('user', 'default');
         $acl->allow('user', 'user');
+        $acl->allow('user', 'mobile');
         $acl->deny('user', 'admin');
 
         /* Administrador */
         $acl->allow('admin', 'default');
         $acl->allow('admin', 'user');
         $acl->allow('admin', 'admin');
+        $acl->allow('admin', 'mobile');
 
         Zend_Registry::set('acl', $acl);
     }

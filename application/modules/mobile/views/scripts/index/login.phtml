@@ -1,0 +1,7 @@
+<? if (isset($this->error)) { ?>
+    <div class="error"><?= $this->error ?></div>
+<? } ?>
+<? if (isset($this->failedAuthentication)) { ?>
+    <div class="error"> <?= $this->language->_("Credenciales incorrectas.")?> </div>
+<? } ?>
+<?= $this->loginForm ?>
