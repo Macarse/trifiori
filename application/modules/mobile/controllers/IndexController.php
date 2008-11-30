@@ -6,18 +6,30 @@ class Mobile_IndexController extends Trifiori_Mobile_Controller_Action
     public function indexAction()
     {
         $this->view->headTitle("Trifiori MOBILE");
-        if (Zend_Auth::getInstance()->getIdentity() !== null)
+
+        unset($this->view->error);
+        if (setcookie("test", "test", time() + 100))
         {
-
-            $user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
-
-            if ($this->$user == "admin")
+            if (isset ($_COOKIE['test']))
             {
-                $this->_helper->redirector->gotoUrl('mobile/admin');
+                if (Zend_Auth::getInstance()->getIdentity() !== null)
+                {
+
+                    $user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
+
+                    if ($this->$user == "admin")
+                    {
+                        $this->_helper->redirector->gotoUrl('mobile/admin');
+                    }
+                    else
+                    {
+                        $this->_helper->redirector->gotoUrl('mobile/user');
+                    }
+                }
             }
             else
             {
-                $this->_helper->redirector->gotoUrl('mobile/user');
+                $this->view->error = $this->language->_("Su browser no soporta cookies. No podrá navegar el sitio.");
             }
         }
     }

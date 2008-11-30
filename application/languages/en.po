@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-30 17:49-0300\n"
+"POT-Creation-Date: 2008-11-30 18:45-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -16,19 +16,23 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../modules/mobile/controllers/IndexController.php:85
+#: ../modules/mobile/controllers/IndexController.php:32
+msgid "Su browser no soporta cookies. No podrá navegar el sitio."
+msgstr "Your browser does not support cookies. You won't be able to use the site."
+
+#: ../modules/mobile/controllers/IndexController.php:97
 msgid "Imposible conectarse a la base de datos."
 msgstr "Unable to connect to the database."
 
-#: ../modules/mobile/controllers/IndexController.php:122
+#: ../modules/mobile/controllers/IndexController.php:134
 msgid "Usuario"
 msgstr "User"
 
-#: ../modules/mobile/controllers/IndexController.php:129
+#: ../modules/mobile/controllers/IndexController.php:141
 msgid "Clave"
 msgstr "Password"
 
-#: ../modules/mobile/controllers/IndexController.php:137
+#: ../modules/mobile/controllers/IndexController.php:149
 msgid "Entrar"
 msgstr "Enter"
 
@@ -1035,7 +1039,7 @@ msgstr "Logout"
 msgid "Ha ocurrido un error"
 msgstr "An error has ocurred"
 
-#: ../modules/mobile/views/scripts/index/logout.phtml:4
+#: ../modules/mobile/views/scripts/index/logout.phtml:1
 msgid "Gracias por utilizar el servicio mobile."
 msgstr "Thank you for accessing the mobile service."
 
