@@ -352,8 +352,14 @@ function loadMap(latitud,longitud)
 
 	if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
-	var point = new GLatLng(latitud,longitud);
+
+	if (latitud!="" && longitud!="")
+		var point = new GLatLng(latitud,longitud);
+	else
+		var point = new GLatLng(0,0);
+
 	map.setCenter(point, 10);
+
 
 	map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());

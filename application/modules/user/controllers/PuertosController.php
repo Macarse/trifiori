@@ -328,7 +328,8 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 	$data = $model->fetchAll();
 		   
 	foreach ($data as $row){
-               array_push($aux, array("id" => $row->id(), "name" => $row->name(), "lat" => $row->latitud(), "long" => $row->longitud()));	
+		if ($row->latitud() != '' && $row->longitud() != '')
+	               array_push($aux, array("id" => $row->id(), "name" => $row->name(), "lat" => $row->latitud(), "long" => $row->longitud()));	
 	       }
 	
 	$arr = array("Resultset" => array("Result" => $aux));
