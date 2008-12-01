@@ -15,14 +15,11 @@ Instrucciones para levantar el sistema:
             db.dbname   = base de datos a utilizar
 
     - Ejecutar los scripts de creación de tablas e inserción en la BD.
-            Archivos relacionados:
-                mysql/trifiori_mysql.sql
-                mysql/trifiori_inserts.sql
-            Ejemplo, usando la base Trifiori en MySQL:
-                mysql -u db.username -p
-                use Trifiori;
-                source mysql/trifiori_mysql.sql
-                source mysql/trifiori_inserts.sql
+                cat mysql/trifiori_mysql.sql | mysql -u root -p
+                cat mysql/trifiori_inserts.sql | mysql -u root -p
 
+    - Ir a library/tera-wurfl/admin y ejecutar:
+                php5 tera_wurfl_updatedb.php
+                
     - Establecer como DocumentRoot en Apache el directorio public/ de la
       aplicación.
