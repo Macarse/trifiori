@@ -292,7 +292,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->setName('form');
 
         $orden = $this->_addform->createElement('text', 'orden',
-                array('label' => '*' . $this->language->_('Órden')));
+                array('label' => '*' . $this->language->_('Órden'), 'id' => 'idnameOrden'));
         $orden  ->addValidator('int')
                 ->addValidator(new CV_Validate_ExportacionExiste())
                 ->addValidator('stringLength', false, array(1, 11))
@@ -432,7 +432,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                 );
 
         // Add elements to form:
-        $this->_addform ->addElement($orden)
+        $this->_addform ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
+                        ->addElement($orden)
                         ->addElement($codTransporte)
                         ->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
                         ->addElement($codCliente)
@@ -461,7 +462,6 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
-                        ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
         return $this->_addform;
@@ -553,7 +553,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                 ->setMethod('post')
                                 ->setName('form');
 
-        $orden = $this->_modform->createElement('text', 'orden', array('label' => '*' . $this->language->_('Órden')));
+        $orden = $this->_modform->createElement('text', 'orden',
+            array('label' => '*' . $this->language->_('Órden'), 'id' => 'idnameOrden'));
         $orden  ->setValue($row->orden() )
                 ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
@@ -711,7 +712,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                             ->setRequired(False);
 
         // Add elements to form:
-        $this->_modform ->addElement($orden)
+        $this->_modform ->addElement('hidden', 'ModExportacionTrack', array('values' => 'logPost'))
+                        ->addElement($orden)
                         ->addElement($codTransporte)
                         ->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
                         ->addElement($codCliente)
@@ -740,7 +742,6 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda', 'value' => $row->codMoneda()))
                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte', 'value' => $row->codTransporte() ))
                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente', 'value' => $row->codCliente() ))
-                        ->addElement('hidden', 'ModExportacionTrack', array('values' => 'logPost'))
                         ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;

@@ -263,7 +263,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->setName('form');
 
         $orden = $this->_addform->createElement('text', 'orden',
-                    array('label' => '*' . $this->language->_('Órden')));
+                array('label' => '*' . $this->language->_('Órden'), 'id' => 'idnameOrden'));
         $orden  ->addValidator('int')
                 ->addValidator(new CV_Validate_ImportacionExiste())
                 ->addValidator('stringLength', false, array(1, 11))
@@ -476,7 +476,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                                 );
 
         // Add elements to form:
-        $this->_addform ->addElement($orden)
+        $this->_addform ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
+                        ->addElement($orden)
                         ->addElement($codDestinacion)
                         ->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codBandera)
@@ -510,8 +511,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DEScargado)
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
-                        ->addElement('hidden', 'AddImportacionTrack', array('values' => 'logPost'))
-                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
+                        ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Agregar')));
 
 
         return $this->_addform;
@@ -651,7 +651,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
         
         $orden = $this->_modform->createElement('text', 'orden',
-                    array('label' => '*' . $this->language->_('Órden')));
+                    array('label' => '*' . $this->language->_('Órden'), 'id' => 'idnameOrden'));
         $orden  ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
 				->setValue($row->orden() )
@@ -888,7 +888,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                                 );
 
         // Add elements to form:
-        $this->_modform ->addElement($orden)
+        $this->_modform ->addElement('hidden', 'ModImportacionTrack', array('values' => 'logPost'))
+                        ->addElement($orden)
                         ->addElement($codDestinacion)
                         ->addElement('hidden', 'autodes', array( 'decorators' => $decoradorDestinacion))
                         ->addElement($codBandera)
@@ -922,8 +923,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($DEScargado)
                         ->addElement($DESfactura)
                         ->addElement($DEsfechaFactura)
-                        ->addElement('hidden', 'ModImportacionTrack', array('values' => 'logPost'))
-                ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
+                        ->addElement('submit', 'Ingresar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
