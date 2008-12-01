@@ -91,7 +91,7 @@
 			// Create the SimpleDialog
 			YAHOO.util.Dom.removeClass("dt-dlg", "inprogress");
 			this.myDlg = new YAHOO.widget.SimpleDialog("dt-dlg", {
-				width: "30em",
+				width: "50em",
 					    visible: false,
 					    modal: true,
 					    buttons: [ 

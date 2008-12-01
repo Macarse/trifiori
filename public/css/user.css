@@ -3,7 +3,7 @@
 #dt-dlg {visibility:hidden;border:1px solid #808080;background-color:#E3E3E3;}
 #dt-dlg .hd {font-weight:bold;padding:1em;background:none;background-color:#E3E3E3;border-bottom:0;}
 #dt-dlg .ft {text-align:right;padding:.5em;background-color:#E3E3E3;}
-#dt-dlg .bd {height:10em;margin:0 1em;overflow:auto;border:1px solid black;background-color:white;}
+#dt-dlg .bd {height:50%;margin:0 1em;overflow:auto;border:1px solid black;background-color:white;}
 #dt-dlg .dt-dlg-pickercol {clear:both;padding:.5em 1em 3em;border-bottom:1px solid gray;}
 #dt-dlg .dt-dlg-pickerkey {float:left;}
 #dt-dlg .dt-dlg-pickerbtns {float:right;}
