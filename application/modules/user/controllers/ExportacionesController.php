@@ -343,7 +343,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->setRequired(True);
 
         $desMercaderias = $this->_addform->createElement('text', 'desMercaderias',
-                array('label' => $this->language->_('Descripción Mercadería')));
+                array('label' => '*' . $this->language->_('Descripción Mercadería')));
         $desMercaderias ->addValidator($alnumWithWS)
                         ->addValidator('stringLength', false, array(1, 200))
                         ->setRequired(False);
