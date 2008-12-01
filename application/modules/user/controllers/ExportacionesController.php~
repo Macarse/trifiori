@@ -433,8 +433,12 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                 );
 
         // Add elements to form:
+<<<<<<< HEAD:application/modules/user/controllers/ExportacionesController.php
+        $this->_addform ->addElement($orden)
+=======
         $this->_addform ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement($orden)
+>>>>>>> 9ddf8a98500744b73a4c71bb33d7fe745e66cad4:application/modules/user/controllers/ExportacionesController.php
                         ->addElement($codTransporte)
                         ->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
                         ->addElement($codCliente)

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-01 01:51-0300\n"
+"POT-Creation-Date: 2008-12-01 02:47-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -62,7 +62,7 @@ msgstr "Name"
 #: ../modules/user/controllers/ImportacionesController.php:622
 #: ../modules/user/controllers/CargasController.php:389
 #: ../modules/user/controllers/MonedasController.php:285
-#: ../modules/user/controllers/ExportacionesController.php:525
+#: ../modules/user/controllers/ExportacionesController.php:526
 #: ../modules/user/controllers/ClientesController.php:376
 #: ../modules/user/controllers/OppsController.php:393
 #: ../modules/user/controllers/TransportesController.php:371
@@ -71,7 +71,7 @@ msgid "Buscar"
 msgstr "Search"
 
 #: ../modules/mobile/controllers/UserController.php:87
-#: ../modules/user/controllers/ExportacionesController.php:75
+#: ../modules/user/controllers/ExportacionesController.php:76
 msgid "Listar Exportaciones"
 msgstr "List Exports"
 
@@ -79,9 +79,9 @@ msgstr "List Exports"
 #: ../modules/user/controllers/ImportacionesController.php:266
 #: ../modules/user/controllers/ImportacionesController.php:581
 #: ../modules/user/controllers/ImportacionesController.php:654
-#: ../modules/user/controllers/ExportacionesController.php:295
-#: ../modules/user/controllers/ExportacionesController.php:484
-#: ../modules/user/controllers/ExportacionesController.php:556
+#: ../modules/user/controllers/ExportacionesController.php:296
+#: ../modules/user/controllers/ExportacionesController.php:485
+#: ../modules/user/controllers/ExportacionesController.php:558
 msgid "Órden"
 msgstr "Order"
 
@@ -89,9 +89,9 @@ msgstr "Order"
 #: ../modules/user/controllers/ImportacionesController.php:297
 #: ../modules/user/controllers/ImportacionesController.php:586
 #: ../modules/user/controllers/ImportacionesController.php:689
-#: ../modules/user/controllers/ExportacionesController.php:307
-#: ../modules/user/controllers/ExportacionesController.php:489
-#: ../modules/user/controllers/ExportacionesController.php:569
+#: ../modules/user/controllers/ExportacionesController.php:308
+#: ../modules/user/controllers/ExportacionesController.php:490
+#: ../modules/user/controllers/ExportacionesController.php:571
 msgid "Cliente"
 msgstr "Client"
 
@@ -99,9 +99,9 @@ msgstr "Client"
 #: ../modules/user/controllers/ImportacionesController.php:302
 #: ../modules/user/controllers/ImportacionesController.php:590
 #: ../modules/user/controllers/ImportacionesController.php:695
-#: ../modules/user/controllers/ExportacionesController.php:327
-#: ../modules/user/controllers/ExportacionesController.php:493
-#: ../modules/user/controllers/ExportacionesController.php:593
+#: ../modules/user/controllers/ExportacionesController.php:328
+#: ../modules/user/controllers/ExportacionesController.php:494
+#: ../modules/user/controllers/ExportacionesController.php:595
 msgid "Carga"
 msgstr "Load"
 
@@ -145,7 +145,7 @@ msgstr "List Destinations"
 #: ../modules/user/controllers/ImportacionesController.php:164
 #: ../modules/user/controllers/CargasController.php:127
 #: ../modules/user/controllers/MonedasController.php:122
-#: ../modules/user/controllers/ExportacionesController.php:202
+#: ../modules/user/controllers/ExportacionesController.php:203
 #: ../modules/user/controllers/ClientesController.php:125
 #: ../modules/user/controllers/OppsController.php:128
 #: ../modules/user/controllers/TransportesController.php:123
@@ -161,7 +161,7 @@ msgstr "Modify Destination"
 #: ../modules/user/controllers/ImportacionesController.php:235
 #: ../modules/user/controllers/CargasController.php:179
 #: ../modules/user/controllers/MonedasController.php:169
-#: ../modules/user/controllers/ExportacionesController.php:264
+#: ../modules/user/controllers/ExportacionesController.php:265
 #: ../modules/user/controllers/ClientesController.php:177
 #: ../modules/user/controllers/OppsController.php:180
 #: ../modules/user/controllers/TransportesController.php:172
@@ -173,7 +173,7 @@ msgstr "Modify Successful."
 #: ../modules/user/controllers/ImportacionesController.php:926
 #: ../modules/user/controllers/CargasController.php:286
 #: ../modules/user/controllers/MonedasController.php:225
-#: ../modules/user/controllers/ExportacionesController.php:744
+#: ../modules/user/controllers/ExportacionesController.php:746
 #: ../modules/user/controllers/ClientesController.php:277
 #: ../modules/user/controllers/OppsController.php:284
 #: ../modules/user/controllers/TransportesController.php:319
@@ -205,15 +205,15 @@ msgstr "Modify Import "
 
 #: ../modules/user/controllers/ImportacionesController.php:273
 #: ../modules/user/controllers/ImportacionesController.php:661
-#: ../modules/user/controllers/ExportacionesController.php:322
-#: ../modules/user/controllers/ExportacionesController.php:587
+#: ../modules/user/controllers/ExportacionesController.php:323
+#: ../modules/user/controllers/ExportacionesController.php:589
 msgid "Destinación"
 msgstr "Destination"
 
 #: ../modules/user/controllers/ImportacionesController.php:279
 #: ../modules/user/controllers/ImportacionesController.php:668
-#: ../modules/user/controllers/ExportacionesController.php:312
-#: ../modules/user/controllers/ExportacionesController.php:575
+#: ../modules/user/controllers/ExportacionesController.php:313
+#: ../modules/user/controllers/ExportacionesController.php:577
 #: ../modules/user/controllers/TransportesController.php:203
 #: ../modules/user/controllers/TransportesController.php:276
 msgid "Bandera"
@@ -231,15 +231,15 @@ msgstr "Turn"
 
 #: ../modules/user/controllers/ImportacionesController.php:307
 #: ../modules/user/controllers/ImportacionesController.php:701
-#: ../modules/user/controllers/ExportacionesController.php:302
-#: ../modules/user/controllers/ExportacionesController.php:563
+#: ../modules/user/controllers/ExportacionesController.php:303
+#: ../modules/user/controllers/ExportacionesController.php:565
 msgid "Transporte"
 msgstr "Transport"
 
 #: ../modules/user/controllers/ImportacionesController.php:312
 #: ../modules/user/controllers/ImportacionesController.php:707
-#: ../modules/user/controllers/ExportacionesController.php:317
-#: ../modules/user/controllers/ExportacionesController.php:581
+#: ../modules/user/controllers/ExportacionesController.php:318
+#: ../modules/user/controllers/ExportacionesController.php:583
 msgid "Moneda"
 msgstr "Currency"
 
@@ -250,15 +250,15 @@ msgstr "Opp"
 
 #: ../modules/user/controllers/ImportacionesController.php:322
 #: ../modules/user/controllers/ImportacionesController.php:719
-#: ../modules/user/controllers/ExportacionesController.php:332
-#: ../modules/user/controllers/ExportacionesController.php:636
+#: ../modules/user/controllers/ExportacionesController.php:333
+#: ../modules/user/controllers/ExportacionesController.php:638
 msgid "Referencia"
 msgstr "Reference"
 
 #: ../modules/user/controllers/ImportacionesController.php:328
 #: ../modules/user/controllers/ImportacionesController.php:726
-#: ../modules/user/controllers/ExportacionesController.php:338
-#: ../modules/user/controllers/ExportacionesController.php:643
+#: ../modules/user/controllers/ExportacionesController.php:339
+#: ../modules/user/controllers/ExportacionesController.php:645
 msgid "Fecha de Ingreso"
 msgstr "Entering Date"
 
@@ -279,15 +279,15 @@ msgstr "Original/Copy"
 
 #: ../modules/user/controllers/ImportacionesController.php:344
 #: ../modules/user/controllers/ImportacionesController.php:744
-#: ../modules/user/controllers/ExportacionesController.php:345
-#: ../modules/user/controllers/ExportacionesController.php:652
+#: ../modules/user/controllers/ExportacionesController.php:346
+#: ../modules/user/controllers/ExportacionesController.php:654
 msgid "Descripción Mercadería"
 msgstr "Merchandise Description"
 
 #: ../modules/user/controllers/ImportacionesController.php:350
 #: ../modules/user/controllers/ImportacionesController.php:751
-#: ../modules/user/controllers/ExportacionesController.php:352
-#: ../modules/user/controllers/ExportacionesController.php:660
+#: ../modules/user/controllers/ExportacionesController.php:353
+#: ../modules/user/controllers/ExportacionesController.php:662
 msgid "Valor Factura"
 msgstr "Receipt Value"
 
@@ -298,8 +298,8 @@ msgstr "Transport Documentation"
 
 #: ../modules/user/controllers/ImportacionesController.php:363
 #: ../modules/user/controllers/ImportacionesController.php:766
-#: ../modules/user/controllers/ExportacionesController.php:366
-#: ../modules/user/controllers/ExportacionesController.php:683
+#: ../modules/user/controllers/ExportacionesController.php:367
+#: ../modules/user/controllers/ExportacionesController.php:685
 msgid "Ingreso a Puerto"
 msgstr "Port Entry Date"
 
@@ -353,67 +353,67 @@ msgid "Detalles de Importación"
 msgstr "Import details"
 
 #: ../modules/user/controllers/ImportacionesController.php:545
-#: ../modules/user/controllers/ExportacionesController.php:166
+#: ../modules/user/controllers/ExportacionesController.php:167
 msgid "Órden: "
 msgstr "Order:"
 
 #: ../modules/user/controllers/ImportacionesController.php:546
-#: ../modules/user/controllers/ExportacionesController.php:167
+#: ../modules/user/controllers/ExportacionesController.php:168
 msgid "Transporte: "
 msgstr "Transport:"
 
 #: ../modules/user/controllers/ImportacionesController.php:547
-#: ../modules/user/controllers/ExportacionesController.php:168
+#: ../modules/user/controllers/ExportacionesController.php:169
 msgid "Cliente: "
 msgstr "Client:"
 
 #: ../modules/user/controllers/ImportacionesController.php:548
-#: ../modules/user/controllers/ExportacionesController.php:169
+#: ../modules/user/controllers/ExportacionesController.php:170
 msgid "Bandera: "
 msgstr "Flag:"
 
 #: ../modules/user/controllers/ImportacionesController.php:549
-#: ../modules/user/controllers/ExportacionesController.php:170
+#: ../modules/user/controllers/ExportacionesController.php:171
 msgid "Moneda: "
 msgstr "Currency:"
 
 #: ../modules/user/controllers/ImportacionesController.php:550
-#: ../modules/user/controllers/ExportacionesController.php:171
+#: ../modules/user/controllers/ExportacionesController.php:172
 msgid "Giro: "
 msgstr "Turn:"
 
 #: ../modules/user/controllers/ImportacionesController.php:551
-#: ../modules/user/controllers/ExportacionesController.php:172
+#: ../modules/user/controllers/ExportacionesController.php:173
 msgid "Destinación: "
 msgstr "Destination:"
 
 #: ../modules/user/controllers/ImportacionesController.php:552
-#: ../modules/user/controllers/ExportacionesController.php:173
+#: ../modules/user/controllers/ExportacionesController.php:174
 msgid "Carga: "
 msgstr "Load:"
 
 #: ../modules/user/controllers/ImportacionesController.php:553
-#: ../modules/user/controllers/ExportacionesController.php:174
+#: ../modules/user/controllers/ExportacionesController.php:175
 msgid "Fecha de Ingreso: "
 msgstr "Entering Date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:554
-#: ../modules/user/controllers/ExportacionesController.php:175
+#: ../modules/user/controllers/ExportacionesController.php:176
 msgid "Descripción de la mercadería: "
 msgstr "Merchandise Description:"
 
 #: ../modules/user/controllers/ImportacionesController.php:555
-#: ../modules/user/controllers/ExportacionesController.php:176
+#: ../modules/user/controllers/ExportacionesController.php:177
 msgid "Valor de la factura: "
 msgstr "Receipt Value:"
 
 #: ../modules/user/controllers/ImportacionesController.php:556
-#: ../modules/user/controllers/ExportacionesController.php:177
+#: ../modules/user/controllers/ExportacionesController.php:178
 msgid "Fecha de vencimiento: "
 msgstr "Expiration Date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:557
-#: ../modules/user/controllers/ExportacionesController.php:178
+#: ../modules/user/controllers/ExportacionesController.php:179
 msgid "Fecha de ingreso al puerto: "
 msgstr "Port Entering Date:"
 
@@ -422,22 +422,22 @@ msgid "OPP: "
 msgstr "OPP:"
 
 #: ../modules/user/controllers/ImportacionesController.php:559
-#: ../modules/user/controllers/ExportacionesController.php:180
+#: ../modules/user/controllers/ExportacionesController.php:181
 msgid "Fecha en que fue presentado: "
 msgstr "Presentation date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:560
-#: ../modules/user/controllers/ExportacionesController.php:181
+#: ../modules/user/controllers/ExportacionesController.php:182
 msgid "Número de factura: "
 msgstr "Receipt Number:"
 
 #: ../modules/user/controllers/ImportacionesController.php:561
-#: ../modules/user/controllers/ExportacionesController.php:182
+#: ../modules/user/controllers/ExportacionesController.php:183
 msgid "Fecha de la factura: "
 msgstr "Receipt Number:"
 
 #: ../modules/user/controllers/ImportacionesController.php:565
-#: ../modules/user/controllers/ExportacionesController.php:186
+#: ../modules/user/controllers/ExportacionesController.php:187
 msgid "Trifiori 2008"
 msgstr "Trifiori 2008"
 
@@ -543,40 +543,40 @@ msgstr "Description"
 msgid "Agregar Exportación"
 msgstr "Add Export "
 
-#: ../modules/user/controllers/ExportacionesController.php:159
+#: ../modules/user/controllers/ExportacionesController.php:160
 msgid "Detalles de Exportación"
 msgstr "Export details"
 
-#: ../modules/user/controllers/ExportacionesController.php:179
+#: ../modules/user/controllers/ExportacionesController.php:180
 msgid "Número de permiso: "
 msgstr "Permit Number:"
 
-#: ../modules/user/controllers/ExportacionesController.php:215
+#: ../modules/user/controllers/ExportacionesController.php:216
 msgid "Modificar Exportación"
 msgstr "Modify Export "
 
-#: ../modules/user/controllers/ExportacionesController.php:359
-#: ../modules/user/controllers/ExportacionesController.php:668
+#: ../modules/user/controllers/ExportacionesController.php:360
+#: ../modules/user/controllers/ExportacionesController.php:670
 msgid "Vencimiento"
 msgstr "Expiration Date"
 
-#: ../modules/user/controllers/ExportacionesController.php:374
-#: ../modules/user/controllers/ExportacionesController.php:677
+#: ../modules/user/controllers/ExportacionesController.php:375
+#: ../modules/user/controllers/ExportacionesController.php:679
 msgid "Número de Permiso"
 msgstr "Permit Number"
 
-#: ../modules/user/controllers/ExportacionesController.php:379
-#: ../modules/user/controllers/ExportacionesController.php:691
+#: ../modules/user/controllers/ExportacionesController.php:380
+#: ../modules/user/controllers/ExportacionesController.php:693
 msgid "Permiso Presentado"
 msgstr "Permit Presented"
 
-#: ../modules/user/controllers/ExportacionesController.php:387
-#: ../modules/user/controllers/ExportacionesController.php:700
+#: ../modules/user/controllers/ExportacionesController.php:388
+#: ../modules/user/controllers/ExportacionesController.php:702
 msgid "Permiso Factura"
 msgstr "Permit Receipt"
 
-#: ../modules/user/controllers/ExportacionesController.php:392
-#: ../modules/user/controllers/ExportacionesController.php:706
+#: ../modules/user/controllers/ExportacionesController.php:393
+#: ../modules/user/controllers/ExportacionesController.php:708
 msgid "Permiso Fecha de Factura"
 msgstr "Permit Receipt Date"
 
@@ -2017,6 +2017,11 @@ msgstr "Friday"
 msgid "Sábado"
 msgstr "Saturday"
 
+#: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:758
+#: ../modules/user/views/scripts/importaciones/modimportaciones.phtml:751
+msgid "*Ingrese el número de orden"
+msgstr "*Insert an order number"
+
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:759
 #: ../modules/user/views/scripts/importaciones/modimportaciones.phtml:752
 msgid "*La órden debe ser únicamente numérica"
@@ -2328,6 +2333,7 @@ msgid "*La longitud puede contener hasta 15 valores"
 msgstr "*The longitude can contain up to 15 values"
 
 #: ../modules/user/views/scripts/exportaciones/addexportaciones.phtml:583
+#: ../modules/user/views/scripts/exportaciones/modexportaciones.phtml:578
 msgid "*Ingrese el número de órden"
 msgstr "*Insert an order number"
 
