@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-30 18:45-0300\n"
+"POT-Creation-Date: 2008-12-01 01:47-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -16,23 +16,19 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../modules/mobile/controllers/IndexController.php:32
-msgid "Su browser no soporta cookies. No podrá navegar el sitio."
-msgstr "Your browser does not support cookies. You won't be able to use the site."
-
-#: ../modules/mobile/controllers/IndexController.php:97
+#: ../modules/mobile/controllers/IndexController.php:85
 msgid "Imposible conectarse a la base de datos."
 msgstr "Unable to connect to the database."
 
-#: ../modules/mobile/controllers/IndexController.php:134
+#: ../modules/mobile/controllers/IndexController.php:122
 msgid "Usuario"
 msgstr "User"
 
-#: ../modules/mobile/controllers/IndexController.php:141
+#: ../modules/mobile/controllers/IndexController.php:129
 msgid "Clave"
 msgstr "Password"
 
-#: ../modules/mobile/controllers/IndexController.php:149
+#: ../modules/mobile/controllers/IndexController.php:137
 msgid "Entrar"
 msgstr "Enter"
 
@@ -53,9 +49,9 @@ msgstr "List Clients"
 #: ../modules/user/controllers/TransportesController.php:218
 #: ../modules/user/controllers/TransportesController.php:292
 #: ../modules/user/controllers/TransportesController.php:364
-#: ../modules/user/controllers/PuertosController.php:210
-#: ../modules/user/controllers/PuertosController.php:245
-#: ../modules/user/controllers/PuertosController.php:279
+#: ../modules/user/controllers/PuertosController.php:214
+#: ../modules/user/controllers/PuertosController.php:262
+#: ../modules/user/controllers/PuertosController.php:308
 msgid "Nombre"
 msgstr "Name"
 
@@ -70,7 +66,7 @@ msgstr "Name"
 #: ../modules/user/controllers/ClientesController.php:376
 #: ../modules/user/controllers/OppsController.php:393
 #: ../modules/user/controllers/TransportesController.php:371
-#: ../modules/user/controllers/PuertosController.php:286
+#: ../modules/user/controllers/PuertosController.php:315
 msgid "Buscar"
 msgstr "Search"
 
@@ -137,7 +133,7 @@ msgstr "Add Destination"
 #: ../modules/user/controllers/ClientesController.php:48
 #: ../modules/user/controllers/OppsController.php:49
 #: ../modules/user/controllers/TransportesController.php:46
-#: ../modules/user/controllers/PuertosController.php:44
+#: ../modules/user/controllers/PuertosController.php:46
 msgid "Inserción exitosa."
 msgstr "Insert Successful."
 
@@ -153,7 +149,7 @@ msgstr "List Destinations"
 #: ../modules/user/controllers/ClientesController.php:125
 #: ../modules/user/controllers/OppsController.php:128
 #: ../modules/user/controllers/TransportesController.php:123
-#: ../modules/user/controllers/PuertosController.php:123
+#: ../modules/user/controllers/PuertosController.php:125
 msgid "Eliminación exitosa."
 msgstr "Delete Successful."
 
@@ -169,7 +165,7 @@ msgstr "Modify Destination"
 #: ../modules/user/controllers/ClientesController.php:177
 #: ../modules/user/controllers/OppsController.php:180
 #: ../modules/user/controllers/TransportesController.php:172
-#: ../modules/user/controllers/PuertosController.php:170
+#: ../modules/user/controllers/PuertosController.php:174
 msgid "Modificación exitosa."
 msgstr "Modify Successful."
 
@@ -181,7 +177,7 @@ msgstr "Modify Successful."
 #: ../modules/user/controllers/ClientesController.php:277
 #: ../modules/user/controllers/OppsController.php:284
 #: ../modules/user/controllers/TransportesController.php:319
-#: ../modules/user/controllers/PuertosController.php:226
+#: ../modules/user/controllers/PuertosController.php:243
 msgid "Modificar"
 msgstr "Modify"
 
@@ -191,7 +187,7 @@ msgstr "Modify"
 #: ../modules/user/controllers/ClientesController.php:349
 #: ../modules/user/controllers/OppsController.php:365
 #: ../modules/user/controllers/TransportesController.php:245
-#: ../modules/user/controllers/PuertosController.php:260
+#: ../modules/user/controllers/PuertosController.php:289
 msgid "Agregar"
 msgstr "Add"
 
@@ -743,18 +739,28 @@ msgstr "Observations"
 msgid "Agregar Puerto"
 msgstr "Add Port "
 
-#: ../modules/user/controllers/PuertosController.php:60
+#: ../modules/user/controllers/PuertosController.php:62
 msgid "Listar Puertos"
 msgstr "List Ports"
 
-#: ../modules/user/controllers/PuertosController.php:136
+#: ../modules/user/controllers/PuertosController.php:138
 msgid "Modificar Puerto"
 msgstr "Modify Port "
 
-#: ../modules/user/controllers/PuertosController.php:216
-#: ../modules/user/controllers/PuertosController.php:251
+#: ../modules/user/controllers/PuertosController.php:220
+#: ../modules/user/controllers/PuertosController.php:268
 msgid "Ubicación"
 msgstr "Location"
+
+#: ../modules/user/controllers/PuertosController.php:226
+#: ../modules/user/controllers/PuertosController.php:273
+msgid "Latitud"
+msgstr "Latitude"
+
+#: ../modules/user/controllers/PuertosController.php:232
+#: ../modules/user/controllers/PuertosController.php:278
+msgid "Longitud"
+msgstr "Longitude"
 
 #: ../modules/user/controllers/BanderasController.php:23
 msgid "Agregar Bandera"
@@ -2264,6 +2270,55 @@ msgstr "*Insert a package number"
 msgid "*El número de paquete debe ser alfanumérico"
 msgstr "*The package number must be alphanumeric"
 
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:6
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:35
+msgid "Mapa"
+msgstr "Map"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:10
+msgid "Oculto"
+msgstr "Hidden"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:11
+msgid "Visible"
+msgstr "Visible"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:12
+msgid "Cerrar"
+msgstr "Close"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:28
+msgid "Opciones de la tabla"
+msgstr "Table Options"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:45
+msgid "Ver Mapa"
+msgstr "View Map"
+
+#: ../modules/user/views/scripts/puertos/listpuertos.phtml:71
+msgid "Seleccione las columnas que desea ver:"
+msgstr "Select the visible columns:"
+
+#: ../modules/user/views/scripts/puertos/addpuertos.phtml:23
+#: ../modules/user/views/scripts/puertos/modpuertos.phtml:20
+msgid "*La latitud debe ser decimal"
+msgstr "*The latitude must be decimal"
+
+#: ../modules/user/views/scripts/puertos/addpuertos.phtml:24
+#: ../modules/user/views/scripts/puertos/modpuertos.phtml:21
+msgid "*La latitud puede contener hasta 15 valores"
+msgstr "*The latitude can contain up to 15 values"
+
+#: ../modules/user/views/scripts/puertos/addpuertos.phtml:26
+#: ../modules/user/views/scripts/puertos/modpuertos.phtml:23
+msgid "*La longitud debe ser decimal"
+msgstr "*The longitude must be decimal"
+
+#: ../modules/user/views/scripts/puertos/addpuertos.phtml:27
+#: ../modules/user/views/scripts/puertos/modpuertos.phtml:24
+msgid "*La longitud puede contener hasta 15 valores"
+msgstr "*The longitude can contain up to 15 values"
+
 #: ../modules/user/views/scripts/exportaciones/addexportaciones.phtml:583
 msgid "*Ingrese el número de órden"
 msgstr "*Insert an order number"
@@ -2322,154 +2377,157 @@ msgstr "Client Code"
 msgid "CSS"
 msgstr "CSS"
 
-#: ../layouts/admin.phtml:138
+#: ../layouts/admin.phtml:42
 msgid "Usuarios"
 msgstr "Users"
 
-#: ../layouts/admin.phtml:142
+#: ../layouts/admin.phtml:46
 msgid "Agregar usuario"
 msgstr "Add User "
 
-#: ../layouts/admin.phtml:143
+#: ../layouts/admin.phtml:47
 msgid "Modificar usuario"
 msgstr "Modify User "
 
-#: ../layouts/admin.phtml:144
+#: ../layouts/admin.phtml:48
 msgid "Borrar usuario"
 msgstr "Delete User"
 
-#: ../layouts/admin.phtml:145
-#: ../layouts/user.phtml:180
-#: ../layouts/user.phtml:192
-#: ../layouts/user.phtml:204
-#: ../layouts/user.phtml:216
-#: ../layouts/user.phtml:228
-#: ../layouts/user.phtml:240
-#: ../layouts/user.phtml:252
-#: ../layouts/user.phtml:264
-#: ../layouts/user.phtml:276
-#: ../layouts/user.phtml:288
-#: ../layouts/user.phtml:300
-#: ../layouts/user.phtml:312
+#: ../layouts/admin.phtml:49
+#: ../layouts/user.phtml:61
+#: ../layouts/user.phtml:73
+#: ../layouts/user.phtml:85
+#: ../layouts/user.phtml:97
+#: ../layouts/user.phtml:109
+#: ../layouts/user.phtml:121
+#: ../layouts/user.phtml:133
+#: ../layouts/user.phtml:145
+#: ../layouts/user.phtml:157
+#: ../layouts/user.phtml:169
+#: ../layouts/user.phtml:181
+#: ../layouts/user.phtml:193
 msgid "Listado"
 msgstr "List"
 
-#: ../layouts/admin.phtml:150
+#: ../layouts/admin.phtml:54
 msgid "Últimas modificaciones"
 msgstr "Last Modifications "
 
-#: ../layouts/user.phtml:173
+#: ../layouts/user.phtml:54
 msgid "Exportaciones"
 msgstr "Exports"
 
-#: ../layouts/user.phtml:179
+#: ../layouts/user.phtml:60
 msgid "Borrar Exportación"
 msgstr "Delete Export "
 
-#: ../layouts/user.phtml:185
+#: ../layouts/user.phtml:66
 msgid "Importaciones"
 msgstr "Imports"
 
-#: ../layouts/user.phtml:191
+#: ../layouts/user.phtml:72
 msgid "Borrar Importación"
 msgstr "Delete Import "
 
-#: ../layouts/user.phtml:197
+#: ../layouts/user.phtml:78
 msgid "OPP"
 msgstr "OPP"
 
-#: ../layouts/user.phtml:201
+#: ../layouts/user.phtml:82
 msgid "Agregar OPP"
 msgstr "Add OPP"
 
-#: ../layouts/user.phtml:202
+#: ../layouts/user.phtml:83
 msgid "Modificar OPP"
 msgstr "Modify OPP"
 
-#: ../layouts/user.phtml:203
+#: ../layouts/user.phtml:84
 msgid "Borrar OPP"
 msgstr "Delete OPP"
 
-#: ../layouts/user.phtml:209
+#: ../layouts/user.phtml:90
 msgid "Clientes"
 msgstr "Clients"
 
-#: ../layouts/user.phtml:215
+#: ../layouts/user.phtml:96
 msgid "Borrar Cliente"
 msgstr "Delete Client "
 
-#: ../layouts/user.phtml:221
+#: ../layouts/user.phtml:102
 msgid "Proveedores"
 msgstr "Providers"
 
-#: ../layouts/user.phtml:227
+#: ../layouts/user.phtml:108
 msgid "Borrar Proveedor"
 msgstr "Delete Provider "
 
-#: ../layouts/user.phtml:233
+#: ../layouts/user.phtml:114
 msgid "Giros"
 msgstr "Turns"
 
-#: ../layouts/user.phtml:239
+#: ../layouts/user.phtml:120
 msgid "Borrar Giro"
 msgstr "Delete Turn "
 
-#: ../layouts/user.phtml:245
+#: ../layouts/user.phtml:126
 msgid "Cargas"
 msgstr "Loads"
 
-#: ../layouts/user.phtml:251
+#: ../layouts/user.phtml:132
 msgid "Borrar Carga"
 msgstr "Delete Load "
 
-#: ../layouts/user.phtml:257
+#: ../layouts/user.phtml:138
 msgid "Destinaciones"
 msgstr "Destinations"
 
-#: ../layouts/user.phtml:263
+#: ../layouts/user.phtml:144
 msgid "Borrar Destinación"
 msgstr "Delete Destination "
 
-#: ../layouts/user.phtml:269
+#: ../layouts/user.phtml:150
 msgid "Puertos"
 msgstr "Ports"
 
-#: ../layouts/user.phtml:275
+#: ../layouts/user.phtml:156
 msgid "Borrar Puerto"
 msgstr "Delete Port "
 
-#: ../layouts/user.phtml:281
+#: ../layouts/user.phtml:162
 msgid "Monedas"
 msgstr "Currencies"
 
-#: ../layouts/user.phtml:286
+#: ../layouts/user.phtml:167
 msgid "Modificar Moneda"
 msgstr "Modify Currency "
 
-#: ../layouts/user.phtml:287
+#: ../layouts/user.phtml:168
 msgid "Borrar Moneda"
 msgstr "Delete Currency "
 
-#: ../layouts/user.phtml:293
+#: ../layouts/user.phtml:174
 msgid "Transportes"
 msgstr "Transports"
 
-#: ../layouts/user.phtml:298
+#: ../layouts/user.phtml:179
 msgid "Modificar Transporte"
 msgstr "Modify Transport "
 
-#: ../layouts/user.phtml:299
+#: ../layouts/user.phtml:180
 msgid "Borrar Transporte"
 msgstr "Delete Transport  "
 
-#: ../layouts/user.phtml:305
+#: ../layouts/user.phtml:186
 msgid "Banderas"
 msgstr "Flags"
 
-#: ../layouts/user.phtml:311
+#: ../layouts/user.phtml:192
 msgid "Borrar Bandera"
 msgstr "Delete Flag "
 
+#~ msgid "Su browser no soporta cookies. No podrá navegar el sitio."
+#~ msgstr ""
+#~ "Your browser does not support cookies. You won't be able to use the site."
 #~ msgid "La bandera ya existe"
 #~ msgstr "Flag already exists"
 #~ msgid "El transporte ya existe"
