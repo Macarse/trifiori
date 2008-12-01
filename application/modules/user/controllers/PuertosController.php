@@ -317,6 +317,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         return $this->_searchform;
     }
     
+
 	public function getgeolocAction() {
 	$arr = array();
 	$aux = array();
@@ -344,6 +345,25 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 		$this->getResponse()->setHeader('Content-Type', 'application/json')
 			->setBody('[{Error}]');
 		   }
+	}
+
+
+	public function modifygeolocAction() {
+
+		$this->_helper->viewRenderer->setNoRender();
+		$this->_helper->layout()->disableLayout();
+
+	   	if ( ($this->getRequest()->getParam('name') != null) && ($this->getRequest()->getParam('latitud') != null) 
+			&& ($this->getRequest()->getParam('longitud') != null))
+	        {
+            		$name = substr($this->getRequest()->getParam('name'),0,255);
+			$latitud = substr($this->getRequest()->getParam('latitud'),0,15);
+			$longitud = substr($this->getRequest()->getParam('longitud'),0,15);
+
+			$puertos = new Puertos;
+			$puertos->modifyGeoLocPuerto($name, $latitud, $longitud );
+		}
+
 	}
 
 }

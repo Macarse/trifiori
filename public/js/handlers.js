@@ -371,10 +371,22 @@ function loadMap(latitud,longitud)
        }
 }
 
-function addtag(point, address) {
-        var marker = new GMarker(point);
+function addtag(point, stitle) {
+        var marker = new GMarker(point, {draggable: true, title: stitle});
+
+        GEvent.addListener(marker, "dragstart", function() {
+          map.closeInfoWindow();
+        });
+
+        GEvent.addListener(marker, "dragend", function() {
+	  var latlng=marker.getLatLng();
+	  var url = "http://localhost/user/puertos/modifygeoloc/name/" + marker.getTitle() + "/latitud/" + latlng.lat() + "/longitud/" + latlng.lng();
+	  loadAjax(url, '', 'GET', null, null, errorAjax);
+        });
+
         GEvent.addListener(marker, "click", function() {
-	marker.openInfoWindowHtml('<b>' + address + '</b>'); } );
+	marker.openInfoWindowHtml('<b>' + stitle + '</b>'); } );
+
         return marker;
 }
 
@@ -385,4 +397,5 @@ function addMarkerMap(map, x, y, label)
 	var marker = addtag(point, label);
 	map.addOverlay(marker);
 }
+
 

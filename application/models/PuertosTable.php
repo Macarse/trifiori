@@ -89,6 +89,25 @@ class Puertos extends Zend_Db_Table_Abstract
         return $arr;
     }
 
+    public function modifyGeoLocPuerto($name, $latitud, $longitud )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('NOMBRE_PUE = ?', $name);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('LATITUD_PUE'    => $latitud,
+                            'LONGITUD_PUE'    => $longitud,
+                            ), $where );
+
+        return True;
+    }
 }
 
 ?>
