@@ -1,3 +1,20 @@
+<!-- queda en el php las cosas a traducir -->
+<script type="text/javascript">
+var myColumnDefs = [
+	{key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:true},
+	{key:"adress",label:"<?= $this->language->_("Dirección")?>", sortable:true},
+	{key:"tel",label:"<?= $this->language->_("Teléfono")?>", sortable:true},
+	{key:"fax",label:"<?= $this->language->_("Fax")?>", sortable:true},
+	{key:"mail",label:"<?= $this->language->_("E-mail")?>", sortable:true},
+	{key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+	{key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}];
+
+var hideLabel = "<?= $this->language->_("Oculto")?>";
+var showLabel = "<?= $this->language->_("Visible")?>";
+var closeLabel = "<?= $this->language->_("Cerrar")?>";
+</script>
+<script type="text/javascript" src="/js/init_listproveedores.js"></script>
+
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->error ?></div>
             <? } ?>
@@ -9,6 +26,7 @@
 <div class="busqueda">
     <?= $this->proveedorSearchForm ?>
 </div>
+<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->language->_("Opciones de la tabla")?></a></div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -31,10 +49,10 @@
             <td> <?= $proveedor->fax() ?> </td>
             <td> <?= $proveedor->mail() ?> </td>
             <td>
-                <a href="<?= "/user/proveedores/modproveedores/id/" . $proveedor->id() ?>">Modificar</a>
+                <a href="<?= "/user/proveedores/modproveedores/id/" . $proveedor->id() ?>"><?= $this->language->_("Modificar")?></a>
             </td>
             <td>
-                <a href="<?= "/user/proveedores/removeproveedores/id/" . $proveedor->id() ?>">Eliminar</a>
+                <a href="<?= "/user/proveedores/removeproveedores/id/" . $proveedor->id() ?>"><?= $this->language->_("Eliminar")?></a>
             </td>
         </tr>
         <? } ?>
@@ -47,36 +65,17 @@
     <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <?php } ?>
 
-<script type="text/javascript">
-YAHOO.util.Event.addListener(window, "load", function() {
-    YAHOO.example.EnhanceFromMarkup = new function() {
-        var myColumnDefs = [
-            {key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:true},
-            {key:"adress",label:"<?= $this->language->_("Dirección")?>", sortable:true},
-        {key:"tel",label:"<?= $this->language->_("Teléfono")?>", sortable:true},
-        {key:"fax",label:"<?= $this->language->_("Fax")?>", sortable:true},
-        {key:"mail",label:"<?= $this->language->_("E-mail")?>", sortable:true},
-        {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
-        {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
-        ];
+<div id="columnshowhide"></div>
 
-        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields: [
-                    {key:"name"},
-                    {key:"adress"},
-                    {key:"tel"},
-                    {key:"fax"},
-                    {key:"mail"},
-                    {key:"mod"},
-                    {key:"elim"}
-                    ]
-	        };
+<div id="dt-dlg">
+    <span class="corner_tr"></span>
+    <span class="corner_tl"></span>
+    <span class="corner_br"></span>
+    <span class="corner_bl"></span>
+    <div class="hd">
+        <?= $this->language->_("Seleccione las columnas que desea ver:")?>
+    </div>
+    <div id="dt-dlg-picker" class="bd">
+    </div>
+</div>
 
-        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"name",dir:"desc"},draggableColumns:true}
-        );
-    };
-});
-</script>

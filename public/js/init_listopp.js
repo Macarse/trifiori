@@ -4,13 +4,25 @@
 		{				
 		    YAHOO.example.EnhanceFromMarkup = new function() {
 
-		        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-		        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-		        this.myDataSource.responseSchema = {fields: [
-	                    {key:"name"}, {key:"ubicacion"}, {key:"mapa"}, {key:"mod"}, {key:"elim"}]};
+			this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+			this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+			this.myDataSource.responseSchema =
+			{
+			    fields: [
+				        {key:"name"},
+				        {key:"declaracionOk"},
+				        {key:"pedidoDinero"},
+				        {key:"otrosOpp"},
+				        {key:"fraccionado"},
+				        {key:"estampillas"},
+				        {key:"impuestosInternos"},
+				        {key:"mod"},
+				        {key:"elim"}
+				    ]
+			};
 
-		        var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                	{sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
+			var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs,this.myDataSource,
+					{sortedBy:{key:"pedidoDinero",dir:"desc"},draggableColumns:true});
 
 		        // Shows dialog, creating one when necessary
 		        this.newCols = true;
@@ -75,7 +87,7 @@
 		        oSelf.myDataTable.showColumn(sKey);
 		    }
 		};
-        
+		
 			// Create the SimpleDialog
 			YAHOO.util.Dom.removeClass("dt-dlg", "inprogress");
 			this.myDlg = new YAHOO.widget.SimpleDialog("dt-dlg", {
