@@ -579,10 +579,10 @@
         //habilito alert con mensajes
         frmvalidator.EnableOnPageErrorDisplaySingleBox();
         frmvalidator.EnableMsgsTogether();
-        
+
         frmvalidator.addValidation("orden","req","<?= $this->language->_("*Ingrese el número de órden")?> ");
         frmvalidator.addValidation("orden","numeric","<?= $this->language->_("*La órden debe ser únicamente númerica")?>");
-                            
+
         frmvalidator.addValidation("nameTransporte","req","<?= $this->language->_("*Elija un transporte")?>");
         frmvalidator.addValidation("nameTransporte","alnum_s ","<?= $this->language->_("*El transporte debe ser alfanumérico")?>");
                             

@@ -755,7 +755,7 @@
 	frmvalidator.EnableOnPageErrorDisplaySingleBox();
 	frmvalidator.EnableMsgsTogether();
 	
-	frmvalidator.addValidation("orden","req","*Ingrese el número de orden");
+	frmvalidator.addValidation("orden","req","<?= $this->language->_("*Ingrese el número de orden")?>");
 	frmvalidator.addValidation("orden","numeric","<?= $this->language->_("*La órden debe ser únicamente numérica")?>");
 			  
 	frmvalidator.addValidation("idnameTransporte","req","<?= $this->language->_("*Elija un transporte")?>");
