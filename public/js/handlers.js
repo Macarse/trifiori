@@ -303,7 +303,7 @@ function showMap(latitud, longitud)
 	/* cargo el mapa */
 	loadMap(latitud,longitud);
 	/* agrego las ubicaciones */
-	loadAjax("http://localhost/user/puertos/getgeoloc", '', 'GET', loadGkeysMap, null, errorAjax);
+	loadAjax("/user/puertos/getgeoloc", '', 'GET', loadGkeysMap, null, errorAjax);
 }
 
 function loadGkeysMap(xhr)
@@ -380,7 +380,7 @@ function addtag(point, stitle) {
 
         GEvent.addListener(marker, "dragend", function() {
 	  var latlng=marker.getLatLng();
-	  var url = "http://localhost/user/puertos/modifygeoloc/name/" + marker.getTitle() + "/latitud/" + latlng.lat() + "/longitud/" + latlng.lng();
+	  var url = "/user/puertos/modifygeoloc/name/" + marker.getTitle() + "/latitud/" + latlng.lat() + "/longitud/" + latlng.lng();
 	  loadAjax(url, '', 'GET', null, null, errorAjax);
         });
 
