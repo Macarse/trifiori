@@ -23,3 +23,8 @@ Instrucciones para levantar el sistema:
                 
     - Establecer como DocumentRoot en Apache el directorio public/ de la
       aplicación.
+
+    - Aclaración Google Maps API key:
+        Si el hostname es distinto de 'localhost' se deberá generar una nueva clave
+        en http://code.google.com/apis/maps/.
+
