@@ -4,15 +4,31 @@
 		{				
 		    YAHOO.example.EnhanceFromMarkup = new function() {
 
-		        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-		        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-		        this.myDataSource.responseSchema = {fields: [
-	                    {key:"name"}, {key:"ubicacion"}, {key:"mapa"}, {key:"mod"}, {key:"elim"}]};
+			this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+			this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+			this.myDataSource.responseSchema =
+			{
+			    fields:
+			    [
+				{key:"orden"},
+				{key:"codCanalName"},
+				{key:"codClienteName"},
+				{key:"codOppName"},
+				{key:"desMercaderias"},
+				{key:"valorFactura"},
+				{key:"ingresoPuerto"},
+				{key:"DESnroDoc"},
+				{key:"DESvencimiento"},
+				{key:"detalle"},
+				{key:"mod"},
+				{key:"elim"}
+			    ]
+			};
 
-		        var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                	{sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
-
-		        // Shows dialog, creating one when necessary
+			var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+				{sortedBy:{key:"orden",dir:"desc"}});
+		        
+			// Shows dialog, creating one when necessary
 		        this.newCols = true;
 		        this.showDlg = function(e) {
 		            YAHOO.util.Event.stopEvent(e);

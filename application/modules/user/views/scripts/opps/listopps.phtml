@@ -1,3 +1,23 @@
+<script type="text/javascript">
+var myColumnDefs =
+	[
+	    {key:"name",label: '<?= $this->language->_("Número")?>', sortable:true},
+	    {key:"declaracionOk",label:"<?= $this->language->_("Declaración Ok")?>", sortable:true},
+	    {key:"pedidoDinero",label:"<?= $this->language->_("Pedido de Dinero")?>", sortable:true},
+	    {key:"otrosOpp",label:"<?= $this->language->_("Otros Opp")?>", sortable:true},
+	    {key:"fraccionado",label:"<?= $this->language->_("Fraccionado Opp")?>", sortable:true},
+	    {key:"estampillas",label:"<?= $this->language->_("Estampillas")?>", sortable:true},
+	    {key:"impuestosInternos",label:"<?= $this->language->_("Impuestos Internos")?>", sortable:true},
+	    {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+	    {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
+	];
+
+var hideLabel = "<?= $this->language->_("Oculto")?>";
+var showLabel = "<?= $this->language->_("Visible")?>";
+var closeLabel = "<?= $this->language->_("Cerrar")?>";
+</script>
+<script type="text/javascript" src="/js/init_listopp.js"></script>
+
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->error ?></div>
             <? } ?>
@@ -9,6 +29,7 @@
 <div class="busqueda">
     <?= $this->oppSearchForm ?>
 </div>
+<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->language->_("Opciones de la tabla")?></a></div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
@@ -52,45 +73,17 @@
     <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <?php } ?>
 
-<script type="text/javascript">
-YAHOO.util.Event.addListener(window, "load", function() {
-    YAHOO.example.EnhanceFromMarkup = new function() {
-        var myColumnDefs =
-        [
-            {key:"name",label: '<?= $this->language->_("Número")?>', sortable:true},
-            {key:"declaracionOk",label:"<?= $this->language->_("Declaración Ok")?>", sortable:true},
-            {key:"pedidoDinero",label:"<?= $this->language->_("Pedido de Dinero")?>", sortable:true},
-            {key:"otrosOpp",label:"<?= $this->language->_("Otros Opp")?>", sortable:true},
-            {key:"fraccionado",label:"<?= $this->language->_("Fraccionado Opp")?>", sortable:true},
-            {key:"estampillas",label:"<?= $this->language->_("Estampillas")?>", sortable:true},
-            {key:"impuestosInternos",label:"<?= $this->language->_("Impuestos Internos")?>", sortable:true},
-            {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
-            {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
-        ];
+<div id="columnshowhide"></div>
 
-        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema =
-        {
-            fields: [
-                        {key:"name"},
-                        {key:"declaracionOk"},
-                        {key:"pedidoDinero"},
-                        {key:"otrosOpp"},
-                        {key:"fraccionado"},
-                        {key:"estampillas"},
-                        {key:"impuestosInternos"},
-                        {key:"mod"},
-                        {key:"elim"}
-                    ]
-        };
+<div id="dt-dlg">
+    <span class="corner_tr"></span>
+    <span class="corner_tl"></span>
+    <span class="corner_br"></span>
+    <span class="corner_bl"></span>
+    <div class="hd">
+        <?= $this->language->_("Seleccione las columnas que desea ver:")?>
+    </div>
+    <div id="dt-dlg-picker" class="bd">
+    </div>
+</div>
 
-        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs,
-                                                    this.myDataSource,
-                                                    {
-                                                        sortedBy:{key:"pedidoDinero",dir:"desc"},draggableColumns:true
-                                                    }
-        );
-    };
-});
-</script>

@@ -1,3 +1,12 @@
+<!-- queda en el php las cosas a traducir -->
+<script type="text/javascript">
+var myColumnDefs = [
+    {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:true},
+    {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
+    {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}];
+</script>
+<script type="text/javascript" src="/js/init_listbanderas.js"></script>
+
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->error ?></div>
 <? } ?>
@@ -40,29 +49,3 @@
     <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <?php } ?>
 
-<script type="text/javascript">
-YAHOO.util.Event.addListener(window, "load", function() {
-    YAHOO.example.EnhanceFromMarkup = new function() {
-        var myColumnDefs = [
-            {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:true},
-            {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
-            {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}
-        ];
-
-        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-        this.myDataSource.responseSchema = {
-            fields:
-                [
-                    {key:"name"},
-                    {key:"mod"},
-                    {key:"elim"}
-                ]
-            };
-
-        this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"name",dir:"desc"},draggableColumns:true}
-        );
-    };
-});
-</script>

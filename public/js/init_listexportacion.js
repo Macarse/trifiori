@@ -4,13 +4,13 @@
 		{				
 		    YAHOO.example.EnhanceFromMarkup = new function() {
 
-		        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-		        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-		        this.myDataSource.responseSchema = {fields: [
-	                    {key:"name"}, {key:"ubicacion"}, {key:"mapa"}, {key:"mod"}, {key:"elim"}]};
+			this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+			this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+			this.myDataSource.responseSchema = { fields: 
+			    [{key:"orden"},{key:"trans"},{key:"cliente"},{key:"destinacion"},{key:"carga"},{key:"feching"},{key:"descmer"},{key:"detalle"},{key:"mod"},{key:"elim"}]};
 
-		        var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                	{sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
+			var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
+				{sortedBy:{key:"orden",dir:"desc"},draggableColumns:true});
 
 		        // Shows dialog, creating one when necessary
 		        this.newCols = true;
@@ -76,31 +76,30 @@
 		    }
 		};
         
-			// Create the SimpleDialog
-			YAHOO.util.Dom.removeClass("dt-dlg", "inprogress");
-			this.myDlg = new YAHOO.widget.SimpleDialog("dt-dlg", {
-				width: "30em",
-					    visible: false,
-					    modal: true,
-					    buttons: [ 
-							{ text:closeLabel,  handler:this.hideDlg }
-				]
-				});
-				this.myDlg.render();
+        // Create the SimpleDialog
+        YAHOO.util.Dom.removeClass("dt-dlg", "inprogress");
+        this.myDlg = new YAHOO.widget.SimpleDialog("dt-dlg", {
+                width: "30em",
+			    visible: false,
+			    modal: true,
+			    buttons: [ 
+					{ text:closeLabel,  handler:this.hideDlg }
+                ]
+		});
+		this.myDlg.render();
 
-			// Nulls out myDlg to force a new one to be created
-			myDT.subscribe("columnReorderEvent", function(){
-			    this.newCols = true;
-			    YAHOO.util.Event.purgeElement("dt-dlg-picker", true);
-			    YAHOO.util.Dom.get("dt-dlg-picker").innerHTML = "";
-			}, this, true);
+        // Nulls out myDlg to force a new one to be created
+        myDT.subscribe("columnReorderEvent", function(){
+            this.newCols = true;
+            YAHOO.util.Event.purgeElement("dt-dlg-picker", true);
+            YAHOO.util.Dom.get("dt-dlg-picker").innerHTML = "";
+        }, this, true);
 		
-			// Hook up the SimpleDialog to the link
-			YAHOO.util.Event.addListener("dt-options-link", "click", this.showDlg, this, true);
-		    };
+	// Hook up the SimpleDialog to the link
+	YAHOO.util.Event.addListener("dt-options-link", "click", this.showDlg, this, true);
+    };
 
-	        }
-		
+	        }		
 		//si es ff
 		if(window.addEventListener) 
 		{

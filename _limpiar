@@ -1,0 +1,13 @@
+rm application/modules/user/views/scripts/banderas/*~
+rm application/modules/user/views/scripts/cargas/*~
+rm application/modules/user/views/scripts/clientes/*~
+rm application/modules/user/views/scripts/destinaciones/*~
+rm application/modules/user/views/scripts/exportaciones/*~
+rm application/modules/user/views/scripts/giros/*~
+rm application/modules/user/views/scripts/importaciones/*~
+rm application/modules/user/views/scripts/monedas/*~
+rm application/modules/user/views/scripts/opps/*~
+rm application/modules/user/views/scripts/proveedores/*~
+rm application/modules/user/views/scripts/puertos/*~
+rm application/modules/user/views/scripts/transportes/*~
+
