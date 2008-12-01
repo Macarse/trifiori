@@ -464,9 +464,9 @@ alter table USUARIO_MODIFICA_TABLA
 
 GRANT ALL on trifiori.* to 'trifiori'@'localhost' identified by 'carlosgay';
 
-/* nananananana tera!!! */
 
+drop database IF EXISTS `tera-wurfl`;
 CREATE database IF NOT EXISTS `tera-wurfl`;
 
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON `tera-wurfl`.* TO 'wurfl'@'localhost' identified by 'wurfl';
+GRANT ALL on `tera-wurfl`.* TO 'wurfl'@'localhost' identified by 'wurfl';
 
