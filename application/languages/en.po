@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-01 01:47-0300\n"
+"POT-Creation-Date: 2008-12-01 01:51-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -1085,8 +1085,8 @@ msgstr "*The name must be alphanumeric"
 msgid "*El nombre debe contener hasta 20 caracteres"
 msgstr "*The name must have less tan 30 characters"
 
-#: ../modules/user/views/scripts/monedas/listmonedas.phtml:15
-#: ../modules/user/views/scripts/monedas/listmonedas.phtml:47
+#: ../modules/user/views/scripts/monedas/listmonedas.phtml:6
+#: ../modules/user/views/scripts/monedas/listmonedas.phtml:24
 msgid "Eliminar"
 msgstr "Delete"
 
@@ -1094,20 +1094,50 @@ msgstr "Delete"
 msgid "*El nombre debe contener hasta 150 caracteres"
 msgstr "*The name must have less than 150 characters"
 
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:25
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:77
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:3
+msgid "Orden"
+msgstr "Order"
+
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:10
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:47
 msgid "Despacho: Nro Documento"
 msgstr "Dispatch: Document Number"
 
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:27
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:46
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:79
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:12
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:49
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:68
 msgid "Detalle"
 msgstr "Detail"
 
-#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:70
-msgid "Orden"
-msgstr "Order"
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:16
+#: ../modules/user/views/scripts/proveedores/listproveedores.phtml:12
+#: ../modules/user/views/scripts/transportes/listtransportes.phtml:11
+msgid "Oculto"
+msgstr "Hidden"
+
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:17
+#: ../modules/user/views/scripts/proveedores/listproveedores.phtml:13
+#: ../modules/user/views/scripts/transportes/listtransportes.phtml:12
+msgid "Visible"
+msgstr "Visible"
+
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:18
+#: ../modules/user/views/scripts/proveedores/listproveedores.phtml:14
+#: ../modules/user/views/scripts/transportes/listtransportes.phtml:13
+msgid "Cerrar"
+msgstr "Close"
+
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:35
+#: ../modules/user/views/scripts/proveedores/listproveedores.phtml:29
+#: ../modules/user/views/scripts/transportes/listtransportes.phtml:28
+msgid "Opciones de la tabla"
+msgstr "Table Options"
+
+#: ../modules/user/views/scripts/importaciones/listimportaciones.phtml:96
+#: ../modules/user/views/scripts/proveedores/listproveedores.phtml:76
+#: ../modules/user/views/scripts/transportes/listtransportes.phtml:67
+msgid "Seleccione las columnas que desea ver:"
+msgstr "Select the visible columns:"
 
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:24
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:120
@@ -2214,19 +2244,17 @@ msgstr "*The request money date is invalid"
 msgid "*Ingrese un resultado de declaración"
 msgstr "*Insert a declaration result"
 
-#: ../modules/user/views/scripts/clientes/listclientes.phtml:68
+#: ../modules/user/views/scripts/clientes/listclientes.phtml:9
 msgid "Tipo Iva"
 msgstr "Iva type"
 
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:10
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:30
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:73
+#: ../modules/user/views/scripts/cargas/listcargas.phtml:3
+#: ../modules/user/views/scripts/cargas/listcargas.phtml:36
 msgid "Cantidad Bultos"
 msgstr "Package quantities"
 
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:12
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:31
-#: ../modules/user/views/scripts/cargas/listcargas.phtml:74
+#: ../modules/user/views/scripts/cargas/listcargas.phtml:4
+#: ../modules/user/views/scripts/cargas/listcargas.phtml:37
 msgid "Tipo de Envase"
 msgstr "Type of packaging"
 
@@ -2275,29 +2303,9 @@ msgstr "*The package number must be alphanumeric"
 msgid "Mapa"
 msgstr "Map"
 
-#: ../modules/user/views/scripts/puertos/listpuertos.phtml:10
-msgid "Oculto"
-msgstr "Hidden"
-
-#: ../modules/user/views/scripts/puertos/listpuertos.phtml:11
-msgid "Visible"
-msgstr "Visible"
-
-#: ../modules/user/views/scripts/puertos/listpuertos.phtml:12
-msgid "Cerrar"
-msgstr "Close"
-
-#: ../modules/user/views/scripts/puertos/listpuertos.phtml:28
-msgid "Opciones de la tabla"
-msgstr "Table Options"
-
 #: ../modules/user/views/scripts/puertos/listpuertos.phtml:45
 msgid "Ver Mapa"
 msgstr "View Map"
-
-#: ../modules/user/views/scripts/puertos/listpuertos.phtml:71
-msgid "Seleccione las columnas que desea ver:"
-msgstr "Select the visible columns:"
 
 #: ../modules/user/views/scripts/puertos/addpuertos.phtml:23
 #: ../modules/user/views/scripts/puertos/modpuertos.phtml:20
@@ -2368,7 +2376,7 @@ msgstr "*The receipt permit must be alphanumeric"
 msgid "*La fecha de la fecha del permiso de factura es inválida"
 msgstr "*The date of the request date is invalid"
 
-#: ../modules/user/views/scripts/exportaciones/listexportaciones.phtml:68
+#: ../modules/user/views/scripts/exportaciones/listexportaciones.phtml:5
 msgid "Codigo Cliente"
 msgstr "Client Code"
 
