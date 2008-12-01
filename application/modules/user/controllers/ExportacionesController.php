@@ -58,6 +58,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                                             $values['PERfechaFactura']
                                                         );
                         $this->view->message = $this->language->_("Inserción exitosa.");
+                        $this->_addform = null;
                     }
                     catch (Zend_Exception $error)
                     {
@@ -432,7 +433,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                                 );
 
         // Add elements to form:
-        $this->_addform ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
+        $this->_addform ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement($orden)
                         ->addElement($codTransporte)
                         ->addElement('hidden', 'autotrans', array( 'decorators' => $decoradorTransporte))
@@ -456,12 +457,12 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addElement($PERpresentado)
                         ->addElement($PERfactura)
                         ->addElement($PERfechaFactura)
-                        ->addElement('hidden', 'AddExportacionTrack', array('values' => 'logPost'))
                         ->addElement('hidden', 'codCarga', array('id' => 'idcodCarga'))
                         ->addElement('hidden', 'codDestinacion', array('id' => 'idcodDestinacion'))
                         ->addElement('hidden', 'codMoneda', array('id' => 'idcodMoneda'))
                         ->addElement('hidden', 'codTransporte', array('id' => 'idcodTransporte'))
                         ->addElement('hidden', 'codCliente', array('id' => 'idcodCliente'))
+                        ->addElement('hidden', 'codBandera', array('id' => 'idcodBandera'))
                         ->addElement('submit', 'Ingresar', array('label' => 'Agregar'));
 
         return $this->_addform;
