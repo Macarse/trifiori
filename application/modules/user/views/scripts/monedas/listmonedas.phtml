@@ -30,10 +30,10 @@ var myColumnDefs = [
             <td> <?= $moneda->name() ?> </td>
             <td> <?= $moneda->longName() ?> </td>
             <td>
-                <a href="<?= "/user/monedas/modmonedas/id/" . $moneda->id()?>">Modificar</a>
+                <a href="<?= "/user/monedas/modmonedas/id/" . $moneda->id()?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"></a>
             </td>
 			<td>
-                <a href="<?= "/user/monedas/removemonedas/id/" . $moneda->id()?>">Eliminar</a>
+                <a href="<?= "/user/monedas/removemonedas/id/" . $moneda->id()?>"><img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"></a>
             </td>
         </tr>
         <? } ?>

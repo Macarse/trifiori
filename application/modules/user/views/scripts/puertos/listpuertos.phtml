@@ -42,12 +42,12 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
         <tr> 
             <td> <?= $puerto->name() ?> </td>
             <td> <?= $puerto->ubicacion() ?> </td>
-	    <td> <a href="#" onclick="showMap(<?= $puerto->latitud() ?>,<?= $puerto->longitud() ?>);"><?= $this->language->_("Ver Mapa")?></a> </td>
-            <td>
-                <a href="<?= "/user/puertos/modpuertos/id/" . $puerto->id() ?>"><?= $this->language->_("Modificar")?></a>
+	    <td> <a href="#" onclick="showMap(<?= $puerto->latitud() ?>,<?= $puerto->longitud() ?>);"><img src="/images/map.gif" alt="<?= $this->language->_("Ver Mapa")?>" title="<?= $this->language->_("Ver Mapa")?>" width="30" height="30"></a> </td>
+            <td align="center">
+                <a href="<?= "/user/puertos/modpuertos/id/" . $puerto->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"> </a>
             </td>
-            <td>
-                <a href="<?= "/user/puertos/removepuertos/id/" . $puerto->id() ?>"><?= $this->language->_("Eliminar")?></a>
+            <td align="center">
+                <a href="<?= "/user/puertos/removepuertos/id/" . $puerto->id() ?>"><img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"></a>
             </td>
         </tr>
         <? } ?>

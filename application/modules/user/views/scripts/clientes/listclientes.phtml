@@ -57,10 +57,10 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
             <td> <?= $cliente->tipoIVA() ?> </td>
             <td> <?= $cliente->tipoCliente() ?> </td>
             <td>
-                <a href="<?= "/user/clientes/modclientes/id/" . $cliente->id() ?>"> <?= $this->language->_("Modificar")?> </a>
+                <a href="<?= "/user/clientes/modclientes/id/" . $cliente->id() ?>"> <img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"> </a>
             </td>
             <td>
-                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente->id() ?>"> <?= $this->language->_("Eliminar")?> </a>
+                <a href="<?= "/user/clientes/removeclientes/id/" . $cliente->id() ?>"> <img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"> </a>
             </td>
         </tr>
         <? } ?>

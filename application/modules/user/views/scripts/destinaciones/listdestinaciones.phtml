@@ -31,10 +31,10 @@ var myColumnDefs = [{key:"name",label:"Nombre", sortable:true},
         <tr> 
             <td> <?= $destinacion->name() ?> </td>
             <td>
-                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Modificar")?> </a>
+                <a href="<?= "/user/destinaciones/moddestinaciones/id/" . $destinacion->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"> </a>
             </td>
 			<td>
-                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>"><?= $this->language->_("Eliminar")?> </a>
+                <a href="<?= "/user/destinaciones/removedestinaciones/id/" . $destinacion->id() ?>"><img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"> </a>
             </td>
         </tr>
         <? } ?>
