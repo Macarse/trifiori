@@ -340,9 +340,11 @@ create table USUARIOS
    NOMBRE_USU                     varchar(50)                    not null,
    PASSWORD_USU                   varbinary(128),
    USUARIO_USU                    varchar(30),
+   EMAIL_USU                      varchar(100),
    IDIOMA_USU                     int,
    CODIGO_CSS                     int,
    primary key (CODIGO_USU),
+   unique EMAIL_USU (EMAIL_USU),
    unique USUARIO_USU (USUARIO_USU)
 );
 

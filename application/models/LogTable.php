@@ -12,12 +12,12 @@ class Log extends Zend_Db_Table_Abstract
 
         return $row;
     }
-    
+
     public function searchLog( $msg )
     {
         $msg = mysql_real_escape_string($msg);
 
-        return $this->select()->where("MSG LIKE '%ALTERANDO%' AND MSG LIKE '%" . $msg . "%'"); 
+        return $this->select()->where("MSG LIKE '%ALTERANDO%' AND MSG LIKE '%" . $msg . "%'");
     }
 }
 

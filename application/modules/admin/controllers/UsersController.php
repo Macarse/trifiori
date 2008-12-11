@@ -46,7 +46,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                                                         $values['username'],
                                                         hash('SHA1', $values['password']),
                                                         $values['lang'],
-                                                        $values['css']
+                                                        $values['css'],
+                                                        $values['email']
                                                     );
                         }
                         catch (Zend_Exception $error)
@@ -55,7 +56,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         }
 
                         /*TODO: Si ocurre un error se muestra que insertó bien*/
-                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa.');
+                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa');
                         $this->_addform = null;
                     }
                     else
@@ -89,7 +90,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             try
             {
                 $table = new Users();
-                 
+
                 if (isset($_GET["consulta"]))
                 {
                     $user = $table->searchUser($_GET["consulta"]);
@@ -100,9 +101,9 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                     $user = $table->select();
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($user, $table));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($this->_getParam('page'));
@@ -195,7 +196,8 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                                                     $values['username'],
                                                     $values['password'],
                                                     $values['lang'],
-                                                    $values['css']
+                                                    $values['css'],
+                                                    $values['email']
                                                 );
                         $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
                     }
@@ -216,7 +218,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
     private function getUserAddForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_addform)
         {
             return $this->_addform;
@@ -232,7 +234,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                  ->addFilter('StringToLower');
 
         // Create and configure username element:
-        
+
         $username = $this->_addform->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
@@ -271,11 +273,18 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel($this->language->_('Css'))
                 ->setMultiOptions($cssOptions);
 
+        $email = $this->_addform->createElement('text', 'email',
+            array('label' => $this->language->_('E-mail')));
+        $email   ->addValidator('stringLength', false, array(1, 100))
+                ->addValidator('EmailAddress')
+                ->setRequired(True);
+
         // Add elements to form:
         $this->_addform ->addElement($name)
                         ->addElement($username)
                         ->addElement($password)
                         ->addElement($passwordvrfy)
+                        ->addElement($email)
                         ->addElement($lang)
                         ->addElement($css)
              ->addElement('hidden', 'AddUserTrack', array('values' => 'logPost'))
@@ -309,11 +318,11 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         return $this->_searchform;
     }
-    
+
     private function getUserModForm( $id )
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
@@ -349,10 +358,12 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $this->_modform->createElement('password', 'password', array('label' => $this->language->_('Clave')));
+        $password = $this->_modform->createElement('password', 'password',
+            array('label' => $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,100));
 
-        $passwordvrfy = $this->_modform->createElement('password', 'passwordvrfy', array('label' => $this->language->_('Repetir Clave')));
+        $passwordvrfy = $this->_modform->createElement('password', 'passwordvrfy',
+            array('label' => $this->language->_('Repetir Clave')));
         $passwordvrfy->addValidator('StringLength', false, array(1,100));
 
 
@@ -380,15 +391,23 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel($this->language->_('Css'))
                 ->setMultiOptions($cssOptions);
 
+        $email = $this->_modform->createElement('text', 'email',
+            array('label' => $this->language->_('E-mail')));
+        $email  ->setValue($user->email())
+                ->addValidator('stringLength', false, array(1, 100))
+                ->addValidator('EmailAddress')
+                ->setRequired(True);
+
         // Add elements to form:
-        $this->_modform->addElement($name)
-             ->addElement($username)
-             ->addElement($password)
-             ->addElement($passwordvrfy)
-             ->addElement($lang)
-             ->addElement($css)
-             ->addElement('hidden', 'ModUserTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
+        $this   ->_modform->addElement($name)
+                ->addElement($username)
+                ->addElement($password)
+                ->addElement($passwordvrfy)
+                ->addElement($email)
+                ->addElement($lang)
+                ->addElement($css)
+                ->addElement('hidden', 'ModUserTrack', array('values' => 'logPost'))
+                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }

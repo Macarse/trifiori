@@ -392,8 +392,8 @@ INSERT INTO EXPORTACIONES VALUES(6, 14709, 1, 4, 200, 10, 3, 2, 14, NULL, STR_TO
 INSERT INTO EXPORTACIONES VALUES(7, 98481, 5, 4, 101, 10, 3, 2, 2, NULL, STR_TO_DATE('19/07/2007', '%d/%m/%Y'), 'Puloveres', 11824, STR_TO_DATE('14/10/2007', '%d/%m/%Y'), STR_TO_DATE('03/08/2007', '%d/%m/%Y'), '121290000', STR_TO_DATE('18/12/2007', '%d/%m/%Y'), 'PPAMSXMASX', STR_TO_DATE('28/12/2007', '%d/%m/%Y'));
 INSERT INTO EXPORTACIONES VALUES(8, 12481, 3, 2, 101, 10, 3, 2, 1, NULL, STR_TO_DATE('13/05/2007', '%d/%m/%Y'), 'Camperas de Cuero', 8499, STR_TO_DATE('14/10/2007', '%d/%m/%Y'), STR_TO_DATE('03/08/2007', '%d/%m/%Y'), '19012', STR_TO_DATE('25/12/2007', '%d/%m/%Y'), 'MXMXMAL1A', STR_TO_DATE('21/12/2007', '%d/%m/%Y'));
 
-INSERT INTO USUARIOS VALUES(1, 'Sr. Administrador', SHA1('admin'), 'admin', 1, 1);
-INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', SHA1('prueba'), 'prueba', 1, 1);
+INSERT INTO USUARIOS VALUES(1, 'Sr Administrador', SHA1('admin'), 'admin', 'admin@trifiori.com', 1, 1);
+INSERT INTO USUARIOS VALUES(2, 'Usuario de Prueba', SHA1('prueba'), 'prueba', 'prueba@trifiori.com', 1, 1);
 
 INSERT INTO IDIOMAS VALUES(1, 'en');
 INSERT INTO IDIOMAS VALUES(2, 'es');
