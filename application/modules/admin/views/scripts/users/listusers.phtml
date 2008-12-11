@@ -15,6 +15,7 @@
             <tr>
                 <th> <?= $this->language->_("Nombre") ?> </th>
                 <th> <?= $this->language->_("Usuario") ?> </th>
+                <th> <?= $this->language->_("E-mail") ?> </th>
                 <th> <?= $this->language->_("Idioma") ?> </th>
                 <th> <?= $this->language->_("CSS") ?> </th>
                 <th> <?= $this->language->_("Modificar") ?> </th>
@@ -24,16 +25,18 @@
         <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $user) { ?>
-            <tr><td> <?= $user->name() ?> </td>
-                    <td> <?= $user->user() ?> </td>
-                    <td> <?= $user->language() ?> </td>
-                    <td> <?= $user->codCssName() ?> </td>
-                    <td>
-                        <a href="<?= "/admin/users/modusers/id/" . $user->id()?>"> <?= $this->language->_("Modificar") ?> </a>
-                    </td>
-                    <td>
-                        <a href="<?= "/admin/users/removeusers/id/" . $user->id()?>"> <?= $this->language->_("Eliminar") ?> </a>
-                    </td>
+            <tr>
+                <td> <?= $user->name() ?> </td>
+                <td> <?= $user->user() ?> </td>
+                <td> <?= $user->email() ?> </td>
+                <td> <?= $user->language() ?> </td>
+                <td> <?= $user->codCssName() ?> </td>
+                <td>
+                    <a href="<?= "/admin/users/modusers/id/" . $user->id()?>"> <?= $this->language->_("Modificar") ?> </a>
+                </td>
+                <td>
+                    <a href="<?= "/admin/users/removeusers/id/" . $user->id()?>"> <?= $this->language->_("Eliminar") ?> </a>
+                </td>
             </tr>
             <? } ?>
         <? } ?>
@@ -51,6 +54,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
         var myColumnDefs = [
             {key:"name",label:" <?= $this->language->_("Nombre") ?>",sortable:true},
             {key:"user",label:" <?= $this->language->_("Usuario") ?>", sortable:true},
+            {key:"email",label:" <?= $this->language->_("E-mail") ?>", sortable:true},
             {key:"language",label:" <?= $this->language->_("Idioma") ?>", sortable:false},
             {key:"css",label:" <?= $this->language->_("CSS") ?>", sortable:false},
             {key:"modify",label:" <?= $this->language->_("Modificar") ?>", sortable:false},
@@ -65,6 +69,7 @@ YAHOO.util.Event.addListener(window, "load", function() {
             [
                 {key:"name"},
                 {key:"user"},
+                {key:"email"},
                 {key:"language"},
                 {key:"css"},
                 {key:"modify"},

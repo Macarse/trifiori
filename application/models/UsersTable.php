@@ -5,13 +5,14 @@ class Users extends Zend_Db_Table_Abstract
     protected $_sequence = true;
     protected $_rowClass = 'UsersModel';
 
-    public function addUser( $name, $user, $pass, $lang, $css )
+    public function addUser( $name, $user, $pass, $lang, $css, $email )
     {
         $data = array(  'NOMBRE_USU'  => $name,
                         'USUARIO_USU' => $user,
                         'PASSWORD_USU'=> $pass,
                         'CODIGO_CSS'  => $css,
-                        'IDIOMA_USU'  => $lang
+                        'IDIOMA_USU'  => $lang,
+                        'EMAIL_USU'   => $email
                     );
 
         $this->insert($data);
@@ -40,15 +41,15 @@ class Users extends Zend_Db_Table_Abstract
 
         return $row;
     }
-    
+
     public function searchUser( $name )
     {
         $name = mysql_real_escape_string($name);
 
         return $this->select()->where("USUARIO_USU LIKE '%" . $name . "%'"); 
     }
-    
-    public function modifyUser( $id, $name, $user, $pass, $lang, $css )
+
+    public function modifyUser( $id, $name, $user, $pass, $lang, $css, $email )
     {
         /*TODO: Try Catch*/
         $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
@@ -68,6 +69,7 @@ class Users extends Zend_Db_Table_Abstract
                             'USUARIO_USU'   => $user,
                             'PASSWORD_USU'  => $pass,
                             'CODIGO_CSS'    => $css,
+                            'EMAIL_USU'     => $email,
                             'IDIOMA_USU'    => $lang ), $where );
 
         return True;

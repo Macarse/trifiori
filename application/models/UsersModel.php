@@ -19,6 +19,11 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
         return $this->USUARIO_USU;
     }
 
+    public function email()
+    {
+        return $this->EMAIL_USU;
+    }
+
     public function isAdmin()
     {
         if ($this->USUARIO_USU == 'admin')
