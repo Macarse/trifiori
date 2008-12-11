@@ -14,7 +14,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
         $this->view->headTitle($this->language->_("Últimas Modificaciones"));
 
         unset($this->view->error);
-        
+
         $this->_searchform = $this->getLogSearchForm();
         if ($this->_searchform->isValid($_GET))
         {
@@ -22,7 +22,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
             {
                 $where = "MSG like '%ALTERANDO%'";
                 $table = new Log();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     $log = $table->searchLog($_GET["consulta"]);
@@ -33,9 +33,43 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
                     $log = $table->select()->where($where)->order("CODIGOLOG DESC");
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
+                if (isset($_GET["email"]) && $_GET["email"] == TRUE )
+                {
+
+                    /*Escribo el body del mail*/
+                    $body = '';
+
+//                     TODO: Ver esto con maxi
+
+                    if (count($log) > 1)
+                    {
+                        foreach($log as $logRow)
+                        {
+                            $body .= $logRow->id() . '\n';
+                            $body .= $logRow->nivel() . '\n';
+                            $body .= $logRow->msg() . '\n';
+                            $body .= '\n';
+                        }
+                    }
+                    else
+                    {
+                        $body = $this->language->_('No se encontraron logs');
+                    }
+
+                    /*Lo envio*/
+                    $config = Zend_Registry::getInstance()->configuration;
+
+                    $mail = new Zend_Mail();
+                    $mail->setBodyText($body);
+                    $mail->setFrom('trifiori@gmail.com', 'Trifiori Web');
+                    $mail->addTo($config->admin->email, $config->admin->name);
+                    $mail->setSubject('Trifiori Web');
+                    $mail->send(Zend_Registry::getInstance()->mailTransport);
+                }
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($log, $table));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -54,7 +88,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
         }
         $this->view->logSearchForm = $this->getLogSearchForm();
     }
-    
+
     private function getLogSearchForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
@@ -74,10 +108,15 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
         $logs   ->addValidator($alnumWithWS)
                 ->addValidator('stringLength', false, array(1, 100));
 
+
+        $email = $this->_searchform->createElement('checkbox', 'email',
+                array('label' => $this->language->_('Enviar resultados por email')));
+
         // Add elements to form:
-                $this->_searchform->addElement($logs)
-                ->addElement('hidden', 'SearchLogTrack', array('values' => 'logPost'))
-                ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
+                $this->_searchform  ->addElement($logs)
+                                    ->addElement($email)
+                                    ->addElement('hidden', 'SearchLogTrack', array('values' => 'logPost'))
+                                    ->addElement('submit', 'Buscar', array('label' => $this->language->_('Buscar')));
 
         return $this->_searchform;
     }

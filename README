@@ -20,7 +20,7 @@ Instrucciones para levantar el sistema:
 
     - Ir a library/tera-wurfl/admin y ejecutar:
                 php5 tera_wurfl_updatedb.php
-                
+
     - Establecer como DocumentRoot en Apache el directorio public/ de la
       aplicación.
 

@@ -21,6 +21,7 @@ class Bootstrap
         $this->readConfig();
         $this->setupDb();
         $this->setupIdentity();
+        $this->setupMail();
         $this->setupTranslate();
         $this->setupMVC();
 
@@ -115,6 +116,24 @@ class Bootstrap
         }
 
     }
+
+    private function setupMail()
+    {
+
+        $config = Zend_Registry::getInstance()->configuration;
+
+        $cfg = array(   'auth' => 'login',
+                        'username' => $config->gmail->username,
+                        'password' => $config->gmail->password,
+                        'ssl' => 'tls'
+                    );
+
+        $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $cfg);
+
+        Zend_Registry::getInstance()->mailTransport = $transport;
+
+    }
+
 
     private function setupTranslate()
     {

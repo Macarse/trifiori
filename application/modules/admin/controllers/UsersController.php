@@ -55,7 +55,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         }
 
                         /*TODO: Si ocurre un error se muestra que insertó bien*/
-                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa.');
+                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa');
                         $this->_addform = null;
                     }
                     else
