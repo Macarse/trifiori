@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-01 02:47-0300\n"
+"POT-Creation-Date: 2008-12-11 21:28-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -486,7 +486,7 @@ msgstr "Tin2"
 #: ../modules/user/controllers/CargasController.php:235
 #: ../modules/user/controllers/CargasController.php:318
 msgid "Lata de Aluminio"
-msgstr "Aluminum tin"
+msgstr "Aluminium tin"
 
 #: ../modules/user/controllers/CargasController.php:238
 #: ../modules/user/controllers/CargasController.php:321
@@ -810,6 +810,8 @@ msgstr "Fax"
 
 #: ../modules/user/controllers/ProveedoresController.php:236
 #: ../modules/user/controllers/ProveedoresController.php:288
+#: ../modules/admin/controllers/UsersController.php:277
+#: ../modules/admin/controllers/UsersController.php:395
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -829,43 +831,55 @@ msgstr "Modify Turn"
 msgid "Agregar Usuario"
 msgstr "Add User"
 
-#: ../modules/admin/controllers/UsersController.php:63
+#: ../modules/admin/controllers/UsersController.php:59
+msgid "Inserción exitosa"
+msgstr "Insert Successful"
+
+#: ../modules/admin/controllers/UsersController.php:64
 msgid "Las contraseñas no son iguales"
 msgstr "Passwords do not match"
 
-#: ../modules/admin/controllers/UsersController.php:68
+#: ../modules/admin/controllers/UsersController.php:69
 msgid "Ocurrió un error"
 msgstr "An error has occurred"
 
-#: ../modules/admin/controllers/UsersController.php:78
+#: ../modules/admin/controllers/UsersController.php:79
 msgid "Listar Usuarios"
 msgstr "List Users"
 
-#: ../modules/admin/controllers/UsersController.php:140
+#: ../modules/admin/controllers/UsersController.php:141
 msgid "No puede eliminar al administrador."
 msgstr "Administrator can not be deleted."
 
-#: ../modules/admin/controllers/UsersController.php:163
+#: ../modules/admin/controllers/UsersController.php:164
 msgid "Modificar Usuario"
 msgstr "Modify User"
 
-#: ../modules/admin/controllers/UsersController.php:247
-#: ../modules/admin/controllers/UsersController.php:355
+#: ../modules/admin/controllers/UsersController.php:249
+#: ../modules/admin/controllers/UsersController.php:366
 msgid "Repetir Clave"
 msgstr "Repeat Password"
 
-#: ../modules/admin/controllers/UsersController.php:260
-#: ../modules/admin/controllers/UsersController.php:368
+#: ../modules/admin/controllers/UsersController.php:262
+#: ../modules/admin/controllers/UsersController.php:379
 msgid "Idioma"
 msgstr "Language"
 
-#: ../modules/admin/controllers/UsersController.php:301
+#: ../modules/admin/controllers/UsersController.php:310
 msgid "Nombre de Usuario"
 msgstr "Username"
 
 #: ../modules/admin/controllers/PanelController.php:13
 msgid "Panel del Administrador"
 msgstr "Administration Panel"
+
+#: ../modules/admin/controllers/LogController.php:57
+msgid "No se encontraron logs"
+msgstr "No logs found"
+
+#: ../modules/admin/controllers/LogController.php:113
+msgid "Enviar resultados por email"
+msgstr "Send e-mail with results"
 
 #: ../languages/templates/form/zend_validate.php:2
 msgid "isEmpty"
@@ -1087,6 +1101,7 @@ msgstr "*The name must have less tan 30 characters"
 
 #: ../modules/user/views/scripts/monedas/listmonedas.phtml:6
 #: ../modules/user/views/scripts/monedas/listmonedas.phtml:24
+#: ../modules/user/views/scripts/monedas/listmonedas.phtml:36
 msgid "Eliminar"
 msgstr "Delete"
 
@@ -2386,8 +2401,8 @@ msgstr "*The date of the request date is invalid"
 msgid "Codigo Cliente"
 msgstr "Client Code"
 
-#: ../modules/admin/views/scripts/users/listusers.phtml:19
-#: ../modules/admin/views/scripts/users/listusers.phtml:55
+#: ../modules/admin/views/scripts/users/listusers.phtml:20
+#: ../modules/admin/views/scripts/users/listusers.phtml:59
 msgid "CSS"
 msgstr "CSS"
 
@@ -2690,8 +2705,6 @@ msgstr "Delete Flag "
 #~ msgstr "Address"
 #~ msgid "Orden: "
 #~ msgstr "Order:"
-#~ msgid "Inserción exitosa"
-#~ msgstr "Insert Successful"
 
 #, fuzzy
 #~ msgid "Borrar opp"
