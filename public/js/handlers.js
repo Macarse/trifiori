@@ -70,6 +70,47 @@ function dateToLocaleString(dt, cal, lang)
         return (mStr + "-" + dStr + "-" + yStr);
 }
 
+function handlerCalFechaDesdeES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calFechaDesde');
+};
+
+function handlerCalFechaDesdeEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calFechaDesde');
+};
+
+function handlerCalFechaHastaES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calFechaHasta');
+};
+
+function handlerCalFechaHastaEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaHasta', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calFechaHasta');
+};
+
+
 function handlerCalFechaIngresoES(type,args,obj)
 {
     var selected = args[0];

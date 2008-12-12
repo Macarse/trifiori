@@ -486,6 +486,62 @@ class Importaciones extends Zend_Db_Table_Abstract
         return True;
     }
 
+
+    public function getEstadisticas( $type , $from, $to)
+    {
+           //$db = Zend_Db::factory();
+           $registry = Zend_Registry::getInstance();
+           $select = $registry->database;
+
+            $fdesde = $this->translateDate($from);
+            $fhasta = $this->translateDate($to);
+
+            switch($type)
+            {
+                case 'pais':
+                   $select = $select->select()
+                     ->from(array('imp' => 'IMPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('band' => 'BANDERAS'),
+                            'imp.CODIGO_BAN = band.CODIGO_BAN',
+                            array('nombre' => 'NOMBRE_BAN'))
+                     ->where('imp.FECHAINGRESO_IMP >= ?', $fdesde)
+                     ->where('imp.FECHAINGRESO_IMP <= ?', $fhasta)
+                     ->group('nombre');
+                    break;
+                case 'destinacion':
+                   $select = $select->select()
+                     ->from(array('imp' => 'IMPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('des' => 'DESTINACIONES'),
+                            'imp.CODIGO_DES = des.CODIGO_DES',
+                            array('nombre' => 'DESCRIPCION_DES'))
+                     ->where('imp.FECHAINGRESO_IMP >= ?', $fdesde)
+                     ->where('imp.FECHAINGRESO_IMP <= ?', $fhasta)
+                     ->group('nombre');
+                    break;
+                case 'cliente':
+                   $select = $select->select()
+                     ->from(array('imp' => 'IMPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('cli' => 'CLIENTES'),
+                            'imp.CODIGO_CLI = cli.CODIGO_CLI',
+                            array('nombre' => 'NOMBRE_CLI'))
+                     ->where('imp.FECHAINGRESO_IMP >= ?', $fdesde)
+                     ->where('imp.FECHAINGRESO_IMP <= ?', $fhasta)
+                     ->group('nombre');
+
+                    break;
+
+            }
+         
+            $results = $this->getAdapter()->fetchAll($select);
+
+            return $results;
+
+    }
+
+
     public function searchImportacion( $busqueda )
     {
         if (!isset($busqueda["searchCliente"]))
