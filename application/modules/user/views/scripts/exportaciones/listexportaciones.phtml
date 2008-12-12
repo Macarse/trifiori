@@ -1,15 +1,18 @@
 <script type="text/javascript">
 var myColumnDefs =
-	[{key:"orden",label:" <?= $this->language->_("Orden")?> ", sortable:true},
-	{key:"trans",label:" <?= $this->language->_("Transporte")?> ", sortable:true},
-	{key:"cliente",label:" <?= $this->language->_("Codigo Cliente")?> ", sortable:true},
-	{key:"destinacion",label:" <?= $this->language->_("Destinación")?> ", sortable:true},
-	{key:"carga",label:" <?= $this->language->_("Carga")?> ", sortable:true},
-	{key:"feching",label:" <?= $this->language->_("Fecha de Ingreso")?> ", sortable:true},
-	{key:"descmer",label:" <?= $this->language->_("Descripción Mercadería")?> ", sortable:true},
-	{key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
-	{key:"mod",label:" <?= $this->language->_("Modificar")?> ", sortable:false},
-	{key:"elim",label:" <?= $this->language->_("Eliminar")?> ", sortable:false}];
+[
+    {key:"orden",label:" <?= $this->language->_("Orden")?> ", sortable:true},
+    {key:"trans",label:" <?= $this->language->_("Transporte")?> ", sortable:true},
+    {key:"cliente",label:" <?= $this->language->_("Codigo Cliente")?> ", sortable:true},
+    {key:"destinacion",label:" <?= $this->language->_("Destinación")?> ", sortable:true},
+    {key:"carga",label:" <?= $this->language->_("Carga")?> ", sortable:true},
+    {key:"feching",label:" <?= $this->language->_("Fecha de Ingreso")?> ", sortable:true},
+    {key:"descmer",label:" <?= $this->language->_("Descripción Mercadería")?> ", sortable:true},
+    {key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
+    {key:"reporte",label:"<?= $this->language->_("Reporte")?>", sortable:false},
+    {key:"mod",label:" <?= $this->language->_("Modificar")?> ", sortable:false},
+    {key:"elim",label:" <?= $this->language->_("Eliminar")?> ", sortable:false}
+];
 
 var hideLabel = "<?= $this->language->_("Oculto")?>";
 var showLabel = "<?= $this->language->_("Visible")?>";
@@ -44,6 +47,7 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
             <th> <?= $this->language->_("Fecha de Ingreso")?> </th>
             <th> <?= $this->language->_("Descripción Mercadería")?> </th>
             <th> <?= $this->language->_("Detalle")?> </th>
+            <th><?= $this->language->_("Reporte")?></th>
             <th> <?= $this->language->_("Modificar")?> </th>
             <th> <?= $this->language->_("Eliminar")?> </th>
         </tr>
@@ -61,6 +65,9 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
             <td> <?= $exportacion->desMercaderias() ?> </td>
             <td>
             <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value=" <?= $this->language->_("Detalle")?> " />
+            </td>
+            <td>
+                <a href="<?= "/user/exportaciones/pdf/id/" . $exportacion->id() ?>"><img src="/images/pdf.png" alt="<?= $this->language->_("Reporte")?>" title="<?= $this->language->_("Reporte")?>" width="30" height="30"></a>
             </td>
             <td>
                 <a href="<?= "/user/exportaciones/modexportaciones/id/" . $exportacion->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"> </a>
