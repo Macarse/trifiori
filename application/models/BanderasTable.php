@@ -27,11 +27,28 @@ class Banderas extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function searchBandera( $name )
+    public function searchBandera( $name , $sortby, $sorttype )
     {
         $name = mysql_real_escape_string($name);
+//         siempre se ordena por nombre:
+//         $mySortby = mysql_real_escape_string($sortby);
+        $mySortby = "name";
+        $mySorttype = mysql_real_escape_string($sorttype);
 
-        return $this->select()->where("NOMBRE_BAN LIKE '%" . $name . "%'"); 
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        if ($mySortby == "name")
+            $mySortby = "NOMBRE_BAN";
+        
+        if ($name != "")
+            $where = "NOMBRE_BAN LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+            
+        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function addBandera( $name )
