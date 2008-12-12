@@ -192,7 +192,7 @@ class tera_wurfl {
         {
             // connect to database
 
-            $this->dbcon = mysql_connect(DB_HOST,DB_USER,DB_PASS);
+            $this->dbcon = @mysql_connect(DB_HOST,DB_USER,DB_PASS);
 
             if (!$this->dbcon)
             {
@@ -204,7 +204,7 @@ class tera_wurfl {
 
             // select schema
 
-            if ( !mysql_select_db(DB_SCHEMA,$this->dbcon) )
+            if ( !@mysql_select_db(DB_SCHEMA,$this->dbcon) )
             {
                 throw new Exception("ERROR: Connected to MySQL Server but" .
                     "could not select database (".DB_SCHEMA."): ".mysql_error());
