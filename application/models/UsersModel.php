@@ -24,6 +24,11 @@ class UsersModel extends Zend_Db_Table_Row_Abstract
         return $this->EMAIL_USU;
     }
 
+    public function resetHash()
+    {
+        return $this->RESET_HASH_USU;
+    }
+
     public function isAdmin()
     {
         if ($this->USUARIO_USU == 'admin')

@@ -81,9 +81,9 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
-        
+
         $this->_searchform = $this->getUserSearchForm();
         if ($this->_searchform->isValid($_GET))
         {

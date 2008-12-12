@@ -49,6 +49,57 @@ class Users extends Zend_Db_Table_Abstract
         return $this->select()->where("USUARIO_USU LIKE '%" . $name . "%'"); 
     }
 
+    public function getUserByResetHash( $hash )
+    {
+        /*TODO: Try Catch*/
+        $where = $this->getAdapter()->quoteInto('RESET_HASH_USU = ?', $hash);
+
+        return $this->fetchRow($where);
+    }
+
+    public function newPass( $email )
+    {
+        /*TODO: Try Catch*/
+        $where = $this->getAdapter()->quoteInto('EMAIL_USU = ?', $email);
+        $row = $this->fetchRow($where);
+
+        if (count($row))
+        {
+            $hash = hash('SHA1', rand());
+            $this->modifyResetHash( $row->id(), $hash );
+
+            return $hash;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+
+
+    public function changePass( $id, $pass, $hash)
+    {
+        /*TODO: Try Catch*/
+        $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
+        $row = $this->fetchRow($where);
+
+        $this->update(array('PASSWORD_USU'  => $pass,
+                            'RESET_HASH_USU'=> $hash ), $where );
+
+        return True;
+    }
+
+    public function modifyResetHash( $id, $hash)
+    {
+        /*TODO: Try Catch*/
+        $where = $this->getAdapter()->quoteInto('CODIGO_USU = ?', $id);
+        $row = $this->fetchRow($where);
+
+        $this->update(array('RESET_HASH_USU'    => $hash), $where );
+
+        return True;
+    }
+
     public function modifyUser( $id, $name, $user, $pass, $lang, $css, $email )
     {
         /*TODO: Try Catch*/
