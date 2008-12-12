@@ -216,7 +216,7 @@ class IndexController extends Trifiori_Default_Controller_Action
                             $mail = new Zend_Mail();
                             $mail->setBodyHtml($body);
                             $mail->setFrom($config->gmail->email, 'Trifiori Web');
-                            $mail->addTo($config->admin->email, $config->admin->name);
+                            $mail->addTo($values['email'], $this->language->_("Usuario"));
                             $mail->setSubject('Trifiori Web');
                             $mail->send(Zend_Registry::getInstance()->mailTransport);
 
