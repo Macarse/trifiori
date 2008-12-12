@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-11 21:28-0300\n"
+"POT-Creation-Date: 2008-12-11 22:02-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -873,11 +873,23 @@ msgstr "Username"
 msgid "Panel del Administrador"
 msgstr "Administration Panel"
 
-#: ../modules/admin/controllers/LogController.php:57
+#: ../modules/admin/controllers/LogController.php:49
+msgid "N&uacute;mero de identificaci&oacute;n: "
+msgstr "ID: "
+
+#: ../modules/admin/controllers/LogController.php:51
+msgid "Nivel de prioridad: "
+msgstr "Priority level: "
+
+#: ../modules/admin/controllers/LogController.php:53
+msgid "Mensaje: "
+msgstr "Message: "
+
+#: ../modules/admin/controllers/LogController.php:60
 msgid "No se encontraron logs"
 msgstr "No logs found"
 
-#: ../modules/admin/controllers/LogController.php:113
+#: ../modules/admin/controllers/LogController.php:117
 msgid "Enviar resultados por email"
 msgstr "Send e-mail with results"
 
