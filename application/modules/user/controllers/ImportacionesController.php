@@ -98,7 +98,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 $importacionesTable = new Importaciones();
                 $impo = $importacionesTable->searchImportacion($_GET);
                 $busqueda = "";
-                
+
                 if (isset($_GET["searchOrden"]))
                 {
                     $busqueda = "&searchOrden=" . $_GET["searchOrden"];
@@ -107,7 +107,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 {
                     $busqueda = "&searchOrden=";
                 }
-                
+
                 if (isset($_GET["searchCliente"]))
                 {
                     $busqueda = $busqueda . "&searchCliente=" . $_GET["searchCliente"];
@@ -116,7 +116,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 {
                     $busqueda = $busqueda . "&searchCliente=";
                 }
-                
+
                 if (isset($_GET["searchCarga"]))
                 {
                     $busqueda = $busqueda . "&searchCarga=" . $_GET["searchCarga"];
@@ -125,7 +125,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 {
                     $busqueda = $busqueda . "&searchCarga=";
                 }
-                
+
                 Zend_Registry::set('busqueda', $busqueda);
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($impo, $importacionesTable));
                 //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
@@ -147,7 +147,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         }
         $this->view->importacionSearchForm = $this->getImportacionSearchForm();
     }
-    
+
     public function removeimportacionesAction()
     {
         /*TODO: Agregar un "Seguro que desea eliminar?"*/
@@ -194,16 +194,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
 
             if (count($row))
             {
-                $pdf = new Zend_Pdf();
-
-                // Reverse page order
-                $pdf->pages = array_reverse($pdf->pages);
-                $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-                $pdf->pages[] = ($page1 = $pdf->newPage('A4'));
-
-                // Apply font and draw text
-                $page1->setFont($font, 12);
-                $page1->drawText('Carlos', 72, 720);
+                $pdf = $this->generatePDF($row);
 
                 $pdfDocument = $pdf->render();
                 header('Content-Type: application/pdf');
@@ -224,6 +215,128 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         {
             $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
         }
+    }
+
+    private function generatePDF($row)
+    {
+        $x = 70;
+        $y = 700;
+        $dif = 20;
+
+        $pdf = new Zend_Pdf();
+
+        $pdf->properties['Title'] = $this->language->_("Importaciones");
+        $pdf->properties['Author'] = 'Trifiori';
+        $pdf->properties['Keywords'] = 'Trifiori';
+        $pdf->properties['Creator'] = 'Trifiori';
+        $pdf->properties['Producer'] = 'Trifiori';
+
+        // Reverse page order
+        $pdf->pages = array_reverse($pdf->pages);
+        $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+        $pdf->pages[] = ($page1 = $pdf->newPage('A4'));
+
+//         Usar esto cuando Zend_PDF funcione con img sin dependencias.
+//         $image = Zend_Pdf_Image::imageWithPath('PATH');
+//         $page1->drawImage($image, 100, 100, 400, 300);
+
+
+        // Apply font and draw text
+        $page1->setFont($font, 24);
+
+        $page1->drawText($this->language->_("Importaciones"), 250, 800, 'UTF-8');
+
+        // Apply font and draw text
+        $page1->setFont($font, 14);
+
+        $page1->drawText($this->language->_("Órden: ") .
+                $row->orden(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Transporte: ") .
+                $row->codTransporteName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Cliente: ") .
+                $row->codClienteName(), $x, $y, 'UTF-8');
+
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Bandera: ") .
+                $row->codBanderaName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Moneda: ") .
+                $row->codMonedaName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Giro: ") .
+                $row->codGiroName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Destinación: ") .
+                $row->codDestinacionName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Carga: ") .
+                $row->codCargaName(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+
+        $page1->drawText($this->language->_("Fecha de Ingreso: ") .
+                $row->fechaIngreso(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Descripción de la mercadería: ") .
+                $row->desMercaderias(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Valor de la factura: ") .
+                $row->valorFactura(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Fecha de vencimiento: ") .
+                $row->DESvencimiento(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Fecha de ingreso al puerto: ") .
+                $row->ingresoPuerto(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("OPP: ") .
+                $row->codOppNum(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Fecha en que fue presentado: ") .
+                $row->DESpresentado(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Número de factura: ") .
+                $row->DESfactura(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        $page1->drawText($this->language->_("Fecha de la factura: ") .
+                $row->DEsfechaFactura(), $x, $y, 'UTF-8');
+
+        $y -= $dif;
+
+        return $pdf;
     }
 
     public function modimportacionesAction()
@@ -590,7 +703,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         }
 
         echo "<div class=\"hd\">" . $this->language->_("Detalles de Importación") . "</div>";
-        
+
         echo "<div class=\"bd\">";
         if ($results != null)
         {
@@ -612,7 +725,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 echo "<b>" . $this->language->_("OPP: ") . "</b>" . $result->codOppNum() .  "<br />";
                 echo "<b>" . $this->language->_("Fecha en que fue presentado: ") . "</b>" . $result->DESpresentado() .  "<br />";
                 echo "<b>" . $this->language->_("Número de factura: ") . "</b>" . $result->DESfactura() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" . $result->DEsfechaFactura() .  "<br />";   
+                echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" . $result->DEsfechaFactura() .  "<br />";
             }
         }
         echo "</div>";

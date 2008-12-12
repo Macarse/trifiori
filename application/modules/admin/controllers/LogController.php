@@ -25,12 +25,36 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
 
                 if (isset($_GET["consulta"]))
                 {
-                    $log = $table->searchLog($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $log = $table->searchLog($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $log = $table->searchLog($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $log = $table->searchLog($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $log = $table->select()->where($where)->order("CODIGOLOG DESC");
+                    $log = $table->searchLog("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
 
@@ -69,7 +93,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
                     $mail->addTo($config->admin->email, $config->admin->name);
                     $mail->setSubject('Trifiori Web');
                     $mail->send(Zend_Registry::getInstance()->mailTransport);
-                    $log = $table->searchLog($_GET["consulta"]);
+                    $log = $table->searchLog($_GET["consulta"], $mySortBy, $mySortType);
                 }
 
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($log, $table));

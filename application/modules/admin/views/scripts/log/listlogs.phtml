@@ -1,5 +1,5 @@
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
+    <div class="error"><?= $this->escape($this->error) ?></div>
 <? } ?>
 <div class="busqueda">
     <?= $this->logSearchForm ?>
@@ -8,17 +8,17 @@
 <table id="tablemodifications">
     <thead>
         <tr>
-            <th> <?= $this->language->_("ID") ?> </th>
-            <th> <?= $this->language->_("Nivel") ?> </th>
-            <th> <?= $this->language->_("Mensaje") ?> </th>
+            <th> <?= $this->escape($this->language->_("ID")) ?> </th>
+            <th> <?= $this->escape($this->language->_("Nivel")) ?> </th>
+            <th> <?= $this->escape($this->language->_("Mensaje")) ?> </th>
         </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $log) { ?>
-        <tr> <td> <?= $log->id() ?> </td>
-            <td> <?= $log->nivel() ?> </td>
-            <td> <?= $log->msg() ?> </td>
+        <tr> <td> <?= $this->escape($log->id()) ?> </td>
+            <td> <?= $this->escape($log->nivel()) ?> </td>
+            <td> <?= $this->escape($log->msg()) ?> </td>
         </tr>
         <? } ?>
     <? } ?>
@@ -31,12 +31,14 @@
 <?php } ?>
 
 <script type="text/javascript">
+        
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
+
         var myColumnDefs = [
-            {key:"id",label:" <?= $this->language->_("ID") ?> ",sortable:true},
-            {key:"level",label:" <?= $this->language->_("Nivel") ?> ", sortable:true},
-            {key:"msg",label:" <?= $this->language->_("Mensaje") ?> ", sortable:false}
+            {key:"id",label:" <?= $this->escape($this->language->_("ID")) ?> ",sortable:false},
+            {key:"level",label:" <?= $this->escape($this->language->_("Nivel")) ?> ", sortable:false},
+            {key:"msg",label:" <?= $this->escape($this->language->_("Mensaje")) ?> ", sortable:false}
         ];
 
         this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablemodifications"));
@@ -52,9 +54,61 @@ YAHOO.util.Event.addListener(window, "load", function() {
         };
 
         this.myDataTable = new YAHOO.widget.DataTable("divmodificaciones", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"id",dir:"desc"}}
+                {}
         );
+        
+        function cambiaBusqueda(e) {
+            var x = location.protocol + '//' + location.host + location.pathname;
+            var y = "";
+            var sortby_prev = "";
+            var sort_prev = "";
+            var sort_act;
+            
+            <? if (isset($_GET["consulta"])) { ?>
+                y = "<?= $this->escape($_GET["consulta"]) ?>";
+            <? } ?>
+            
+            <? if (isset($_GET["sortby"])) { ?>
+                sortby_prev = "<?= $this->escape($_GET["sortby"]) ?>";
+            <? } ?>
+                        
+            <? if (isset($_GET["sort"])) { ?>
+                sort_prev = "<?= $this->escape($_GET["sort"]) ?>";
+            <? } ?>
+                        
+            if (this.getColumn(e.target) == "Column instance 0")
+            {
+                if (sortby_prev == "id") 
+                {
+                    if (sort_prev == "asc")
+                        sort_act = "desc";
+                    else
+                        sort_act = "asc";
+                }
+                else
+                {
+                    sort_act = "desc";
+                }
+                window.location = x + "?consulta=" + y + "&sortby=id" + "&sort=" + sort_act;
+            }
+            else if (this.getColumn(e.target) == "Column instance 1")
+            {
+                if (sortby_prev == "level") 
+                {
+                    if (sort_prev == "asc")
+                        sort_act = "desc";
+                    else
+                        sort_act = "asc";
+                }
+                else
+                {
+                    sort_act = "desc";
+                }
+                window.location = x + "?consulta=" + y + "&sortby=level" + "&sort=" + sort_act;
+            }
+        }
+        this.myDataTable.subscribe("theadCellClickEvent", cambiaBusqueda);
     };
 });
-</script>
 
+</script>

@@ -13,11 +13,28 @@ class Log extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function searchLog( $msg )
+    public function searchLog( $msg , $sortby , $sorttype)
     {
         $msg = mysql_real_escape_string($msg);
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
 
-        return $this->select()->where("MSG LIKE '%ALTERANDO%' AND MSG LIKE '%" . $msg . "%'");
+        if ($mySorttype == "asc")
+            $mySorttype = "ASC";
+        else
+            $mySorttype = "DESC";
+        
+        if ($mySortby == "id")
+            $mySortby = "CODIGOLOG";
+        else
+            $mySortby = "NIVEL";
+        
+        if ($msg != "")
+            $where = "MSG LIKE '%ALTERANDO%' AND MSG LIKE '%" . $msg . "%'";
+        else
+            $where = "MSG LIKE '%ALTERANDO%'";
+        
+        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
     }
 }
 

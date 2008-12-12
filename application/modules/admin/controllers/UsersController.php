@@ -93,15 +93,39 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
                 if (isset($_GET["consulta"]))
                 {
-                    $user = $table->searchUser($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $user = $table->searchUser($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $user = $table->searchUser($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $user = $table->searchUser($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $user = $table->select();
+                    $user = $table->searchUser("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-
+                
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($user, $table));
 
                 if (isset($_GET["page"]))

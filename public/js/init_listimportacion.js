@@ -18,7 +18,7 @@
 				{key:"valorFactura"},
 				{key:"ingresoPuerto"},
 				{key:"detalle"},
-				{key:"pdf"},
+				{key:"reporte"},
 				{key:"mod"},
 				{key:"elim"}
 			    ]
