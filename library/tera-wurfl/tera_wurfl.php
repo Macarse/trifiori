@@ -188,16 +188,38 @@ class tera_wurfl {
 	 * @return boolean	success
 	 *
 	 */
-	function tera_wurfl() {
-		// connect to database
-		$this->dbcon = mysql_connect(DB_HOST,DB_USER,DB_PASS) or die("ERROR: Could not connect to MySQL Server (".DB_HOST."): ".mysql_error());
-		// select schema
-		mysql_select_db(DB_SCHEMA,$this->dbcon) or die("ERROR: Connected to MySQL Server but could not select database (".DB_SCHEMA."): ".mysql_error());
-		if(WURFL_PATCH_ENABLE){
-			$this->devtable = DB_HYBRID_TABLE;
-		}else{
-			$this->devtable = DB_DEVICE_TABLE;
-		}
+	function tera_wurfl()
+        {
+            // connect to database
+
+            $this->dbcon = mysql_connect(DB_HOST,DB_USER,DB_PASS);
+
+            if (!$this->dbcon)
+            {
+                throw new Exception("ERROR: Could not connect to MySQL" .
+                    "Server (".DB_HOST."): ".mysql_error());
+
+                return False;
+            }
+
+            // select schema
+
+            if ( !mysql_select_db(DB_SCHEMA,$this->dbcon) )
+            {
+                throw new Exception("ERROR: Connected to MySQL Server but" .
+                    "could not select database (".DB_SCHEMA."): ".mysql_error());
+
+                return False;
+            }
+
+            if(WURFL_PATCH_ENABLE)
+            {
+                $this->devtable = DB_HYBRID_TABLE;
+            }
+            else
+            {
+                $this->devtable = DB_DEVICE_TABLE;
+            }
 //TODO: remove this test - it's too slow
 // make sure the device table exists
 //$test = @mysql_query("SELECT COUNT(deviceID) AS num FROM ".$this->devtable) or die("ERROR: Device table not found (".$this->devtable."): ".mysql_error()."<br/><br/><strong>If this is a new installation, please <a href=\"admin/\">update the database</a>.");

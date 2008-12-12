@@ -28,3 +28,6 @@ Instrucciones para levantar el sistema:
         Si el hostname es distinto de 'localhost' se deberá generar una nueva clave
         en http://code.google.com/apis/maps/.
 
+    - Usuarios para usar el sistema:
+        - usuario: admin; password: admin
+        - usuario: prueba; password: prueba
