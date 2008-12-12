@@ -17,9 +17,8 @@
 				{key:"desMercaderias"},
 				{key:"valorFactura"},
 				{key:"ingresoPuerto"},
-				{key:"DESnroDoc"},
-				{key:"DESvencimiento"},
 				{key:"detalle"},
+				{key:"pdf"},
 				{key:"mod"},
 				{key:"elim"}
 			    ]

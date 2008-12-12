@@ -341,6 +341,7 @@ create table USUARIOS
    PASSWORD_USU                   varbinary(128),
    USUARIO_USU                    varchar(30),
    EMAIL_USU                      varchar(100),
+   RESET_HASH_USU                 varbinary(128),
    IDIOMA_USU                     int,
    CODIGO_CSS                     int,
    primary key (CODIGO_USU),
