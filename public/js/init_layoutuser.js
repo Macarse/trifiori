@@ -38,7 +38,7 @@
 		                p_oShadow.style.height = this.element.offsetHeight + "px";
 		            }
 		        }
-
+                
 		        function onAnimationComplete(p_sType, p_aArgs, p_oShadow) {
 		            var oBody = this.body,
 		                oUL = oBody.getElementsByTagName("ul")[0];

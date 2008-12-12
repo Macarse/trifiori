@@ -13,18 +13,25 @@ class Trifiori_Controller_Plugin_Translate extends Zend_Controller_Plugin_Abstra
 
             if ($user != 'guest')
             {
-                $userTable = new Users();
-                $userRow = $userTable->getUserByName($user);
+                try
+                {
+                    $userTable = new Users();
+                    $userRow = $userTable->getUserByName($user);
 
-                if ($userRow->language() == 'en')
-                {
-                    $language->setLocale('en');
-                    Zend_Registry::getInstance()->language = $language;
+                    if ($userRow->language() == 'en')
+                    {
+                        $language->setLocale('en');
+                        Zend_Registry::getInstance()->language = $language;
+                    }
+                    else
+                    {
+                        $language->setLocale('es');
+                        Zend_Registry::getInstance()->language = $language;
+                    }
                 }
-                else
+                catch (Zend_Exception $error)
                 {
-                    $language->setLocale('es');
-                    Zend_Registry::getInstance()->language = $language;
+//                     Nada que hacer
                 }
             }
         }
