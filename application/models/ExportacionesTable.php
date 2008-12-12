@@ -218,11 +218,14 @@ class Exportaciones extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function getEstadisticas( $type )
+    public function getEstadisticas( $type , $from, $to)
     {
            //$db = Zend_Db::factory();
            $registry = Zend_Registry::getInstance();
            $select = $registry->database;
+
+            $fdesde = $this->translateDate($from);
+            $fhasta = $this->translateDate($to);
 
             switch($type)
             {
@@ -233,8 +236,9 @@ class Exportaciones extends Zend_Db_Table_Abstract
                      ->join(array('band' => 'BANDERAS'),
                             'exp.CODIGO_BAN = band.CODIGO_BAN',
                             array('nombre' => 'NOMBRE_BAN'))
+                     ->where('exp.FECHAINGRESO >= ?', $fdesde)
+                     ->where('exp.FECHAINGRESO <= ?', $fhasta)
                      ->group('nombre');
-
                     break;
                 case 'destinacion':
                    $select = $select->select()
@@ -243,6 +247,8 @@ class Exportaciones extends Zend_Db_Table_Abstract
                      ->join(array('des' => 'DESTINACIONES'),
                             'exp.CODIGO_DES = des.CODIGO_DES',
                             array('nombre' => 'DESCRIPCION_DES'))
+                     ->where('exp.FECHAINGRESO >= ?', $fdesde)
+                     ->where('exp.FECHAINGRESO <= ?', $fhasta)
                      ->group('nombre');
                     break;
                 case 'cliente':
@@ -252,12 +258,14 @@ class Exportaciones extends Zend_Db_Table_Abstract
                      ->join(array('cli' => 'CLIENTES'),
                             'exp.CODIGO_CLI = cli.CODIGO_CLI',
                             array('nombre' => 'NOMBRE_CLI'))
+                     ->where('exp.FECHAINGRESO >= ?', $fdesde)
+                     ->where('exp.FECHAINGRESO <= ?', $fhasta)
                      ->group('nombre');
 
                     break;
 
             }
-
+         
             $results = $this->getAdapter()->fetchAll($select);
 
             return $results;
