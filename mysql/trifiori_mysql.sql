@@ -61,6 +61,7 @@ create table BANDERAS
 (
    CODIGO_BAN                     int AUTO_INCREMENT             not null,
    NOMBRE_BAN                     varchar(150)                   not null,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_BAN),
    unique NOMBRE_BAN (NOMBRE_BAN)
 );
@@ -72,6 +73,7 @@ create table CANALES
 (
    CODIGO_CAN                     char(1)                        not null,
    DESCRIPCION_CAN                varchar(20)                    not null,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_CAN)
 );
 
@@ -88,6 +90,7 @@ create table CARGAS
    NROPAQUETE_CAR                 varchar(25),
    MARCAYNUMERO                   varchar(100),
    MERC__IMCO                     varchar(100),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_CAR),
    unique NROPAQUETE_CAR (NROPAQUETE_CAR)
 );
@@ -105,6 +108,7 @@ create table CLIENTES
    CUIT_CLI                       char(13),
    TIPOIVA_CLI                    varchar(100),
    TIPOCLIENTE_CLI                varchar(100),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_CLI),
    unique CUIT_CLI (CUIT_CLI)
 );
@@ -116,6 +120,7 @@ create table DESTINACIONES
 (
    CODIGO_DES                     int AUTO_INCREMENT              not null,
    DESCRIPCION_DES                varchar(150),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_DES),
    unique DESCRIPCION_DES (DESCRIPCION_DES)
 );
@@ -155,6 +160,7 @@ create table EXPORTACIONES
    PER_PRESENTADO                 date                           not null,
    PER_FACTURA                    varchar(40),
    PER_FECHAFACTURA               date,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_EXP),
    UNIQUE ORDEN (ORDEN)
 );
@@ -166,6 +172,7 @@ create table GIROS
 (
    CODIGO_GIR                     int AUTO_INCREMENT             not null,
    SECCION_GIR                    varchar(100)                   not null,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_GIR),
    unique SECCION_GIR (SECCION_GIR)
 );
@@ -202,6 +209,7 @@ create table IMPORTACIONES
    DES_CARGADO                    date                           not null,
    DES_FACTURA                    varchar(50),
    DES_FECHAFACTURA               date,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_IMP),
    UNIQUE ORDEN_IMP (ORDEN_IMP)
 );
@@ -224,6 +232,7 @@ create table MEDIOS
 (
    CODIGOMED                      int AUTO_INCREMENT             not null,
    DESCRIPCION_MED                varchar(50)                    not null,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGOMED),
    UNIQUE DESCRIPCION_MED (DESCRIPCION_MED)
 );
@@ -236,6 +245,7 @@ create table MONEDAS
    CODIGO_MON                     int AUTO_INCREMENT             not null,
    NAME_MON                       char(3)                        not null,
    DESCRIPCION_MON                varchar(150),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_MON),
    UNIQUE NAME_MON (NAME_MON)
 );
@@ -253,6 +263,7 @@ create table OPP
    FRACCIONADO_OPP                varchar(150),
    ESTAMPILLAS_OPP                varchar(150),
    IMPUESTOS_INTERNOS_OPP         varchar(150),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_OPP),
    UNIQUE NUMERO_OPP (NUMERO_OPP)
 );
@@ -279,6 +290,7 @@ create table PROVEEDOR_MEDIO
    TELEFONOS_TRA                  varchar(150)                   not null,
    FAX_TRA                        varchar(150),
    MAIL_TRA                       varchar(100),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_TRA),
    UNIQUE NOMBRE_TRA (NOMBRE_TRA)
 );
@@ -293,6 +305,7 @@ create table PUERTOS
    UBICACION_PUE                  varchar(255),
    LATITUD_PUE                    varchar(15),
    LONGITUD_PUE                   varchar(15),
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_PUE)
 );
 
@@ -303,6 +316,7 @@ create table TABLAS
 (
    NOMBRE                         varchar(50)                    not null,
    FECHA                          date,
+   DELETED                        char(1)                        default 0,
    primary key (NOMBRE)
 );
 
@@ -316,6 +330,7 @@ create table TRANSPORTES
    CODIGOMED                      int                            not null,
    NOMBRE_BUQ                     varchar(100)                   not null,
    OBSERVACIONES_BUQ              text,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_BUQ),
    UNIQUE NOMBRE_BUQ (NOMBRE_BUQ)
 );
@@ -344,6 +359,7 @@ create table USUARIOS
    RESET_HASH_USU                 varbinary(128),
    IDIOMA_USU                     int,
    CODIGO_CSS                     int,
+   DELETED                        char(1)                        default 0,
    primary key (CODIGO_USU),
    unique EMAIL_USU (EMAIL_USU),
    unique USUARIO_USU (USUARIO_USU)

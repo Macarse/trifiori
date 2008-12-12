@@ -1,13 +1,26 @@
-(function() 
-	{
-	    function doOnload() 
-		{				
-		    YAHOO.example.EnhanceFromMarkup = new function() {
+(function()
+{
+    function doOnload() 
+    {
+        YAHOO.example.EnhanceFromMarkup = new function() {
 
-			this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
-			this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
-			this.myDataSource.responseSchema = { fields: 
-			    [{key:"orden"},{key:"trans"},{key:"cliente"},{key:"destinacion"},{key:"carga"},{key:"feching"},{key:"descmer"},{key:"detalle"},{key:"mod"},{key:"elim"}]};
+        this.myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("tablelist"));
+        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+        this.myDataSource.responseSchema = { fields:
+        [
+            {key:"orden"},
+            {key:"trans"},
+            {key:"cliente"},
+            {key:"destinacion"},
+            {key:"carga"},
+            {key:"feching"},
+            {key:"descmer"},
+            {key:"detalle"},
+            {key:"reporte"},
+            {key:"mod"},
+            {key:"elim"}
+        ]
+    };
 
 			var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
 				{sortedBy:{key:"orden",dir:"desc"},draggableColumns:true});

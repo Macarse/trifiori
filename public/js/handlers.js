@@ -105,6 +105,26 @@ function dateToLocaleString(dt, cal, lang)
         return (mStr + "-" + dStr + "-" + yStr);
 }
 
+function handlerCalFechaDineroES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idpedidoDinero', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calpedidoDinero');
+};
+
+function handlerCalFechaDineroEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idpedidoDinero', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calpedidoDinero');
+};
+
 function handlerCalFechaDesdeES(type,args,obj)
 {
     var selected = args[0];
@@ -405,8 +425,6 @@ function loadGkeysMap(xhr)
 
 
 }
-
-
 
 function loadMap(latitud,longitud)
 {

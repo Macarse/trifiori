@@ -50,6 +50,7 @@
                        <div id="menuusuario" class="yuimenubar yuimenubarnav">
                             <div class="bd">
                                 <ul class="first-of-type">
+                                    <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="#"><?= $this->language->_("Bienvenido")?> <b><?=Zend_Auth::getInstance()->getIdentity()->NOMBRE_USU?></b></a></li>
                                     <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="/user/main-page/logout"><?= $this->language->_("Logout")?></a></li>
 									<li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href="/user/personalizar/modpersonalizar"><?= $this->language->_("Personalizar")?></a></li>
                                     <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="#menuexportaciones"><?= $this->language->_("Exportaciones")?></a>
