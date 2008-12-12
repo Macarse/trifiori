@@ -9,7 +9,7 @@ var myColumnDefs =
     {key:"valorFactura",label:"<?= $this->language->_("Valor Factura")?>", sortable:true},
     {key:"ingresoPuerto",label:"<?= $this->language->_("Ingreso a Puerto")?>", sortable:true},
     {key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
-    {key:"pdf",label:"<?= $this->language->_("PDF")?>", sortable:false},
+    {key:"reporte",label:"<?= $this->language->_("Reporte")?>", sortable:false},
     {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
     {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
 ];
@@ -46,7 +46,7 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
         <th><?= $this->language->_("Valor Factura")?></th>
         <th><?= $this->language->_("Ingreso a Puerto")?></th>
         <th><?= $this->language->_("Detalle")?> </th>
-        <th><?= $this->language->_("PDF")?></th>
+        <th><?= $this->language->_("Reporte")?></th>
         <th><?= $this->language->_("Modificar")?></th>
         <th><?= $this->language->_("Eliminar")?></th>
         </tr>
@@ -66,7 +66,7 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
             <input type="button" id="botonLindo" onclick="ShowDetailsImp( <?= $importacion->id() ?> )" value=" <?= $this->language->_("Detalle")?> " />
             </td>
             <td>
-                <a href="<?= "/user/importaciones/pdf/id/" . $importacion->id() ?>"><img src="/images/pdf.png" alt="<?= $this->language->_("PDF")?>" title="<?= $this->language->_("PDF")?>" width="30" height="30"></a>
+                <a href="<?= "/user/importaciones/pdf/id/" . $importacion->id() ?>"><img src="/images/pdf.png" alt="<?= $this->language->_("Reporte")?>" title="<?= $this->language->_("Reporte")?>" width="30" height="30"></a>
             </td>
             <td>
                 <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"></a>
