@@ -36,8 +36,8 @@ YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
 
         var myColumnDefs = [
-            {key:"id",label:" <?= $this->escape($this->language->_("ID")) ?> ",sortable:true},
-            {key:"level",label:" <?= $this->escape($this->language->_("Nivel")) ?> ", sortable:true},
+            {key:"id",label:" <?= $this->escape($this->language->_("ID")) ?> ",sortable:false},
+            {key:"level",label:" <?= $this->escape($this->language->_("Nivel")) ?> ", sortable:false},
             {key:"msg",label:" <?= $this->escape($this->language->_("Mensaje")) ?> ", sortable:false}
         ];
 
