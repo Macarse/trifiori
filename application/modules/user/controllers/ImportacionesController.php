@@ -172,6 +172,60 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
         $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
     }
 
+    public function pdfAction()
+    {
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('id') != null )
+        {
+            $id = $this->getRequest()->getParam('id');
+
+            try
+            {
+                $importacionesTable = new Importaciones();
+                $row = $importacionesTable->getImportacionByID($id);
+            }
+            catch (Zend_Exception $error)
+            {
+                $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
+            }
+
+            if (count($row))
+            {
+                $pdf = new Zend_Pdf();
+
+                // Reverse page order
+                $pdf->pages = array_reverse($pdf->pages);
+                $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+                $pdf->pages[] = ($page1 = $pdf->newPage('A4'));
+
+                // Apply font and draw text
+                $page1->setFont($font, 12);
+                $page1->drawText('Carlos', 72, 720);
+
+                $pdfDocument = $pdf->render();
+                header('Content-Type: application/pdf');
+                header('Content-Disposition: attachment; filename=' .
+                    $row->orden() . '.pdf');
+                echo $pdfDocument;
+
+            }
+            else
+            {
+                $this->_flashMessenger->addMessage($this->language->_('ID inexistente'));
+                $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
+            }
+
+
+        }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
+        }
+    }
+
     public function modimportacionesAction()
     {
         $this->view->headTitle($this->language->_("Modificar Importación"));

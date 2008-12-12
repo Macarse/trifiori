@@ -35,12 +35,13 @@
     <!-- Google Map Key -->
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAogZkgR-yiG5StkZ1nsoMFhT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRsk1zxhN2xzEpG4eDtlWZ3a7-ijA" type="text/javascript"></script>
 
+    <script type="text/javascript" src="/charts/AC_RunActiveContent.js"></script>
     <script type="text/javascript" src="/js/handlers.js"></script>
     <script type="text/javascript" src="/js/ajax.js"></script>
     <script type="text/javascript" src="/js/gen_validatorv31.js"></script>
 
     <!-- Menu source file -->
-        <script type="text/javascript" src="/js/init_layoutuser.js"></script>
+    <script type="text/javascript" src="/js/init_layoutuser.js"></script>
     </head>
     <body class="yui-skin-sam">
 	 <div id="yui-main">
@@ -59,6 +60,16 @@
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Modificar Exportación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Borrar Exportación")?></a></li>
                                                     <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/listexportaciones"><?= $this->language->_("Listado")?></a></li>
+                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="#"><?= $this->language->_("Estadisticas")?></a>
+                                                        <div id="menuexpestadisticas" class="yuimenu">
+                                                            <div class="bd"> 
+                                                                <ul class="first-of-type">
+                                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/estadisticas/type/cliente"><?= $this->language->_("Exportaciones por Cliente")?></a></li>
+                                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/estadisticas/type/destinacion"><?= $this->language->_("Exportaciones por Destinacion")?></a></li>
+                                                                    <li class="yuimenuitem"><a class="yuimenuitemlabel" href="/user/exportaciones/estadisticas/type/pais"><?= $this->language->_("Exportaciones por Bandera")?></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div></li>
                                                 </ul>
                                             </div>
                                         </div>                    

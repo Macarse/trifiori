@@ -528,6 +528,47 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         return $this->_searchform;
     }
 
+    private function generateEstadisticas( $type )
+    {
+            $model = new Exportaciones();
+            $data = $model->getEstadisticas($type);
+
+            $xml = "<?xml version=\"1.0\" ?>\n\n<chart><chart_data>";
+            $rowCant = "<row><null/>";
+            $rowName = "<row><string></string>";
+            $rowSeparacion = "";
+
+            foreach($data as $row)
+            {
+                $rowCant .= "<number>" . $row['cantidad']. "</number>";
+                $rowName .= "<string>" . $row['nombre'] . "</string>";
+                $rowSeparacion .= "<number>4</number>";
+            }
+
+            $rowCant .= "</row>";
+            $rowName .= "</row>";
+
+            $xml .= $rowName . $rowCant;
+
+            $xml .= "	</chart_data>	<chart_grid_h thickness='0' />	<chart_label shadow='low' color='000000' alpha='65' size='10' position='inside' as_percentage='false' />	<chart_pref select='false' drag='true' rotation_x='40' min_x='20' max_x='90' />	<chart_rect x='200' y='30' width='350' height='300' positive_alpha='0' />	<chart_transition type='spin' delay='.5' duration='0.20' order='category' />	<chart_type>3d pie</chart_type>	<draw>		<rect bevel='bg' layer='background' x='0' y='0' width='600' height='400' fill_color='4c5577' line_thickness='0' />		<text shadow='low' color='0' alpha='5' size='40' x='-160' y='340' width='600' height='50' h_align='center' v_align='middle'>Estadisticas</text>		<rect shadow='low' layer='background' x='-50' y='70' width='500' height='200' rotation='-5' fill_alpha='0' line_thickness='80' line_alpha='5' line_color='0' />	</draw>	<filter>		<shadow id='low' distance='2' angle='45' color='0' alpha='50' blurX='4' blurY='4' />		<bevel id='bg' angle='180' blurX='100' blurY='100' distance='5' highlightAlpha='0' shadowAlpha='15' type='inner' />		<bevel id='bevel1' angle='45' blurX='5' blurY='5' distance='1' highlightAlpha='25' highlightColor='ffffff' shadowAlpha='50' type='inner' />	</filter>		<legend bevel='bevel1' transition='dissolve' delay='0' duration='1' x='0' y='45' width='50' height='210' margin='10' fill_color='0' fill_alpha='20' line_color='000000' line_alpha='0' line_thickness='0' layout='horizontal' bullet='circle' size='12' color='ffffff' alpha='85' />	<series_explode>" . $rowSeparacion . "</series_explode></chart>";
+
+        $fh = fopen("xml/expo_" . $type . ".xml", 'w+') or die("can't open file");
+        fwrite($fh, $xml);
+        fclose($fh);
+    }
+
+    public function estadisticasAction()
+    {
+        if ( $this->getRequest()->getParam('type') != null )
+        {
+            $this->_estType = $this->getRequest()->getParam('type');
+            if (($this->_estType == 'pais') || ($this->_estType == 'destinacion') || ($this->_estType == 'cliente'))
+            {
+                $this->generateEstadisticas($this->_estType);
+                $this->view->type = $this->_estType;
+            }
+        }
+    }
 
     private function getExportacionModForm( $id )
     {

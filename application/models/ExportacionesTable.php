@@ -217,6 +217,52 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
         return True;
     }
+
+    public function getEstadisticas( $type )
+    {
+           //$db = Zend_Db::factory();
+           $registry = Zend_Registry::getInstance();
+           $select = $registry->database;
+
+            switch($type)
+            {
+                case 'pais':
+                   $select = $select->select()
+                     ->from(array('exp' => 'EXPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('band' => 'BANDERAS'),
+                            'exp.CODIGO_BAN = band.CODIGO_BAN',
+                            array('nombre' => 'NOMBRE_BAN'))
+                     ->group('nombre');
+
+                    break;
+                case 'destinacion':
+                   $select = $select->select()
+                     ->from(array('exp' => 'EXPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('des' => 'DESTINACIONES'),
+                            'exp.CODIGO_DES = des.CODIGO_DES',
+                            array('nombre' => 'DESCRIPCION_DES'))
+                     ->group('nombre');
+                    break;
+                case 'cliente':
+                   $select = $select->select()
+                     ->from(array('exp' => 'EXPORTACIONES'),
+                            array('cantidad' => 'COUNT(*)'))
+                     ->join(array('cli' => 'CLIENTES'),
+                            'exp.CODIGO_CLI = cli.CODIGO_CLI',
+                            array('nombre' => 'NOMBRE_CLI'))
+                     ->group('nombre');
+
+                    break;
+
+            }
+
+            $results = $this->getAdapter()->fetchAll($select);
+
+            return $results;
+
+    }
     
     public function searchExportacion( $busqueda )
     {
