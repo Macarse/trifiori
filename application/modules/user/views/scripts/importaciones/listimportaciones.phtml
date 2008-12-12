@@ -1,17 +1,18 @@
 <script type="text/javascript">
-var myColumnDefs = [
-	{key:"orden",label:"<?= $this->language->_("Orden")?>", sortable:true},
-	{key:"codCanalName",label:"<?= $this->language->_("Canal")?>", sortable:true},
-	{key:"codClienteName",label:"<?= $this->language->_("Cliente")?>", sortable:true},
-	{key:"codOppName",label:"<?= $this->language->_("Opp")?>", sortable:true},
-	{key:"desMercaderias",label:"<?= $this->language->_("Descripción Mercadería")?>", sortable:true},
-	{key:"valorFactura",label:"<?= $this->language->_("Valor Factura")?>", sortable:true},
-	{key:"ingresoPuerto",label:"<?= $this->language->_("Ingreso a Puerto")?>", sortable:true},
-	{key:"DESnroDoc",label:"<?= $this->language->_("Despacho: Nro Documento")?>", sortable:true},
-	{key:"DESvencimiento",label:"<?= $this->language->_("Despacho: Vencimiento")?>", sortable:true},
-	{key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
-	{key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
-	{key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}];
+var myColumnDefs =
+[
+    {key:"orden",label:"<?= $this->language->_("Orden")?>", sortable:true},
+    {key:"codCanalName",label:"<?= $this->language->_("Canal")?>", sortable:true},
+    {key:"codClienteName",label:"<?= $this->language->_("Cliente")?>", sortable:true},
+    {key:"codOppName",label:"<?= $this->language->_("Opp")?>", sortable:true},
+    {key:"desMercaderias",label:"<?= $this->language->_("Descripción Mercadería")?>", sortable:true},
+    {key:"valorFactura",label:"<?= $this->language->_("Valor Factura")?>", sortable:true},
+    {key:"ingresoPuerto",label:"<?= $this->language->_("Ingreso a Puerto")?>", sortable:true},
+    {key:"detalle", label:" <?= $this->language->_("Detalle")?> ", sortable:false},
+    {key:"pdf",label:"<?= $this->language->_("PDF")?>", sortable:false},
+    {key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
+    {key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}
+];
 
 var hideLabel = "<?= $this->language->_("Oculto")?>";
 var showLabel = "<?= $this->language->_("Visible")?>";
@@ -44,9 +45,8 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
         <th><?= $this->language->_("Descripción Mercadería")?></th>
         <th><?= $this->language->_("Valor Factura")?></th>
         <th><?= $this->language->_("Ingreso a Puerto")?></th>
-        <th><?= $this->language->_("Despacho: Nro Documento")?></th>
-        <th><?= $this->language->_("Despacho: Vencimiento")?></th>
-        <th> <?= $this->language->_("Detalle")?> </th>
+        <th><?= $this->language->_("Detalle")?> </th>
+        <th><?= $this->language->_("PDF")?></th>
         <th><?= $this->language->_("Modificar")?></th>
         <th><?= $this->language->_("Eliminar")?></th>
         </tr>
@@ -62,10 +62,11 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
             <td> <?= $importacion->desMercaderias() ?> </td>
             <td> <?= $importacion->valorFactura() ?> </td>
             <td> <?= $importacion->ingresoPuerto() ?> </td>
-            <td> <?= $importacion->DESnroDoc() ?> </td>
-            <td> <?= $importacion->DESvencimiento() ?> </td>
             <td>
             <input type="button" id="botonLindo" onclick="ShowDetailsImp( <?= $importacion->id() ?> )" value=" <?= $this->language->_("Detalle")?> " />
+            </td>
+            <td>
+                <a href="<?= "/user/importaciones/pdf/id/" . $importacion->id() ?>"><img src="/images/pdf.png" alt="<?= $this->language->_("PDF")?>" title="<?= $this->language->_("PDF")?>" width="30" height="30"></a>
             </td>
             <td>
                 <a href="<?= "/user/importaciones/modimportaciones/id/" . $importacion->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"></a>
