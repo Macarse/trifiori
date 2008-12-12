@@ -234,7 +234,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $pedidoDinero = $this->_modform->createElement('text', 'pedidoDinero',
-                        array('label' => '*' . $this->language->_('Pedido de Dinero'),
+                        array('label' => '*' . $this->language->_('Fecha de Pedido de Dinero'),
                         'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                         ));
         $pedidoDinero   ->setValue($row->pedidoDinero() )
@@ -316,7 +316,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
 
         $pedidoDinero = $this->_addform->createElement('text', 'pedidoDinero',
-                            array('label' => '*' . $this->language->_('Pedido de Dinero'),
+                            array('label' => '*' . $this->language->_('Fecha de Pedido de Dinero'),
                             'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                             ));
         $pedidoDinero   ->addValidator(new CV_Validate_Fecha())

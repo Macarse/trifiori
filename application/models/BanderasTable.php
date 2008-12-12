@@ -7,13 +7,25 @@ class Banderas extends Zend_Db_Table_Abstract
 
     public function removeBandera( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getBanderaByID( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
+        $where = $this->getAdapter()->quoteInto("CODIGO_BAN = ? AND DELETED = '0'", $id);
         $row = $this->fetchRow( $where );
 
         return $row;
@@ -21,7 +33,7 @@ class Banderas extends Zend_Db_Table_Abstract
 	
 	public function getBanderaByName( $name )
     {
-        $where = $this->getAdapter()->quoteInto('NOMBRE_BAN = ?', $name);
+        $where = $this->getAdapter()->quoteInto("NOMBRE_BAN = ? AND DELETED = '0'", $name);
         $row = $this->fetchRow( $where );
 
         return $row;
@@ -44,9 +56,9 @@ class Banderas extends Zend_Db_Table_Abstract
             $mySortby = "NOMBRE_BAN";
         
         if ($name != "")
-            $where = "NOMBRE_BAN LIKE '%" . $name . "%'";
+            $where = "NOMBRE_BAN LIKE '%" . $name . "%'  AND DELETED = '0'";
         else
-            $where = "1=1";
+            $where = "DELETED = '0'";
             
         return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
     }
@@ -84,7 +96,8 @@ class Banderas extends Zend_Db_Table_Abstract
 
         try
         {
-            $banderas = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED = '0'", $id);
+            $banderas = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {
