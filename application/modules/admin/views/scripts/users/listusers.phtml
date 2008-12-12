@@ -52,9 +52,9 @@
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
         var myColumnDefs = [
-            {key:"name",label:" <?= $this->language->_("Nombre") ?>",sortable:true},
-            {key:"user",label:" <?= $this->language->_("Usuario") ?>", sortable:true},
-            {key:"email",label:" <?= $this->language->_("E-mail") ?>", sortable:true},
+            {key:"name",label:" <?= $this->language->_("Nombre") ?>",sortable:false},
+            {key:"user",label:" <?= $this->language->_("Usuario") ?>", sortable:false},
+            {key:"email",label:" <?= $this->language->_("E-mail") ?>", sortable:false},
             {key:"language",label:" <?= $this->language->_("Idioma") ?>", sortable:false},
             {key:"css",label:" <?= $this->language->_("CSS") ?>", sortable:false},
             {key:"modify",label:" <?= $this->language->_("Modificar") ?>", sortable:false},
@@ -78,8 +78,60 @@ YAHOO.util.Event.addListener(window, "load", function() {
         };
 
         this.myDataTable = new YAHOO.widget.DataTable("divlistusers", myColumnDefs, this.myDataSource,
-                {sortedBy:{key:"name",dir:"desc"}}
+                {}
         );
+        
+        function cambiaBusqueda(e) {
+            var x = location.protocol + '//' + location.host + location.pathname;
+            var y = "";
+            var sortby_prev = "";
+            var sort_prev = "";
+            var sort_act;
+            
+            <? if (isset($_GET["consulta"])) { ?>
+                y = "<?= $this->escape($_GET["consulta"]) ?>";
+            <? } ?>
+            
+            <? if (isset($_GET["sortby"])) { ?>
+                sortby_prev = "<?= $this->escape($_GET["sortby"]) ?>";
+            <? } ?>
+                        
+            <? if (isset($_GET["sort"])) { ?>
+                sort_prev = "<?= $this->escape($_GET["sort"]) ?>";
+            <? } ?>
+                        
+            if (this.getColumn(e.target) == "Column instance 0")
+            {
+                if (sortby_prev == "name") 
+                {
+                    if (sort_prev == "asc")
+                        sort_act = "desc";
+                    else
+                        sort_act = "asc";
+                }
+                else
+                {
+                    sort_act = "asc";
+                }
+                window.location = x + "?consulta=" + y + "&sortby=name" + "&sort=" + sort_act;
+            }
+            else if (this.getColumn(e.target) == "Column instance 1")
+            {
+                if (sortby_prev == "user") 
+                {
+                    if (sort_prev == "asc")
+                        sort_act = "desc";
+                    else
+                        sort_act = "asc";
+                }
+                else
+                {
+                    sort_act = "asc";
+                }
+                window.location = x + "?consulta=" + y + "&sortby=user" + "&sort=" + sort_act;
+            }
+        }
+        this.myDataTable.subscribe("theadCellClickEvent", cambiaBusqueda);
     };
 });
 </script>

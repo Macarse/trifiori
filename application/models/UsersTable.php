@@ -42,11 +42,28 @@ class Users extends Zend_Db_Table_Abstract
         return $row;
     }
 
-    public function searchUser( $name )
+    public function searchUser( $name , $sortby , $sorttype)
     {
         $name = mysql_real_escape_string($name);
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
 
-        return $this->select()->where("USUARIO_USU LIKE '%" . $name . "%'"); 
+        if ($mySorttype == "asc")
+            $mySorttype = "ASC";
+        else
+            $mySorttype = "DESC";
+        
+        if ($mySortby == "name")
+            $mySortby = "NOMBRE_USU";
+        else
+            $mySortby = "USUARIO_USU";
+        
+        if ($name != "")
+            $where = "USUARIO_USU LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+            
+        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
     }
 
     public function getUserByResetHash( $hash )
