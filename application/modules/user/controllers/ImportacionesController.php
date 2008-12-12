@@ -495,6 +495,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
                 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaIngreso')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -530,6 +532,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Ingreso a Puerto'),
                  'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calIngPuerto')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -544,6 +548,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Despacho: Vencimiento'),
                  'id' => 'idDESVencimiento', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
         $DESvencimiento ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDesVencimiento')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -563,6 +569,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Presentado'),
                  'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
         $DESpresentado ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDesPresentado')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -570,6 +578,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Salido'),
                  'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
         $DESsalido ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDESsalido')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -577,6 +587,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Cargado'),
                  'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
         $DEScargado ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDEScargado')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -590,6 +602,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Despacho: Fecha Factura'),
                  'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
         $DEsfechaFactura ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDEsfechaFactura')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
@@ -729,6 +743,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                     array('label' => '*' . $this->language->_('Fecha desde'),
                     'id' => 'idFechaDesde', 'onKeyPress' => "keyCalendar(event,'calFechaDesde');"));
         $fechaDesde     ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaDesde')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -736,6 +752,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                     array('label' => '*' . $this->language->_('Fecha hasta'),
                     'id' => 'idFechaHasta', 'onKeyPress' => "keyCalendar(event,'calFechaHasta');"));
         $fechaHasta     ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaHasta')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
@@ -990,6 +1008,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' =>'*' .  $this->language->_('Fecha de Ingreso'),
                 'id' => 'idFechaIngreso', 'onKeyPress' => "keyCalendar(event,'calFechaIngreso');"));
         $fechaIngreso   ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaIngreso')\"></div>")
 						->setValue($row->fechaIngreso() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
@@ -1030,6 +1050,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Ingreso a Puerto'),
                  'id' => 'idIngPuerto', 'onKeyPress' => "keyCalendar(event,'calIngPuerto');"));
         $ingresoPuerto  ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calIngPuerto')\"></div>")
 						->setValue($row->ingresoPuerto() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -1045,6 +1067,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Despacho: Vencimiento'),
                  'id' => 'idDESVencimiento', 'onKeyPress' => "keyCalendar(event,'calDesVencimiento');"));
         $DESvencimiento ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDesVencimiento')\"></div>")
 						->setValue($row->DESvencimiento() )
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
@@ -1067,6 +1091,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Presentado'),
                  'id' => 'idDESPresentado', 'onKeyPress' => "keyCalendar(event,'calDesPresentado');"));
         $DESpresentado ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDesPresentado')\"></div>")
 					   ->setValue($row->DESpresentado() )
                        ->addValidator('stringLength', false, array(1, 12))
                        ->setRequired(True);
@@ -1075,6 +1101,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Salido'),
                  'id' => 'idDESSalido', 'onKeyPress' => "keyCalendar(event,'calDESsalido');"));
         $DESsalido ->addValidator(new CV_Validate_Fecha())
+                    ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                    ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDESsalido')\"></div>")
 				   ->setValue($row->DESsalido() )
                    ->addValidator('stringLength', false, array(1, 12))
                    ->setRequired(True);
@@ -1083,6 +1111,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => '*' . $this->language->_('Despacho: Cargado'),
                  'id' => 'idDESCargado', 'onKeyPress' => "keyCalendar(event,'calDEScargado');"));
         $DEScargado ->addValidator(new CV_Validate_Fecha())
+                    ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                    ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDEScargado')\"></div>")
 					->setValue($row->DEScargado() )
 					->addValidator('stringLength', false, array(1, 12))
 					->setRequired(True);
@@ -1098,6 +1128,8 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
                 array('label' => $this->language->_('Despacho: Fecha Factura'),
                  'id' => 'idDESFechaFactura', 'onKeyPress' => "keyCalendar(event,'calDEsfechaFactura');"));
         $DEsfechaFactura ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calDEsfechaFactura')\"></div>")
 						 ->setValue($row->DEsfechaFactura() )
  						 ->addValidator('stringLength', false, array(1, 12))
 						 ->setRequired(False);

@@ -97,6 +97,22 @@ div.errors_js_forms{
 	height: auto;
 	width: auto;
 }
+
+p.hint
+{
+    position: relative;
+    height: 1px;
+    width: 1px;
+}
+
+
+div.imgCalendar
+{
+	position: relative;
+	top: 0.7em;
+	left: 30em;
+    height: 1px;
+}
 		
 div.error
 {
