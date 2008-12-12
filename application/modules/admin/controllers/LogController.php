@@ -39,17 +39,20 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
 
                     /*Escribo el body del mail*/
                     $body = '';
-
+                    $resultados = $table->fetchAll($log);
 //                     TODO: Ver esto con maxi
 
-                    if (count($log) > 1)
+                    if (count($resultados) > 1)
                     {
-                        foreach($log as $logRow)
+                        foreach($resultados as $logRow)
                         {
-                            $body .= $logRow->id() . '\n';
-                            $body .= $logRow->nivel() . '\n';
-                            $body .= $logRow->msg() . '\n';
-                            $body .= '\n';
+                            $body .= $this->language->_('N&uacute;mero de identificaci&oacute;n: ');
+                            $body .= $logRow->id() . '<br />';
+                            $body .= $this->language->_('Nivel de prioridad: ');
+                            $body .= $logRow->nivel() . '<br />';
+                            $body .= $this->language->_('Mensaje: ');
+                            $body .= $logRow->msg() . '<br />';
+                            $body .= '<br />';
                         }
                     }
                     else
@@ -61,11 +64,12 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
                     $config = Zend_Registry::getInstance()->configuration;
 
                     $mail = new Zend_Mail();
-                    $mail->setBodyText($body);
+                    $mail->setBodyHtml($body);
                     $mail->setFrom('trifiori@gmail.com', 'Trifiori Web');
                     $mail->addTo($config->admin->email, $config->admin->name);
                     $mail->setSubject('Trifiori Web');
                     $mail->send(Zend_Registry::getInstance()->mailTransport);
+                    $log = $table->searchLog($_GET["consulta"]);
                 }
 
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($log, $table));
