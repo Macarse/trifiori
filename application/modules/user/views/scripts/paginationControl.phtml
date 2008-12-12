@@ -3,11 +3,16 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 -->
 <? $this->language = Zend_Registry::getInstance()->language; ?>
 <? $this->busqueda = Zend_Registry::getInstance()->busqueda; ?>
+<? $this->sortby = Zend_Registry::getInstance()->sortby; ?>
+<? $this->sorttype = Zend_Registry::getInstance()->sorttype; ?>
+
 <?php if ($this->pageCount): ?> 
 <div class="paginationControl">
 <!-- Previous page link --> 
 <?php if (isset($this->previous)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->previous; ?>">&lt; <?= $this->language->_("Anterior") ?> </a> |
+        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->previous
+            . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype; ?>">
+            &lt; <?= $this->language->_("Anterior") ?> </a> |
 <?php else: ?> 
   <span class="disabled">&lt; <?= $this->language->_("Anterior") ?> </span> |
 <?php endif; ?> 
@@ -15,7 +20,9 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?> 
   <?php if ($page != $this->current): ?>
-    <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $page; ?>"><?= $page; ?></a>
+    <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $page
+            . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype; ?>">
+            <?= $page; ?></a>
   <?php else: ?>
     <?= $page; ?> | 
   <?php endif; ?>
@@ -23,7 +30,9 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 
 <!-- Next page link --> 
 <?php if (isset($this->next)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->next; ?>"> <?= $this->language->_("Próximo") ?>  &gt;</a>
+        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->next
+                . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype; ?>"> 
+                <?= $this->language->_("Próximo") ?>  &gt;</a>
 <?php else: ?> 
   <span class="disabled"> <?= $this->language->_("Próximo") ?>  &gt;</span>
 <?php endif; ?> 
