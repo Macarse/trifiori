@@ -63,10 +63,36 @@ class Transportes extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function searchTransporte( $name )
+    public function searchTransporte( $name , $sortby , $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("NOMBRE_BUQ LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "asc")
+            $mySorttype = "ASC";
+        else
+            $mySorttype = "DESC";
+        
+        if ($mySortby == "flags")
+            $mySortby = "NOMBRE_BAN";
+        else
+            $mySortby = "NOMBRE_BUQ";
+        
+        if ($name != "")
+            $where = "NOMBRE_BUQ LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        $select = $this->select();
+                
+        $select->from($this, array('CODIGO_BUQ', 'CODIGO_BAN', 'NOMBRE_BUQ', 'CODIGOMED', 'OBSERVACIONES_BUQ'));
+        $select->setIntegrityCheck(false)
+                ->join('BANDERAS', 'BANDERAS.CODIGO_BAN = TRANSPORTES.CODIGO_BAN', array())
+                ->where($where)
+                ->order($mySortby . " " . $mySorttype);
+
+        return $select;
     }
     
     public function modifyTransporte( $id, $nameBandera, $codMedio, $name, $observaciones )

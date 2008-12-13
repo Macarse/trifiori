@@ -74,15 +74,39 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             try
             {
                 $transportesT = new Transportes();
-                
+
                 if (isset($_GET["consulta"]))
                 {
-                    $transportes = $transportesT->searchTransporte($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $transportes = $transportesT->searchTransporte($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $transportes = $transportesT->searchTransporte($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $transportes = $transportesT->searchTransporte($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $transportes = $transportesT->select();
+                    $transportes = $transportesT->searchTransporte("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
                     

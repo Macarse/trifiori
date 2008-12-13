@@ -2,6 +2,41 @@
 
 var map = null;
 
+function get_url_param(name)
+{ 
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]"); 
+    var regexS = "[\\?&]"+name+"=([^&#]*)"; 
+    var regex = new RegExp( regexS ); 
+    var results = regex.exec( window.location.href ); 
+    if( results == null )    return ""; 
+    else return results[1];
+}
+
+function cambiaBusqueda(e) {
+    var x = location.protocol + '//' + location.host + location.pathname;
+    var y = "";
+    var sortby_prev = "";
+    var sort_prev = "";
+    var sort_act;
+    
+    y = get_url_param("consulta");
+    sortby_prev = get_url_param("sortby");
+    sort_prev = get_url_param("sort");
+                
+    if (sortby_prev == this.getColumn(e.target).key) 
+    {
+        if (sort_prev == "asc")
+           sort_act = "desc";
+        else
+            sort_act = "asc";
+    }
+    else
+    {
+        sort_act = "asc";
+    }
+    window.location = x + "?consulta=" + y + "&sortby=" + this.getColumn(e.target).key + "&sort=" + sort_act;
+}
+
 function onMenuItemClick(p_sType, p_aArgs, p_Data) 
 {
     /*
@@ -70,26 +105,6 @@ function dateToLocaleString(dt, cal, lang)
         return (mStr + "-" + dStr + "-" + yStr);
 }
 
-function handlerCalFechaDesdeES(type,args,obj)
-{
-    var selected = args[0];
-    var selDate = this.toDate(selected[0]);
-
-    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'es'));
-
-    hide_div('calFechaDesde');
-};
-
-function handlerCalFechaDesdeEN(type,args,obj)
-{
-    var selected = args[0];
-    var selDate = this.toDate(selected[0]);
-
-    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'en'));
-
-    hide_div('calFechaDesde');
-};
-
 function handlerCalFechaDineroES(type,args,obj)
 {
     var selected = args[0];
@@ -110,7 +125,25 @@ function handlerCalFechaDineroEN(type,args,obj)
     hide_div('calpedidoDinero');
 };
 
+function handlerCalFechaDesdeES(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
 
+    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'es'));
+
+    hide_div('calFechaDesde');
+};
+
+function handlerCalFechaDesdeEN(type,args,obj)
+{
+    var selected = args[0];
+    var selDate = this.toDate(selected[0]);
+
+    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'en'));
+
+    hide_div('calFechaDesde');
+};
 
 function handlerCalFechaHastaES(type,args,obj)
 {
@@ -388,11 +421,10 @@ function loadGkeysMap(xhr)
 		}
 	} catch (e) {
            alert(xhr.message);
-	}
+	}
+
 
 }
-
-
 
 function loadMap(latitud,longitud)
 {
