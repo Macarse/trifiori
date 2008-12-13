@@ -315,7 +315,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
             $model = new Banderas();
-            $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%'");
+            $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
             foreach ($banderas as $row)
             {

@@ -7,8 +7,20 @@ class Transportes extends Zend_Db_Table_Abstract
 
     public function removeTransporte( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_BUQ = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_BUQ = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_BUQ = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getTransporteByID( $id )
@@ -90,6 +102,7 @@ class Transportes extends Zend_Db_Table_Abstract
         $select->setIntegrityCheck(false)
                 ->join('BANDERAS', 'BANDERAS.CODIGO_BAN = TRANSPORTES.CODIGO_BAN', array())
                 ->where($where)
+                ->where("TRANSPORTES.DELETED LIKE '0'")
                 ->order($mySortby . " " . $mySorttype);
 
         return $select;
@@ -145,7 +158,8 @@ class Transportes extends Zend_Db_Table_Abstract
 
         try
         {
-            $transportes = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
+            $transportes = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {

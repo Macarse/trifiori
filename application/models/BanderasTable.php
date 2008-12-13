@@ -56,11 +56,15 @@ class Banderas extends Zend_Db_Table_Abstract
             $mySortby = "NOMBRE_BAN";
         
         if ($name != "")
-            $where = "NOMBRE_BAN LIKE '%" . $name . "%'  AND DELETED = '0'";
+            $where = "NOMBRE_BAN LIKE '%" . $name . "%'";
         else
-            $where = "DELETED = '0'";
+            $where = "1=1";
             
-        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()
+                    ->from($this)
+                    ->where($where)
+                    ->where("DELETED LIKE '0'")
+                    ->order($mySortby . " " . $mySorttype);
     }
     
     public function addBandera( $name )
@@ -96,7 +100,7 @@ class Banderas extends Zend_Db_Table_Abstract
 
         try
         {
-            $where = $this->getAdapter()->quoteInto("DELETED = '0'", $id);
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
             $banderas = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
