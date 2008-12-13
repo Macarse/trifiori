@@ -89,7 +89,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
 
                     $mail = new Zend_Mail();
                     $mail->setBodyHtml($body);
-                    $mail->setFrom('trifiori@gmail.com', 'Trifiori Web');
+                    $mail->setFrom($config->gmail->email, 'Trifiori Web');
                     $mail->addTo($config->admin->email, $config->admin->name);
                     $mail->setSubject('Trifiori Web');
                     $mail->send(Zend_Registry::getInstance()->mailTransport);
