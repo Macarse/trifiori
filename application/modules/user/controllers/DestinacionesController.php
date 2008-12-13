@@ -73,12 +73,36 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
                 
                 if (isset($_GET["consulta"]))
                 {
-                    $destinaciones = $destinacionesT->searchDestinacion($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $destinaciones = $destinacionesT->searchDestinacion($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $destinaciones = $destinacionesT->searchDestinacion($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $destinaciones = $destinacionesT->searchDestinacion($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $destinaciones = $destinacionesT->select();
+                    $destinaciones = $destinacionesT->searchDestinacion("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
 
