@@ -74,7 +74,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             try
             {
                 $transportesT = new Transportes();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -111,7 +111,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                 }
                     
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($transportes, $transportesT));
-
+                
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);

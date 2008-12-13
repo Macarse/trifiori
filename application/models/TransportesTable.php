@@ -74,10 +74,9 @@ class Transportes extends Zend_Db_Table_Abstract
         else
             $mySorttype = "DESC";
         
-        if ($mySortby == "name")
-            $mySortby = "NOMBRE_BUQ";
+        if ($mySortby == "flags")
+            $mySortby = "NOMBRE_BAN";
         else
-//             por ahora siempre por el nombre
             $mySortby = "NOMBRE_BUQ";
         
         if ($name != "")
@@ -85,7 +84,15 @@ class Transportes extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
         
-        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
+        $select = $this->select();
+                
+        $select->from($this, array('CODIGO_BUQ', 'CODIGO_BAN', 'NOMBRE_BUQ', 'CODIGOMED', 'OBSERVACIONES_BUQ'));
+        $select->setIntegrityCheck(false)
+                ->join('BANDERAS', 'BANDERAS.CODIGO_BAN = TRANSPORTES.CODIGO_BAN', array())
+                ->where($where)
+                ->order($mySortby . " " . $mySorttype);
+
+        return $select;
     }
     
     public function modifyTransporte( $id, $nameBandera, $codMedio, $name, $observaciones )
