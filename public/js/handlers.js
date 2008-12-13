@@ -32,7 +32,7 @@ function cambiaBusqueda(e) {
     }
     else
     {
-        sort_act = "asc";
+        sort_act = "desc";
     }
     window.location = x + "?consulta=" + y + "&sortby=" + this.getColumn(e.target).key + "&sort=" + sort_act;
 }

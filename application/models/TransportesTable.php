@@ -69,10 +69,10 @@ class Transportes extends Zend_Db_Table_Abstract
         $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
         
-        if ($mySorttype == "asc")
-            $mySorttype = "ASC";
-        else
+        if ($mySorttype == "desc")
             $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
         
         if ($mySortby == "flags")
             $mySortby = "NOMBRE_BAN";

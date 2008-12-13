@@ -60,7 +60,7 @@ class Banderas extends Zend_Db_Table_Abstract
         else
             $where = "DELETED = '0'";
             
-        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function addBandera( $name )
