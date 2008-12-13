@@ -34,7 +34,7 @@ class Log extends Zend_Db_Table_Abstract
         else
             $where = "MSG LIKE '%ALTERANDO%'";
         
-        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
 }
 

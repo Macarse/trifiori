@@ -63,7 +63,7 @@ class Users extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
             
-        return $this->select()->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
 
     public function getUserByResetHash( $hash )
