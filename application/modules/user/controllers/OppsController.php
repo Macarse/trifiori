@@ -320,6 +320,8 @@ class user_OppsController extends Trifiori_User_Controller_Action
                             'id' => 'idpedidoDinero', 'onKeyPress' => "keyCalendar(event,'calpedidoDinero');"
                             ));
         $pedidoDinero   ->addValidator(new CV_Validate_Fecha())
+                        ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
+                        ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calpedidoDinero')\"></div>")
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(True);
 
