@@ -4,7 +4,7 @@ class Transportes extends Zend_Db_Table_Abstract
     protected $_name = 'TRANSPORTES';
     protected $_sequence = True;
     protected $_rowClass = 'TransportesModel';
-
+ 
     public function removeTransporte( $id )
     {
         //$where = $this->getAdapter()->quoteInto('CODIGO_BUQ = ?', $id);
@@ -22,59 +22,59 @@ class Transportes extends Zend_Db_Table_Abstract
 
         $this->update(array('DELETED'    => '1'), $where );
     }
-
+ 
     public function getTransporteByID( $id )
     {
         $where = $this->getAdapter()->quoteInto('CODIGO_BUQ = ?', $id);
         $row = $this->fetchRow( $where );
-
+ 
         return $row;
     }
-	
+  
     public function getTransporteByName( $name )
     {
         $where = $this->getAdapter()->quoteInto('NOMBRE_BUQ = ?', $name);
         $row = $this->fetchRow( $where );
-
+ 
         return $row;
     }
-
-
+ 
+ 
     public function addTransporte( $nameBandera, $codMedio, $name, $observaciones )
     {
-		//Banderas
-
-		$banderas = new Banderas();
-		try
-		{
-			$codBandera = $banderas->getBanderaByName($nameBandera);
-			if ($codBandera != NULL)
-			{
-				$codBandera = $codBandera->id();
-			}
-			else
-			{
-				throw new Exception('No existe la Bandera');
-				return False;
-			}
-		}
-		catch (Zend_Exception $e)
+    //Banderas
+ 
+            $banderas = new Banderas();
+    try
+    {
+        $codBandera = $banderas->getBanderaByName($nameBandera);
+        if ($codBandera != NULL)
         {
-            throw new Exception($e->getMessage());
+            $codBandera = $codBandera->id();
+        }
+        else
+        {
+            throw new Exception('No existe la Bandera');
             return False;
-		}
-
-        $data = array(  'CODIGO_BAN'         => $codBandera,
-                        'CODIGOMED'          => $codMedio,
-                        'NOMBRE_BUQ'         => $name,
-                        'OBSERVACIONES_BUQ'  => $observaciones
-                    );
-
-        $this->insert($data);
-
-        return True;
+        }
     }
-
+    catch (Zend_Exception $e)
+    {
+        throw new Exception($e->getMessage());
+        return False;
+    }
+ 
+    $data = array( 'CODIGO_BAN' => $codBandera,
+                   'CODIGOMED' => $codMedio,
+                   'NOMBRE_BUQ' => $name,
+                   'OBSERVACIONES_BUQ' => $observaciones
+                 );
+ 
+    $this->insert($data);
+ 
+    return True;
+    }
+ 
     public function searchTransporte( $name , $sortby , $sorttype )
     {
         $mySortby = mysql_real_escape_string($sortby);
@@ -104,7 +104,7 @@ class Transportes extends Zend_Db_Table_Abstract
                 ->where($where)
                 ->where("TRANSPORTES.DELETED LIKE '0'")
                 ->order($mySortby . " " . $mySorttype);
-
+ 
         return $select;
     }
     
@@ -120,42 +120,42 @@ class Transportes extends Zend_Db_Table_Abstract
             throw new Exception($e->getMessage());
             return False;
         }
-
-		//Banderas
-		$banderas = new Banderas();
-		try
-		{
-			$codBandera = $banderas->getBanderaByName($nameBandera);
-			if ($codBandera != NULL)
-			{
-				$codBandera = $codBandera->id();
-			}
-			else
-			{
-				throw new Exception('No existe la Bandera');
-				return False;
-			}
-		}
-		catch (Zend_Exception $e)
+ 
+    //Banderas
+            $banderas = new Banderas();
+    try
+    {
+        $codBandera = $banderas->getBanderaByName($nameBandera);
+        if ($codBandera != NULL)
         {
-            throw new Exception($e->getMessage());
+            $codBandera = $codBandera->id();
+        }
+        else
+        {
+            throw new Exception('No existe la Bandera');
             return False;
-		}
-
-
-        $this->update(array(
-                            'CODIGO_BAN'         => $codBandera,
-                            'CODIGOMED'          => $codMedio,
-                            'NOMBRE_BUQ'         => $name,
-                            'OBSERVACIONES_BUQ'  => $observaciones), $where );
-
-        return True;
+        }
     }
-
+    catch (Zend_Exception $e)
+    {
+        throw new Exception($e->getMessage());
+        return False;
+    }
+ 
+ 
+    $this->update(array(
+                  'CODIGO_BAN' => $codBandera,
+                  'CODIGOMED' => $codMedio,
+                  'NOMBRE_BUQ' => $name,
+                  'OBSERVACIONES_BUQ' => $observaciones), $where );
+ 
+    return True;
+    }
+ 
     public function getTransportesArray()
     {
         $arr = array();
-
+ 
         try
         {
             $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
@@ -165,15 +165,15 @@ class Transportes extends Zend_Db_Table_Abstract
         {
             return NULL;
         }
-
+ 
         foreach ($transportes as $row)
         {
             $arr[ $row->id() ] = $row->name();
         }
-
+ 
         return $arr;
     }
-
+ 
 }
-
+ 
 ?>

@@ -4,10 +4,20 @@ class IndexController extends Trifiori_Default_Controller_Action
     protected $_form;
     protected $_mailform;
     protected $_passform;
+    protected $_flashMessenger = null;
+
+    public function init()
+    {
+        parent::init();
+        $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
+    }
 
     public function indexAction()
     {
         $this->view->headTitle("Trifiori Login");
+
+        $this->view->message = $this->_flashMessenger->getMessages();
+
         if (Zend_Auth::getInstance()->getIdentity() !== null)
         {
 
