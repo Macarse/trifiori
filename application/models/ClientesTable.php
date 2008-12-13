@@ -53,10 +53,51 @@ class Clientes extends Zend_Db_Table_Abstract
         return True;
     }
     
-    public function searchCliente( $name )
+    public function searchCliente( $name, $sortby, $sorttype )
     {
+            $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("NOMBRE_CLI LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        switch ($sortby)
+        {
+            case 'name':
+                $mySortby = "NOMBRE_CLI";
+                break;
+            case 'address':
+                $mySortby = "DIRECCION_CLI";
+                break;
+            case 'cp':
+                $mySortby = "CODIGOPOSTAL_CLI";
+                break;
+            case 'local':
+                $mySortby = "LOCALIDAD_CLI";
+                break;
+            case 'cuit':
+                $mySortby = "CUIT_CLI";
+                break;
+            case 'iva':
+                $mySortby = "TIPOIVA_CLI";
+                break;
+            case 'type':
+                $mySortby = "TIPOCLIENTE_CLI";
+                break;
+            default:
+                $mySortby = "NOMBRE_CLI";
+                break;
+        }
+        
+        if ($name != "")
+            $where = "NOMBRE_CLI LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype); 
     }
     
     public function modifyCliente( $id, $name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
