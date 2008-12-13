@@ -44,10 +44,51 @@ class Cargas extends Zend_Db_Table_Abstract
         return True;
     }
     
-    public function searchCarga( $name )
+    public function searchCarga( $name, $sortby, $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("NROPAQUETE_CAR LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        switch ($sortby)
+        {
+            case 'bultos':
+                $mySortby = "CANTBULTOS_CAR";
+                break;
+            case 'tipoenvase':
+                $mySortby = "TIPOENVASE_CAR";
+                break;
+            case 'peso':
+                $mySortby = "PESOBRUTO_CAR";
+                break;
+            case 'unidad':
+                $mySortby = "UNIDAD_CAR";
+                break;
+            case 'nropaq':
+                $mySortby = "NROPAQUETE_CAR";
+                break;
+            case 'marcayum':
+                $mySortby = "MARCAYNUMERO";
+                break;
+            case 'imco':
+                $mySortby = "MERC__IMCO";
+                break;
+            default:
+                $mySortby = "NROPAQUETE_CAR";
+                break;
+        }
+        
+        if ($name != "")
+            $where = "NROPAQUETE_CAR LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyCarga( $id, $cantBultos, $tipoEnvase, $peso, $unidad,

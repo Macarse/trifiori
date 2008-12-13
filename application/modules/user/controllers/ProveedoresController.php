@@ -78,12 +78,36 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                 
                 if (isset($_GET["consulta"]))
                 {
-                    $proveedores = $proveedoresT->searchProveedor($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $proveedores = $proveedoresT->searchProveedor($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $proveedores = $proveedoresT->searchProveedor($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $proveedores = $proveedoresT->searchProveedor($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $proveedores = $proveedoresT->select();
+                    $proveedores = $proveedoresT->searchProveedor("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($proveedores, $proveedoresT));

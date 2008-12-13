@@ -36,10 +36,25 @@ class Giros extends Zend_Db_Table_Abstract
         return True;
     }
     
-    public function searchGiro( $name )
+    public function searchGiro( $name, $sortby, $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("SECCION_GIR LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        $mySortby = "SECCION_GIR";
+        
+        if ($name != "")
+            $where = "SECCION_GIR LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyGiro( $id, $name )
