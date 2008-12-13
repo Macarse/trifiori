@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trifiori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-12 15:56-0300\n"
+"POT-Creation-Date: 2008-12-13 02:31-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Maximiliano Gomez Vidal <mvidal@gmail.com>\n"
 "Language-Team: trifiori <trifiori@trifiori.com.ar>\n"
@@ -46,9 +46,9 @@ msgstr "List Clients"
 #: ../modules/user/controllers/ClientesController.php:217
 #: ../modules/user/controllers/ClientesController.php:296
 #: ../modules/user/controllers/ClientesController.php:369
-#: ../modules/user/controllers/TransportesController.php:218
-#: ../modules/user/controllers/TransportesController.php:292
-#: ../modules/user/controllers/TransportesController.php:364
+#: ../modules/user/controllers/TransportesController.php:242
+#: ../modules/user/controllers/TransportesController.php:316
+#: ../modules/user/controllers/TransportesController.php:388
 #: ../modules/user/controllers/PuertosController.php:214
 #: ../modules/user/controllers/PuertosController.php:262
 #: ../modules/user/controllers/PuertosController.php:308
@@ -59,13 +59,13 @@ msgstr "Name"
 #: ../modules/mobile/controllers/UserController.php:205
 #: ../modules/mobile/controllers/AdminController.php:80
 #: ../modules/user/controllers/DestinacionesController.php:267
-#: ../modules/user/controllers/ImportacionesController.php:789
+#: ../modules/user/controllers/ImportacionesController.php:904
 #: ../modules/user/controllers/CargasController.php:389
 #: ../modules/user/controllers/MonedasController.php:285
-#: ../modules/user/controllers/ExportacionesController.php:526
+#: ../modules/user/controllers/ExportacionesController.php:701
 #: ../modules/user/controllers/ClientesController.php:376
-#: ../modules/user/controllers/OppsController.php:393
-#: ../modules/user/controllers/TransportesController.php:371
+#: ../modules/user/controllers/OppsController.php:395
+#: ../modules/user/controllers/TransportesController.php:395
 #: ../modules/user/controllers/PuertosController.php:315
 msgid "Buscar"
 msgstr "Search"
@@ -77,31 +77,31 @@ msgstr "List Exports"
 
 #: ../modules/mobile/controllers/UserController.php:164
 #: ../modules/user/controllers/ImportacionesController.php:433
-#: ../modules/user/controllers/ImportacionesController.php:748
-#: ../modules/user/controllers/ImportacionesController.php:821
-#: ../modules/user/controllers/ExportacionesController.php:296
-#: ../modules/user/controllers/ExportacionesController.php:485
-#: ../modules/user/controllers/ExportacionesController.php:599
+#: ../modules/user/controllers/ImportacionesController.php:863
+#: ../modules/user/controllers/ImportacionesController.php:936
+#: ../modules/user/controllers/ExportacionesController.php:461
+#: ../modules/user/controllers/ExportacionesController.php:660
+#: ../modules/user/controllers/ExportacionesController.php:832
 msgid "Órden"
 msgstr "Order"
 
 #: ../modules/mobile/controllers/UserController.php:169
 #: ../modules/user/controllers/ImportacionesController.php:464
-#: ../modules/user/controllers/ImportacionesController.php:753
-#: ../modules/user/controllers/ImportacionesController.php:856
-#: ../modules/user/controllers/ExportacionesController.php:308
-#: ../modules/user/controllers/ExportacionesController.php:490
-#: ../modules/user/controllers/ExportacionesController.php:612
+#: ../modules/user/controllers/ImportacionesController.php:868
+#: ../modules/user/controllers/ImportacionesController.php:971
+#: ../modules/user/controllers/ExportacionesController.php:473
+#: ../modules/user/controllers/ExportacionesController.php:665
+#: ../modules/user/controllers/ExportacionesController.php:845
 msgid "Cliente"
 msgstr "Client"
 
 #: ../modules/mobile/controllers/UserController.php:173
 #: ../modules/user/controllers/ImportacionesController.php:469
-#: ../modules/user/controllers/ImportacionesController.php:757
-#: ../modules/user/controllers/ImportacionesController.php:862
-#: ../modules/user/controllers/ExportacionesController.php:328
-#: ../modules/user/controllers/ExportacionesController.php:494
-#: ../modules/user/controllers/ExportacionesController.php:636
+#: ../modules/user/controllers/ImportacionesController.php:872
+#: ../modules/user/controllers/ImportacionesController.php:977
+#: ../modules/user/controllers/ExportacionesController.php:493
+#: ../modules/user/controllers/ExportacionesController.php:669
+#: ../modules/user/controllers/ExportacionesController.php:869
 msgid "Carga"
 msgstr "Load"
 
@@ -145,10 +145,10 @@ msgstr "List Destinations"
 #: ../modules/user/controllers/ImportacionesController.php:164
 #: ../modules/user/controllers/CargasController.php:127
 #: ../modules/user/controllers/MonedasController.php:122
-#: ../modules/user/controllers/ExportacionesController.php:203
+#: ../modules/user/controllers/ExportacionesController.php:368
 #: ../modules/user/controllers/ClientesController.php:125
 #: ../modules/user/controllers/OppsController.php:128
-#: ../modules/user/controllers/TransportesController.php:123
+#: ../modules/user/controllers/TransportesController.php:147
 #: ../modules/user/controllers/PuertosController.php:125
 msgid "Eliminación exitosa."
 msgstr "Delete Successful."
@@ -161,32 +161,32 @@ msgstr "Modify Destination"
 #: ../modules/user/controllers/ImportacionesController.php:402
 #: ../modules/user/controllers/CargasController.php:179
 #: ../modules/user/controllers/MonedasController.php:169
-#: ../modules/user/controllers/ExportacionesController.php:265
+#: ../modules/user/controllers/ExportacionesController.php:430
 #: ../modules/user/controllers/ClientesController.php:177
 #: ../modules/user/controllers/OppsController.php:180
-#: ../modules/user/controllers/TransportesController.php:172
+#: ../modules/user/controllers/TransportesController.php:196
 #: ../modules/user/controllers/PuertosController.php:174
 msgid "Modificación exitosa."
 msgstr "Modify Successful."
 
 #: ../modules/user/controllers/DestinacionesController.php:213
-#: ../modules/user/controllers/ImportacionesController.php:1093
+#: ../modules/user/controllers/ImportacionesController.php:1222
 #: ../modules/user/controllers/CargasController.php:286
 #: ../modules/user/controllers/MonedasController.php:225
-#: ../modules/user/controllers/ExportacionesController.php:787
+#: ../modules/user/controllers/ExportacionesController.php:1031
 #: ../modules/user/controllers/ClientesController.php:277
 #: ../modules/user/controllers/OppsController.php:284
-#: ../modules/user/controllers/TransportesController.php:319
+#: ../modules/user/controllers/TransportesController.php:343
 #: ../modules/user/controllers/PuertosController.php:243
 msgid "Modificar"
 msgstr "Modify"
 
 #: ../modules/user/controllers/DestinacionesController.php:241
-#: ../modules/user/controllers/ImportacionesController.php:681
+#: ../modules/user/controllers/ImportacionesController.php:695
 #: ../modules/user/controllers/CargasController.php:365
 #: ../modules/user/controllers/ClientesController.php:349
-#: ../modules/user/controllers/OppsController.php:365
-#: ../modules/user/controllers/TransportesController.php:245
+#: ../modules/user/controllers/OppsController.php:367
+#: ../modules/user/controllers/TransportesController.php:269
 #: ../modules/user/controllers/PuertosController.php:289
 msgid "Agregar"
 msgstr "Add"
@@ -200,6 +200,7 @@ msgid "Listar Importaciones"
 msgstr "List Imports"
 
 #: ../modules/user/controllers/ImportacionesController.php:208
+#: ../modules/user/controllers/ExportacionesController.php:175
 msgid "ID inexistente"
 msgstr "The ID does not exist"
 
@@ -209,103 +210,119 @@ msgid "Importaciones"
 msgstr "Imports"
 
 #: ../modules/user/controllers/ImportacionesController.php:252
-#: ../modules/user/controllers/ImportacionesController.php:712
-#: ../modules/user/controllers/ExportacionesController.php:167
+#: ../modules/user/controllers/ImportacionesController.php:827
+#: ../modules/user/controllers/ExportacionesController.php:219
+#: ../modules/user/controllers/ExportacionesController.php:332
 msgid "Órden: "
 msgstr "Order:"
 
 #: ../modules/user/controllers/ImportacionesController.php:257
-#: ../modules/user/controllers/ImportacionesController.php:713
-#: ../modules/user/controllers/ExportacionesController.php:168
+#: ../modules/user/controllers/ImportacionesController.php:828
+#: ../modules/user/controllers/ExportacionesController.php:224
+#: ../modules/user/controllers/ExportacionesController.php:333
 msgid "Transporte: "
 msgstr "Transport:"
 
 #: ../modules/user/controllers/ImportacionesController.php:262
-#: ../modules/user/controllers/ImportacionesController.php:714
-#: ../modules/user/controllers/ExportacionesController.php:169
+#: ../modules/user/controllers/ImportacionesController.php:829
+#: ../modules/user/controllers/ExportacionesController.php:229
+#: ../modules/user/controllers/ExportacionesController.php:334
 msgid "Cliente: "
 msgstr "Client:"
 
 #: ../modules/user/controllers/ImportacionesController.php:268
-#: ../modules/user/controllers/ImportacionesController.php:715
-#: ../modules/user/controllers/ExportacionesController.php:170
+#: ../modules/user/controllers/ImportacionesController.php:830
+#: ../modules/user/controllers/ExportacionesController.php:234
+#: ../modules/user/controllers/ExportacionesController.php:335
 msgid "Bandera: "
 msgstr "Flag:"
 
 #: ../modules/user/controllers/ImportacionesController.php:273
-#: ../modules/user/controllers/ImportacionesController.php:716
-#: ../modules/user/controllers/ExportacionesController.php:171
+#: ../modules/user/controllers/ImportacionesController.php:831
+#: ../modules/user/controllers/ExportacionesController.php:239
+#: ../modules/user/controllers/ExportacionesController.php:336
 msgid "Moneda: "
 msgstr "Currency:"
 
 #: ../modules/user/controllers/ImportacionesController.php:278
-#: ../modules/user/controllers/ImportacionesController.php:717
-#: ../modules/user/controllers/ExportacionesController.php:172
+#: ../modules/user/controllers/ImportacionesController.php:832
+#: ../modules/user/controllers/ExportacionesController.php:244
+#: ../modules/user/controllers/ExportacionesController.php:337
 msgid "Giro: "
 msgstr "Turn:"
 
 #: ../modules/user/controllers/ImportacionesController.php:283
-#: ../modules/user/controllers/ImportacionesController.php:718
-#: ../modules/user/controllers/ExportacionesController.php:173
+#: ../modules/user/controllers/ImportacionesController.php:833
+#: ../modules/user/controllers/ExportacionesController.php:249
+#: ../modules/user/controllers/ExportacionesController.php:338
 msgid "Destinación: "
 msgstr "Destination:"
 
 #: ../modules/user/controllers/ImportacionesController.php:288
-#: ../modules/user/controllers/ImportacionesController.php:719
-#: ../modules/user/controllers/ExportacionesController.php:174
+#: ../modules/user/controllers/ImportacionesController.php:834
+#: ../modules/user/controllers/ExportacionesController.php:254
+#: ../modules/user/controllers/ExportacionesController.php:339
 msgid "Carga: "
 msgstr "Load:"
 
 #: ../modules/user/controllers/ImportacionesController.php:294
-#: ../modules/user/controllers/ImportacionesController.php:720
-#: ../modules/user/controllers/ExportacionesController.php:175
+#: ../modules/user/controllers/ImportacionesController.php:835
+#: ../modules/user/controllers/ExportacionesController.php:259
+#: ../modules/user/controllers/ExportacionesController.php:340
 msgid "Fecha de Ingreso: "
 msgstr "Entering Date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:299
-#: ../modules/user/controllers/ImportacionesController.php:721
-#: ../modules/user/controllers/ExportacionesController.php:176
+#: ../modules/user/controllers/ImportacionesController.php:836
+#: ../modules/user/controllers/ExportacionesController.php:264
+#: ../modules/user/controllers/ExportacionesController.php:341
 msgid "Descripción de la mercadería: "
 msgstr "Merchandise Description:"
 
 #: ../modules/user/controllers/ImportacionesController.php:304
-#: ../modules/user/controllers/ImportacionesController.php:722
-#: ../modules/user/controllers/ExportacionesController.php:177
+#: ../modules/user/controllers/ImportacionesController.php:837
+#: ../modules/user/controllers/ExportacionesController.php:269
+#: ../modules/user/controllers/ExportacionesController.php:342
 msgid "Valor de la factura: "
 msgstr "Receipt Value:"
 
 #: ../modules/user/controllers/ImportacionesController.php:309
-#: ../modules/user/controllers/ImportacionesController.php:723
-#: ../modules/user/controllers/ExportacionesController.php:178
+#: ../modules/user/controllers/ImportacionesController.php:838
+#: ../modules/user/controllers/ExportacionesController.php:274
+#: ../modules/user/controllers/ExportacionesController.php:343
 msgid "Fecha de vencimiento: "
 msgstr "Expiration Date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:314
-#: ../modules/user/controllers/ImportacionesController.php:724
-#: ../modules/user/controllers/ExportacionesController.php:179
+#: ../modules/user/controllers/ImportacionesController.php:839
+#: ../modules/user/controllers/ExportacionesController.php:279
+#: ../modules/user/controllers/ExportacionesController.php:344
 msgid "Fecha de ingreso al puerto: "
 msgstr "Port Entering Date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:319
-#: ../modules/user/controllers/ImportacionesController.php:725
+#: ../modules/user/controllers/ImportacionesController.php:840
 msgid "OPP: "
 msgstr "OPP:"
 
 #: ../modules/user/controllers/ImportacionesController.php:324
-#: ../modules/user/controllers/ImportacionesController.php:726
-#: ../modules/user/controllers/ExportacionesController.php:181
+#: ../modules/user/controllers/ImportacionesController.php:841
+#: ../modules/user/controllers/ExportacionesController.php:289
+#: ../modules/user/controllers/ExportacionesController.php:346
 msgid "Fecha en que fue presentado: "
 msgstr "Presentation date:"
 
 #: ../modules/user/controllers/ImportacionesController.php:329
-#: ../modules/user/controllers/ImportacionesController.php:727
-#: ../modules/user/controllers/ExportacionesController.php:182
+#: ../modules/user/controllers/ImportacionesController.php:842
+#: ../modules/user/controllers/ExportacionesController.php:294
+#: ../modules/user/controllers/ExportacionesController.php:347
 msgid "Número de factura: "
 msgstr "Receipt Number:"
 
 #: ../modules/user/controllers/ImportacionesController.php:334
-#: ../modules/user/controllers/ImportacionesController.php:728
-#: ../modules/user/controllers/ExportacionesController.php:183
+#: ../modules/user/controllers/ImportacionesController.php:843
+#: ../modules/user/controllers/ExportacionesController.php:299
+#: ../modules/user/controllers/ExportacionesController.php:348
 msgid "Fecha de la factura: "
 msgstr "Receipt Number:"
 
@@ -314,156 +331,176 @@ msgid "Modificar Importación"
 msgstr "Modify Import "
 
 #: ../modules/user/controllers/ImportacionesController.php:440
-#: ../modules/user/controllers/ImportacionesController.php:828
-#: ../modules/user/controllers/ExportacionesController.php:323
-#: ../modules/user/controllers/ExportacionesController.php:630
+#: ../modules/user/controllers/ImportacionesController.php:943
+#: ../modules/user/controllers/ExportacionesController.php:488
+#: ../modules/user/controllers/ExportacionesController.php:863
 msgid "Destinación"
 msgstr "Destination"
 
 #: ../modules/user/controllers/ImportacionesController.php:446
-#: ../modules/user/controllers/ImportacionesController.php:835
-#: ../modules/user/controllers/ExportacionesController.php:313
-#: ../modules/user/controllers/ExportacionesController.php:618
-#: ../modules/user/controllers/TransportesController.php:203
-#: ../modules/user/controllers/TransportesController.php:276
+#: ../modules/user/controllers/ImportacionesController.php:950
+#: ../modules/user/controllers/ExportacionesController.php:478
+#: ../modules/user/controllers/ExportacionesController.php:851
+#: ../modules/user/controllers/TransportesController.php:227
+#: ../modules/user/controllers/TransportesController.php:300
 msgid "Bandera"
 msgstr "Flag"
 
 #: ../modules/user/controllers/ImportacionesController.php:455
-#: ../modules/user/controllers/ImportacionesController.php:846
+#: ../modules/user/controllers/ImportacionesController.php:961
 msgid "Canal"
 msgstr "Channel"
 
 #: ../modules/user/controllers/ImportacionesController.php:459
-#: ../modules/user/controllers/ImportacionesController.php:850
+#: ../modules/user/controllers/ImportacionesController.php:965
 msgid "Giro"
 msgstr "Turn"
 
 #: ../modules/user/controllers/ImportacionesController.php:474
-#: ../modules/user/controllers/ImportacionesController.php:868
-#: ../modules/user/controllers/ExportacionesController.php:303
-#: ../modules/user/controllers/ExportacionesController.php:606
+#: ../modules/user/controllers/ImportacionesController.php:983
+#: ../modules/user/controllers/ExportacionesController.php:468
+#: ../modules/user/controllers/ExportacionesController.php:839
 msgid "Transporte"
 msgstr "Transport"
 
 #: ../modules/user/controllers/ImportacionesController.php:479
-#: ../modules/user/controllers/ImportacionesController.php:874
-#: ../modules/user/controllers/ExportacionesController.php:318
-#: ../modules/user/controllers/ExportacionesController.php:624
+#: ../modules/user/controllers/ImportacionesController.php:989
+#: ../modules/user/controllers/ExportacionesController.php:483
+#: ../modules/user/controllers/ExportacionesController.php:857
 msgid "Moneda"
 msgstr "Currency"
 
 #: ../modules/user/controllers/ImportacionesController.php:484
-#: ../modules/user/controllers/ImportacionesController.php:880
+#: ../modules/user/controllers/ImportacionesController.php:995
 msgid "Opp"
 msgstr "Opp"
 
 #: ../modules/user/controllers/ImportacionesController.php:489
-#: ../modules/user/controllers/ImportacionesController.php:886
-#: ../modules/user/controllers/ExportacionesController.php:333
-#: ../modules/user/controllers/ExportacionesController.php:679
+#: ../modules/user/controllers/ImportacionesController.php:1001
+#: ../modules/user/controllers/ExportacionesController.php:498
+#: ../modules/user/controllers/ExportacionesController.php:912
 msgid "Referencia"
 msgstr "Reference"
 
 #: ../modules/user/controllers/ImportacionesController.php:495
-#: ../modules/user/controllers/ImportacionesController.php:893
-#: ../modules/user/controllers/ExportacionesController.php:339
-#: ../modules/user/controllers/ExportacionesController.php:686
+#: ../modules/user/controllers/ImportacionesController.php:1008
+#: ../modules/user/controllers/ExportacionesController.php:504
+#: ../modules/user/controllers/ExportacionesController.php:919
 msgid "Fecha de Ingreso"
 msgstr "Entering Date"
 
-#: ../modules/user/controllers/ImportacionesController.php:501
-#: ../modules/user/controllers/ImportacionesController.php:900
+#: ../modules/user/controllers/ImportacionesController.php:503
+#: ../modules/user/controllers/ImportacionesController.php:1017
 msgid "Copia"
 msgstr "Copy"
 
-#: ../modules/user/controllers/ImportacionesController.php:501
-#: ../modules/user/controllers/ImportacionesController.php:900
+#: ../modules/user/controllers/ImportacionesController.php:503
+#: ../modules/user/controllers/ImportacionesController.php:1017
 msgid "Original"
 msgstr "Original"
 
-#: ../modules/user/controllers/ImportacionesController.php:505
-#: ../modules/user/controllers/ImportacionesController.php:905
+#: ../modules/user/controllers/ImportacionesController.php:507
+#: ../modules/user/controllers/ImportacionesController.php:1022
 msgid "Original/Copia"
 msgstr "Original/Copy"
 
-#: ../modules/user/controllers/ImportacionesController.php:511
-#: ../modules/user/controllers/ImportacionesController.php:911
-#: ../modules/user/controllers/ExportacionesController.php:346
-#: ../modules/user/controllers/ExportacionesController.php:695
+#: ../modules/user/controllers/ImportacionesController.php:513
+#: ../modules/user/controllers/ImportacionesController.php:1028
+#: ../modules/user/controllers/ExportacionesController.php:513
+#: ../modules/user/controllers/ExportacionesController.php:930
 msgid "Descripción Mercadería"
 msgstr "Merchandise Description"
 
-#: ../modules/user/controllers/ImportacionesController.php:517
-#: ../modules/user/controllers/ImportacionesController.php:918
-#: ../modules/user/controllers/ExportacionesController.php:353
-#: ../modules/user/controllers/ExportacionesController.php:703
+#: ../modules/user/controllers/ImportacionesController.php:519
+#: ../modules/user/controllers/ImportacionesController.php:1035
+#: ../modules/user/controllers/ExportacionesController.php:520
+#: ../modules/user/controllers/ExportacionesController.php:938
 msgid "Valor Factura"
 msgstr "Receipt Value"
 
-#: ../modules/user/controllers/ImportacionesController.php:523
-#: ../modules/user/controllers/ImportacionesController.php:925
+#: ../modules/user/controllers/ImportacionesController.php:525
+#: ../modules/user/controllers/ImportacionesController.php:1042
 msgid "Documentación Transporte"
 msgstr "Transport Documentation"
 
-#: ../modules/user/controllers/ImportacionesController.php:530
-#: ../modules/user/controllers/ImportacionesController.php:933
-#: ../modules/user/controllers/ExportacionesController.php:367
-#: ../modules/user/controllers/ExportacionesController.php:726
+#: ../modules/user/controllers/ImportacionesController.php:532
+#: ../modules/user/controllers/ImportacionesController.php:1050
+#: ../modules/user/controllers/ExportacionesController.php:536
+#: ../modules/user/controllers/ExportacionesController.php:964
 msgid "Ingreso a Puerto"
 msgstr "Port Entry Date"
 
-#: ../modules/user/controllers/ImportacionesController.php:537
-#: ../modules/user/controllers/ImportacionesController.php:941
+#: ../modules/user/controllers/ImportacionesController.php:541
+#: ../modules/user/controllers/ImportacionesController.php:1060
 msgid "Despacho: Número de Documento"
 msgstr "Dispatch: Document Number "
 
-#: ../modules/user/controllers/ImportacionesController.php:544
-#: ../modules/user/controllers/ImportacionesController.php:948
+#: ../modules/user/controllers/ImportacionesController.php:548
+#: ../modules/user/controllers/ImportacionesController.php:1067
 msgid "Despacho: Vencimiento"
 msgstr "Dispatch: Expiration Date"
 
-#: ../modules/user/controllers/ImportacionesController.php:551
-#: ../modules/user/controllers/ImportacionesController.php:956
+#: ../modules/user/controllers/ImportacionesController.php:557
+#: ../modules/user/controllers/ImportacionesController.php:1077
 msgid "Despacho: B/L"
 msgstr "Dispatch: B/L"
 
-#: ../modules/user/controllers/ImportacionesController.php:557
-#: ../modules/user/controllers/ImportacionesController.php:963
+#: ../modules/user/controllers/ImportacionesController.php:563
+#: ../modules/user/controllers/ImportacionesController.php:1084
 msgid "Despacho: Declaración"
 msgstr "Dispatch: Declaration"
 
-#: ../modules/user/controllers/ImportacionesController.php:563
-#: ../modules/user/controllers/ImportacionesController.php:970
+#: ../modules/user/controllers/ImportacionesController.php:569
+#: ../modules/user/controllers/ImportacionesController.php:1091
 msgid "Despacho: Presentado"
 msgstr "Dispatch: Presented"
 
-#: ../modules/user/controllers/ImportacionesController.php:570
-#: ../modules/user/controllers/ImportacionesController.php:978
+#: ../modules/user/controllers/ImportacionesController.php:578
+#: ../modules/user/controllers/ImportacionesController.php:1101
 msgid "Despacho: Salido"
 msgstr "Dispatch: Gone"
 
-#: ../modules/user/controllers/ImportacionesController.php:577
-#: ../modules/user/controllers/ImportacionesController.php:986
+#: ../modules/user/controllers/ImportacionesController.php:587
+#: ../modules/user/controllers/ImportacionesController.php:1111
 msgid "Despacho: Cargado"
 msgstr "Dispatch: Loaded"
 
-#: ../modules/user/controllers/ImportacionesController.php:584
-#: ../modules/user/controllers/ImportacionesController.php:994
+#: ../modules/user/controllers/ImportacionesController.php:596
+#: ../modules/user/controllers/ImportacionesController.php:1121
 msgid "Despacho: Factura"
 msgstr "Dispatch Receipt"
 
-#: ../modules/user/controllers/ImportacionesController.php:590
-#: ../modules/user/controllers/ImportacionesController.php:1001
+#: ../modules/user/controllers/ImportacionesController.php:602
+#: ../modules/user/controllers/ImportacionesController.php:1128
 msgid "Despacho: Fecha Factura"
 msgstr "Dispatch: Receipt Date "
 
-#: ../modules/user/controllers/ImportacionesController.php:705
+#: ../modules/user/controllers/ImportacionesController.php:743
+#: ../modules/user/controllers/ExportacionesController.php:748
+msgid "Fecha desde"
+msgstr "Date from"
+
+#: ../modules/user/controllers/ImportacionesController.php:752
+#: ../modules/user/controllers/ExportacionesController.php:757
+msgid "Fecha hasta"
+msgstr "Date to"
+
+#: ../modules/user/controllers/ImportacionesController.php:764
+#: ../modules/user/controllers/ExportacionesController.php:769
+msgid "Generar"
+msgstr "Generate"
+
+#: ../modules/user/controllers/ImportacionesController.php:772
+#: ../modules/user/controllers/ExportacionesController.php:777
+msgid "Estadisticas"
+msgstr "Statistics"
+
+#: ../modules/user/controllers/ImportacionesController.php:820
 msgid "Detalles de Importación"
 msgstr "Import details"
 
-#: ../modules/user/controllers/ImportacionesController.php:732
-#: ../modules/user/controllers/ExportacionesController.php:187
+#: ../modules/user/controllers/ImportacionesController.php:847
+#: ../modules/user/controllers/ExportacionesController.php:352
 msgid "Trifiori 2008"
 msgstr "Trifiori 2008"
 
@@ -569,40 +606,46 @@ msgstr "Description"
 msgid "Agregar Exportación"
 msgstr "Add Export "
 
-#: ../modules/user/controllers/ExportacionesController.php:160
-msgid "Detalles de Exportación"
-msgstr "Export details"
+#: ../modules/user/controllers/ExportacionesController.php:195
+#: ../modules/user/controllers/ExportacionesController.php:214
+msgid "Exportaciones"
+msgstr "Exports"
 
-#: ../modules/user/controllers/ExportacionesController.php:180
+#: ../modules/user/controllers/ExportacionesController.php:284
+#: ../modules/user/controllers/ExportacionesController.php:345
 msgid "Número de permiso: "
 msgstr "Permit Number:"
 
-#: ../modules/user/controllers/ExportacionesController.php:216
+#: ../modules/user/controllers/ExportacionesController.php:325
+msgid "Detalles de Exportación"
+msgstr "Export details"
+
+#: ../modules/user/controllers/ExportacionesController.php:381
 msgid "Modificar Exportación"
 msgstr "Modify Export "
 
-#: ../modules/user/controllers/ExportacionesController.php:360
-#: ../modules/user/controllers/ExportacionesController.php:711
+#: ../modules/user/controllers/ExportacionesController.php:527
+#: ../modules/user/controllers/ExportacionesController.php:946
 msgid "Vencimiento"
 msgstr "Expiration Date"
 
-#: ../modules/user/controllers/ExportacionesController.php:375
-#: ../modules/user/controllers/ExportacionesController.php:720
+#: ../modules/user/controllers/ExportacionesController.php:546
+#: ../modules/user/controllers/ExportacionesController.php:958
 msgid "Número de Permiso"
 msgstr "Permit Number"
 
-#: ../modules/user/controllers/ExportacionesController.php:380
-#: ../modules/user/controllers/ExportacionesController.php:734
+#: ../modules/user/controllers/ExportacionesController.php:551
+#: ../modules/user/controllers/ExportacionesController.php:974
 msgid "Permiso Presentado"
 msgstr "Permit Presented"
 
-#: ../modules/user/controllers/ExportacionesController.php:388
-#: ../modules/user/controllers/ExportacionesController.php:743
+#: ../modules/user/controllers/ExportacionesController.php:561
+#: ../modules/user/controllers/ExportacionesController.php:985
 msgid "Permiso Factura"
 msgstr "Permit Receipt"
 
-#: ../modules/user/controllers/ExportacionesController.php:393
-#: ../modules/user/controllers/ExportacionesController.php:749
+#: ../modules/user/controllers/ExportacionesController.php:566
+#: ../modules/user/controllers/ExportacionesController.php:991
 msgid "Permiso Fecha de Factura"
 msgstr "Permit Receipt Date"
 
@@ -683,7 +726,7 @@ msgstr "Modify Opp"
 
 #: ../modules/user/controllers/OppsController.php:220
 #: ../modules/user/controllers/OppsController.php:303
-#: ../modules/user/controllers/OppsController.php:386
+#: ../modules/user/controllers/OppsController.php:388
 msgid "Número"
 msgstr "Number"
 
@@ -704,26 +747,26 @@ msgstr "Declaration Ok"
 
 #: ../modules/user/controllers/OppsController.php:237
 #: ../modules/user/controllers/OppsController.php:319
-msgid "Pedido de Dinero"
-msgstr "Money request"
+msgid "Fecha de Pedido de Dinero"
+msgstr "Date of Money request"
 
 #: ../modules/user/controllers/OppsController.php:247
-#: ../modules/user/controllers/OppsController.php:328
+#: ../modules/user/controllers/OppsController.php:330
 msgid "Otros Opp"
 msgstr "Other Opp"
 
 #: ../modules/user/controllers/OppsController.php:254
-#: ../modules/user/controllers/OppsController.php:334
+#: ../modules/user/controllers/OppsController.php:336
 msgid "Fraccionado Opp"
 msgstr "Fractioned Opp"
 
 #: ../modules/user/controllers/OppsController.php:262
-#: ../modules/user/controllers/OppsController.php:342
+#: ../modules/user/controllers/OppsController.php:344
 msgid "Estampillas"
 msgstr "Stamps"
 
 #: ../modules/user/controllers/OppsController.php:269
-#: ../modules/user/controllers/OppsController.php:350
+#: ../modules/user/controllers/OppsController.php:352
 msgid "Impuestos Internos"
 msgstr "Internal taxes"
 
@@ -751,13 +794,13 @@ msgstr "Add Transport "
 msgid "Listar Transportes"
 msgstr "List Transports"
 
-#: ../modules/user/controllers/TransportesController.php:214
-#: ../modules/user/controllers/TransportesController.php:289
+#: ../modules/user/controllers/TransportesController.php:238
+#: ../modules/user/controllers/TransportesController.php:313
 msgid "Medio"
 msgstr "Medium"
 
-#: ../modules/user/controllers/TransportesController.php:225
-#: ../modules/user/controllers/TransportesController.php:299
+#: ../modules/user/controllers/TransportesController.php:249
+#: ../modules/user/controllers/TransportesController.php:323
 msgid "Observaciones"
 msgstr "Observations"
 
@@ -800,15 +843,15 @@ msgstr "Database error."
 msgid "Listar Banderas"
 msgstr "List Flags"
 
-#: ../modules/user/controllers/BanderasController.php:125
+#: ../modules/user/controllers/BanderasController.php:149
 msgid "No se puedo eliminar. Error en la Base de datos."
 msgstr "Unable to delete. Database Error."
 
-#: ../modules/user/controllers/BanderasController.php:136
+#: ../modules/user/controllers/BanderasController.php:160
 msgid "Modificar Bandera"
 msgstr "Modify Flag"
 
-#: ../modules/user/controllers/BanderasController.php:173
+#: ../modules/user/controllers/BanderasController.php:197
 msgid "No se pudo modificar. Error en la Base de datos."
 msgstr "Unable to modify. Database Error."
 
@@ -1231,6 +1274,8 @@ msgstr "Table Options"
 msgid "Seleccione las columnas que desea ver:"
 msgstr "Select the visible columns:"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:31
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:125
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:24
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:120
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:216
@@ -1248,6 +1293,8 @@ msgstr "Select the visible columns:"
 msgid "Ene"
 msgstr "Jan"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:32
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:126
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:25
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:121
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:217
@@ -1265,6 +1312,10 @@ msgstr "Jan"
 msgid "Feb"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:33
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:87
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:127
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:181
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:26
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:80
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:122
@@ -1296,6 +1347,8 @@ msgstr ""
 msgid "Mar"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:34
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:128
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:27
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:123
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:219
@@ -1313,6 +1366,8 @@ msgstr ""
 msgid "Abr"
 msgstr "Apr"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:35
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:129
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:28
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:124
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:220
@@ -1330,6 +1385,8 @@ msgstr "Apr"
 msgid "May"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:36
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:130
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:29
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:125
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:221
@@ -1347,6 +1404,8 @@ msgstr ""
 msgid "Jun"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:37
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:131
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:30
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:126
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:222
@@ -1364,6 +1423,8 @@ msgstr ""
 msgid "Jul"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:38
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:132
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:31
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:127
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:223
@@ -1381,6 +1442,8 @@ msgstr ""
 msgid "Ago"
 msgstr "Aug"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:39
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:133
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:32
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:128
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:224
@@ -1398,6 +1461,8 @@ msgstr "Aug"
 msgid "Sep"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:40
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:134
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:33
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:129
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:225
@@ -1415,6 +1480,8 @@ msgstr ""
 msgid "Oct"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:41
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:135
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:34
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:130
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:226
@@ -1432,6 +1499,8 @@ msgstr ""
 msgid "Nov"
 msgstr "Nov"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:42
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:136
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:35
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:131
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:227
@@ -1449,6 +1518,8 @@ msgstr "Nov"
 msgid "Dic"
 msgstr "Dec"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:47
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:141
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:40
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:136
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:232
@@ -1466,6 +1537,8 @@ msgstr "Dec"
 msgid "Enero"
 msgstr "January"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:48
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:142
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:41
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:137
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:233
@@ -1483,6 +1556,8 @@ msgstr "January"
 msgid "Febrero"
 msgstr "February"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:49
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:143
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:42
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:138
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:234
@@ -1500,6 +1575,8 @@ msgstr "February"
 msgid "Marzo"
 msgstr "March"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:50
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:144
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:43
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:139
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:235
@@ -1517,6 +1594,8 @@ msgstr "March"
 msgid "Abril"
 msgstr "April"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:51
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:145
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:44
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:140
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:236
@@ -1534,6 +1613,8 @@ msgstr "April"
 msgid "Mayo"
 msgstr "May"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:52
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:146
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:45
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:141
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:237
@@ -1551,6 +1632,8 @@ msgstr "May"
 msgid "Junio"
 msgstr "June"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:53
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:147
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:46
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:142
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:238
@@ -1568,6 +1651,8 @@ msgstr "June"
 msgid "Julio"
 msgstr "July"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:54
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:148
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:47
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:143
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:239
@@ -1585,6 +1670,8 @@ msgstr "July"
 msgid "Agosto"
 msgstr "August"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:55
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:149
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:48
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:144
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:240
@@ -1602,6 +1689,8 @@ msgstr "August"
 msgid "Septiembre"
 msgstr "September"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:56
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:150
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:49
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:145
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:241
@@ -1619,6 +1708,8 @@ msgstr "September"
 msgid "Octubre"
 msgstr "October"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:57
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:151
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:50
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:146
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:242
@@ -1636,6 +1727,8 @@ msgstr "October"
 msgid "Noviembre"
 msgstr "November"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:58
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:152
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:51
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:147
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:243
@@ -1653,6 +1746,8 @@ msgstr "November"
 msgid "Diciembre"
 msgstr "December"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:63
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:157
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:56
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:152
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:248
@@ -1670,6 +1765,8 @@ msgstr "December"
 msgid "D"
 msgstr "S"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:64
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:158
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:57
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:153
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:249
@@ -1687,6 +1784,10 @@ msgstr "S"
 msgid "L"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:65
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:66
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:159
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:160
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:58
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:59
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:154
@@ -1718,6 +1819,8 @@ msgstr ""
 msgid "M"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:67
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:161
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:60
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:156
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:252
@@ -1735,6 +1838,8 @@ msgstr ""
 msgid "J"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:68
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:162
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:61
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:157
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:253
@@ -1752,6 +1857,8 @@ msgstr ""
 msgid "V"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:69
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:163
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:62
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:158
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:254
@@ -1769,6 +1876,8 @@ msgstr ""
 msgid "S"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:74
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:168
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:67
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:163
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:259
@@ -1786,6 +1895,8 @@ msgstr ""
 msgid "Do"
 msgstr "Su"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:75
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:169
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:68
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:164
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:260
@@ -1803,6 +1914,8 @@ msgstr "Su"
 msgid "Lu"
 msgstr "Mo"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:76
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:170
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:69
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:165
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:261
@@ -1820,6 +1933,8 @@ msgstr "Mo"
 msgid "Ma"
 msgstr "Tu"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:77
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:171
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:70
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:166
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:262
@@ -1837,6 +1952,8 @@ msgstr "Tu"
 msgid "Mi"
 msgstr "We"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:78
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:172
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:71
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:167
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:263
@@ -1854,6 +1971,8 @@ msgstr "We"
 msgid "Ju"
 msgstr "Th"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:79
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:173
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:72
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:168
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:264
@@ -1871,6 +1990,8 @@ msgstr "Th"
 msgid "Vi"
 msgstr "Fr"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:80
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:174
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:73
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:169
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:265
@@ -1888,6 +2009,8 @@ msgstr "Fr"
 msgid "Sa"
 msgstr ""
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:85
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:179
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:78
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:174
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:270
@@ -1905,6 +2028,8 @@ msgstr ""
 msgid "Dom"
 msgstr "Sun"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:86
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:180
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:79
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:175
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:271
@@ -1922,6 +2047,8 @@ msgstr "Sun"
 msgid "Lun"
 msgstr "Mon"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:88
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:182
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:81
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:177
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:273
@@ -1939,6 +2066,8 @@ msgstr "Mon"
 msgid "Mie"
 msgstr "Wed"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:89
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:183
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:82
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:178
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:274
@@ -1956,6 +2085,8 @@ msgstr "Wed"
 msgid "Jue"
 msgstr "Thu"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:90
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:184
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:83
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:179
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:275
@@ -1973,6 +2104,8 @@ msgstr "Thu"
 msgid "Vie"
 msgstr "Fri"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:91
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:185
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:84
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:180
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:276
@@ -1990,6 +2123,8 @@ msgstr "Fri"
 msgid "Sab"
 msgstr "Sat"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:96
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:190
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:89
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:185
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:281
@@ -2007,6 +2142,8 @@ msgstr "Sat"
 msgid "Domingo"
 msgstr "Sunday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:97
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:191
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:90
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:186
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:282
@@ -2024,6 +2161,8 @@ msgstr "Sunday"
 msgid "Lunes"
 msgstr "Monday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:98
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:192
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:91
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:187
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:283
@@ -2041,6 +2180,8 @@ msgstr "Monday"
 msgid "Martes"
 msgstr "Tuesday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:99
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:193
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:92
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:188
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:284
@@ -2058,6 +2199,8 @@ msgstr "Tuesday"
 msgid "Miércoles"
 msgstr "Wednesday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:100
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:194
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:93
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:189
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:285
@@ -2075,6 +2218,8 @@ msgstr "Wednesday"
 msgid "Jueves"
 msgstr "Thursday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:101
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:195
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:94
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:190
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:286
@@ -2092,6 +2237,8 @@ msgstr "Thursday"
 msgid "Viernes"
 msgstr "Friday"
 
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:102
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:196
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:95
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:191
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:287
@@ -2108,6 +2255,11 @@ msgstr "Friday"
 #: ../modules/user/views/scripts/importaciones/modimportaciones.phtml:665
 msgid "Sábado"
 msgstr "Saturday"
+
+#: ../modules/user/views/scripts/importaciones/estadisticas.phtml:229
+#, fuzzy
+msgid "No existen estadísticas para ese período"
+msgstr "There are not any statistics from that period"
 
 #: ../modules/user/views/scripts/importaciones/addimportaciones.phtml:758
 #: ../modules/user/views/scripts/importaciones/modimportaciones.phtml:751
@@ -2326,20 +2478,25 @@ msgstr "*Choose a flag"
 msgid "*Seleccione un medio"
 msgstr "*Choose a medium"
 
-#: ../modules/user/views/scripts/opps/addopps.phtml:19
-#: ../modules/user/views/scripts/opps/modopps.phtml:16
+#: ../modules/user/views/scripts/opps/addopps.phtml:124
+#: ../modules/user/views/scripts/opps/modopps.phtml:121
 msgid "*Ingrese una fecha de pedido de dinero"
 msgstr "*Insert a request money date"
 
-#: ../modules/user/views/scripts/opps/addopps.phtml:20
-#: ../modules/user/views/scripts/opps/modopps.phtml:17
+#: ../modules/user/views/scripts/opps/addopps.phtml:125
+#: ../modules/user/views/scripts/opps/modopps.phtml:122
 msgid "*La fecha del pedido de dinero es inválida"
 msgstr "*The request money date is invalid"
 
-#: ../modules/user/views/scripts/opps/addopps.phtml:22
-#: ../modules/user/views/scripts/opps/modopps.phtml:19
+#: ../modules/user/views/scripts/opps/addopps.phtml:127
+#: ../modules/user/views/scripts/opps/modopps.phtml:124
 msgid "*Ingrese un resultado de declaración"
 msgstr "*Insert a declaration result"
+
+#: ../modules/user/views/scripts/opps/listopps.phtml:6
+#: ../modules/user/views/scripts/opps/listopps.phtml:39
+msgid "Pedido de Dinero"
+msgstr "Money request"
 
 #: ../modules/user/views/scripts/clientes/listclientes.phtml:9
 msgid "Tipo Iva"
@@ -2474,7 +2631,11 @@ msgstr "*The receipt permit must be alphanumeric"
 msgid "*La fecha de la fecha del permiso de factura es inválida"
 msgstr "*The date of the request date is invalid"
 
-#: ../modules/user/views/scripts/exportaciones/listexportaciones.phtml:5
+#: ../modules/user/views/scripts/exportaciones/estadisticas.phtml:229
+msgid "No existen estadisticas para ese periodo"
+msgstr "There are not any statistics from that period"
+
+#: ../modules/user/views/scripts/exportaciones/listexportaciones.phtml:6
 msgid "Codigo Cliente"
 msgstr "Client Code"
 
@@ -2504,9 +2665,8 @@ msgid "Borrar usuario"
 msgstr "Delete User"
 
 #: ../layouts/admin.phtml:49
-#: ../layouts/user.phtml:62
-#: ../layouts/user.phtml:84
-#: ../layouts/user.phtml:96
+#: ../layouts/user.phtml:63
+#: ../layouts/user.phtml:85
 #: ../layouts/user.phtml:108
 #: ../layouts/user.phtml:120
 #: ../layouts/user.phtml:132
@@ -2516,6 +2676,7 @@ msgstr "Delete User"
 #: ../layouts/user.phtml:180
 #: ../layouts/user.phtml:192
 #: ../layouts/user.phtml:204
+#: ../layouts/user.phtml:216
 msgid "Listado"
 msgstr "List"
 
@@ -2523,127 +2684,135 @@ msgstr "List"
 msgid "Últimas modificaciones"
 msgstr "Last Modifications "
 
-#: ../layouts/user.phtml:55
-msgid "Exportaciones"
-msgstr "Exports"
+#: ../layouts/user.phtml:53
+msgid "Bienvenido"
+msgstr "Welcome"
 
-#: ../layouts/user.phtml:61
+#: ../layouts/user.phtml:62
 msgid "Borrar Exportación"
 msgstr "Delete Export "
 
-#: ../layouts/user.phtml:63
-msgid "Estadisticas"
-msgstr "Statistics"
-
-#: ../layouts/user.phtml:67
+#: ../layouts/user.phtml:68
 msgid "Exportaciones por Cliente"
 msgstr "Exports by Client"
 
-#: ../layouts/user.phtml:68
+#: ../layouts/user.phtml:69
 msgid "Exportaciones por Destinacion"
 msgstr "Exports by Destination"
 
-#: ../layouts/user.phtml:69
+#: ../layouts/user.phtml:70
 msgid "Exportaciones por Bandera"
 msgstr "Exports by Flag"
 
-#: ../layouts/user.phtml:83
+#: ../layouts/user.phtml:84
 msgid "Borrar Importación"
 msgstr "Delete Import "
 
-#: ../layouts/user.phtml:89
+#: ../layouts/user.phtml:90
+msgid "Importaciones por Cliente"
+msgstr "Imports by Client"
+
+#: ../layouts/user.phtml:91
+msgid "Importaciones por Destinacion"
+msgstr "Imports by Destination"
+
+#: ../layouts/user.phtml:92
+msgid "Importaciones por Bandera"
+msgstr "Imports by Flag"
+
+#: ../layouts/user.phtml:101
 msgid "OPP"
 msgstr "OPP"
 
-#: ../layouts/user.phtml:93
+#: ../layouts/user.phtml:105
 msgid "Agregar OPP"
 msgstr "Add OPP"
 
-#: ../layouts/user.phtml:94
+#: ../layouts/user.phtml:106
 msgid "Modificar OPP"
 msgstr "Modify OPP"
 
-#: ../layouts/user.phtml:95
+#: ../layouts/user.phtml:107
 msgid "Borrar OPP"
 msgstr "Delete OPP"
 
-#: ../layouts/user.phtml:101
+#: ../layouts/user.phtml:113
 msgid "Clientes"
 msgstr "Clients"
 
-#: ../layouts/user.phtml:107
+#: ../layouts/user.phtml:119
 msgid "Borrar Cliente"
 msgstr "Delete Client "
 
-#: ../layouts/user.phtml:113
+#: ../layouts/user.phtml:125
 msgid "Proveedores"
 msgstr "Providers"
 
-#: ../layouts/user.phtml:119
+#: ../layouts/user.phtml:131
 msgid "Borrar Proveedor"
 msgstr "Delete Provider "
 
-#: ../layouts/user.phtml:125
+#: ../layouts/user.phtml:137
 msgid "Giros"
 msgstr "Turns"
 
-#: ../layouts/user.phtml:131
+#: ../layouts/user.phtml:143
 msgid "Borrar Giro"
 msgstr "Delete Turn "
 
-#: ../layouts/user.phtml:137
+#: ../layouts/user.phtml:149
 msgid "Cargas"
 msgstr "Loads"
 
-#: ../layouts/user.phtml:143
+#: ../layouts/user.phtml:155
 msgid "Borrar Carga"
 msgstr "Delete Load "
 
-#: ../layouts/user.phtml:149
+#: ../layouts/user.phtml:161
 msgid "Destinaciones"
 msgstr "Destinations"
 
-#: ../layouts/user.phtml:155
+#: ../layouts/user.phtml:167
 msgid "Borrar Destinación"
 msgstr "Delete Destination "
 
-#: ../layouts/user.phtml:161
+#: ../layouts/user.phtml:173
 msgid "Puertos"
 msgstr "Ports"
 
-#: ../layouts/user.phtml:167
+#: ../layouts/user.phtml:179
 msgid "Borrar Puerto"
 msgstr "Delete Port "
 
-#: ../layouts/user.phtml:173
+#: ../layouts/user.phtml:185
 msgid "Monedas"
 msgstr "Currencies"
 
-#: ../layouts/user.phtml:178
+#: ../layouts/user.phtml:190
 msgid "Modificar Moneda"
 msgstr "Modify Currency "
 
-#: ../layouts/user.phtml:179
+#: ../layouts/user.phtml:191
 msgid "Borrar Moneda"
 msgstr "Delete Currency "
 
-#: ../layouts/user.phtml:185
+#: ../layouts/user.phtml:197
 msgid "Transportes"
 msgstr "Transports"
 
-#: ../layouts/user.phtml:190
+#: ../layouts/user.phtml:202
 msgid "Modificar Transporte"
 msgstr "Modify Transport "
 
-#: ../layouts/user.phtml:191
+#: ../layouts/user.phtml:203
 msgid "Borrar Transporte"
 msgstr "Delete Transport  "
 
-#: ../layouts/user.phtml:197
+#: ../layouts/user.phtml:209
 msgid "Banderas"
 msgstr "Flags"
 
-#: ../layouts/user.phtml:203
+#: ../layouts/user.phtml:215
 msgid "Borrar Bandera"
 msgstr "Delete Flag "
 
