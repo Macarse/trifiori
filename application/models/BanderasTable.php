@@ -119,4 +119,3 @@ class Banderas extends Zend_Db_Table_Abstract
 }
 
 ?>
-
