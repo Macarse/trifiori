@@ -350,7 +350,7 @@ class user_PuertosController extends Trifiori_User_Controller_Action
 	$this->_helper->layout()->disableLayout();
 	   
 	$model = new Puertos();
-	$data = $model->fetchAll();
+	$data = $model->fetchAll("DELETED LIKE '0'");
 		   
 	foreach ($data as $row){
 		if ($row->latitud() != '' && $row->longitud() != '')

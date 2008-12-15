@@ -7,8 +7,20 @@ class Puertos extends Zend_Db_Table_Abstract
 
     public function removePuerto( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_PUE = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_PUE = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_PUE = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getPuertoByID( $id )
@@ -61,7 +73,7 @@ class Puertos extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
         
-        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyPuerto( $id, $name, $ubicacion, $latitud, $longitud )
@@ -92,14 +104,15 @@ class Puertos extends Zend_Db_Table_Abstract
 
         try
         {
-            $Puertos = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
+            $data = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {
             return NULL;
         }
 
-        foreach ($Puertos as $row)
+        foreach ($data as $row)
         {
             $arr[ $row->id() ] = $row->name();
         }

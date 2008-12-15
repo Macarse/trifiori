@@ -7,8 +7,20 @@ class Proveedores extends Zend_Db_Table_Abstract
 
     public function removeProveedor( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_TRA = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_TRA = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_TRA = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getProveedorByID( $id )
@@ -79,7 +91,7 @@ class Proveedores extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
         
-        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype); 
+        return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype); 
     }
     
     public function modifyProveedor( $id, $name, $adress, $tel, $fax, $mail )
@@ -111,14 +123,15 @@ class Proveedores extends Zend_Db_Table_Abstract
 
         try
         {
-            $Proveedores = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
+            $data = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {
             return NULL;
         }
 
-        foreach ($Proveedores as $row)
+        foreach ($data as $row)
         {
             $arr[ $row->id() ] = $row->name();
         }

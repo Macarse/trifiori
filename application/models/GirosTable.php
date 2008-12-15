@@ -7,8 +7,20 @@ class Giros extends Zend_Db_Table_Abstract
 
     public function removeGiro( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_GIR = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_GIR = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_GIR = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getGiroByID( $id )
@@ -54,7 +66,7 @@ class Giros extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
         
-        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyGiro( $id, $name )
@@ -81,14 +93,15 @@ class Giros extends Zend_Db_Table_Abstract
 
         try
         {
-            $giros = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
+            $data = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {
             return NULL;
         }
 
-        foreach ($giros as $row)
+        foreach ($data as $row)
         {
             $arr[ $row->id() ] = $row->name();
         }

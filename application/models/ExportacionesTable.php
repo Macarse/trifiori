@@ -7,8 +7,20 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
     public function removeExportacion( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_EXP = ?', $id);
-        $this->delete( $where );
+        //$where = $this->getAdapter()->quoteInto('CODIGO_EXP = ?', $id);
+        //$this->delete( $where );
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_EXP = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getExportacionByID( $id )
@@ -296,45 +308,45 @@ class Exportaciones extends Zend_Db_Table_Abstract
 
         if ($cliente == null && $orden == null && $carga == null)
         {
-            $query = $this->select();
+            $query = $this->select()->from($this)->where("DELETED LIKE '0'");
         }
         else if ($cliente == null && $orden == null)
         {
-            $query = $this->select()->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
                         WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
         }
         else if ($cliente == null && $carga == null)
         {
-            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'");
+            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'");
         }
         else if ($orden == null && $carga == null)
         {
-            $query = $this->select()->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
                         WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");
         }
         else if ($orden == null)
         {
-            $query = $this->select()->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
                         WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
                         AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
                         WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
         }
         else if ($cliente == null)
         {
-            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
+            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("DELETED LIKE '0'")->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
                         WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
         }
         else if ($carga == null)
         {
-            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
                         WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");            
         }
         else
         {
-            $query = $this->select()->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
+            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
+                ->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
                         WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
                         AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
                         WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");

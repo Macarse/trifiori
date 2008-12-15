@@ -7,8 +7,21 @@ class Cargas extends Zend_Db_Table_Abstract
 
     public function removeCarga( $id )
     {
-        $where = $this->getAdapter()->quoteInto('CODIGO_CAR = ?', $id);
-        $this->delete( $where );
+//        $where = $this->getAdapter()->quoteInto('CODIGO_CAR = ?', $id);
+//        $this->delete( $where );
+
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_CAR = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DELETED'    => '1'), $where );
     }
 
     public function getCargaByID( $id )
@@ -88,7 +101,7 @@ class Cargas extends Zend_Db_Table_Abstract
         else
             $where = "1=1";
         
-        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
+        return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyCarga( $id, $cantBultos, $tipoEnvase, $peso, $unidad,
@@ -123,7 +136,8 @@ class Cargas extends Zend_Db_Table_Abstract
 
         try
         {
-            $cargas = $this->fetchAll();
+            $where = $this->getAdapter()->quoteInto("DELETED LIKE '0'");
+            $cargas = $this->fetchAll($where);
         }
         catch (Zend_Exception $error)
         {
@@ -132,7 +146,7 @@ class Cargas extends Zend_Db_Table_Abstract
 
         foreach ($cargas as $row)
         {
-            $arr[ $row->id() ] = $row->nroPaquete();
+            $arr[ $row->id() ] = $row->name();
         }
 
         return $arr;
