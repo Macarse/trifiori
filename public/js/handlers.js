@@ -150,7 +150,7 @@ function handlerCalFechaHastaES(type,args,obj)
     var selected = args[0];
     var selDate = this.toDate(selected[0]);
 
-    changeDateInput('idFechaDesde', dateToLocaleString(selDate, this, 'es'));
+    changeDateInput('idFechaHasta', dateToLocaleString(selDate, this, 'es'));
 
     hide_div('calFechaHasta');
 };
