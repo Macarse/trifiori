@@ -28,11 +28,51 @@ class Opps extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function searchOpp( $num )
+    public function searchOpp( $name, $sortby, $sorttype )
     {
-        $num = mysql_real_escape_string($num);
-
-        return $this->select()->where("NUMERO_OPP LIKE '%" . $num . "%'"); 
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
+        $name = mysql_real_escape_string($name);
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        switch ($sortby)
+        {
+            case 'name':
+                $mySortby = "NUMERO_OPP";
+                break;
+            case 'declaracionOk':
+                $mySortby = "DECLARACION_OK_OPP";
+                break;
+            case 'pedidoDinero':
+                $mySortby = "PEDIDO_DE_DINERO_OPP";
+                break;
+            case 'otrosOpp':
+                $mySortby = "OTROS_OPP";
+                break;
+            case 'fraccionado':
+                $mySortby = "FRACCIONADO_OPP";
+                break;
+            case 'estampillas':
+                $mySortby = "ESTAMPILLAS_OPP";
+                break;
+            case 'impuestosInternos':
+                $mySortby = "IMPUESTOS_INTERNOS_OPP";
+                break;
+            default:
+                $mySortby = "NUMERO_OPP";
+                break;
+        }
+        
+        if ($name != "")
+            $where = "NUMERO_OPP LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype); 
     }
 
     protected function translateDate($value)

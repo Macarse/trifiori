@@ -41,10 +41,45 @@ class Proveedores extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function searchProveedor( $name )
+    public function searchProveedor( $name, $sortby, $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("NOMBRE_TRA LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        switch ($sortby)
+        {
+            case 'name':
+                $mySortby = "NOMBRE_TRA";
+                break;
+            case 'adress':
+                $mySortby = "DIRECCION_TRA";
+                break;
+            case 'tel':
+                $mySortby = "TELEFONOS_TRA";
+                break;
+            case 'fax':
+                $mySortby = "FAX_TRA";
+                break;
+            case 'mail':
+                $mySortby = "MAIL_TRA";
+                break;
+            default:
+                $mySortby = "NOMBRE_TRA";
+                break;
+        }
+        
+        if ($name != "")
+            $where = "NOMBRE_TRA LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype); 
     }
     
     public function modifyProveedor( $id, $name, $adress, $tel, $fax, $mail )

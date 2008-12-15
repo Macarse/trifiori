@@ -25,7 +25,7 @@ class Banderas extends Zend_Db_Table_Abstract
 
     public function getBanderaByID( $id )
     {
-        $where = $this->getAdapter()->quoteInto("CODIGO_BAN = ? AND DELETED = '0'", $id);
+        $where = $this->getAdapter()->quoteInto("CODIGO_BAN = ?", $id);
         $row = $this->fetchRow( $where );
 
         return $row;
@@ -33,7 +33,7 @@ class Banderas extends Zend_Db_Table_Abstract
 	
 	public function getBanderaByName( $name )
     {
-        $where = $this->getAdapter()->quoteInto("NOMBRE_BAN = ? AND DELETED = '0'", $name);
+        $where = $this->getAdapter()->quoteInto("NOMBRE_BAN = ?", $name);
         $row = $this->fetchRow( $where );
 
         return $row;
@@ -119,3 +119,4 @@ class Banderas extends Zend_Db_Table_Abstract
 }
 
 ?>
+

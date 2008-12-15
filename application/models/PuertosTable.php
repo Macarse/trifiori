@@ -40,10 +40,28 @@ class Puertos extends Zend_Db_Table_Abstract
         return True;
     }
     
-    public function searchPuerto( $name )
+    public function searchPuerto( $name, $sortby, $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("NOMBRE_PUE LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        if ($mySortby == "ubicacion")
+            $mySortby = "UBICACION_PUE";
+        else
+            $mySortby = "NOMBRE_PUE";
+        
+        if ($name != "")
+            $where = "NOMBRE_PUE LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyPuerto( $id, $name, $ubicacion, $latitud, $longitud )

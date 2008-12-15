@@ -79,12 +79,36 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                 
                 if (isset($_GET["consulta"]))
                 {
-                    $clientes = $clientesT->searchCliente($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $clientes = $clientesT->searchCliente($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $clientes = $clientesT->searchCliente($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $clientes = $clientesT->searchCliente($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $clientes = $clientesT->select();  
+                    $clientes = $clientesT->searchCliente("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
                 

@@ -38,10 +38,28 @@ class Monedas extends Zend_Db_Table_Abstract
         return True;
     }
 
-    public function searchMoneda( $name )
-    {
+    public function searchMoneda( $name , $sortby , $sorttype )
+    {     
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("DESCRIPCION_MON LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        if ($mySortby == "desc")
+            $mySortby = "DESCRIPCION_MON";
+        else
+            $mySortby = "NAME_MON";
+        
+        if ($name != "")
+            $where = "NAME_MON LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyMoneda( $id, $name, $longName )

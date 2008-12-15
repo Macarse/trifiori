@@ -10,8 +10,9 @@
 	                    {key:"name"}, {key:"ubicacion"}, {key:"mapa"}, {key:"mod"}, {key:"elim"}]};
 
 		        var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-                	{sortedBy:{key:"name",dir:"desc"},draggableColumns:true});
+                	{});
 
+                this.myDataTable.subscribe("theadCellClickEvent", cambiaBusqueda);
 		        // Shows dialog, creating one when necessary
 		        this.newCols = true;
 		        this.showDlg = function(e) {

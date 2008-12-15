@@ -81,12 +81,36 @@ class user_CargasController extends Trifiori_User_Controller_Action
                 
                 if (isset($_GET["consulta"]))
                 {
-                    $cargas = $cargasT->searchCarga($_GET["consulta"]);
+                    if (isset($_GET["sortby"]))
+                    {
+                        if (isset($_GET["sort"]))
+                        {
+                            $cargas = $cargasT->searchCarga($_GET["consulta"], $_GET["sortby"], $_GET["sort"]);
+                            $mySortType = $_GET["sort"];
+                        }
+                        else
+                        {
+                            $cargas = $cargasT->searchCarga($_GET["consulta"], $_GET["sortby"], null);
+                            $mySortType = null;
+                        }
+                        $mySortBy = $_GET["sortby"];
+                    }
+                    else
+                    {
+                        $cargas = $cargasT->searchCarga($_GET["consulta"], null, null);
+                        $mySortType = null;
+                        $mySortBy = null;
+                    }
                     Zend_Registry::set('busqueda', $_GET["consulta"]);
+                    Zend_Registry::set('sortby', $mySortBy);
+                    Zend_Registry::set('sorttype', $mySortType);
                 }
                 else
                 {
-                    $cargas = $cargasT->select();   
+                    $cargas = $cargasT->searchCarga("", "", "");
+
+                    Zend_Registry::set('sortby', "");
+                    Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
                 

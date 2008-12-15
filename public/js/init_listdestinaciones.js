@@ -16,8 +16,9 @@
 			};
 
 			this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-				{sortedBy:{key:"name",dir:"desc"},draggableColumns:true}
+				{}
 			);
+            this.myDataTable.subscribe("theadCellClickEvent", cambiaBusqueda);
 		    };
 	        }
 		

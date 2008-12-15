@@ -44,10 +44,25 @@ class Destinaciones extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function searchDestinacion( $name )
+    public function searchDestinacion( $name, $sortby, $sorttype )
     {
+        $mySortby = mysql_real_escape_string($sortby);
+        $mySorttype = mysql_real_escape_string($sorttype);
         $name = mysql_real_escape_string($name);
-        return $this->select()->where("DESCRIPCION_DES LIKE '%" . $name . "%'"); 
+        
+        if ($mySorttype == "desc")
+            $mySorttype = "DESC";
+        else
+            $mySorttype = "ASC";
+        
+        $mySortby = "DESCRIPCION_DES";
+        
+        if ($name != "")
+            $where = "DESCRIPCION_DES LIKE '%" . $name . "%'";
+        else
+            $where = "1=1";
+        
+        return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
     
     public function modifyDestinacion( $id, $name )
