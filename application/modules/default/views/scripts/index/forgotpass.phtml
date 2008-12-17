@@ -2,7 +2,7 @@
     <div class="error"> <?= $this->error ?>.</div>
 <? } ?>
 <? if (isset($this->succeed)) { ?>
-    <p class="okmsg"> <?= $this->succeed ?>.</p>
+    <p class="okmsg"> <?= $this->escape($this->succeed) ?>.</p>
 <? } ?>
 <div class="cformusuario">
     <?= $this->getMailForm ?>

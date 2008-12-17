@@ -1,49 +1,49 @@
 <!-- queda en el php las cosas a traducir -->
 <script type="text/javascript">
 var myColumnDefs = [
-	{key:"name",label:"<?= $this->language->_("Nombre")?>", sortable:false},
-	{key:"flags",label:"<?= $this->language->_("Bandera")?>",sortable:false},
-	{key:"medio",label:"<?= $this->language->_("Medio")?>", sortable:false},
-	{key:"obs",label:"<?= $this->language->_("Observaciones")?>", sortable:false},
-	{key:"mod",label:"<?= $this->language->_("Modificar")?>", sortable:false},
-	{key:"elim",label:"<?= $this->language->_("Eliminar")?>", sortable:false}];
+	{key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?>", sortable:false},
+	{key:"flags",label:"<?= $this->escape($this->language->_("Bandera"))?>",sortable:false},
+	{key:"medio",label:"<?= $this->escape($this->language->_("Medio"))?>", sortable:false},
+	{key:"obs",label:"<?= $this->escape($this->language->_("Observaciones"))?>", sortable:false},
+	{key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?>", sortable:false},
+	{key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?>", sortable:false}];
 
-var hideLabel = "<?= $this->language->_("Oculto")?>";
-var showLabel = "<?= $this->language->_("Visible")?>";
-var closeLabel = "<?= $this->language->_("Cerrar")?>";
+var hideLabel = "<?= $this->escape($this->language->_("Oculto"))?>";
+var showLabel = "<?= $this->escape($this->language->_("Visible"))?>";
+var closeLabel = "<?= $this->escape($this->language->_("Cerrar"))?>";
 </script>
 <script type="text/javascript" src="/js/init_listtransportes.js"></script>
 
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
+    <div class="error"><?= $this->escape($this->error) ?></div>
             <? } ?>
             <? if (isset($this->message)) { ?>
                 <? foreach ($this->message as $msg) { ?>
-                    <div class="msg"><?= $msg ?></div>
+                    <div class="msg"><?= $this->escape($msg) ?></div>
                             <? } ?>
                             <? } ?>
 <div class="busqueda">
     <?= $this->transporteSearchForm ?>
 </div>
-<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->language->_("Opciones de la tabla")?></a></div>
+<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->escape($this->language->_("Opciones de la tabla"))?></a></div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
-        <tr><th><?= $this->language->_("Bandera")?></th> <th><?= $this->language->_("Medio")?></th> <th><?= $this->language->_("Nombre")?></th> <th><?= $this->language->_("Observaciones")?></th> <th><?= $this->language->_("Modificar")?></th> <th><?= $this->language->_("Eliminar")?></th></tr>
+        <tr><th><?= $this->escape($this->language->_("Bandera"))?></th> <th><?= $this->escape($this->language->_("Medio"))?></th> <th><?= $this->escape($this->language->_("Nombre"))?></th> <th><?= $this->escape($this->language->_("Observaciones"))?></th> <th><?= $this->escape($this->language->_("Modificar"))?></th> <th><?= $this->escape($this->language->_("Eliminar"))?></th></tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $tran) { ?>
         <tr>
-            <td> <?= $tran->name() ?> </td>
-            <td> <?= $tran->codBanderaName() ?> </td>
-            <td> <?= $tran->codMedioName() ?> </td>
-            <td> <?= $tran->observaciones() ?> </td>
+            <td> <?= $this->escape($tran->name()) ?> </td>
+            <td> <?= $this->escape($tran->codBanderaName()) ?> </td>
+            <td> <?= $this->escape($tran->codMedioName()) ?> </td>
+            <td> <?= $this->escape($tran->observaciones()) ?> </td>
             <td>
-                <a href="<?= "/user/transportes/modtransportes/id/" . $tran->id() ?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"></a>
+                <a href="<?= "/user/transportes/modtransportes/id/" . $this->escape($tran->id()) ?>"><img src="/images/modificar.png" alt="<?= $this->escape($this->language->_("Modificar"))?>" title="<?= $this->escape($this->language->_("Modificar"))?>" width="30" height="30"></a>
             </td>
             <td>
-                <a href="<?= "/user/transportes/removetransportes/id/" . $tran->id() ?>"><img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"></a>
+                <a href="<?= "/user/transportes/removetransportes/id/" . $this->escape($tran->id()) ?>"><img src="/images/borrar.png" alt="<?= $this->escape($this->language->_("Eliminar"))?>" title="<?= $this->escape($this->language->_("Eliminar"))?>" width="30" height="30"></a>
             </td>
         </tr>
         <? } ?>
@@ -64,7 +64,7 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
     <span class="corner_br"></span>
     <span class="corner_bl"></span>
     <div class="hd">
-        <?= $this->language->_("Seleccione las columnas que desea ver:")?>
+        <?= $this->escape($this->language->_("Seleccione las columnas que desea ver:"))?>
     </div>
     <div id="dt-dlg-picker" class="bd">
     </div>

@@ -7,15 +7,15 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 <div class="paginationControl">
 <!-- Previous page link --> 
 <?php if (isset($this->previous)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->previous; ?>">&lt; <?= $this->language->_("Anterior") ?> </a> |
+        <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($this->previous); ?>">&lt; <?= $this->language->_("Anterior") ?> </a> |
 <?php else: ?> 
-  <span class="disabled">&lt; <?= $this->language->_("Anterior") ?> </span> |
+  <span class="disabled">&lt; <?= $this->escape($this->language->_("Anterior")) ?> </span> |
 <?php endif; ?> 
 
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?> 
   <?php if ($page != $this->current): ?>
-    <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $page; ?>"><?= $page; ?></a>
+    <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($page); ?>"><?= $page; ?></a>
   <?php else: ?>
     <?= $page; ?> | 
   <?php endif; ?>
@@ -23,7 +23,7 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 
 <!-- Next page link --> 
 <?php if (isset($this->next)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->next; ?>"> <?= $this->language->_("Próximo") ?>  &gt;</a>
+        <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($this->next); ?>"> <?= $this->language->_("Próximo") ?>  &gt;</a>
 <?php else: ?> 
   <span class="disabled"> <?= $this->language->_("Próximo") ?>  &gt;</span>
 <?php endif; ?> 

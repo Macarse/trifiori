@@ -1,65 +1,65 @@
 <script type="text/javascript">
         var myColumnDefs = [
-            {key:"bultos",label:" <?= $this->language->_("Cantidad Bultos")?> ", sortable:false},
-            {key:"tipoenvase",label:" <?= $this->language->_("Tipo de Envase")?> ", sortable:false},
-            {key:"peso",label:" <?= $this->language->_("Peso")?> ", sortable:false},
-            {key:"unidad",label:" <?= $this->language->_("Unidad")?> ", sortable:false},
-            {key:"nropaq",label:" <?= $this->language->_("Número de Paquete")?> ", sortable:false},
-            {key:"marcayum",label:" <?= $this->language->_("Marca y número")?> ", sortable:false},
-            {key:"imco",label:" <?= $this->language->_("Merc. IMCO")?> ", sortable:false},
-            {key:"mod",label:" <?= $this->language->_("Modificar")?> ", sortable:false},
-            {key:"elim",label:" <?= $this->language->_("Eliminar")?> ", sortable:false}
+            {key:"bultos",label:" <?= $this->escape($this->language->_("Cantidad Bultos"))?> ", sortable:false},
+            {key:"tipoenvase",label:" <?= $this->escape($this->language->_("Tipo de Envase"))?> ", sortable:false},
+            {key:"peso",label:" <?= $this->escape($this->language->_("Peso"))?> ", sortable:false},
+            {key:"unidad",label:" <?= $this->escape($this->language->_("Unidad"))?> ", sortable:false},
+            {key:"nropaq",label:" <?= $this->escape($this->language->_("Número de Paquete"))?> ", sortable:false},
+            {key:"marcayum",label:" <?= $this->escape($this->language->_("Marca y número"))?> ", sortable:false},
+            {key:"imco",label:" <?= $this->escape($this->language->_("Merc. IMCO"))?> ", sortable:false},
+            {key:"mod",label:" <?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
+            {key:"elim",label:" <?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}
         ];
 
-var hideLabel = "<?= $this->language->_("Oculto")?>";
-var showLabel = "<?= $this->language->_("Visible")?>";
-var closeLabel = "<?= $this->language->_("Cerrar")?>";
+var hideLabel = "<?= $this->escape($this->language->_("Oculto"))?>";
+var showLabel = "<?= $this->escape($this->language->_("Visible"))?>";
+var closeLabel = "<?= $this->escape($this->language->_("Cerrar"))?>";
 </script>
 <script type="text/javascript" src="/js/init_listcargas.js"></script>
 
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
+    <div class="error"><?= $this->escape($this->error) ?></div>
 <? } ?>
 <? if (isset($this->message)) { ?>
     <? foreach ($this->message as $msg) { ?>
-        <div class="msg"><?= $msg ?></div>
+        <div class="msg"><?= $this->escape($msg) ?></div>
     <? } ?>
 <? } ?>
 <div class="busqueda">
     <?= $this->cargaSearchForm ?>
 </div>
-<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->language->_("Opciones de la tabla")?></a></div>
+<div><a id="dt-options-link" href="fallbacklink.html"><?= $this->escape($this->language->_("Opciones de la tabla"))?></a></div>
 <div id="divlistado" class="clistado">
 	<table id="tablelist">
     <thead>
         <tr>
-            <th> <?= $this->language->_("Cantidad Bultos")?> </th>
-            <th> <?= $this->language->_("Tipo de Envase")?> </th>
-            <th> <?= $this->language->_("Peso")?> </th>
-            <th> <?= $this->language->_("Unidad")?> </th>
-            <th> <?= $this->language->_("Número de Paquete")?> </th>
-            <th> <?= $this->language->_("Marca y número")?> </th>
-            <th> <?= $this->language->_("Merc. IMCO")?> </th>
-            <th> <?= $this->language->_("Modificar")?> </th>
-            <th> <?= $this->language->_("Eliminar")?> </th>
+            <th> <?= $this->escape($this->language->_("Cantidad Bultos"))?> </th>
+            <th> <?= $this->escape($this->language->_("Tipo de Envase"))?> </th>
+            <th> <?= $this->escape($this->language->_("Peso"))?> </th>
+            <th> <?= $this->escape($this->language->_("Unidad"))?> </th>
+            <th> <?= $this->escape($this->language->_("Número de Paquete"))?> </th>
+            <th> <?= $this->escape($this->language->_("Marca y número"))?> </th>
+            <th> <?= $this->escape($this->language->_("Merc. IMCO"))?> </th>
+            <th> <?= $this->escape($this->language->_("Modificar"))?> </th>
+            <th> <?= $this->escape($this->language->_("Eliminar"))?> </th>
         </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $carga) { ?>
         <tr> 
-            <td> <?= $carga->cantBultos() ?> </td>
-            <td> <?= $carga->tipoEnvase() ?> </td>
-            <td> <?= $carga->peso() ?> </td>
-            <td> <?= $carga->unidad() ?> </td>
-            <td> <?= $carga->nroPaquete() ?> </td>
-            <td> <?= $carga->marcaYnum() ?> </td>
-            <td> <?= $carga->mercIMCO() ?> </td>
+            <td> <?= $this->escape($carga->cantBultos()) ?> </td>
+            <td> <?= $this->escape($carga->tipoEnvase()) ?> </td>
+            <td> <?= $this->escape($carga->peso()) ?> </td>
+            <td> <?= $this->escape($carga->unidad()) ?> </td>
+            <td> <?= $this->escape($carga->nroPaquete()) ?> </td>
+            <td> <?= $this->escape($carga->marcaYnum()) ?> </td>
+            <td> <?= $this->escape($carga->mercIMCO()) ?> </td>
             <td>
-                <a href="<?= "/user/cargas/modcargas/id/" . $carga->id()?>"> <img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"> </a>
+                <a href="<?= "/user/cargas/modcargas/id/" . $this->escape($carga->id())?>"> <img src="/images/modificar.png" alt="<?= $this->escape($this->language->_("Modificar"))?>" title="<?= $this->escape($this->language->_("Modificar"))?>" width="30" height="30"> </a>
             </td>
             <td>
-                <a href="<?= "/user/cargas/removecargas/id/" . $carga->id()?>"> <img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"> </a>
+                <a href="<?= "/user/cargas/removecargas/id/" . $this->escape($carga->id())?>"> <img src="/images/borrar.png" alt="<?= $this->escape($this->language->_("Eliminar"))?>" title="<?= $this->escape($this->language->_("Eliminar"))?>" width="30" height="30"> </a>
             </td>
         </tr>
         <? } ?>
@@ -80,7 +80,7 @@ var closeLabel = "<?= $this->language->_("Cerrar")?>";
     <span class="corner_br"></span>
     <span class="corner_bl"></span>
     <div class="hd">
-        <?= $this->language->_("Seleccione las columnas que desea ver:")?>
+        <?= $this->escape($this->language->_("Seleccione las columnas que desea ver:"))?>
     </div>
     <div id="dt-dlg-picker" class="bd">
     </div>

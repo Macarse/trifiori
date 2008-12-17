@@ -10,31 +10,31 @@ See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 <div class="paginationControl">
 <!-- Previous page link --> 
 <?php if (isset($this->previous)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->previous
-            . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype; ?>">
-            &lt; <?= $this->language->_("Anterior") ?> </a>
+        <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($this->previous)
+            . "&sortby=" . $this->escape($this->sortby) . "&sort=" . $this->escape($this->sorttype); ?>">
+            &lt; <?= $this->escape($this->language->_("Anterior")) ?> </a>
 <?php else: ?> 
-  <span class="disabled">&lt; <?= $this->language->_("Anterior") ?> </span> |
+  <span class="disabled">&lt; <?= $this->escape($this->language->_("Anterior")) ?> </span> |
 <?php endif; ?> 
 
 <!-- Numbered page links -->
 <?php foreach ($this->pagesInRange as $page): ?> 
   <?php if ($page != $this->current): ?>
-    <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $page
-            . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype; ?>">
-            <?= $page; ?></a>
+    <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($page)
+            . "&sortby=" . $this->escape($this->sortby) . "&sort=" . $this->escape($this->sorttype); ?>">
+            <?= $this->escape($page); ?></a>
   <?php else: ?>
-    <?= $page; ?> | 
+    <?= $this->escape($page); ?> | 
   <?php endif; ?>
 <?php endforeach; ?>
 
 <!-- Next page link --> 
 <?php if (isset($this->next)): ?> 
-        <a href="<?= $this->url() . "?consulta=" . $this->busqueda . "&page=" . $this->next
-            . "&sortby=" . $this->sortby . "&sort=" . $this->sorttype;?>"> 
+        <a href="<?= $this->escape($this->url()) . "?consulta=" . $this->escape($this->busqueda) . "&page=" . $this->escape($this->next)
+            . "&sortby=" . $this->escape($this->sortby) . "&sort=" . $this->escape($this->sorttype);?>"> 
             <?= $this->language->_("Próximo") ?>  &gt;</a>
 <?php else: ?> 
-  <span class="disabled"> <?= $this->language->_("Próximo") ?>  &gt;</span>
+  <span class="disabled"> <?= $this->escape($this->language->_("Próximo")) ?>  &gt;</span>
 <?php endif; ?> 
 </div> 
 <?php endif; ?>

@@ -7,9 +7,9 @@
 <div id="divmodificaciones" class="clistado">
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $log) { ?>
-            <?= $this->language->_("ID") . ": " . $log->id() ?> <br />
-            <td> <?= $this->language->_("Nivel") . ": " .$log->nivel() ?> <br />
-            <td> <?= $this->language->_("Mensaje") . ": " . $log->msg() ?> <br /><br />
+            <?= $this->escape($this->language->_("ID")) . ": " . $this->escape($log->id()) ?> <br />
+            <td> <?= $this->escape($this->language->_("Nivel")) . ": " . $this->escape($log->nivel()) ?> <br />
+            <td> <?= $this->escape($this->language->_("Mensaje")) . ": " . $this->escape($log->msg()) ?> <br /><br />
         <? } ?>
     <? } ?>
 </div>
@@ -18,5 +18,5 @@
     <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <?php } ?>
 
-<a href="<?= "/mobile/admin/index" ?>"> <?= $this->language->_("Menu Principal")?> </a><br />
-<a href="<?= "/mobile/index/logout" ?>"> <?= $this->language->_("Logout")?> </a>
+<a href="<?= "/mobile/admin/index" ?>"> <?= $this->escape($this->language->_("Menu Principal")) ?> </a><br />
+<a href="<?= "/mobile/index/logout" ?>"> <?= $this->escape($this->language->_("Logout"))?> </a>

@@ -1,8 +1,8 @@
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
+    <div class="error"><?= $this->escape($this->error) ?></div>
             <? } ?>
             <? if (isset($this->message)) { ?>
-                <div class="msg"><?= $this->message ?></div>
+                <div class="msg"><?= $this->escape($this->message) ?></div>
                         <? } ?>
 <div class="cformulario">
 	<?= $this->cargaAddForm ?>

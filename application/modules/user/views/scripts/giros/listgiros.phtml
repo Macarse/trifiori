@@ -1,17 +1,17 @@
 <script type="text/javascript">
 var myColumnDefs = [
-    {key:"name",label:"<?= $this->language->_("Nombre")?> ", sortable:false},
-    {key:"mod",label:"<?= $this->language->_("Modificar")?> ", sortable:false},
-    {key:"elim",label:"<?= $this->language->_("Eliminar")?> ", sortable:false}
+    {key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> ", sortable:false},
+    {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
+    {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}
 ];
 </script>
 <script type="text/javascript" src="/js/init_listgiros.js"></script>
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->error ?></div>
+    <div class="error"><?= $this->escape($this->error) ?></div>
             <? } ?>
             <? if (isset($this->message)) { ?>
                 <? foreach ($this->message as $msg) { ?>
-                    <div class="msg"><?= $msg ?></div>
+                    <div class="msg"><?= $this->escape($msg) ?></div>
                             <? } ?>
                             <? } ?>
 <div class="busqueda">
@@ -21,21 +21,21 @@ var myColumnDefs = [
 	<table id="tablelist">
     <thead>
         <tr>
-            <th> <?= $this->language->_("Nombre") ?> </th>
-            <th> <?= $this->language->_("Modificar") ?> </th>
-            <th> <?= $this->language->_("Eliminar") ?> </th>
+            <th> <?= $this->escape($this->language->_("Nombre")) ?> </th>
+            <th> <?= $this->escape($this->language->_("Modificar")) ?> </th>
+            <th> <?= $this->escape($this->language->_("Eliminar")) ?> </th>
         </tr>
     </thead>
     <tbody>
     <? if (count($this->paginator)) { ?>
         <? foreach($this->paginator as $giro) { ?>
         <tr> 
-            <td> <?= $giro->name() ?> </td>
+            <td> <?= $this->escape($giro->name()) ?> </td>
             <td>
-                <a href="<?= "/user/giros/modgiros/id/" . $giro->id()?>"><img src="/images/modificar.png" alt="<?= $this->language->_("Modificar")?>" title="<?= $this->language->_("Modificar")?>" width="30" height="30"></a>
+                <a href="<?= "/user/giros/modgiros/id/" . $this->escape($giro->id())?>"><img src="/images/modificar.png" alt="<?= $this->escape($this->language->_("Modificar"))?>" title="<?= $this->escape($this->language->_("Modificar"))?>" width="30" height="30"></a>
             </td>
 			<td>
-                <a href="<?= "/user/giros/removegiros/id/" . $giro->id()?>"><img src="/images/borrar.png" alt="<?= $this->language->_("Eliminar")?>" title="<?= $this->language->_("Eliminar")?>" width="30" height="30"></a>
+                <a href="<?= "/user/giros/removegiros/id/" . $this->escape($giro->id())?>"><img src="/images/borrar.png" alt="<?= $this->escape($this->language->_("Eliminar"))?>" title="<?= $this->escape($this->language->_("Eliminar"))?>" width="30" height="30"></a>
             </td>
         </tr>
         <? } ?>
