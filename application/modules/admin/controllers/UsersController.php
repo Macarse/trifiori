@@ -169,9 +169,9 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             {
                 try
                 {
-                $usersTable = new Users();
-                $usersTable->removeUser( $_rmid );
-                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                    $usersTable = new Users();
+                    $usersTable->removeUser( $_rmid );
+                    $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
                 }
                 catch (Exception $error)
                 {
