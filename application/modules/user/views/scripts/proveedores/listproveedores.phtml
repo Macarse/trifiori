@@ -10,11 +10,11 @@
 <!-- queda en el php las cosas a traducir -->
 <script type="text/javascript">
 var myColumnDefs = [
-	{key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?>", sortable:false},
-	{key:"adress",label:"<?= $this->escape($this->language->_("Dirección"))?>", sortable:false},
-	{key:"tel",label:"<?= $this->escape($this->language->_("Teléfono"))?>", sortable:false},
-	{key:"fax",label:"<?= $this->escape($this->language->_("Fax"))?>", sortable:false},
-	{key:"mail",label:"<?= $this->escape($this->language->_("E-mail"))?>", sortable:false},
+	{key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> <?= $this->sortby == 'name' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	{key:"adress",label:"<?= $this->escape($this->language->_("Dirección"))?> <?= $this->sortby == 'adress' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	{key:"tel",label:"<?= $this->escape($this->language->_("Teléfono"))?> <?= $this->sortby == 'tel' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	{key:"fax",label:"<?= $this->escape($this->language->_("Fax"))?> <?= $this->sortby == 'fax' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	{key:"mail",label:"<?= $this->escape($this->language->_("E-mail"))?> <?= $this->sortby == 'mail' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
 	{key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?>", sortable:false},
 	{key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?>", sortable:false}];
 

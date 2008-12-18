@@ -10,15 +10,15 @@
 <!-- queda en el php las cosas a traducir -->
 <script type="text/javascript">
 var myColumnDefs =
-	[   {key:"name",label: '<?= $this->escape($this->language->_("Nombre"))?>', sortable:false},
-	    {key:"address",label: '<?= $this->escape($this->language->_("Dirección"))?>', sortable:false},
-	    {key:"cp",label: '<?= $this->escape($this->language->_("Código Postal"))?>', sortable:false},
-	    {key:"local",label: '<?= $this->escape($this->language->_("Localidad"))?>', sortable:false},
-	    {key:"cuit",label: '<?= $this->escape($this->language->_("CUIT"))?>', sortable:false},
-	    {key:"iva",label: '<?= $this->escape($this->language->_("Tipo Iva"))?>', sortable:false},
-	    {key:"type",label: '<?= $this->escape($this->language->_("Tipo Cliente"))?>', sortable:false},
-	    {key:"mod",label: '<?= $this->escape($this->language->_("Modificar"))?>', sortable:false},
-	    {key:"elim",label: '<?= $this->escape($this->language->_("Eliminar"))?>', sortable:false}];
+	[   {key:"name",label: "<?= $this->escape($this->language->_('Nombre'))?> <?= $this->sortby == 'name' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"address",label: "<?= $this->escape($this->language->_('Dirección'))?> <?= $this->sortby == 'address' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"cp",label: "<?= $this->escape($this->language->_('Código Postal'))?> <?= $this->sortby == 'cp' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"local",label: "<?= $this->escape($this->language->_('Localidad'))?> <?= $this->sortby == 'local' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"cuit",label: "<?= $this->escape($this->language->_('CUIT'))?> <?= $this->sortby == 'cuit' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"iva",label: "<?= $this->escape($this->language->_('Tipo Iva'))?> <?= $this->sortby == 'iva' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"type",label: "<?= $this->escape($this->language->_('Tipo Cliente'))?> <?= $this->sortby == 'type' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"mod",label: "<?= $this->escape($this->language->_('Modificar'))?> ", sortable:false},
+	    {key:"elim",label: "<?= $this->escape($this->language->_('Eliminar'))?>", sortable:false}];
 
 var hideLabel = "<?= $this->escape($this->language->_("Oculto"))?>";
 var showLabel = "<?= $this->escape($this->language->_("Visible"))?>";
