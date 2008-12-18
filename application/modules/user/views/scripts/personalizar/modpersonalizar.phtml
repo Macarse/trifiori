@@ -1,6 +1,11 @@
 <? if (isset($this->error)) { ?>
     <div class="error"><?= $this->escape($this->error) ?></div>
 <? } ?>
+
+<? if (isset($this->modOk)) { ?>
+    <div class="resultOk"><?= $this->escape($this->modOk) ?></div>
+<? } ?>
+
 <div class="cformulario">
     <?= $this->personalizarModForm ?>
 </div>
