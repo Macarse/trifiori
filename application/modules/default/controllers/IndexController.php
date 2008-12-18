@@ -197,7 +197,7 @@ class IndexController extends Trifiori_Default_Controller_Action
             {
                 //Borro los mensaje de errores anteriores.
                 unset($this->view->error);
-                unset($this->view->suceed);
+                unset($this->view->succeed);
 
                 $this->_mailform = $this->getMailForm();
                 if ($this->_mailform->isValid($_POST))
@@ -209,7 +209,15 @@ class IndexController extends Trifiori_Default_Controller_Action
                     {
                         $usuariosTable = new Users();
                         $hash = $usuariosTable->newPass($values['email']);
+                        $this->view->succeed = $this->language->_('Operación exitosa');
+                    }
+                    catch (Zend_Exception $error)
+                    {
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
+                    }
 
+                    try
+                    {
                         //Envio el mail.
                         if ($hash)
                         {
@@ -233,6 +241,7 @@ class IndexController extends Trifiori_Default_Controller_Action
                         }
                         else
                         {
+                            unset($this->view->succeed);
                             $this->view->error = $values['email'] . ' ' .
                                         $this->language->_('no existe en la base de datos');
                         }
@@ -240,10 +249,12 @@ class IndexController extends Trifiori_Default_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        /*Como no pudo mandar mail, entonces no suceedeo*/
+                        unset($this->view->succeed);
+                        $this->view->error = $this->language->_("Error al intentar enviar e-mail.");
                     }
 
-                    $this->view->succeed = $this->language->_('Operación exitosa');
+
                     $this->_mailform = null;
                 }
                 else

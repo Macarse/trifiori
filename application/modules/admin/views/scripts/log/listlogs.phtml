@@ -1,5 +1,5 @@
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->escape($this->error) ?></div>
+    <div class="error_fatal"><?= $this->escape($this->error) ?></div>
 <? } ?>
 <div class="busqueda">
     <?= $this->logSearchForm ?>
@@ -31,7 +31,7 @@
 <?php } ?>
 
 <script type="text/javascript">
-        
+
 YAHOO.util.Event.addListener(window, "load", function() {
     YAHOO.example.EnhanceFromMarkup = new function() {
 
@@ -56,26 +56,26 @@ YAHOO.util.Event.addListener(window, "load", function() {
         this.myDataTable = new YAHOO.widget.DataTable("divmodificaciones", myColumnDefs, this.myDataSource,
                 {}
         );
-        
+
         function cambiaBusqueda(e) {
             var x = location.protocol + '//' + location.host + location.pathname;
             var y = "";
             var sortby_prev = "";
             var sort_prev = "";
             var sort_act;
-            
+
             <? if (isset($_GET["consulta"])) { ?>
                 y = "<?= $this->escape($_GET["consulta"]) ?>";
             <? } ?>
-            
+
             <? if (isset($_GET["sortby"])) { ?>
                 sortby_prev = "<?= $this->escape($_GET["sortby"]) ?>";
             <? } ?>
-                        
+
             <? if (isset($_GET["sort"])) { ?>
                 sort_prev = "<?= $this->escape($_GET["sort"]) ?>";
             <? } ?>
-                        
+
             if (this.getColumn(e.target) == "Column instance 0")
             {
                 if (sortby_prev == "id") 
