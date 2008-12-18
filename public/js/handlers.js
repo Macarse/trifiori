@@ -22,6 +22,12 @@ function cambiaBusqueda(e) {
     var search_cliente = "";
     var search_carga = "";
     
+    if (this.getColumn(e.target).key == "mod"
+        || this.getColumn(e.target).key == "elim"
+        || this.getColumn(e.target).key == "reporte"
+        || this.getColumn(e.target).key == "detalle")
+        return;
+        
     y = get_url_param("consulta");
     sortby_prev = get_url_param("sortby");
     sort_prev = get_url_param("sort");

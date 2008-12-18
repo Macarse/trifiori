@@ -25,7 +25,9 @@
 			};
 
 			var myDT = this.myDataTable = new YAHOO.widget.DataTable("divlistado", myColumnDefs, this.myDataSource,
-				{sortedBy:{key:"orden",dir:"desc"}});
+				{});
+				
+				this.myDataTable.subscribe("theadCellClickEvent", cambiaBusqueda);
 		        
 			// Shows dialog, creating one when necessary
 		        this.newCols = true;

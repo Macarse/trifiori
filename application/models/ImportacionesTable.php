@@ -560,22 +560,91 @@ class Importaciones extends Zend_Db_Table_Abstract
         {
             $busqueda["searchCliente"] = "";
         }
-            
+        
         if (!isset($busqueda["searchOrden"]))
         {
             $busqueda["searchOrden"] = "";
         }
-            
+        
         if (!isset($busqueda["searchCarga"]))
         {
             $busqueda["searchCarga"] = "";
+        }
+        
+        if (!isset($busqueda["sortby"]))
+        {
+            $mySortby = "ORDEN_IMP";
+        }
+        else
+        {
+            switch ($busqueda["sortby"])
+            {
+                case 'orden':
+                    $mySortby = "ORDEN_IMP";
+                    break;
+                case 'codCanalName':
+                    $mySortby = "DESCRIPCION_CAN";
+                    break;
+                case 'codClienteName':
+                    $mySortby = "NOMBRE_CLI";
+                    break;
+                case 'codOppName':
+                    $mySortby = "NUMERO_OPP";
+                    break;
+                case 'desMercaderias':
+                    $mySortby = "DESCMERCADERIA_IMP";
+                    break;
+                case 'valorFactura':
+                    $mySortby = "VALORFACTURA_IMP";
+                    break;
+                case 'ingresoPuerto':
+                    $mySortby = "FECHAINGRESO_IMP";
+                    break;
+                default:
+                    $mySortby = "ORDEN_IMP";
+                    break;
+            }
+        }
+        
+        if (isset($busqueda["sort"]))
+        {
+            if ($busqueda["sort"] == "desc")
+                $mySorttype = "DESC";
+            else
+                $mySorttype = "ASC";
+        }
+        else
+        {
+            $mySorttype = "ASC";
         }
             
         $cliente = mysql_real_escape_string($busqueda["searchCliente"]);
         $orden = mysql_real_escape_string($busqueda["searchOrden"]);
         $carga = mysql_real_escape_string($busqueda["searchCarga"]);
+        
+        $where = "CLIENTES.NOMBRE_CLI LIKE '%" . $cliente . "%' AND CARGAS.NROPAQUETE_CAR LIKE '%"
+            . $carga . "%'";
+        
+        if ($orden != null)
+            $where = $where . " AND CAST(ORDEN_IMP AS CHAR(100)) LIKE '%" . $orden . "%'";
             
-    
+        $select = $this->select();
+                
+        $select->from($this, array('CODIGO_IMP', 'ORDEN_IMP', 'CODIGO_CAN', 'CODIGO_CLI', 'CODIGO_OPP', 
+            'DESCMERCADERIA_IMP', 'VALORFACTURA_IMP', 'INGRESOPUERTO_IMP'));
+        $select->setIntegrityCheck(false)
+                ->join('CLIENTES', 'CLIENTES.CODIGO_CLI = IMPORTACIONES.CODIGO_CLI', array())
+                ->join('TRANSPORTES', 'TRANSPORTES.CODIGO_BUQ = IMPORTACIONES.CODIGO_TRA', array())
+                ->join('CANALES', 'CANALES.CODIGO_CAN = IMPORTACIONES.CODIGO_CAN', array())
+                ->join('CARGAS', 'CARGAS.CODIGO_CAR = IMPORTACIONES.CODIGO_CAR', array())
+                ->join('OPP', 'OPP.CODIGO_OPP = IMPORTACIONES.CODIGO_OPP', array())
+                ->where($where)
+                ->where("IMPORTACIONES.DELETED LIKE '0'")
+                ->order($mySortby . " " . $mySorttype);
+
+        return $select;
+            
+    /*
         if ($cliente == null && $orden == null && $carga == null)
         {
             $query = $this->select()->from($this)->where("DELETED LIKE '0'");
@@ -623,6 +692,7 @@ class Importaciones extends Zend_Db_Table_Abstract
         }
     
         return $query;
+       */
     }
 }
 ?>

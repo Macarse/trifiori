@@ -130,7 +130,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                 
                 Zend_Registry::set('busqueda', $busqueda);
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
-                //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));
+  
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
