@@ -1,11 +1,3 @@
-<script type="text/javascript">
-var myColumnDefs = [
-    {key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> ", sortable:false},
-    {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
-    {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}];
-</script>
-<script type="text/javascript" src="/js/init_listbanderas.js"></script>
-
 <? if (isset($this->error)) { ?>
     <div class="error_fatal"><?= $this->escape($this->error) ?></div>
     <div id="errmsg"></div>
@@ -14,8 +6,14 @@ var myColumnDefs = [
         showAlert("errmsg", { width:"620px", modal:true, visible:true, underlay:"shadow", fixedcenter:true, constraintoviewport:true, draggable:false } , "Error Fatal", "<div id='diverror' class='error_fatal'><?= $this->escape($this->language->_($this->error)) ?></div><br><div id='idtimeerror'></div>", "Trifiori");
         setInterval (function (){if (time==5){document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando al Home...'))?>";window.location.href = "/";}else{ document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando en'))?> " + (5-time); time++;}}, 1000);
     </script>
-<? } ?>
-
+<? } else { ?>
+<script type="text/javascript">
+var myColumnDefs = [
+    {key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> ", sortable:false},
+    {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
+    {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}];
+</script>
+<script type="text/javascript" src="/js/init_listbanderas.js"></script>
 <? if (isset($this->message)) { ?>
     <? foreach ($this->message as $msg) { ?>
         <div class="msg"><?= $this->escape($msg) ?></div>
@@ -55,3 +53,4 @@ var myColumnDefs = [
     <?= $this->paginationControl($this->paginator, 'Sliding', 'paginationControl.phtml'); ?>
 <?php } ?>
 
+<? } ?>

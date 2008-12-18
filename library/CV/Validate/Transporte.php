@@ -12,11 +12,11 @@ class CV_Validate_Transporte extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $transporte = new Transportes();
+        $model = new Transportes();
         try
         {
-            $codTransporte = $transporte->getTransporteByName($value);
-            if ($codTransporte != NULL)
+		    $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {

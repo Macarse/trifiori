@@ -14,9 +14,9 @@ class CV_Validate_BanderaExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $banderas = new Banderas();
         try
         {
+            $banderas = new Banderas();
             $codBandera = $banderas->getBanderaByName($value);
             if ($codBandera != NULL)
             {
@@ -30,8 +30,7 @@ class CV_Validate_BanderaExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

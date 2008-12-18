@@ -12,11 +12,11 @@ class CV_Validate_Opp extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $opp = new Opps();
+        $model = new Opps();
         try
         {
-            $codOpp = $opp->getOppByNumero($value);
-            if ($codOpp != NULL)
+		    $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {
