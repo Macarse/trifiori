@@ -746,6 +746,12 @@ class Importaciones extends Zend_Db_Table_Abstract
             $fdesde = $this->translateDate($from);
             $fhasta = $this->translateDate($to);
 
+            if($fdesde == '')
+                $fdesde = '1970-1-01';
+
+            if($fhasta == '')
+                $fhasta = date('Y-m-d');
+
             switch($type)
             {
                 case 'pais':
