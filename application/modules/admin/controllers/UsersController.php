@@ -24,15 +24,19 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
     {
         $this->view->headTitle($this->language->_("Agregar Usuario"));
 
+        //Borro los mensaje de errores anteriores.
+        unset($this->view->error);
+        unset($this->view->message);
+
         if ($this->getRequest()->isPost())
         {
             if (isset($_POST['AddUserTrack']))
             {
-                //Borro los mensaje de errores anteriores.
-                unset($this->view->error);
-                unset($this->view->suceedAddUser);
+                if (($this->_addform = $this->getUserAddForm()) == NULL)
+                {
+                    $this->_helper->redirector->gotoUrl('admin/users/listusers');
+                }
 
-                $this->_addform = $this->getUserAddForm();
                 if ($this->_addform->isValid($_POST))
                 {
                     // process user
@@ -52,26 +56,23 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                         }
                         catch (Zend_Exception $error)
                         {
-                            $this->view->error = $error;
+                            $this->view->error = $this->language->_("Error en la Base de datos.");
                         }
-
-                        /*TODO: Si ocurre un error se muestra que insertó bien*/
-                        $this->view->suceedAddUser = $this->language->_('Inserción exitosa');
+                        $this->view->message = $this->language->_('Inserción exitosa');
                         $this->_addform = null;
                     }
                     else
                     {
-                        $this->view->error = $this->language->_('Las contraseñas no son iguales');
+                        $this->view->passNotEqual = $this->language->_('Las contraseñas no son iguales');
                     }
-                }
-                else
-                {
-                    $this->view->error = $this->language->_('Ocurrió un error');
                 }
             }
         }
 
-        $this->view->getUserAddForm = $this->getUserAddForm();
+        if (($this->_addform = $this->getUserAddForm()) == NULL)
+        {
+            $this->_helper->redirector->gotoUrl('admin/users/listusers');
+        }
     }
 
     public function listusersAction()
@@ -125,7 +126,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($user, $table));
 
                 if (isset($_GET["page"]))
@@ -142,7 +143,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->userSearchForm = $this->getUserSearchForm();
@@ -174,8 +175,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 }
                 catch (Exception $error)
                 {
-                $this->_flashMessenger->addMessage($this->language->_($error));
-                //$this->view->error = $error;
+                    $this->view->error = $this->language->_("Error en la Base de datos.");
                 }
             }
         }
@@ -201,7 +201,10 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 $this->_helper->redirector->gotoUrl('admin/users/listusers');
             }
         }
-
+        else
+        {
+            $this->_helper->redirector->gotoUrl('admin/users/listusers');
+        }
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
@@ -227,12 +230,9 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
-                    //$this->view->error = $error;
+                        $this->view->error = $this->language->_("No puede eliminar al administrador.");
                     }
 
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
                     $this->_helper->redirector->gotoUrl('admin/users/listusers');
                 }
             }
@@ -275,10 +275,15 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                  ->setRequired(true);
 
 
-        /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $LangTable = new Lang();
-        $langOptions =  $LangTable->getLangArray();
+        try
+        {
+            $LangTable = new Lang();
+            $langOptions =  $LangTable->getLangArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         $lang = $this->_addform->createElement('select', 'lang');
         $lang   ->setRequired(true)
@@ -286,10 +291,15 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel($this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $cssTable = new Css();
-        $cssOptions =  $cssTable->getCssArray();
+        try
+        {
+            $cssTable = new Css();
+            $cssOptions =  $cssTable->getCssArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         $css = $this->_addform->createElement('select', 'css');
         $css    ->setRequired(true)
@@ -353,13 +363,18 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             return $this->_modform;
         }
 
-        /*Levanto el usuario para completar el form.*/
-        $table = new Users();
-        $user = $table->getUserByID( $id );
+        try
+        {
+            $table = new Users();
+            $user = $table->getUserByID( $id );
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         if ( $user === null )
         {
-            /*TODO: Hardcodeado ok?*/
             $this->_helper->redirector->gotoUrl('admin/users/listusers');
         }
 
@@ -391,10 +406,15 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $passwordvrfy->addValidator('StringLength', false, array(1,100));
 
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $LangTable = new Lang();
-        $langOptions =  $LangTable->getLangArray();
+        try
+        {
+            $LangTable = new Lang();
+            $langOptions =  $LangTable->getLangArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         $lang = $this->_modform->createElement('select', 'lang');
         $lang   ->setValue($user->langNum())
@@ -403,10 +423,15 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                 ->setLabel($this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $cssTable = new Css();
-        $cssOptions =  $cssTable->getCssArray();
+        try
+        {
+            $cssTable = new Css();
+            $cssOptions =  $cssTable->getCssArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         $css = $this->_modform->createElement('select', 'css');
         $css    ->setValue($user->codCss() )
