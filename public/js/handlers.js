@@ -119,6 +119,16 @@ function dateToLocaleString(dt, cal, lang)
         return (mStr + "-" + dStr + "-" + yStr);
 }
 
+function showAlert(divid, properties, header, body, footer)
+{
+    YAHOO.namespace("alert.container");
+    YAHOO.alert.container.panel = new YAHOO.widget.Panel(divid, properties);
+	YAHOO.alert.container.panel.setHeader(header);
+    YAHOO.alert.container.panel.setBody(body);
+    YAHOO.alert.container.panel.setFooter(footer);
+    YAHOO.alert.container.panel.render();
+}
+
 function handlerCalFechaDineroES(type,args,obj)
 {
     var selected = args[0];

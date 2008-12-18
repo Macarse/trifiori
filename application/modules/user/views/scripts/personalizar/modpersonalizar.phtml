@@ -1,12 +1,18 @@
 <? if (isset($this->error)) { ?>
-    <div class="error"><?= $this->escape($this->error) ?></div>
+    <div id="errmsg"></div>
+    <script languaje="javascript">
+        var time=0;
+        showAlert("errmsg", { width:"620px", modal:true, visible:true, underlay:"shadow", fixedcenter:true, constraintoviewport:true, draggable:false } , "Error Fatal", "<div id='diverror' class='error_fatal'><?= $this->escape($this->error) ?></div><br><div id='idtimeerror'></div>", "Trifiori");
+        setInterval (function (){if (time==5){document.getElementById('idtimeerror').innerHTML = "<?= $this->escape('Redireccionando al Home')?>";window.location.href = "/";}else{ document.getElementById('idtimeerror').innerHTML = "<?= $this->escape('Redireccionando en')?> " + (5-time); time++;}}, 1000);
+    </script>
+<? } 
+   else
+   {
+   if (isset($this->modOk)) { ?>
+        <div class="resultOk"><?= $this->escape($this->modOk) ?></div>
+   <? } ?>
+    <div class="cformulario">
+        <?= $this->personalizarModForm ?>
+    </div>
+    <div id='form_errorloc' class='errors_js_forms'></div>
 <? } ?>
-
-<? if (isset($this->modOk)) { ?>
-    <div class="resultOk"><?= $this->escape($this->modOk) ?></div>
-<? } ?>
-
-<div class="cformulario">
-    <?= $this->personalizarModForm ?>
-</div>
-<div id='form_errorloc' class='errors_js_forms'></div>
