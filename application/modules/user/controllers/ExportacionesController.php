@@ -170,7 +170,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             catch (Zend_Exception $error)
             {
                 $this->_flashMessenger->addMessage(
-                    $this->language->_("No se puedo generar el pdf. Error en la Base de datos.")
+                    $this->language->_("No se puedo generar el pdf.") .
+                    $this->language->_("Error en la Base de datos.")
                                                 );
                 $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
             }
@@ -477,7 +478,8 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     catch (Zend_Exception $error)
                     {
                         $this->_flashMessenger->addMessage(
-                                $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                $this->language->_("No se puedo modificar.") .
+                                $this->language->_("Error en la Base de datos.")
                                                 );
                     }
 

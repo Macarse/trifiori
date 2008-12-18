@@ -12,7 +12,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/opps/listopps');
@@ -51,7 +51,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -80,7 +80,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
             try
             {
                 $table = new Opps();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -115,9 +115,9 @@ class user_OppsController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($opps, $table));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -126,13 +126,13 @@ class user_OppsController extends Trifiori_User_Controller_Action
                 {
                     $paginator->setCurrentPageNumber(1);
                 }
-                
+
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->oppSearchForm = $this->getOPPSearchForm();
@@ -149,13 +149,16 @@ class user_OppsController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $oppsTable = new Opps();
-            $oppsTable->removeOpp( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $oppsTable = new Opps();
+                $oppsTable->removeOpp( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                    $this->language->_("No se puedo eliminar." .
+                                        "Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -179,6 +182,10 @@ class user_OppsController extends Trifiori_User_Controller_Action
             {
                 $this->_helper->redirector->gotoUrl('user/opps/listopps');
             }
+        }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/opps/listopps');
         }
 
         /*Si viene algo por post, validarlo.*/
@@ -207,7 +214,10 @@ class user_OppsController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                            $this->language->_("No se puedo modificar." .
+                                        "Error en la Base de datos.")
+                                                );
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
@@ -220,17 +230,25 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
     private function getOppModForm( $id )
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
             return $this->_modform;
         }
 
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
         /*Levanto el usuario para completar el form.*/
-        $oppsTable = new Opps();
-        $row = $oppsTable->getOppByID( $id );
+
+        try
+        {
+            $oppsTable = new Opps();
+            $row = $oppsTable->getOppByID( $id );
+        }
+        catch (Zend_Exception $e)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -243,7 +261,8 @@ class user_OppsController extends Trifiori_User_Controller_Action
                         ->setName('form')
                         ->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Número')));
+        $name = $this->_modform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Número')));
         $name   ->setValue($row->name() )
                 ->addValidator('int')
                 ->addValidator('stringLength', false, array(1, 11))
@@ -292,7 +311,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
                    ->setRequired(False);
 
         $impuestosInternos = $this->_modform->createElement('text', 'impuestosInternos',
-                                                    array('label' => $this->language->_('Impuestos Internos')));
+                                array('label' => $this->language->_('Impuestos Internos')));
         $impuestosInternos  ->setValue($row->estampillas() )
                             ->addValidator($alnumWithWS)
                             ->addValidator('stringLength', false, array(1, 150))
@@ -314,12 +333,13 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
     private function getOppAddForm()
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
 
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
+
+        $alnumWithWS = new Zend_Validate_Alnum(True);
 
         $this->_addform = new Zend_Form();
         $this->_addform ->setAction($this->_baseUrl)
@@ -422,7 +442,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
-    
+
     public function getdataAction()
     {
         $arr = array();
@@ -435,15 +455,22 @@ class user_OppsController extends Trifiori_User_Controller_Action
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-            $model = new Opps();
-            $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-
-            foreach ($data as $row)
+            try
             {
-                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-            }
+                $model = new Opps();
+                $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
-            $arr = array("Resultset" => array("Result" => $aux));
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch (Zend_Exception $e)
+            {
+                $arr = array();
+            }
 
             try
             {

@@ -12,7 +12,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/cargas/listcargas');
@@ -51,7 +51,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -65,7 +65,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $this->view->headTitle($this->language->_("Listar Cargas"));
 
         $this->view->paginator = null;
-        
+
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
@@ -73,14 +73,14 @@ class user_CargasController extends Trifiori_User_Controller_Action
         $this->view->message = $this->_flashMessenger->getMessages();
         $this->view->sort = ( isset($_GET["sort"] ) ) ? $_GET["sort"] : 'asc' ;
         $this->view->sortby = ( isset($_GET["sortby"] ) ) ? $_GET["sortby"] : '' ;
-        
+
         $this->_searchform = $this->getCargaSearchForm();
         if ($this->_searchform->isValid($_GET))
-        {          
+        {
             try
             {
                 $cargasT = new Cargas();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -115,9 +115,9 @@ class user_CargasController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($cargas, $cargasT));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -131,7 +131,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->cargaSearchForm = $this->getCargaSearchForm();
@@ -148,13 +148,13 @@ class user_CargasController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $cargasTable = new Cargas();
-            $cargasTable->removeCarga( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $cargasTable = new Cargas();
+                $cargasTable->removeCarga( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
 
@@ -178,6 +178,10 @@ class user_CargasController extends Trifiori_User_Controller_Action
             {
                 $this->_helper->redirector->gotoUrl('user/cargas/listcargas');
             }
+        }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/cargas/listcargas');
         }
 
         /*Si viene algo por post, validarlo.*/
@@ -206,11 +210,12 @@ class user_CargasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                            $this->language->_("No se puedo modificar.") .
+                            $this->language->_("Error en la Base de datos.")
+                                                        );
                     }
 
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
                     $this->_helper->redirector->gotoUrl('user/cargas/listcargas');
                 }
             }
@@ -237,12 +242,12 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+                        ->setName('form')
+                        ->setMethod('post');
 
 
         $cantBultos = $this->_modform->createElement('text', 'cantBultos',
-                                            array('label' => '*' . $this->language->_('Cantidad de Bultos')));
+                array('label' => '*' . $this->language->_('Cantidad de Bultos')));
         $cantBultos ->setValue($row->cantBultos() )
                     ->addValidator('digits')
                     ->addValidator('stringLength', false, array(1, 11))
@@ -278,7 +283,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                         ));
 
         $nroPaquete = $this->_modform->createElement('text', 'nroPaquete',
-                                            array('label' => $this->language->_('Número de Paquete')));
+                    array('label' => $this->language->_('Número de Paquete')));
         $nroPaquete ->setValue($row->nroPaquete() )
                     ->addValidator('alnum')
                     ->addValidator('stringLength', false, array(1, 25))
@@ -286,7 +291,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
 
         $marcaYnum = $this->_modform->createElement('text', 'marcaYnum',
-                                            array('label' => $this->language->_('Marca y número')));
+                        array('label' => $this->language->_('Marca y número')));
         $marcaYnum  ->setValue($row->marcaYnum() )
                     ->addValidator('alnum')
                     ->addValidator('stringLength', false, array(1, 100))
@@ -294,7 +299,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
 
         $mercIMCO = $this->_modform->createElement('text', 'mercIMCO',
-                                            array('label' => $this->language->_('Merc. IMCO')));
+                            array('label' => $this->language->_('Merc. IMCO')));
         $mercIMCO   ->setValue($row->mercIMCO() )
                     ->addValidator('alnum')
                     ->addValidator('stringLength', false, array(1, 100))
@@ -323,11 +328,11 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
         $this->_addform = new Zend_Form();
         $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+                        ->setName('form')
+                        ->setMethod('post');
 
         $cantBultos = $this->_addform->createElement('text', 'cantBultos',
-                                            array('label' => '*' . $this->language->_('Cantidad de Bultos')));
+                    array('label' => '*' . $this->language->_('Cantidad de Bultos')));
         $cantBultos->addValidator('digits')
                    ->addValidator('stringLength', false, array(1, 11))
                    ->setRequired(True);
@@ -359,7 +364,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
                                         ));
 
         $nroPaquete = $this->_addform->createElement('text', 'nroPaquete',
-                                            array('label' => '*' . $this->language->_('Número de Paquete')));
+                array('label' => '*' . $this->language->_('Número de Paquete')));
         $nroPaquete->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 25))
                    ->addValidator(new CV_Validate_CargaExiste())
@@ -367,14 +372,14 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
 
         $marcaYnum = $this->_addform->createElement('text', 'marcaYnum',
-                                            array('label' => $this->language->_('Marca y número')));
+                array('label' => $this->language->_('Marca y número')));
         $marcaYnum ->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 100))
                    ->setRequired(False);
 
 
         $mercIMCO = $this->_addform->createElement('text', 'mercIMCO',
-                                            array('label' => $this->language->_('Merc. IMCO')));
+            array('label' => $this->language->_('Merc. IMCO')));
         $mercIMCO ->addValidator('alnum')
                    ->addValidator('stringLength', false, array(1, 100))
                    ->setRequired(False);
@@ -401,11 +406,12 @@ class user_CargasController extends Trifiori_User_Controller_Action
         }
 
         $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $this->_searchform  ->setAction($this->_baseUrl)
+                            ->setName('form')
+                            ->setMethod('get');
 
-        $carga = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Número de Paquete')));
+        $carga = $this->_searchform->createElement('text', 'consulta',
+            array('label' => $this->language->_('Número de Paquete')));
         $carga       ->addValidator('alnum')
                      ->addValidator('stringLength', false, array(1, 25));
 
@@ -416,39 +422,51 @@ class user_CargasController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
-    
-   public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Cargas();
-		   $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->nroPaquete()));	
-	       }
+
+            try
+            {
+                $model = new Cargas();
+                $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
+
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->nroPaquete()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch (Zend_Exception $e)
+            {
+                $arr = array();
+            }
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
 	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
    }
 }
 ?>

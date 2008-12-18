@@ -262,16 +262,14 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 50))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         // Create and configure username element:
 
         $username = $this->_addform->createElement('text', 'username', array('label' => '*' . $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         // Create and configure password element:
         $password = $this->_addform->createElement('password', 'password', array('label' => '*' . $this->language->_('Clave')));
@@ -393,16 +391,14 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $name->setValue($user->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 50))
-             ->setRequired(true)
-             ->addFilter('StringToLower');
+             ->setRequired(true);
 
         // Create and configure username element:
         $username = $this->_modform->createElement('text', 'username', array('label' => '*' . $this->language->_('Usuario')));
         $username->setValue($user->user() )
                  ->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
-                 ->setRequired(true)
-                 ->addFilter('StringToLower');
+                 ->setRequired(true);
 
         // Create and configure password element:
         $password = $this->_modform->createElement('password', 'password',
