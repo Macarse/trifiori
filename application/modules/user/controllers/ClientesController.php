@@ -12,7 +12,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/clientes/listclientes');
@@ -50,7 +50,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -67,16 +67,16 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
-        
+
         $this->_searchform = $this->getClienteSearchForm();
         if ($this->_searchform->isValid($_GET))
-        {   
+        {
             try
             {
                 $clientesT = new Clientes();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -111,9 +111,9 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($clientes, $clientesT));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -127,7 +127,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->clienteSearchForm = $this->getClienteSearchForm();
@@ -144,13 +144,15 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $clientesTable = new Clientes();
-            $clientesTable->removeCliente( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $clientesTable = new Clientes();
+                $clientesTable->removeCliente( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -175,7 +177,10 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                 $this->_helper->redirector->gotoUrl('user/clientes/listclientes');
             }
         }
-
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/clientes/listclientes');
+        }
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
@@ -202,7 +207,9 @@ class user_ClientesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
@@ -215,17 +222,24 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
     private function getClienteModForm( $id )
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
             return $this->_modform;
         }
 
-        /*Levanto el usuario para completar el form.*/
-        $clientesTable = new Clientes();
-        $row = $clientesTable->getClienteByID( $id );
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        try
+        {
+            /*Levanto el usuario para completar el form.*/
+            $clientesTable = new Clientes();
+            $row = $clientesTable->getClienteByID( $id );
+        }
+        catch(Zend_Exception $e)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -234,36 +248,41 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
-        $dir = $this->_modform->createElement('text', 'dir', array('label' => $this->language->_('Dirección')));
+        $dir = $this->_modform->createElement('text', 'dir',
+            array('label' => $this->language->_('Dirección')));
         $dir ->setValue($row->adress() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false);
 
-        $CP = $this->_modform->createElement('text', 'CP', array('label' => $this->language->_('Código Postal')));
+        $CP = $this->_modform->createElement('text', 'CP',
+            array('label' => $this->language->_('Código Postal')));
         $CP ->setValue($row->codPostal() )
              ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
              ->setRequired(false);
 
-        $localidad = $this->_modform->createElement('text', 'localidad', array('label' => $this->language->_('Localidad')));
+        $localidad = $this->_modform->createElement('text', 'localidad',
+            array('label' => $this->language->_('Localidad')));
         $localidad ->setValue($row->localidad() )
                    ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false);
 
         // Validar CUIT 
-        $cuit = $this->_modform->createElement('text', 'cuit', array('label' => '*' . $this->language->_('CUIT')));
+        $cuit = $this->_modform->createElement('text', 'cuit',
+            array('label' => '*' . $this->language->_('CUIT')));
         $cuit ->setValue($row->CUIT() )
                 ->addValidator('regex', false, array('/^\d{2}\-\d{8}\-\d{1}$/'))
                    //->addValidator('stringLength', false, array(1, 13))
@@ -313,32 +332,37 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_addform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_addform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
              ->addValidator(new CV_Validate_ClienteExisteNombre())
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(true);
 
-        $dir = $this->_addform->createElement('text', 'dir', array('label' => $this->language->_('Dirección')));
+        $dir = $this->_addform->createElement('text', 'dir',
+            array('label' => $this->language->_('Dirección')));
         $dir ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 200))
              ->setRequired(false);
 
-        $CP = $this->_addform->createElement('text', 'CP', array('label' => $this->language->_('Código Postal')));
+        $CP = $this->_addform->createElement('text', 'CP',
+            array('label' => $this->language->_('Código Postal')));
         $CP  ->addValidator('alnum')
              ->addValidator('stringLength', false, array(1, 15))
              ->setRequired(false);
 
-        $localidad = $this->_addform->createElement('text', 'localidad', array('label' => $this->language->_('Localidad')));
+        $localidad = $this->_addform->createElement('text', 'localidad',
+            array('label' => $this->language->_('Localidad')));
         $localidad ->addValidator($alnumWithWS)
                    ->addValidator('stringLength', false, array(1, 150))
                    ->setRequired(false);
 
-        $cuit = $this->_addform->createElement('text', 'cuit', array('label' => '*' .  $this->language->_('CUIT')));
+        $cuit = $this->_addform->createElement('text', 'cuit',
+            array('label' => '*' .  $this->language->_('CUIT')));
         $cuit   ->addValidator('regex', false, array('/^\d{2}\-\d{8}\-\d{1}$/'))
                 ->addValidator(new CV_Validate_CuitExiste())
                 ->setRequired(true);
@@ -376,23 +400,24 @@ class user_ClientesController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 	
-	private function getClienteSearchForm()
-    {      
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+    private function getClienteSearchForm()
+    {
         if (null !== $this->_searchform)
         {
             return $this->_searchform;
         }
 
-        $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $alnumWithWS = new Zend_Validate_Alnum(True);
 
-        $cliente = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
-        $cliente       ->addValidator($alnumWithWS)
-                     ->addValidator('stringLength', false, array(1, 200));
+        $this   ->_searchform = new Zend_Form();
+        $this   ->_searchform->setAction($this->_baseUrl)
+                ->setName('form')
+                ->setMethod('get');
+
+        $cliente = $this->_searchform->createElement('text', 'consulta',
+            array('label' => $this->language->_('Nombre')));
+        $cliente    ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 200));
 
         // Add elements to form:
         $this->_searchform->addElement($cliente)
@@ -401,39 +426,50 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
-    
-   public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Clientes();
-		   $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-	       }
-	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
-   }
+            try
+            {
+                $model = new Clientes();
+                $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
+
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch(Zend_Exception $e)
+            {
+                $arr = array();
+            }
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
+    }
 }
 ?>
