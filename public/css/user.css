@@ -113,7 +113,14 @@ div.imgCalendar
 	left: 30em;
     height: 1px;
 }
-		
+	
+div.error_fatal
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #FF0000;
+}
+	
 div.error
 {
 	border: 2px solid #FF0000;
