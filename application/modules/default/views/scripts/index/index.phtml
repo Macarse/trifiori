@@ -1,13 +1,5 @@
 <?= $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) ?>
-<html>
-<head>
-    <link rel="stylesheet" href="/css/login.css" type="text/css" media="screen,projection"/>
-    <link rel="stylesheet" type="text/css" href="/yui/build/container/assets/skins/sam/container.css" />
-    <script type="text/javascript" src="/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-    <script type="text/javascript" src="/yui/build/container/container-min.js"></script>
-    <?= $this->headTitle() ?>
-</head>
-<body class="yui-skin-sam">
+<body>
     <div class="container">
         <div class="block">
             <div class="containerlogin">
@@ -31,5 +23,3 @@ YAHOO.namespace("login.container");
 YAHOO.login.container.tt1 = new YAHOO.widget.Tooltip("tt1", { context:"username", text:"Nombre de usuario (respete mayúsculas y minúsculas)" });
 YAHOO.login.container.tt2 = new YAHOO.widget.Tooltip("tt2", { context:"password", text:"Contraseña (respete mayúsculas y minúsculas)" });
 </script>
-</body>
-</html>
