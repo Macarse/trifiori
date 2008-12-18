@@ -1,9 +1,15 @@
 <? if (isset($this->error)) { ?>
     <div class="error_fatal"><?= $this->escape($this->error) ?></div>
-<? } ?>
+    <div id="errmsg"></div>
+    <script languaje="javascript">
+        var time=0;
+        showAlert("errmsg", { width:"620px", modal:true, visible:true, underlay:"shadow", fixedcenter:true, constraintoviewport:true, draggable:false } , "Error Fatal", "<div id='diverror' class='error_fatal'><?= $this->escape($this->language->_($this->error)) ?></div><br><div id='idtimeerror'></div>", "Trifiori");
+        setInterval (function (){if (time==5){document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando al Home...'))?>";window.location.href = "/admin/panel";}else{ document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando en'))?> " + (5-time); time++;}}, 1000);
+    </script>
+<? } else { ?>
 <div class="busqueda">
     <?= $this->logSearchForm ?>
-</div>      
+</div>
 <div id="divmodificaciones" class="clistado">
 <table id="tablemodifications">
     <thead>
@@ -112,3 +118,4 @@ YAHOO.util.Event.addListener(window, "load", function() {
 });
 
 </script>
+<? } ?>

@@ -119,7 +119,7 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->logSearchForm = $this->getLogSearchForm();

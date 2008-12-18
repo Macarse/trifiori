@@ -12,14 +12,14 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/monedas/listmonedas');
     }
 
     public function addmonedasAction()
-    {      
+    {
         $this->view->headTitle($this->language->_("Agregar Moneda"));
 
         /*Errors from the past are deleted*/
@@ -46,7 +46,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -63,7 +63,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
 
         $this->_searchform = $this->getMonedaSearchForm();
@@ -72,7 +72,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
             try
             {
                 $monedasT = new Monedas();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -107,9 +107,9 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                    
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($monedas, $monedasT));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -124,7 +124,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->monedaSearchForm = $this->getMonedaSearchForm();
@@ -141,13 +141,15 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $monedasTable = new Monedas();
-            $monedasTable->removeMoneda( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $monedasTable = new Monedas();
+                $monedasTable->removeMoneda( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -194,11 +196,10 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                            $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
                     }
-
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
                     $this->_helper->redirector->gotoUrl('user/monedas/listmonedas');
                 }
             }
@@ -207,17 +208,24 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 
     private function getMonedaModForm( $id )
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-        
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
             return $this->_modform;
         }
 
-        /*Levanto el usuario para completar el form.*/
-        $monedasTable = new Monedas();
-        $row = $monedasTable->getMonedaByID( $id );
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
+        try
+        {
+            /*Levanto el usuario para completar el form.*/
+            $monedasTable = new Monedas();
+            $row = $monedasTable->getMonedaByID( $id );
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -226,52 +234,56 @@ class user_MonedasController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 3))
              ->setRequired(true);
 
-        $longName = $this->_modform->createElement('text', 'longName', array('label' => $this->language->_('Descripción')));
+        $longName = $this->_modform->createElement('text', 'longName',
+            array('label' => $this->language->_('Descripción')));
         $longName->setValue($row->longName() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
              ->setRequired(False);
 
         // Add elements to form:
-        $this->_modform->addElement($name)
-             ->addElement($longName)
-             ->addElement('hidden', 'ModMonedaTrack', array('values' => 'logPost'))
-                ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
+        $this->_modform ->addElement($name)
+                        ->addElement($longName)
+                        ->addElement('hidden', 'ModMonedaTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Modificar', array('label' => $this->language->_('Modificar')));
 
         return $this->_modform;
     }
 
     private function getMonedaAddForm()
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-        
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
 
-        $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $alnumWithWS = new Zend_Validate_Alnum(True);
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $this->_addform = new Zend_Form();
+        $this->_addform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
+
+        $name = $this->_addform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 3))
                  ->addValidator(new CV_Validate_MonedaExiste())
                  ->setRequired(true);
 
-        $longName = $this->_addform->createElement('text', 'longName', array('label' => $this->language->_('Descripción')));
+        $longName = $this->_addform->createElement('text', 'longName',
+            array('label' => $this->language->_('Descripción')));
         $longName->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 150))
              ->setRequired(False);
@@ -284,24 +296,25 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 
         return $this->_addform;
     }
-    
+
     private function getMonedaSearchForm()
-    {      
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+    {
         if (null !== $this->_searchform)
         {
             return $this->_searchform;
         }
 
-        $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $alnumWithWS = new Zend_Validate_Alnum(True);
 
-        $moneda = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Descripción')));
-        $moneda       ->addValidator($alnumWithWS)
-                     ->addValidator('stringLength', false, array(1, 150));
+        $this->_searchform = new Zend_Form();
+        $this->_searchform  ->setAction($this->_baseUrl)
+                            ->setName('form')
+                            ->setMethod('get');
+
+        $moneda = $this->_searchform->createElement('text', 'consulta',
+                array('label' => $this->language->_('Descripción')));
+        $moneda ->addValidator($alnumWithWS)
+                ->addValidator('stringLength', false, array(1, 150));
 
         // Add elements to form:
         $this->_searchform->addElement($moneda)
@@ -310,38 +323,50 @@ class user_MonedasController extends Trifiori_User_Controller_Action
 
         return $this->_searchform;
     }
-	public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+    public function getdataAction()
+     {
+        $arr = array();
+        $aux = array();
+
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Monedas();
-		   $data = $model->fetchAll("NAME_MON LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-	       }
-	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
+            try
+            {
+                $model = new Monedas();
+                $data = $model->fetchAll("NAME_MON LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
+
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch(Zend_Exception $e)
+            {
+                $arr = array();
+            }
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
    }
 }
 ?>
