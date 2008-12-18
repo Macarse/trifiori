@@ -7,6 +7,8 @@
         setInterval (function (){if (time==5){document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando al Home...'))?>";window.location.href = "/";}else{ document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando en'))?> " + (5-time); time++;}}, 1000);
     </script>
 <? } else { ?>
+<!-- Google Map Key -->
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?=$this->escape($this->gkey) ?>" type="text/javascript"></script>
 <!-- queda en el php las cosas a traducir -->
 <script type="text/javascript">
 var myColumnDefs = [

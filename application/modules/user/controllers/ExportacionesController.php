@@ -809,8 +809,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $fechaDesde     ->addValidator(new CV_Validate_Fecha())
                         ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
                         ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaDesde')\"></div>")
-                        ->addValidator('stringLength', false, array(1, 12))
-                        ->setRequired(True);
+                        ->addValidator('stringLength', false, array(1, 12));
 
         $fechaHasta = $this->_estform->createElement('text', 'fechaHasta',
                     array('label' => '*' . $this->language->_('Fecha hasta'),
@@ -818,8 +817,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $fechaHasta     ->addValidator(new CV_Validate_Fecha())
                         ->addDecorator('Description', array('escape' => false,   'placement'=> 'prepend', 'tag' => '') )
                         ->setDescription("<div class='imgCalendar'><img src='/images/calendar.gif' onClick=\"show_hide_div('calFechaHasta')\"></div>")
-                        ->addValidator('stringLength', false, array(1, 12))
-                        ->setRequired(True);
+                        ->addValidator('stringLength', false, array(1, 12));
 
      // Add elements to form:
         $this->_estform->addElement('hidden', 'estadisticasTrack', array('values' => 'logPost'))
