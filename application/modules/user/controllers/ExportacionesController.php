@@ -1057,7 +1057,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
             $model = new Exportaciones();
-            $data = $model->fetchAll("ORDEN LIKE '" .  $this->_name . "%'");
+            $data = $model->fetchAll("ORDEN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
             foreach ($data as $row)
             {

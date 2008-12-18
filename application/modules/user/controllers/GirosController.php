@@ -304,7 +304,7 @@ class user_GirosController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Giros();
-		   $data = $model->fetchAll("SECCION_GIR LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("SECCION_GIR LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {

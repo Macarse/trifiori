@@ -414,7 +414,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Clientes();
-		   $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {
