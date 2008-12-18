@@ -12,9 +12,6 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
     {
         $this->view->headTitle($this->language->_("Personalizar"));
 
-        /*Errors from the past are deleted*/
-        unset($this->view->error);
-        unset($this->view->modOk);
 
         /* Levanto el id del usuario */
         try
@@ -33,6 +30,11 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
             /*Si viene algo por post, validarlo.*/
             if ($this->getRequest()->isPost())
             {
+
+                /*Errors from the past are deleted*/
+                unset($this->view->error);
+                unset($this->view->modOk);
+
                 if (isset($_POST['ModPersonalizarTrack']))
                 {
                     if ($this->_modform->isValid($_POST))
@@ -56,6 +58,7 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
                             $this->view->error = $this->language->_("Error en la Base de datos.");
                         }
                         $this->view->modOk = $this->language->_("Operación exitosa.");
+                        $this->_helper->redirector->gotoUrl('user/personalizar');
                     }
                 }
             }
