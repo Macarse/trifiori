@@ -69,7 +69,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             }
         }
 
-        if (($this->_addform = $this->getUserAddForm()) == NULL)
+        if (($this->view->getUserAddForm = $this->getUserAddForm()) == NULL)
         {
             $this->_helper->redirector->gotoUrl('admin/users/listusers');
         }
@@ -163,7 +163,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             /* No se puede borrar el administrador. */
             if ( $_rmid == 1 )
             {
-                $this->view->error = $this->language->_("No puede eliminar al administrador.");
+                $this->_flashMessenger->addMessage($this->language->_("No puede eliminar al administrador."));
             }
             else
             {
@@ -215,25 +215,33 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
                     // process user
                     $values = $this->_modform->getValues();
 
-                    try
+                    if ($values['password'] == $values['passwordvrfy'])
                     {
-                        $usersTable = new Users();
-                        $usersTable->modifyUser(    $this->_id,
-                                                    $values['name'],
-                                                    $values['username'],
-                                                    $values['password'],
-                                                    $values['lang'],
-                                                    $values['css'],
-                                                    $values['email']
-                                                );
-                        $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                        $this->view->error = $this->language->_("No puede eliminar al administrador.");
-                    }
 
-                    $this->_helper->redirector->gotoUrl('admin/users/listusers');
+                        try
+                        {
+                            $usersTable = new Users();
+                            $usersTable->modifyUser(    $this->_id,
+                                                        $values['name'],
+                                                        $values['username'],
+                                                        $values['password'],
+                                                        $values['lang'],
+                                                        $values['css'],
+                                                        $values['email']
+                                                    );
+                            $this->_flashMessenger->addMessage($this->language->_("Modificación exitosa."));
+                        }
+                        catch (Zend_Exception $error)
+                        {
+                            $this->view->error = $this->language->_("No puede eliminar al administrador.");
+                        }
+    
+                        $this->_helper->redirector->gotoUrl('admin/users/listusers');
+                    }
+                    else
+                    {
+                        $this->view->error = $this->language->_("Las contraseñas no son iguales");
+                    }
                 }
             }
         }
