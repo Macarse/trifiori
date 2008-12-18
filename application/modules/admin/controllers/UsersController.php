@@ -251,7 +251,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $this->_addform = new Zend_Form();
         $this->_addform->setAction($this->_baseUrl)->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
+        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 50))
                  ->setRequired(true)
@@ -259,18 +259,18 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         // Create and configure username element:
 
-        $username = $this->_addform->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
+        $username = $this->_addform->createElement('text', 'username', array('label' => '*' . $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
                  ->setRequired(true)
                  ->addFilter('StringToLower');
 
         // Create and configure password element:
-        $password = $this->_addform->createElement('password', 'password', array('label' => $this->language->_('Clave')));
+        $password = $this->_addform->createElement('password', 'password', array('label' => '*' . $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
-        $passwordvrfy = $this->_addform->createElement('password', 'passwordvrfy', array('label' => $this->language->_('Repetir Clave')));
+        $passwordvrfy = $this->_addform->createElement('password', 'passwordvrfy', array('label' => '*' . $this->language->_('Repetir Clave')));
         $passwordvrfy->addValidator('StringLength', false, array(1,100))
                  ->setRequired(true);
 
@@ -283,7 +283,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $lang = $this->_addform->createElement('select', 'lang');
         $lang   ->setRequired(true)
                 ->setOrder(1)
-                ->setLabel($this->language->_('Idioma'))
+                ->setLabel('*' . $this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -294,11 +294,11 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $css = $this->_addform->createElement('select', 'css');
         $css    ->setRequired(true)
                 ->setOrder(2)
-                ->setLabel($this->language->_('Css'))
+                ->setLabel('*' . $this->language->_('Css'))
                 ->setMultiOptions($cssOptions);
 
         $email = $this->_addform->createElement('text', 'email',
-            array('label' => $this->language->_('E-mail')));
+            array('label' => '*' . $this->language->_('E-mail')));
         $email   ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
                 ->setRequired(True);
@@ -366,7 +366,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $this->_modform = new Zend_Form();
         $this->_modform->setAction($this->_baseUrl)->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($user->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 50))
@@ -374,7 +374,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
              ->addFilter('StringToLower');
 
         // Create and configure username element:
-        $username = $this->_modform->createElement('text', 'username', array('label' => $this->language->_('Usuario')));
+        $username = $this->_modform->createElement('text', 'username', array('label' => '*' . $this->language->_('Usuario')));
         $username->setValue($user->user() )
                  ->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
@@ -383,11 +383,11 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
 
         // Create and configure password element:
         $password = $this->_modform->createElement('password', 'password',
-            array('label' => $this->language->_('Clave')));
+            array('label' => '*' . $this->language->_('Clave')));
         $password->addValidator('StringLength', false, array(1,100));
 
         $passwordvrfy = $this->_modform->createElement('password', 'passwordvrfy',
-            array('label' => $this->language->_('Repetir Clave')));
+            array('label' => '*' . $this->language->_('Repetir Clave')));
         $passwordvrfy->addValidator('StringLength', false, array(1,100));
 
 
@@ -400,7 +400,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $lang   ->setValue($user->langNum())
                 ->setRequired(true)
                 ->setOrder(1)
-                ->setLabel($this->language->_('Idioma'))
+                ->setLabel('*' . $this->language->_('Idioma'))
                 ->setMultiOptions($langOptions);
 
        /*TODO: Si la db está muerta devuelve NULL.
@@ -412,11 +412,11 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $css    ->setValue($user->codCss() )
                 ->setRequired(true)
                 ->setOrder(2)
-                ->setLabel($this->language->_('Css'))
+                ->setLabel('*' . $this->language->_('Css'))
                 ->setMultiOptions($cssOptions);
 
         $email = $this->_modform->createElement('text', 'email',
-            array('label' => $this->language->_('E-mail')));
+            array('label' => '*' . $this->language->_('E-mail')));
         $email  ->setValue($user->email())
                 ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
