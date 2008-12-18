@@ -230,9 +230,16 @@ class user_CargasController extends Trifiori_User_Controller_Action
             return $this->_modform;
         }
 
-        /*Levanto el usuario para completar el form.*/
-        $cargasTable = new Cargas();
-        $row = $cargasTable->getCargaByID( $id );
+        try
+        {
+            /*Levanto el usuario para completar el form.*/
+            $cargasTable = new Cargas();
+            $row = $cargasTable->getCargaByID( $id );
+        }
+        catch (Zend_Exception $e)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
