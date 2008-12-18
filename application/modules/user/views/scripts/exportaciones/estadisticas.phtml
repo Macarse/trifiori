@@ -226,7 +226,7 @@
         } );
 	YAHOO.stat.container.panel.setHeader("<?= $this->language->_("Estadisticas");?>");
     <? if ($this->showNoRec) {?>
-        YAHOO.stat.container.panel.setBody("<?= $this->language->_("No existen estadisticas para ese periodo");?>");
+        YAHOO.stat.container.panel.setBody("<?= $this->language->_("No existen estadísticas para ese período");?>");
     <?} else {?>
 	    YAHOO.stat.container.panel.setBody("<embed width='600' height='400' bgcolor='#8888bb' src='/charts/charts.swf' FlashVars='library_path=/charts/charts_library&xml_source=/xml/expo_<?=$this->type?>.xml' wmode='opaque' scale='noScale' name='charts' menu='true' allowFullScreen='true' allowScriptAccess='sameDomain' quality='high' pluginspage='http://www.macromedia.com/go/getflashplayer' align='middle' play='true' devicefont='false' salign='TL' type='application/x-shockwave-flash' > </embed>");
 	    YAHOO.stat.container.panel.setFooter("Trifiori");

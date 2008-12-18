@@ -15,7 +15,7 @@ class CV_Validate_Destinacion extends Zend_Validate_Abstract
         try
         {
             $model = new Destinaciones();
-   		    $data = $model->fetchAll("DESCRIPCION_DES LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            $data = $model->fetchAll("DESCRIPCION_DES LIKE '" .  $value . "%' AND DELETED LIKE '0'");
             if (count($data))
                 return true;
             else
@@ -26,7 +26,7 @@ class CV_Validate_Destinacion extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            return false;
+            return true;
         }
 
     }

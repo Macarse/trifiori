@@ -26,7 +26,7 @@ class CV_Validate_Cliente extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            return false;
+            return true;
         }
 
     }

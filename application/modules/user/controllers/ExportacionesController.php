@@ -31,6 +31,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             if (isset($_POST['AddExportacionTrack']))
             {
                 $this->_addform = $this->getExportacionAddForm();
+
                 if ($this->_addform->isValid($_POST))
                 {
                     $values = $this->_addform->getValues();
@@ -62,7 +63,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -122,15 +123,15 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sortby', $_GET["sortby"]);
                 else
                     Zend_Registry::set('sortby', "");
-                    
+
                 if (isset($_GET["sort"]))
                     Zend_Registry::set('sorttype', $_GET["sort"]);
                 else
                     Zend_Registry::set('sorttype', "");
-                
+
                 Zend_Registry::set('busqueda', $busqueda);
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
-  
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -144,7 +145,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->exportacionSearchForm = $this->getExportacionSearchForm();
@@ -166,7 +167,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                    $this->language->_("No se puedo generar el pdf. Error en la Base de datos.")
+                                                );
                 $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
             }
 
@@ -327,40 +330,63 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             $table = new Exportaciones();
             $where = "CODIGO_EXP = " . $id;
             $results = $table->fetchAll($where);
+
+
+            echo "<div class=\"hd\">" . $this->language->_("Detalles de Exportación") . "</div>";
+
+            echo "<div class=\"bd\">";
+            if ($results != null)
+            {
+                foreach ($results as $result)
+                {
+                    echo "<b>" . $this->language->_("Órden: ") . "</b>" .
+                        $result->orden() . "<br />";
+                    echo "<b>" . $this->language->_("Transporte: ") . "</b>" .
+                        $result->codTransporteName() .  "<br />";
+                    echo "<b>" . $this->language->_("Cliente: ") . "</b>" .
+                        $result->codClienteName() . "<br />";
+                    echo "<b>" . $this->language->_("Bandera: ") . "</b>" .
+                        $result->codBanderaName() .  "<br />";
+                    echo "<b>" . $this->language->_("Moneda: ") . "</b>" .
+                        $result->codMonedaName() .  "<br />";
+                    echo "<b>" . $this->language->_("Giro: ") . "</b>" .
+                        $result->codGiroName() .  "<br />";
+                    echo "<b>" . $this->language->_("Destinación: ") . "</b>" .
+                        $result->codDestinacionName() .  "<br />";
+                    echo "<b>" . $this->language->_("Carga: ") . "</b>" .
+                        $result->codCargaName() .  "<br />";
+                    echo "<b>" . $this->language->_("Fecha de Ingreso: ") . "</b>" .
+                        $result->fechaIngreso() . "<br />";
+                    echo "<b>" . $this->language->_("Descripción de la mercadería: ") . "</b>" .
+                        $result->desMercaderias() .  "<br />";
+                    echo "<b>" . $this->language->_("Valor de la factura: ") . "</b>" .
+                        $result->valorFactura() .  "<br />";
+                    echo "<b>" . $this->language->_("Fecha de vencimiento: ") . "</b>" .
+                        $result->vencimiento() .  "<br />";
+                    echo "<b>" . $this->language->_("Fecha de ingreso al puerto: ") . "</b>" .
+                        $result->ingresoPuerto() .  "<br />";
+                    echo "<b>" . $this->language->_("Número de permiso: ") . "</b>" .
+                        $result->PERnroDoc() .  "<br />";
+                    echo "<b>" . $this->language->_("Fecha en que fue presentado: ") . "</b>" .
+                        $result->PERpresentado() .  "<br />";
+                    echo "<b>" . $this->language->_("Número de factura: ") . "</b>" .
+                        $result->PERfactura() .  "<br />";
+                    echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" .
+                        $result->PERfechaFactura() .  "<br />";   
+                }
+            }
+            echo "</div>";
+            echo "<div class=\"ft\">" . $this->language->_("Trifiori 2008") . "</div>";
+
         }
         catch (Zend_Exception $error)
         {
-            $this->view->error = $error;
+            $this->_flashMessenger->addMessage(
+                                $this->language->_("No se puedo generar detalles." .
+                                    "Error en la Base de datos.")
+                                                );
+            $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
         }
-
-        echo "<div class=\"hd\">" . $this->language->_("Detalles de Exportación") . "</div>";
-
-        echo "<div class=\"bd\">";
-        if ($results != null)
-        {
-            foreach ($results as $result)
-            {
-                echo "<b>" . $this->language->_("Órden: ") . "</b>" . $result->orden() . "<br />";
-                echo "<b>" . $this->language->_("Transporte: ") . "</b>" . $result->codTransporteName() .  "<br />";
-                echo "<b>" . $this->language->_("Cliente: ") . "</b>" . $result->codClienteName() . "<br />";
-                echo "<b>" . $this->language->_("Bandera: ") . "</b>" . $result->codBanderaName() .  "<br />";
-                echo "<b>" . $this->language->_("Moneda: ") . "</b>" . $result->codMonedaName() .  "<br />";
-                echo "<b>" . $this->language->_("Giro: ") . "</b>" . $result->codGiroName() .  "<br />";
-                echo "<b>" . $this->language->_("Destinación: ") . "</b>" . $result->codDestinacionName() .  "<br />";
-                echo "<b>" . $this->language->_("Carga: ") . "</b>" . $result->codCargaName() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha de Ingreso: ") . "</b>" . $result->fechaIngreso() . "<br />";
-                echo "<b>" . $this->language->_("Descripción de la mercadería: ") . "</b>" . $result->desMercaderias() .  "<br />";
-                echo "<b>" . $this->language->_("Valor de la factura: ") . "</b>" . $result->valorFactura() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha de vencimiento: ") . "</b>" . $result->vencimiento() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha de ingreso al puerto: ") . "</b>" . $result->ingresoPuerto() .  "<br />";
-                echo "<b>" . $this->language->_("Número de permiso: ") . "</b>" . $result->PERnroDoc() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha en que fue presentado: ") . "</b>" . $result->PERpresentado() .  "<br />";
-                echo "<b>" . $this->language->_("Número de factura: ") . "</b>" . $result->PERfactura() .  "<br />";
-                echo "<b>" . $this->language->_("Fecha de la factura: ") . "</b>" . $result->PERfechaFactura() .  "<br />";   
-            }
-        }
-        echo "</div>";
-        echo "<div class=\"ft\">" . $this->language->_("Trifiori 2008") . "</div>";
     }
 
     public function removeexportacionesAction()
@@ -374,13 +400,15 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $exportacionesTable = new Exportaciones();
-            $exportacionesTable->removeExportacion( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $exportacionesTable = new Exportaciones();
+                $exportacionesTable->removeExportacion( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -404,6 +432,10 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             {
                $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
             }
+        }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
         }
 
         /*Si viene algo por post, validarlo.*/
@@ -442,7 +474,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                                $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
@@ -552,7 +586,6 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->addValidator('stringLength', false, array(1, 12))
                         ->setRequired(False);
 
-        /*TODO: ADD Validator*/
         $PERnroDoc = $this->_addform->createElement('text', 'PERnroDoc',
                 array('label' => '*' . $this->language->_('Número de Permiso')));
         $PERnroDoc  ->addValidator('stringLength', false, array(1, 30))
@@ -716,8 +749,19 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
     private function generateEstadisticas( $type , $from, $to)
     {
+        try
+        {
             $model = new Exportaciones();
             $data = $model->getEstadisticas($type , $from, $to);
+        }
+        catch(Zend_Exception $e)
+        {
+            $this->_flashMessenger->addMessage(
+                                $this->language->_("No se pudieron generar las estadísticas." .
+                                    "Error en la Base de datos.")
+                                                );
+            $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
+        }
 
             if ($data == null)
                 return false;
@@ -751,9 +795,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
     private function getFormEstadisticas()
     {
         $this->_estform = new Zend_Form();
-		$this->_estform->setAction($this->_baseUrl)
-                                ->setMethod('get')
-                                ->setName('form');
+        $this->_estform ->setAction($this->_baseUrl)
+                        ->setMethod('get')
+                        ->setName('form');
 
         $fechaDesde = $this->_estform->createElement('text', 'fechaDesde',
                     array('label' => '*' . $this->language->_('Fecha desde'),
@@ -774,10 +818,11 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                         ->setRequired(True);
 
      // Add elements to form:
-        $this->_estform->addElement($fechaDesde)
-             ->addElement($fechaHasta)
-             ->addElement('hidden', 'estadisticasTrack', array('values' => 'logPost'))
-             ->addElement('submit', 'Generar', array('label' => $this->language->_('Generar')));
+        $this->_estform->addElement('hidden', 'estadisticasTrack', array('values' => 'logPost'))
+                        ->addElement($fechaDesde)
+                        ->addElement($fechaHasta)
+                        ->addElement('hidden', 'estadisticasTrack', array('values' => 'logPost'))
+                        ->addElement('submit', 'Generar', array('label' => $this->language->_('Generar')));
 
         return $this->_estform;
 
@@ -789,7 +834,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
-    
+
         $this->view->showNoRec = $this->view->showStat = false;
 
         if ( $this->getRequest()->getParam('type') != null )
@@ -825,8 +870,16 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $alnumWithWS = new Zend_Validate_Alnum(True);
 
         /*Levanto la exportacion para completar el form.*/
-        $exportacionesTable = new Exportaciones();
-        $row = $exportacionesTable->getExportacionByID( $id );
+
+        try
+        {
+            $exportacionesTable = new Exportaciones();
+            $row = $exportacionesTable->getExportacionByID( $id );
+        }
+        catch (Zend_Exception $e)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -835,9 +888,9 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-		$this->_modform->setAction($this->_baseUrl)
-                                ->setMethod('post')
-                                ->setName('form');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setMethod('post')
+                        ->setName('form');
 
         $orden = $this->_modform->createElement('text', 'orden',
             array('label' => '*' . $this->language->_('Órden'), 'id' => 'idnameOrden'));
@@ -849,38 +902,38 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         $codTransporte = $this->_modform->createElement('text', 'nameTransporte',
                 array('label' => '*' . $this->language->_('Transporte'), 'id' => 'idnameTransporte'));
         $codTransporte  -> setRequired(true)
-						->setValue($row->codTransporteName() )
-					   ->addValidator(new CV_Validate_Transporte());
+                        ->setValue($row->codTransporteName() )
+                        ->addValidator(new CV_Validate_Transporte());
 
         $codCliente = $this->_modform->createElement('text', 'nameCliente',
                 array('label' => '*' . $this->language->_('Cliente'), 'id' => 'idnameCliente'));
         $codCliente ->setRequired(true)
-					->setValue($row->codClienteName() )
-					->addValidator(new CV_Validate_Cliente());
+                    ->setValue($row->codClienteName() )
+                    ->addValidator(new CV_Validate_Cliente());
 
         $codBandera = $this->_modform->createElement('text', 'nameBandera',
                 array('label' => '*' . $this->language->_('Bandera'), 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-					->setValue($row->codBanderaName() )
-					->addValidator(new CV_Validate_Bandera());
+                    ->setValue($row->codBanderaName() )
+                    ->addValidator(new CV_Validate_Bandera());
 
         $codMoneda = $this->_modform->createElement('text', 'nameMoneda',
                 array('label' => '*' . $this->language->_('Moneda'), 'id' => 'idnameMoneda'));
-        $codMoneda ->setRequired(true)
-					->setValue($row->codMonedaName() )
-					->addValidator(new CV_Validate_Moneda());
+        $codMoneda  ->setRequired(true)
+                    ->setValue($row->codMonedaName() )
+                    ->addValidator(new CV_Validate_Moneda());
 
         $codDestinacion = $this->_modform->createElement('text', 'nameDestinacion',
                 array('label' => '*' . $this->language->_('Destinación'), 'id' => 'idnameDestinacion'));
         $codDestinacion ->setRequired(true)
-					->setValue($row->codDestinacionName() )
-					->addValidator(new CV_Validate_Destinacion());
+                        ->setValue($row->codDestinacionName() )
+                        ->addValidator(new CV_Validate_Destinacion());
 
         $codCarga = $this->_modform->createElement('text', 'nameCarga',
                 array('label' => '*' . $this->language->_('Carga'), 'id' => 'idnameCarga'));
-        $codCarga ->setRequired(true)
-					->setValue($row->codCargaName() )
-					->addValidator(new CV_Validate_Carga());
+        $codCarga   ->setRequired(true)
+                    ->setValue($row->codCargaName() )
+                    ->addValidator(new CV_Validate_Carga());
 
 
         $decoradorBandera = array(
@@ -1056,15 +1109,22 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-            $model = new Exportaciones();
-            $data = $model->fetchAll("ORDEN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-
-            foreach ($data as $row)
+            try
             {
-                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-            }
+                $model = new Exportaciones();
+                $data = $model->fetchAll("ORDEN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
-            $arr = array("Resultset" => array("Result" => $aux));
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch (Zend_Exception $e)
+            {
+                $arr = array();
+            }
 
             try
             {

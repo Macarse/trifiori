@@ -69,7 +69,7 @@ var closeLabel = "<?= $this->escape($this->language->_("Cerrar"))?>";
             <td> <?= $this->escape($exportacion->fechaIngreso()) ?> </td>
             <td> <?= $this->escape($exportacion->desMercaderias()) ?> </td>
             <td>
-            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $exportacion->id() ?> )" value=" <?= $this->escape($this->language->_("Detalle"))?> " />
+            <input type="button" id="botonLindo" onclick="ShowDetails( <?= $this->escape($exportacion->id()) ?> )" value=" <?= $this->escape($this->language->_("Detalle"))?> " />
             </td>
             <td>
                 <a href="<?= "/user/exportaciones/pdf/id/" . $this->escape($exportacion->id()) ?>"><img src="/images/pdf.png" alt="<?= $this->escape($this->language->_("Reporte"))?>" title="<?= $this->escape($this->language->_("Reporte"))?>" width="30" height="30"></a>
