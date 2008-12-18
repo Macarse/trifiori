@@ -52,17 +52,17 @@ class Users extends Zend_Db_Table_Abstract
             $mySorttype = "ASC";
         else
             $mySorttype = "DESC";
-        
+
         if ($mySortby == "name")
             $mySortby = "NOMBRE_USU";
         else
             $mySortby = "USUARIO_USU";
-        
+
         if ($name != "")
             $where = "USUARIO_USU LIKE '%" . $name . "%'";
         else
             $where = "1=1";
-            
+
         return $this->select()->from($this)->where($where)->order($mySortby . " " . $mySorttype);
     }
 

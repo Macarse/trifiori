@@ -427,7 +427,7 @@ class user_CargasController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Cargas();
-		   $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {

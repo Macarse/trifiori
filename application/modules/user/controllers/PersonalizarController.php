@@ -14,48 +14,55 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
 
         /*Errors from the past are deleted*/
         unset($this->view->error);
+        unset($this->view->modOk);
 
         /* Levanto el id del usuario */
-        $this->user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
-        $userTable = new Users();
-        $row = $userTable->getUserByName( $this->user );
-
-        /*Si el ID no corresponde con la db, hacerlo volver a la pagina principal*/
-        if (($this->view->personalizarModForm = $this->getPersonalizarModForm($row)) == null)
+        try
         {
-            $this->_helper->redirector->gotoUrl('user/main-page');
-        }
+            $this->user = Zend_Auth::getInstance()->getIdentity()->USUARIO_USU;
+            $userTable = new Users();
+            $row = $userTable->getUserByName( $this->user );
 
-        /*Si viene algo por post, validarlo.*/
-        if ($this->getRequest()->isPost())
-        {
-            if (isset($_POST['ModPersonalizarTrack']))
+
+            /*Si el ID no corresponde con la db, hacerlo volver a la pagina principal*/
+            if (($this->view->personalizarModForm = $this->getPersonalizarModForm($row)) == null)
             {
-                if ($this->_modform->isValid($_POST))
+                $this->view->error = $this->language->_("Error en la Base de datos.");
+            }
+
+            /*Si viene algo por post, validarlo.*/
+            if ($this->getRequest()->isPost())
+            {
+                if (isset($_POST['ModPersonalizarTrack']))
                 {
-                    // process user
-                    $values = $this->_modform->getValues();
-
-                    try
+                    if ($this->_modform->isValid($_POST))
                     {
-                        $userTable->modifyUser( $row->id(),
-                                                $row->name(),
-                                                $row->user(),
-                                                "",
-                                                $values['lang'],
-                                                $values['css']
-                                                );
-                    }
-                    catch (Zend_Exception $error)
-                    {
-                    $this->view->error = $error;
-                    }
+                        // process user
+                        $values = $this->_modform->getValues();
 
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
-                    $this->_helper->redirector->gotoUrl('user/personalizar/modpersonalizar');
+                        try
+                        {
+                            $userTable->modifyUser( $row->id(),
+                                                    $row->name(),
+                                                    $row->user(),
+                                                    "",
+                                                    $values['lang'],
+                                                    $values['css'],
+                                                    $row->email()
+                                                    );
+                        }
+                        catch (Zend_Exception $error)
+                        {
+                            $this->view->error = $this->language->_("Error en la Base de datos.");
+                        }
+                        $this->view->modOk = $this->language->_("Operación exitosa.");
+                    }
                 }
             }
+        }
+        catch (Zend_Exception $error)
+        {
+            $this->view->error = $this->language->_("Error en la Base de datos.");
         }
     }
 
@@ -74,9 +81,9 @@ class user_PersonalizarController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
        /*TODO: Si la db está muerta devuelve NULL.
         Ver qué hacer en ese caso.*/

@@ -364,7 +364,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Proveedores();
-		   $data = $model->fetchAll("NOMBRE_TRA LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("NOMBRE_TRA LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {
