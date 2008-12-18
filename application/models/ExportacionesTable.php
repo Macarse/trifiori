@@ -301,58 +301,77 @@ class Exportaciones extends Zend_Db_Table_Abstract
             $busqueda["searchCarga"] = "";
         }
         
+        if (!isset($busqueda["sortby"]))
+        {
+            $mySortby = "ORDEN";
+        }
+        else
+        {
+            switch ($busqueda["sortby"])
+            {
+                case 'orden':
+                    $mySortby = "ORDEN";
+                    break;
+                case 'trans':
+                    $mySortby = "NOMBRE_BUQ";
+                    break;
+                case 'cliente':
+                    $mySortby = "NOMBRE_CLI";
+                    break;
+                case 'destinacion':
+                    $mySortby = "DESCRIPCION_DES";
+                    break;
+                case 'carga':
+                    $mySortby = "NROPAQUETE_CAR";
+                    break;
+                case 'feching':
+                    $mySortby = "FECHAINGRESO";
+                    break;
+                case 'descmer':
+                    $mySortby = "DESCMERCADERIA";
+                    break;
+                default:
+                    $mySortby = "ORDEN";
+                    break;
+            }
+        }
+        
+        if (isset($busqueda["sort"]))
+        {
+            if ($busqueda["sort"] == "desc")
+                $mySorttype = "DESC";
+            else
+                $mySorttype = "ASC";
+        }
+        else
+        {
+            $mySorttype = "ASC";
+        }
+            
         $cliente = mysql_real_escape_string($busqueda["searchCliente"]);
         $orden = mysql_real_escape_string($busqueda["searchOrden"]);
         $carga = mysql_real_escape_string($busqueda["searchCarga"]);
         
+        $where = "CLIENTES.NOMBRE_CLI LIKE '%" . $cliente . "%' AND CARGAS.NROPAQUETE_CAR LIKE '%"
+            . $carga . "%'";
+        
+        if ($orden != null)
+            $where = $where . " AND CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'";
+            
+        $select = $this->select();
+                
+        $select->from($this, array('CODIGO_EXP', 'ORDEN', 'CODIGO_TRA', 'CODIGO_CLI', 'CODIGO_DES', 'CODIGO_CAR',
+            'FECHAINGRESO', 'DESCMERCADERIA'));
+        $select->setIntegrityCheck(false)
+                ->join('CLIENTES', 'CLIENTES.CODIGO_CLI = EXPORTACIONES.CODIGO_CLI', array())
+                ->join('TRANSPORTES', 'TRANSPORTES.CODIGO_BUQ = EXPORTACIONES.CODIGO_TRA', array())
+                ->join('DESTINACIONES', 'DESTINACIONES.CODIGO_DES = EXPORTACIONES.CODIGO_DES', array())
+                ->join('CARGAS', 'CARGAS.CODIGO_CAR = EXPORTACIONES.CODIGO_CAR', array())
+                ->where($where)
+                ->where("EXPORTACIONES.DELETED LIKE '0'")
+                ->order($mySortby . " " . $mySorttype);
 
-        if ($cliente == null && $orden == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'");
-        }
-        else if ($cliente == null && $orden == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($cliente == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'");
-        }
-        else if ($orden == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");
-        }
-        else if ($orden == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
-                        AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($cliente == null)
-        {
-            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("DELETED LIKE '0'")->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($carga == null)
-        {
-            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");            
-        }
-        else
-        {
-            $query = $this->select()->from($this)->where("CAST(ORDEN AS CHAR(100)) LIKE '%" . $orden . "%'")
-                ->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                        WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
-                        AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                        WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-
-        return $query;
+        return $select;
     }
 
     public function modifyExportacion( $id, $orden, $nameTransporte, $nameCliente,

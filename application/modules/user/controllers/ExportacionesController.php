@@ -88,6 +88,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             {
                 $exportacionesTable = new Exportaciones();
                 $expo = $exportacionesTable->searchExportacion($_GET);
+
                 $busqueda = "";
 
                 if (isset($_GET["searchOrden"]))
@@ -117,6 +118,16 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     $busqueda = $busqueda . "&searchCarga=";
                 }
 
+                if (isset($_GET["sortby"]))
+                    Zend_Registry::set('sortby', $_GET["sortby"]);
+                else
+                    Zend_Registry::set('sortby', "");
+                    
+                if (isset($_GET["sort"]))
+                    Zend_Registry::set('sorttype', $_GET["sort"]);
+                else
+                    Zend_Registry::set('sorttype', "");
+                
                 Zend_Registry::set('busqueda', $busqueda);
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($expo, $exportacionesTable));
                 //$paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($exportacionesTable->select()->where("ORDEN < 10000"), $exportacionesTable));

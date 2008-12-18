@@ -18,10 +18,16 @@ function cambiaBusqueda(e) {
     var sortby_prev = "";
     var sort_prev = "";
     var sort_act;
+    var search_orden = "";
+    var search_cliente = "";
+    var search_carga = "";
     
     y = get_url_param("consulta");
     sortby_prev = get_url_param("sortby");
     sort_prev = get_url_param("sort");
+    search_orden = get_url_param("searchOrden");
+    search_cliente = get_url_param("searchCliente");
+    search_carga = get_url_param("searchCarga");
                 
     if (sortby_prev == this.getColumn(e.target).key) 
     {
@@ -34,7 +40,9 @@ function cambiaBusqueda(e) {
     {
         sort_act = "desc";
     }
-    window.location = x + "?consulta=" + y + "&sortby=" + this.getColumn(e.target).key + "&sort=" + sort_act;
+    window.location = x + "?consulta=" + y + "&searchOrden=" + search_orden + 
+        "&searchCliente=" + search_cliente + "&searchCarga=" + search_carga + 
+        "&sortby=" + this.getColumn(e.target).key + "&sort=" + sort_act;
 }
 
 function onMenuItemClick(p_sType, p_aArgs, p_Data) 
