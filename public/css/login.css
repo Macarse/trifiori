@@ -1,14 +1,39 @@
+.cforgotpass
+{
+    position: relative;
+    text-wrap: suppress;
+    left: 8em;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-color: #C0C0C0;
+}
+
+a:visited
+{
+    color: #505050;
+}
+
+a:link
+{
+    color: #505050;
+}
+
+a:hover
+{
+    font-weight: bold;
+}
+
 div.error
 {
 	border: 2px solid #FF0000;
 	position: absolute;
-	top: 12em;
+	top: 15em;
 	left: 0em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: #FF0000;
 	height: 2em;
-	width: 20em;
+	width: 23em;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -29,8 +54,8 @@ div.containerlogin
     bottom: 20%;
     left: 20%;
     right: 20%;
-    width: 20em;
-    height: 19em;
+    width: 23em;
+    height: 21em;
     margin: auto;
 }
 
