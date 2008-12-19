@@ -387,7 +387,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
             echo "<div class=\"hd\">" . $this->language->_("Detalles de Exportación") . "</div>";
             echo "<div class=\"bd\"> " . $this->language->_("Error en la Base de datos.") . " </div>";
             $this->_flashMessenger->addMessage(
-                                $this->language->_("No se puedo generar detalles." .
+                                $this->language->_("No se pudo generar detalles. " .
                                     "Error en la Base de datos.")
                                                 );
         }
@@ -479,7 +479,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
                     catch (Zend_Exception $error)
                     {
                         $this->_flashMessenger->addMessage(
-                                $this->language->_("No se puedo modificar.") .
+                                $this->language->_("No se pudo modificar. ") .
                                 $this->language->_("Error en la Base de datos.")
                                                 );
                     }
@@ -762,7 +762,7 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         catch(Zend_Exception $e)
         {
             $this->_flashMessenger->addMessage(
-                                $this->language->_("No se pudieron generar las estadísticas." .
+                                $this->language->_("No se pudieron generar las estadísticas. " .
                                     "Error en la Base de datos.")
                                                 );
             $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');

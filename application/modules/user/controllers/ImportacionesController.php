@@ -182,7 +182,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
             catch (Zend_Exception $error)
             {
                 $this->_flashMessenger->addMessage(
-                                $this->language->_("No se puedo eliminar.") .
+                                $this->language->_("No se pudo eliminar. ") .
                                 $this->language->_("Error en la Base de datos.")
                                                 );
             }
@@ -208,7 +208,7 @@ class user_ImportacionesController extends Trifiori_User_Controller_Action
             catch (Zend_Exception $error)
             {
                 $this->_flashMessenger->addMessage(
-                                $this->language->_("No se puedo geeliminar.") .
+                                $this->language->_("No se pudo eliminar.") .
                                 $this->language->_("Error en la Base de datos.")
                                                 );
                 $this->_helper->redirector->gotoUrl('user/importaciones/listimportaciones');
