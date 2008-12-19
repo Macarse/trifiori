@@ -409,7 +409,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Transportes();
-		   $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {

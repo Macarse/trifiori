@@ -434,7 +434,7 @@ class user_OppsController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
             $model = new Opps();
-            $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%'");
+            $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
             foreach ($data as $row)
             {

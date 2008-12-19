@@ -322,7 +322,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
             $this->_name = $this->getRequest()->getParam('query');
 
 		   $model = new Monedas();
-		   $data = $model->fetchAll("NAME_MON LIKE '" .  $this->_name . "%'");
+		   $data = $model->fetchAll("NAME_MON LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 		   
            foreach ($data as $row)
 		   {
