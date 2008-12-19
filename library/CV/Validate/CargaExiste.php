@@ -12,11 +12,11 @@ class CV_Validate_CargaExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $cargas = new Cargas();
         try
         {
-            $codCarga = $cargas->getCargaByNroPaq($value);
-            if ($codCarga != NULL)
+            $model = new Cargas();
+            $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_CARGAEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_CargaExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

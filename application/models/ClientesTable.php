@@ -50,17 +50,24 @@ class Clientes extends Zend_Db_Table_Abstract
       
     public function addCliente($name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
     {
-        /*TODO: Validaciones*/
-        $data = array('NOMBRE_CLI'       => $name,
-                      'DIRECCION_CLI'    => $dir,
-                      'CODIGOPOSTAL_CLI' => $CP,
-                      'LOCALIDAD_CLI'    => $localidad,
-                      'CUIT_CLI'         => $cuit,
-                      'TIPOIVA_CLI'      => $tipoIVA,
-                      'TIPOCLIENTE_CLI'  => $tipoCliente
-                    );
+        $row = $this->getClienteByName( $name );
+        if (count($row))
+        {
+            $this->updateCliente ($row->id(), $name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente );
+        }
+        else
+        {
+            $data = array('NOMBRE_CLI'       => $name,
+                          'DIRECCION_CLI'    => $dir,
+                          'CODIGOPOSTAL_CLI' => $CP,
+                          'LOCALIDAD_CLI'    => $localidad,
+                          'CUIT_CLI'         => $cuit,
+                          'TIPOIVA_CLI'      => $tipoIVA,
+                          'TIPOCLIENTE_CLI'  => $tipoCliente
+                        );
 
-        $this->insert($data);
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -112,6 +119,32 @@ class Clientes extends Zend_Db_Table_Abstract
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype); 
     }
     
+    private function updateCliente( $id, $name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_CLI = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array(    'NOMBRE_CLI'       => $name,
+                                'DIRECCION_CLI'    => $dir,
+                                'CODIGOPOSTAL_CLI' => $CP,
+                                'LOCALIDAD_CLI'    => $localidad,
+                                'CUIT_CLI'         => $cuit,
+                                'TIPOIVA_CLI'      => $tipoIVA,
+                                'TIPOCLIENTE_CLI'  => $tipoCliente,
+                                'DELETED'          => '0'
+                            ), $where );
+
+        return True;
+    }
+
     public function modifyCliente( $id, $name, $dir, $CP, $localidad, $cuit, $tipoIVA, $tipoCliente )
     {
         try

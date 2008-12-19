@@ -12,11 +12,11 @@ class CV_Validate_GiroExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $giro = new Giros();
         try
         {
-            $codGiro = $giro->getGiroBySeccion($value);
-            if ($codGiro != NULL)
+            $model = new Giros();
+   		    $data = $model->fetchAll("SECCION_GIR LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_GIROEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_GiroExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

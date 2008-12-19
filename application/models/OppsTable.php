@@ -115,17 +115,53 @@ class Opps extends Zend_Db_Table_Abstract
 
         $pedidoDinero = $this->translateDate($pedidoDinero);
 
-        /*TODO: Validaciones*/
-        $data = array(  'NUMERO_OPP'              => $name,
-                        'DECLARACION_OK_OPP'      => $declaracionOk,
-                        'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
-                        'OTROS_OPP'               => $otrosOpp,
-                        'FRACCIONADO_OPP'         => $fraccionado,
-                        'ESTAMPILLAS_OPP'         => $estampillas,
-                        'IMPUESTOS_INTERNOS_OPP'  => $impuestosInternos
-                    );
+        $row = $this->getOppByNumero( $name );
+        if (count($row))
+        {
+            $this->updateOpp ($row->id(), $name, $declaracionOk, $pedidoDinero, $otrosOpp,
+                           $fraccionado, $estampillas, $impuestosInternos );
+        }
+        else
+        {
+            $data = array(  'NUMERO_OPP'              => $name,
+                            'DECLARACION_OK_OPP'      => $declaracionOk,
+                            'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
+                            'OTROS_OPP'               => $otrosOpp,
+                            'FRACCIONADO_OPP'         => $fraccionado,
+                            'ESTAMPILLAS_OPP'         => $estampillas,
+                            'IMPUESTOS_INTERNOS_OPP'  => $impuestosInternos
+                        );
+            $this->insert($data);
+        }
 
-        $this->insert($data);
+        return True;
+    }
+
+    private function updateOpp( $id, $name, $declaracionOk, $pedidoDinero, $otrosOpp,
+                           $fraccionado, $estampillas, $impuestosInternos)
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_OPP = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $pedidoDinero = $this->translateDate($pedidoDinero);
+
+        $this->update(array(    'NUMERO_OPP'              => $name,
+                                'DECLARACION_OK_OPP'      => $declaracionOk,
+                                'PEDIDO_DE_DINERO_OPP'    => $pedidoDinero,
+                                'OTROS_OPP'               => $otrosOpp,
+                                'FRACCIONADO_OPP'         => $fraccionado,
+                                'ESTAMPILLAS_OPP'         => $estampillas,
+                                'IMPUESTOS_INTERNOS_OPP'  => $impuestosInternos,
+                                'DELETED'                 => '0'
+                            ), $where );
 
         return True;
     }

@@ -12,9 +12,9 @@ class CV_Validate_Giro extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $model = new Giros();
         try
         {
+            $model = new Giros();
    		    $data = $model->fetchAll("SECCION_GIR LIKE '" .  $value . "%' AND DELETED LIKE '0'");
             if (count($data))
                 return true;
@@ -26,8 +26,7 @@ class CV_Validate_Giro extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

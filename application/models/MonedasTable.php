@@ -41,11 +41,18 @@ class Monedas extends Zend_Db_Table_Abstract
 
     public function addMoneda( $name, $longName )
     {
-        /*TODO: Validaciones*/
-        $data = array(  'NAME_MON' => $name,
-                        'DESCRIPCION_MON' => $longName,
-                    );
-        $this->insert($data);
+        $row = $this->getMonedaByName( $name );
+        if (count($row))
+        {
+            $this->updateMoneda ($row->id(), $name, $longName );
+        }
+        else
+        {
+            $data = array(  'NAME_MON' => $name,
+                            'DESCRIPCION_MON' => $longName,
+                        );
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -74,6 +81,27 @@ class Monedas extends Zend_Db_Table_Abstract
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
     }
     
+    private function updateMoneda( $id, $name, $longName )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_MON = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('NAME_MON' => $name,
+                            'DESCRIPCION_MON' => $longName,
+                            'DELETED'   => '0'
+                            ), $where );
+
+        return True;
+    }
+
     public function modifyMoneda( $id, $name, $longName )
     {
         try

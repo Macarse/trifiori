@@ -12,11 +12,11 @@ class CV_Validate_MonedaExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $monedas = new Monedas();
         try
         {
-            $codMoneda = $monedas->getMonedaByName($value);
-            if ($codMoneda != NULL)
+     	    $model = new Monedas();
+		    $data = $model->fetchAll("NAME_MON LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_MONEDAEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_MonedaExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

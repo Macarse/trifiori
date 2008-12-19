@@ -41,9 +41,16 @@ class Giros extends Zend_Db_Table_Abstract
 
     public function addGiro( $name )
     {
-        /*TODO: Validaciones*/
-        $data = array('SECCION_GIR' => $name);
-        $this->insert($data);
+        $row = $this->getGiroBySeccion( $name );
+        if (count($row))
+        {
+            $this->updateGiro ($row->id(), $name );
+        }
+        else
+        {
+            $data = array('SECCION_GIR' => $name);
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -67,6 +74,24 @@ class Giros extends Zend_Db_Table_Abstract
             $where = "1=1";
         
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
+    }
+
+    private function updateGiro( $id, $name )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_GIR = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('SECCION_GIR'    => $name, 'DELETED'    => '0'), $where );
+
+        return True;
     }
     
     public function modifyGiro( $id, $name )

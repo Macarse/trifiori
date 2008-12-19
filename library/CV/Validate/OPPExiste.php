@@ -12,11 +12,11 @@ class CV_Validate_OPPExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $opp = new OPPs();
         try
         {
-            $codOPP = $opp->getOPPByNumero($value);
-            if ($codOPP != NULL)
+            $model = new Opps();
+		    $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_OPPEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_OPPExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

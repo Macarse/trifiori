@@ -12,9 +12,9 @@ class CV_Validate_Opp extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $model = new Opps();
         try
         {
+            $model = new Opps();
 		    $data = $model->fetchAll("NUMERO_OPP LIKE '" .  $value . "%' AND DELETED LIKE '0'");
             if (count($data))
                 return true;
@@ -26,8 +26,7 @@ class CV_Validate_Opp extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

@@ -12,10 +12,10 @@ class CV_Validate_Moneda extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
- 	    $model = new Monedas();
         try
         {
-		   $data = $model->fetchAll("NAME_MON LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+     	    $model = new Monedas();
+		    $data = $model->fetchAll("NAME_MON LIKE '" .  $value . "%' AND DELETED LIKE '0'");
             if (count($data))
                 return true;
             else
@@ -26,8 +26,7 @@ class CV_Validate_Moneda extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

@@ -12,11 +12,11 @@ class CV_Validate_ExportacionExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $exportacion = new Exportaciones();
         try
         {
-            $codExportacion = $exportacion->getExportacionByOrden($value);
-            if ($codExportacion != NULL)
+            $model = new Exportaciones();
+            $data = $model->fetchAll("ORDEN LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_EXPORTACIONEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_ExportacionExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

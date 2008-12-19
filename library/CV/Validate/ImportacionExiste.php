@@ -12,11 +12,11 @@ class CV_Validate_ImportacionExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $exportacion = new Importaciones();
         try
         {
-            $codImportacion = $exportacion->getImportacionByOrden($value);
-            if ($codImportacion != NULL)
+            $model = new Importaciones();
+            $data = $model->fetchAll("ORDEN_IMP LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_IMPORTACIONEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_ImportacionExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

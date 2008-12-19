@@ -41,13 +41,20 @@ class Puertos extends Zend_Db_Table_Abstract
     
     public function addPuerto( $name, $ubicacion, $latitud, $longitud )
     {
-        /*TODO: Validaciones*/
-        $data = array(  'NOMBRE_PUE' => $name,
-                        'UBICACION_PUE' => $ubicacion,
-                        'LONGITUD_PUE' => $latitud,
-                        'LATITUD_PUE' => $longitud,
-                    );
-        $this->insert($data);
+        $row = $this->getPuertoByName( $name );
+        if (count($row))
+        {
+            $this->updatePuerto ($row->id(), $name, $ubicacion, $latitud, $longitud );
+        }
+        else
+        {
+            $data = array(  'NOMBRE_PUE' => $name,
+                            'UBICACION_PUE' => $ubicacion,
+                            'LONGITUD_PUE' => $latitud,
+                            'LATITUD_PUE' => $longitud,
+                        );
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -74,6 +81,29 @@ class Puertos extends Zend_Db_Table_Abstract
             $where = "1=1";
         
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
+    }
+
+    public function updatePuerto( $id, $name, $ubicacion, $latitud, $longitud )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_PUE = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('NOMBRE_PUE'    => $name,
+                            'UBICACION_PUE'    => $ubicacion,
+                            'LATITUD_PUE'    => $latitud,
+                            'LONGITUD_PUE'    => $longitud,
+                            'DELETED'       => '0'
+                            ), $where );
+
+        return True;
     }
     
     public function modifyPuerto( $id, $name, $ubicacion, $latitud, $longitud )

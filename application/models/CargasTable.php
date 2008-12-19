@@ -43,16 +43,24 @@ class Cargas extends Zend_Db_Table_Abstract
     public function addCarga( $cantBultos, $tipoEnvase, $peso, $unidad,
                               $nroPaquete, $marcaYnum, $mercIMCO )
     {
-        $data = array(  'CANTBULTOS_CAR'    => $cantBultos,
-                        'TIPOENVASE_CAR'    => $tipoEnvase,
-                        'PESOBRUTO_CAR'     => $peso,
-                        'UNIDAD_CAR'        => $unidad,
-                        'NROPAQUETE_CAR'    => $nroPaquete,
-                        'MARCAYNUMERO'      => $marcaYnum,
-                        'MERC__IMCO'        => $mercIMCO,
-                    );
-
-        $this->insert($data);
+        $row = $this->getCargaByNroPaq( $nroPaquete );
+        if (count($row))
+        {
+            $this->updateCarga ($row->id(), $cantBultos, $tipoEnvase, $peso, $unidad,
+                              $nroPaquete, $marcaYnum, $mercIMCO );
+        }
+        else
+        {
+            $data = array(  'CANTBULTOS_CAR'    => $cantBultos,
+                            'TIPOENVASE_CAR'    => $tipoEnvase,
+                            'PESOBRUTO_CAR'     => $peso,
+                            'UNIDAD_CAR'        => $unidad,
+                            'NROPAQUETE_CAR'    => $nroPaquete,
+                            'MARCAYNUMERO'      => $marcaYnum,
+                            'MERC__IMCO'        => $mercIMCO
+                        );
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -102,6 +110,33 @@ class Cargas extends Zend_Db_Table_Abstract
             $where = "1=1";
         
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
+    }
+
+    private function updateCarga( $id, $cantBultos, $tipoEnvase, $peso, $unidad,
+                                 $nroPaquete, $marcaYnum, $mercIMCO )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_CAR = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array(
+                            'CANTBULTOS_CAR'    => $cantBultos,
+                            'TIPOENVASE_CAR'    => $tipoEnvase,
+                            'PESOBRUTO_CAR'     => $peso,
+                            'UNIDAD_CAR'        => $unidad,
+                            'NROPAQUETE_CAR'    => $nroPaquete,
+                            'MARCAYNUMERO'      => $marcaYnum,
+                            'MERC__IMCO'        => $mercIMCO,
+                            'DELETED'           => '0'), $where );
+
+        return True;
     }
     
     public function modifyCarga( $id, $cantBultos, $tipoEnvase, $peso, $unidad,

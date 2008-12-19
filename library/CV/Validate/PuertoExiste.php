@@ -12,11 +12,11 @@ class CV_Validate_PuertoExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $puerto = new Puertos();
         try
         {
-            $codPuerto = $puerto->getPuertoByName($value);
-            if ($codPuerto != NULL)
+            $model = new Puertos();
+            $data = $model->fetchAll("NOMBRE_PUE LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_PUERTOEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_PuertoExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

@@ -41,14 +41,21 @@ class Proveedores extends Zend_Db_Table_Abstract
     
     public function addProveedor( $name, $adress, $tel, $fax, $mail )
     {
-        /*TODO: Validaciones*/
-        $data = array(  'NOMBRE_TRA' => $name,
-                        'DIRECCION_TRA' => $adress,
-                        'TELEFONOS_TRA' => $tel,
-                        'FAX_TRA' => $fax,
-                        'MAIL_TRA' => $mail,
-                    );
-        $this->insert($data);
+        $row = $this->getProveedorByName( $name );
+        if (count($row))
+        {
+            $this->updateProveedor ($row->id(), $name, $adress, $tel, $fax, $mail );
+        }
+        else
+        {
+            $data = array(  'NOMBRE_TRA' => $name,
+                            'DIRECCION_TRA' => $adress,
+                            'TELEFONOS_TRA' => $tel,
+                            'FAX_TRA' => $fax,
+                            'MAIL_TRA' => $mail,
+                        );
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -92,6 +99,30 @@ class Proveedores extends Zend_Db_Table_Abstract
             $where = "1=1";
         
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype); 
+    }
+
+    public function updateProveedor( $id, $name, $adress, $tel, $fax, $mail )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_TRA = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('NOMBRE_TRA' => $name,
+                            'DIRECCION_TRA' => $adress,
+                            'TELEFONOS_TRA' => $tel,
+                            'FAX_TRA' => $fax,
+                            'MAIL_TRA' => $mail,
+                            'DELETED'  => '0'
+                            ), $where );
+
+        return True;
     }
     
     public function modifyProveedor( $id, $name, $adress, $tel, $fax, $mail )

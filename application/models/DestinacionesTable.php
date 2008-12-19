@@ -41,9 +41,16 @@ class Destinaciones extends Zend_Db_Table_Abstract
     
     public function addDestinacion( $name )
     {
-        /*TODO: Validaciones*/
-        $data = array('DESCRIPCION_DES' => $name);
-        $this->insert($data);
+        $row = $this->getDestinacionByName( $name );
+        if (count($row))
+        {
+            $this->updateDestinacion ($row->id(), $name );
+        }
+        else
+        {
+            $data = array('DESCRIPCION_DES' => $name);
+            $this->insert($data);
+        }
 
         return True;
     }
@@ -75,6 +82,24 @@ class Destinaciones extends Zend_Db_Table_Abstract
             $where = "1=1";
         
         return $this->select()->from($this)->where($where)->where("DELETED LIKE '0'")->order($mySortby . " " . $mySorttype);
+    }
+
+    private function updateDestinacion( $id, $name )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_DES = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('DESCRIPCION_DES'    => $name, 'DELETED'    => '0'), $where );
+
+        return True;
     }
     
     public function modifyDestinacion( $id, $name )

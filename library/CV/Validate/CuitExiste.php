@@ -1,24 +1,24 @@
 <?php
 
-class CV_Validate_ClienteExiste extends Zend_Validate_Abstract
+class CV_Validate_CuitExiste extends Zend_Validate_Abstract
 {
-    const MSG_CLIENTEEXISTE = 'msgValidateClienteExiste';
+    const MSG_CUITEXISTE = 'msgValidateCuitExiste';
     protected $_messageTemplates = NULL;
 
     public function isValid($value)
     {
-        $errorMsg = Zend_Registry::getInstance()->language->_('El cliente ya existe');
-        $this->_messageTemplates = array(self::MSG_CLIENTEEXISTE => $errorMsg);
+        $errorMsg = Zend_Registry::getInstance()->language->_('El cuit ya existe');
+        $this->_messageTemplates = array(self::MSG_CUITEXISTE => $errorMsg);
 
         $this->_setValue($value);
 
         try
         {
             $model = new Clientes();
-   		    $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+   		    $data = $model->fetchAll("CUIT_CLI LIKE '" .  $value . "' AND DELETED LIKE '0'");
             if (count($data))
             {
-                $this->_error(self::MSG_CLIENTEEXISTE);
+                $this->_error(self::MSG_CUITEXISTE);
                 return false;
             }
             else

@@ -12,11 +12,11 @@ class CV_Validate_TransporteExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $transporte = new Transportes();
         try
         {
-            $codTransporte = $transporte->getTransporteByName($value);
-            if ($codTransporte != NULL)
+            $model = new Transportes();
+		    $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_TRANSPORTEEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_TransporteExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

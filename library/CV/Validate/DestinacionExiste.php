@@ -12,11 +12,11 @@ class CV_Validate_DestinacionExiste extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $destinacion = new Destinaciones();
         try
         {
-            $codDestinacion = $destinacion->getDestinacionByName($value);
-            if ($codDestinacion != NULL)
+            $model = new Destinaciones();
+   		    $data = $model->fetchAll("DESCRIPCION_DES LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_DESTINACIONEXISTE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_DestinacionExiste extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
 
     }

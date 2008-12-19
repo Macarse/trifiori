@@ -69,11 +69,37 @@ class Banderas extends Zend_Db_Table_Abstract
     
     public function addBandera( $name )
     {
-        /*TODO: Validaciones*/
-        $data = array('NOMBRE_BAN' => $name);
-        $this->insert($data);
+        $row = $this->getBanderaByName( $name );
+        if (count($row))
+        {
+            $this->updateBandera ( $row->id(), $name );
+        }
+        else
+        {
+            $data = array('NOMBRE_BAN' => $name);
+            $this->insert($data);
+        }
 
         return True;
+    }
+
+    private function updateBandera ( $id, $name )
+    {
+        try
+        {
+            $where = $this->getAdapter()->quoteInto('CODIGO_BAN = ?', $id);
+            $row = $this->fetchRow($where);
+        }
+        catch (Zend_Exception $e)
+        {
+            throw new Exception($e->getMessage());
+            return False;
+        }
+
+        $this->update(array('NOMBRE_BAN'    => $name, 'DELETED' => '0'), $where );
+
+        return True;
+
     }
 
     public function modifyBandera( $id, $name )

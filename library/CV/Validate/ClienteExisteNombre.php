@@ -12,11 +12,11 @@ class CV_Validate_ClienteExisteNombre extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $cliente = new Clientes();
         try
         {
-            $codCliente = $cliente->getClienteByName($value);
-            if ($codCliente != NULL)
+            $model = new Clientes();
+   		    $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
             {
                 $this->_error(self::MSG_CLIENTEEXISTENOMBRE);
                 return false;
@@ -28,8 +28,7 @@ class CV_Validate_ClienteExisteNombre extends Zend_Validate_Abstract
         }
         catch (Zend_Exception $e)
         {
-            throw new Exception($e->getMessage());
-            return false;
+            return true;
         }
     }
 }

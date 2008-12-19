@@ -17,8 +17,8 @@ class CV_Validate_BanderaExiste extends Zend_Validate_Abstract
         try
         {
             $banderas = new Banderas();
-            $codBandera = $banderas->getBanderaByName($value);
-            if ($codBandera != NULL)
+            $codBandera = $banderas->fetchAll("NOMBRE_BAN LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($codBandera))
             {
                 $this->_error(self::MSG_BANDERAEXISTE);
                 return false;

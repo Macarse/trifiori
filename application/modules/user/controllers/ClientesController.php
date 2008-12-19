@@ -340,7 +340,7 @@ class user_ClientesController extends Trifiori_User_Controller_Action
 
         $cuit = $this->_addform->createElement('text', 'cuit', array('label' => '*' .  $this->language->_('CUIT')));
         $cuit   ->addValidator('regex', false, array('/^\d{2}\-\d{8}\-\d{1}$/'))
-                ->addValidator(new CV_Validate_ClienteExiste())
+                ->addValidator(new CV_Validate_CuitExiste())
                 ->setRequired(true);
 
 
