@@ -12,7 +12,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/proveedores/listproveedores');
@@ -49,7 +49,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
@@ -66,7 +66,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
 
         $this->_searchform = $this->getProveedorSearchForm();
@@ -75,7 +75,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
             try
             {
                 $proveedoresT = new Proveedores();
-                
+
                 if (isset($_GET["consulta"]))
                 {
                     if (isset($_GET["sortby"]))
@@ -111,7 +111,7 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('busqueda', "");
                 }
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($proveedores, $proveedoresT));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -120,13 +120,13 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                 {
                     $paginator->setCurrentPageNumber(1);
                 }
-                
+
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->proveedorSearchForm = $this->getProveedorSearchForm();
@@ -143,13 +143,15 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $proveedoresTable = new Proveedores();
-            $proveedoresTable->removeProveedor( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $proveedoresTable = new Proveedores();
+                $proveedoresTable->removeProveedor( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -174,7 +176,10 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                 $this->_helper->redirector->gotoUrl('user/proveedores/listproveedores');
             }
         }
-
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/proveedores/listproveedores');
+        }
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
@@ -199,7 +204,9 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                            $this->language->_("No se puedo modificar. Error en la Base de datos.")
+                                                        );
                     }
 
                     /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
@@ -213,16 +220,23 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
     private function getProveedorModForm( $id )
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         /*Esto hace una especie de singleton del form a nivel controlador*/
         if (null !== $this->_modform)
         {
             return $this->_modform;
         }
 
-        /*Levanto el usuario para completar el form.*/
-        $proveedoresTable = new Proveedores();
-        $row = $proveedoresTable->getProveedorByID( $id );
+        try
+        {
+            /*Levanto el usuario para completar el form.*/
+            $proveedoresTable = new Proveedores();
+            $row = $proveedoresTable->getProveedorByID( $id );
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -230,34 +244,39 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
             $this->_helper->redirector->gotoUrl('user/proveedores/listproveedores');
         }
 
-        $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this   ->_modform = new Zend_Form();
+        $this   ->_modform->setAction($this->_baseUrl)
+                ->setName('form')
+                ->setMethod('post');
 
-        $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_modform->createElement('text', 'name',
+                array('label' => '*' . $this->language->_('Nombre')));
         $name->setValue($row->name() )
              ->addValidator($alnumWithWS)
              ->addValidator('stringLength', false, array(1, 100))
              ->setRequired(true);
 
-        $adress = $this->_modform->createElement('text', 'adress', array('label' => '*' . $this->language->_('Dirección')));
+        $adress = $this->_modform->createElement('text', 'adress',
+                array('label' => '*' . $this->language->_('Dirección')));
         $adress  ->setValue($row->adress() )
                     ->addValidator($alnumWithWS)
                     ->addValidator('stringLength', false, array(1, 200))
                     ->setRequired(True);
 
-        $tel = $this->_modform->createElement('text', 'tel', array('label' => '*' . $this->language->_('Teléfono')));
+        $tel = $this->_modform->createElement('text', 'tel',
+                array('label' => '*' . $this->language->_('Teléfono')));
         $tel    ->setValue($row->tel() )
                 ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
 
-        $fax = $this->_modform->createElement('text', 'fax', array('label' => $this->language->_('Fax')));
+        $fax = $this->_modform->createElement('text', 'fax',
+                array('label' => $this->language->_('Fax')));
         $fax    ->setValue($row->fax() )
                 ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(False);
 
-        $mail = $this->_modform->createElement('text', 'mail', array('label' => $this->language->_('E-mail')));
+        $mail = $this->_modform->createElement('text', 'mail',
+                array('label' => $this->language->_('E-mail')));
         $mail   ->setValue($row->mail() )
                 ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
@@ -278,38 +297,43 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
 
     private function getProveedorAddForm()
     {
-        $alnumWithWS = new Zend_Validate_Alnum(True);
-        
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
 
+        $alnumWithWS = new Zend_Validate_Alnum(True);
+
         $this->_addform = new Zend_Form();
         $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+                        ->setName('form')
+                        ->setMethod('post');
 
-        $name = $this->_addform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
+        $name = $this->_addform->createElement('text', 'name',
+            array('label' => '*' . $this->language->_('Nombre')));
         $name->addValidator($alnumWithWS)
                  ->addValidator('stringLength', false, array(1, 150))
                  ->addValidator(new CV_Validate_ProveedorExiste())
                  ->setRequired(true);
 
-        $adress = $this->_addform->createElement('text', 'adress', array('label' => '*' . $this->language->_('Dirección')));
+        $adress = $this->_addform->createElement('text', 'adress',
+            array('label' => '*' . $this->language->_('Dirección')));
         $adress ->addValidator($alnumWithWS)
                 ->addValidator('stringLength', false, array(1, 200))
                 ->setRequired(True);
 
-        $tel = $this->_addform->createElement('text', 'tel', array('label' => '*' . $this->language->_('Teléfono')));
+        $tel = $this->_addform->createElement('text', 'tel',
+            array('label' => '*' . $this->language->_('Teléfono')));
         $tel    ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(True);
 
-        $fax = $this->_addform->createElement('text', 'fax', array('label' => $this->language->_('Fax')));
+        $fax = $this->_addform->createElement('text', 'fax',
+            array('label' => $this->language->_('Fax')));
         $fax    ->addValidator('stringLength', false, array(1, 150))
                 ->setRequired(False);
 
-        $mail = $this->_addform->createElement('text', 'mail', array('label' => $this->language->_('E-mail')));
+        $mail = $this->_addform->createElement('text', 'mail',
+            array('label' => $this->language->_('E-mail')));
         $mail   ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
                 ->setRequired(False);
@@ -326,23 +350,24 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         return $this->_addform;
     }
 
-	private function getProveedorSearchForm()
-    {      
+    private function getProveedorSearchForm()
+    {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_searchform)
         {
             return $this->_searchform;
         }
 
         $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $this->_searchform  ->setAction($this->_baseUrl)
+                            ->setName('form')
+                            ->setMethod('get');
 
-        $proveedor = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
-        $proveedor       ->addValidator($alnumWithWS)
-                     ->addValidator('stringLength', false, array(1, 100));
+        $proveedor = $this->_searchform->createElement('text', 'consulta',
+                array('label' => $this->language->_('Nombre')));
+        $proveedor  ->addValidator($alnumWithWS)
+                    ->addValidator('stringLength', false, array(1, 100));
 
         // Add elements to form:
         $this->_searchform->addElement($proveedor)
@@ -352,38 +377,50 @@ class user_ProveedoresController extends Trifiori_User_Controller_Action
         return $this->_searchform;
     }
 
-	public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Proveedores();
-		   $data = $model->fetchAll("NOMBRE_TRA LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-	       }
-	
-		   $arr = array("Resultset" => array("Result" => $aux));
-	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
+
+            try
+            {
+                $model = new Proveedores();
+                $data = $model->fetchAll("NOMBRE_TRA LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
+
+                foreach ($data as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch (Zend_Exception $error)
+            {
+                $arry = array();
+            }
+
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
    }
 }
 ?>

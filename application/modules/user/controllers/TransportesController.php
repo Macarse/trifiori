@@ -12,7 +12,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         parent::init();
     }
-    
+
     public function indexAction()
     {
         $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
@@ -48,13 +48,14 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->view->error = $error;
+                        $this->view->error = $this->language->_("Error en la Base de datos.");
                     }
                 }
             }
         }
 
-        $this->view->transporteAddForm = $this->getTransporteAddForm();
+        if (($this->view->transporteAddForm = $this->getTransporteAddForm()) == NULL)
+            $this->view->error = $this->language->_("Error en la Base de datos.");
     }
 
     public function listtransportesAction()
@@ -65,7 +66,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-        
+
         $this->view->message = $this->_flashMessenger->getMessages();
 
         $this->_searchform = $this->getTransporteSearchForm();
@@ -109,9 +110,9 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     Zend_Registry::set('sorttype', "");
                     Zend_Registry::set('busqueda', "");
                 }
-                    
+
                 $paginator = new Zend_Paginator(new Trifiori_Paginator_Adapter_DbTable($transportes, $transportesT));
-                
+
                 if (isset($_GET["page"]))
                 {
                     $paginator->setCurrentPageNumber($_GET["page"]);
@@ -125,7 +126,7 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->transporteSearchForm = $this->getTransporteSearchForm();
@@ -142,13 +143,15 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         {
             try
             {
-            $transportesTable = new Transportes();
-            $transportesTable->removeTransporte( $this->getRequest()->getParam('id') );
-            $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
+                $transportesTable = new Transportes();
+                $transportesTable->removeTransporte( $this->getRequest()->getParam('id') );
+                $this->_flashMessenger->addMessage($this->language->_("Eliminación exitosa."));
             }
             catch (Zend_Exception $error)
             {
-            $this->_flashMessenger->addMessage($this->language->_($error));
+                $this->_flashMessenger->addMessage(
+                        $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -172,6 +175,10 @@ class user_TransportesController extends Trifiori_User_Controller_Action
             {
                $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
             }
+        }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
         }
 
         /*Si viene algo por post, validarlo.*/
@@ -197,11 +204,11 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                    $this->_flashMessenger->addMessage($this->language->_($error));
+                        $this->_flashMessenger->addMessage(
+                            $this->language->_("No se puedo modificar. Error en la Base de datos.")
+                                                        );
                     }
 
-                    /*TODO: Esto acá está mal. Si hay un error en la db nunca te enterás*/
-                    /*Se actualizó, volver a mostrar lista de users*/
                     $this->_helper->redirector->gotoUrl('user/transportes/listtransportes');
                 }
             }
@@ -211,16 +218,16 @@ class user_TransportesController extends Trifiori_User_Controller_Action
     private function getTransporteAddForm()
     {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_addform)
         {
             return $this->_addform;
         }
 
         $this->_addform = new Zend_Form();
-        $this->_addform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_addform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
 
         $codBandera = $this->_addform->createElement('text', 'nameBandera',
@@ -228,10 +235,15 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $codBandera ->setRequired(true)
                     ->addValidator(new CV_Validate_Bandera());
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $mediosTable = new Medios();
-        $mediosOptions =  $mediosTable->getMediosArray();
+        try
+        {
+            $mediosTable = new Medios();
+            $mediosOptions =  $mediosTable->getMediosArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         $codMedio = $this->_addform->createElement('select', 'codMedio');
         $codMedio   ->setRequired(true)
@@ -258,8 +270,8 @@ class user_TransportesController extends Trifiori_User_Controller_Action
                                 array('HtmlTag', array('tag' => 'div', 'id' => 'idbanderasautocomplete'))
                                 );
 
-		
-		// Add elements to form:
+
+        // Add elements to form:
         $this->_addform->addElement($name)
                        ->addElement($codBandera)
                         ->addElement('hidden', 'autobanderas', array( 'decorators' => $decoradorBandera))
@@ -282,8 +294,15 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         $alnumWithWS = new Zend_Validate_Alnum(True);
 
         /*Levanto el transporte para completar el form.*/
-        $transportesTable = new Transportes();
-        $row = $transportesTable->getTransporteByID( $id );
+        try
+        {
+            $transportesTable = new Transportes();
+            $row = $transportesTable->getTransporteByID( $id );
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -292,25 +311,29 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         }
 
         $this->_modform = new Zend_Form();
-        $this->_modform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('post');
+        $this->_modform ->setAction($this->_baseUrl)
+                        ->setName('form')
+                        ->setMethod('post');
 
         $codBandera = $this->_modform->createElement('text', 'nameBandera',
                 array('label' =>'*' .  $this->language->_('Bandera'), 'id' => 'idnameBandera'));
         $codBandera ->setRequired(true)
-					->setValue($row->codBanderaName() )
+                    ->setValue($row->codBanderaName() )
                     ->addValidator(new CV_Validate_Bandera());
 
-       /*TODO: Si la db está muerta devuelve NULL.
-        Ver qué hacer en ese caso.*/
-        $mediosTable = new Medios();
-        $mediosOptions =  $mediosTable->getMediosArray();
-
+        try
+        {
+            $mediosTable = new Medios();
+            $mediosOptions =  $mediosTable->getMediosArray();
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
         $codMedio = $this->_modform->createElement('select', 'codMedio');
         $codMedio   ->setValue( $row->codMedio() )
                     ->setRequired(true)
-                ->setLabel('*' . $this->language->_('Medio'))
+                    ->setLabel('*' . $this->language->_('Medio'))
                     ->setMultiOptions($mediosOptions);
 
         $name = $this->_modform->createElement('text', 'name', array('label' => '*' . $this->language->_('Nombre')));
@@ -345,45 +368,20 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         return $this->_modform;
     }
 
-   public function getdataTransportesAction() {
 
-       $this->_helper->viewRenderer->setNoRender();
-       $this->_helper->layout()->disableLayout();
-
-       //$model = $this->getModelInstance();
-       $model = new Transportess();
-
-       /* fetch id from request, value validation omitted */
-       $id = $this->getRequest()->getParam('id');
-
-       /* [Json response] */
-
-       $responseData = $model->getTransportesArray();
-
-       try {
-
-           $responseDataJsonEncoded = Zend_Json::encode($responseData);
-           $this->getResponse()->setHeader('Content-Type', 'application/json')
-                               ->setBody($responseDataJsonEncoded);
-
-       } catch(Zend_Json_Exception $e) {
-           // handle and generate HTTP error code response, see below
-       }
-   }
-   
-   	private function getTransporteSearchForm()
-    {      
+    private function getTransporteSearchForm()
+    {
         $alnumWithWS = new Zend_Validate_Alnum(True);
-        
+
         if (null !== $this->_searchform)
         {
             return $this->_searchform;
         }
 
         $this->_searchform = new Zend_Form();
-        $this->_searchform->setAction($this->_baseUrl)
-						->setName('form')
-						->setMethod('get');
+        $this->_searchform  ->setAction($this->_baseUrl)
+                            ->setName('form')
+                            ->setMethod('get');
 
         $transporte = $this->_searchform->createElement('text', 'consulta', array('label' => $this->language->_('Nombre')));
         $transporte       ->addValidator($alnumWithWS)
@@ -397,38 +395,42 @@ class user_TransportesController extends Trifiori_User_Controller_Action
         return $this->_searchform;
     }
 
-	public function getdataAction() {
-       $arr = array();
-	   $aux = array();
-	   
+    public function getdataAction()
+    {
+        $arr = array();
+        $aux = array();
+
        $this->_helper->viewRenderer->setNoRender();
        $this->_helper->layout()->disableLayout();
-	   
-	   if ( $this->getRequest()->getParam('query') != null )
+
+        if ( $this->getRequest()->getParam('query') != null )
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-		   $model = new Transportes();
-		   $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-		   
-           foreach ($data as $row)
-		   {
-               array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-	       }
+            $model = new Transportes();
+            $data = $model->fetchAll("NOMBRE_BUQ LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
+
+            foreach ($data as $row)
+            {
+                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+            }
 	
-		   $arr = array("Resultset" => array("Result" => $aux));
+            $arr = array("Resultset" => array("Result" => $aux));
 	
-		   try {
-			   $responseDataJsonEncoded = Zend_Json::encode($arr);
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody($responseDataJsonEncoded);
-	
-		   } catch(Zend_Json_Exception $e) {
-			   // handle and generate HTTP error code response, see below
-			   $this->getResponse()->setHeader('Content-Type', 'application/json')
-								   ->setBody('[{Error}]');
-		   }
-		 }
+            try
+            {
+                $responseDataJsonEncoded = Zend_Json::encode($arr);
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody($responseDataJsonEncoded);
+
+            }
+            catch(Zend_Json_Exception $e)
+            {
+                // handle and generate HTTP error code response, see below
+                $this->getResponse()->setHeader('Content-Type', 'application/json')
+                                    ->setBody('[{Error}]');
+            }
+        }
    }
 }
 ?>
