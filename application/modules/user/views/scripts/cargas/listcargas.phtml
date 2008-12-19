@@ -9,13 +9,13 @@
 <? } else { ?>
 <script type="text/javascript">
         var myColumnDefs = [
-            {key:"bultos",label:" <?= $this->escape($this->language->_("Cantidad Bultos"))?> ", sortable:false},
-            {key:"tipoenvase",label:" <?= $this->escape($this->language->_("Tipo de Envase"))?> ", sortable:false},
-            {key:"peso",label:" <?= $this->escape($this->language->_("Peso"))?> ", sortable:false},
-            {key:"unidad",label:" <?= $this->escape($this->language->_("Unidad"))?> ", sortable:false},
-            {key:"nropaq",label:" <?= $this->escape($this->language->_("Número de Paquete"))?> ", sortable:false},
-            {key:"marcayum",label:" <?= $this->escape($this->language->_("Marca y número"))?> ", sortable:false},
-            {key:"imco",label:" <?= $this->escape($this->language->_("Merc. IMCO"))?> ", sortable:false},
+            {key:"bultos",label:" <?= $this->escape($this->language->_("Cantidad Bultos"))?> <?= $this->sortby == 'bultos' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"tipoenvase",label:" <?= $this->escape($this->language->_("Tipo de Envase"))?> <?= $this->sortby == 'tipoenvase' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"peso",label:" <?= $this->escape($this->language->_("Peso"))?> <?= $this->sortby == 'peso' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"unidad",label:" <?= $this->escape($this->language->_("Unidad"))?> <?= $this->sortby == 'unidad' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"nropaq",label:" <?= $this->escape($this->language->_("Número de Paquete"))?> <?= $this->sortby == 'nropaq' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"marcayum",label:" <?= $this->escape($this->language->_("Marca y número"))?> <?= $this->sortby == 'marcayum' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+            {key:"imco",label:" <?= $this->escape($this->language->_("Merc. IMCO"))?> <?= $this->sortby == 'imco' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
             {key:"mod",label:" <?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
             {key:"elim",label:" <?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}
         ];

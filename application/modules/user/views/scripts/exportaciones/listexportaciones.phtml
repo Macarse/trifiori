@@ -10,15 +10,15 @@
 <script type="text/javascript">
 var myColumnDefs =
 [
-    {key:"orden",label:" <?= $this->escape($this->language->_("Orden"))?> ", sortable:false},
-    {key:"trans",label:" <?= $this->escape($this->language->_("Transporte"))?> ", sortable:false},
-    {key:"cliente",label:" <?= $this->escape($this->language->_("Codigo Cliente"))?> ", sortable:false},
-    {key:"destinacion",label:" <?= $this->escape($this->language->_("Destinación"))?> ", sortable:false},
-    {key:"carga",label:" <?= $this->escape($this->language->_("Carga"))?> ", sortable:false},
-    {key:"feching",label:" <?= $this->escape($this->language->_("Fecha de Ingreso"))?> ", sortable:false},
-    {key:"descmer",label:" <?= $this->escape($this->language->_("Descripción Mercadería"))?> ", sortable:false},
+    {key:"orden",label:" <?= $this->escape($this->language->_("Orden"))?> <?= $this->sortby == 'orden' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"trans",label:" <?= $this->escape($this->language->_("Transporte"))?> <?= $this->sortby == 'trans' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"cliente",label:" <?= $this->escape($this->language->_("Codigo Cliente"))?> <?= $this->sortby == 'cliente' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"destinacion",label:" <?= $this->escape($this->language->_("Destinación"))?> <?= $this->sortby == 'destinacion' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"carga",label:" <?= $this->escape($this->language->_("Carga"))?> <?= $this->sortby == 'carga' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"feching",label:" <?= $this->escape($this->language->_("Fecha de Ingreso"))?> <?= $this->sortby == 'feching' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"descmer",label:" <?= $this->escape($this->language->_("Descripción Mercadería"))?> <?= $this->sortby == 'descmer' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
     {key:"detalle", label:" <?= $this->escape($this->language->_("Detalle"))?> ", sortable:false},
-    {key:"reporte",label:"<?= $this->escape($this->language->_("Reporte"))?>", sortable:false},
+    {key:"reporte",label:"<?= $this->escape($this->language->_("Reporte"))?> ", sortable:false},
     {key:"mod",label:" <?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
     {key:"elim",label:" <?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}
 ];

@@ -10,14 +10,14 @@
 <script type="text/javascript">
 var myColumnDefs =
 [
-    {key:"orden",label:"<?= $this->escape($this->language->_("Orden"))?>", sortable:false},
-    {key:"codCanalName",label:"<?= $this->escape($this->language->_("Canal"))?>", sortable:false},
-    {key:"codClienteName",label:"<?= $this->escape($this->language->_("Cliente"))?>", sortable:false},
-    {key:"codOppName",label:"<?= $this->escape($this->language->_("Opp"))?>", sortable:false},
-    {key:"desMercaderias",label:"<?= $this->escape($this->language->_("Descripción Mercadería"))?>", sortable:false},
-    {key:"valorFactura",label:"<?= $this->escape($this->language->_("Valor Factura"))?>", sortable:false},
-    {key:"ingresoPuerto",label:"<?= $this->escape($this->language->_("Ingreso a Puerto"))?>", sortable:false},
-    {key:"detalle", label:" <?= $this->escape($this->language->_("Detalle"))?> ", sortable:false},
+    {key:"orden",label:"<?= $this->escape($this->language->_("Orden"))?> <?= $this->sortby == 'orden' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"codCanalName",label:"<?= $this->escape($this->language->_("Canal"))?> <?= $this->sortby == 'codCanalName' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"codClienteName",label:"<?= $this->escape($this->language->_("Cliente"))?> <?= $this->sortby == 'codClienteName' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"codOppName",label:"<?= $this->escape($this->language->_("Opp"))?> <?= $this->sortby == 'codOppName' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"desMercaderias",label:"<?= $this->escape($this->language->_("Descripción Mercadería"))?> <?= $this->sortby == 'desMercaderias' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"valorFactura",label:"<?= $this->escape($this->language->_("Valor Factura"))?> <?= $this->sortby == 'valorFactura' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"ingresoPuerto",label:"<?= $this->escape($this->language->_("Ingreso a Puerto"))?> <?= $this->sortby == 'ingresoPuerto' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+    {key:"detalle", label:" <?= $this->escape($this->language->_("Detalle"))?>", sortable:false},
     {key:"reporte",label:"<?= $this->escape($this->language->_("Reporte"))?>", sortable:false},
     {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?>", sortable:false},
     {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?>", sortable:false}

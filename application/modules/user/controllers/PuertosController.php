@@ -68,6 +68,8 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         unset($this->view->message);
 
         $this->view->message = $this->_flashMessenger->getMessages();
+        $this->view->sort = ( isset($_GET["sort"] ) ) ? $_GET["sort"] : 'asc' ;
+        $this->view->sortby = ( isset($_GET["sortby"] ) ) ? $_GET["sortby"] : '' ;
 
         $this->_searchform = $this->getPuertoSearchForm();
         if ($this->_searchform->isValid($_GET))

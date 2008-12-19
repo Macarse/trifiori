@@ -10,13 +10,13 @@
 <script type="text/javascript">
 var myColumnDefs =
 	[
-	    {key:"name",label: '<?= $this->escape($this->language->_("Número"))?>', sortable:false},
-	    {key:"declaracionOk",label:"<?= $this->escape($this->language->_("Declaración Ok"))?>", sortable:false},
-	    {key:"pedidoDinero",label:"<?= $this->escape($this->language->_("Pedido de Dinero"))?>", sortable:false},
-	    {key:"otrosOpp",label:"<?= $this->escape($this->language->_("Otros Opp"))?>", sortable:false},
-	    {key:"fraccionado",label:"<?= $this->escape($this->language->_("Fraccionado Opp"))?>", sortable:false},
-	    {key:"estampillas",label:"<?= $this->escape($this->language->_("Estampillas"))?>", sortable:false},
-	    {key:"impuestosInternos",label:"<?= $this->escape($this->language->_("Impuestos Internos"))?>", sortable:false},
+	    {key:"name",label: "<?= $this->escape($this->language->_("Número"))?> <?= $this->sortby == 'name' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"declaracionOk",label:"<?= $this->escape($this->language->_("Declaración Ok"))?> <?= $this->sortby == 'declaracionOk' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"pedidoDinero",label:"<?= $this->escape($this->language->_("Pedido de Dinero"))?> <?= $this->sortby == 'pedidoDinero' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"otrosOpp",label:"<?= $this->escape($this->language->_("Otros Opp"))?> <?= $this->sortby == 'otrosOpp' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"fraccionado",label:"<?= $this->escape($this->language->_("Fraccionado Opp"))?> <?= $this->sortby == 'fraccionado' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"estampillas",label:"<?= $this->escape($this->language->_("Estampillas"))?> <?= $this->sortby == 'estampillas' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
+	    {key:"impuestosInternos",label:"<?= $this->escape($this->language->_("Impuestos Internos"))?> <?= $this->sortby == 'impuestosInternos' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
 	    {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?>", sortable:false},
 	    {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?>", sortable:false}
 	];
