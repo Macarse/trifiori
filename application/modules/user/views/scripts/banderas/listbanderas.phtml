@@ -9,7 +9,7 @@
 <? } else { ?>
 <script type="text/javascript">
 var myColumnDefs = [
-    {key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> ", sortable:false},
+    {key:"name",label:"<?= $this->escape($this->language->_("Nombre"))?> <?= $this->sortby == 'name' ? '<img src=\'/images/sort' . $this->sort . '.gif\' width=\'10\' height=\'10\'>' : '' ?>", sortable:false},
     {key:"mod",label:"<?= $this->escape($this->language->_("Modificar"))?> ", sortable:false},
     {key:"elim",label:"<?= $this->escape($this->language->_("Eliminar"))?> ", sortable:false}];
 </script>
