@@ -384,11 +384,12 @@ class user_ExportacionesController extends Trifiori_User_Controller_Action
         }
         catch (Zend_Exception $error)
         {
+            echo "<div class=\"hd\">" . $this->language->_("Detalles de Exportación") . "</div>";
+            echo "<div class=\"bd\"> " . $this->language->_("Error en la Base de datos.") . " </div>";
             $this->_flashMessenger->addMessage(
                                 $this->language->_("No se puedo generar detalles." .
                                     "Error en la Base de datos.")
                                                 );
-            $this->_helper->redirector->gotoUrl('user/exportaciones/listexportaciones');
         }
     }
 
