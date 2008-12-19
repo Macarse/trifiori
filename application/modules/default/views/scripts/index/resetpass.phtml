@@ -3,7 +3,18 @@
 <? } ?>
 <? if (isset($this->succeed)) { ?>
     <p class="okmsg"> <?= $this->escape($this->succeed) ?>.</p>
+    <div id="okmsg"></div>
+    <script languaje="javascript">
+        var time=0;
+        showAlert("okmsg", { width:"620px", modal:true, visible:true, underlay:"shadow", fixedcenter:true, constraintoviewport:true, draggable:false } , "Cambio de contraseña", "<div id='divmsg'><?= $this->escape($this->language->_("La operación ha sido exitosa. Ya puede ingresar al sitio con su nueva contraseña.")) ?></div><br><div id='idtimeerror'></div>", "Trifiori");
+        setInterval (function (){if (time==5){document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando al login...'))?>";window.location.href = "/";}else{ document.getElementById('idtimeerror').innerHTML = "<?= $this->escape($this->language->_('Redireccionando en'))?> " + (5-time); time++;}}, 1000);
+    </script>
 <? } ?>
-<div class="cformusuario">
+<div class="cformulario">
     <?= $this->getPassForm ?>
 </div>
+<script type="text/javascript">
+YAHOO.namespace("tooltip.container");
+YAHOO.tooltip.container.tt1 = new YAHOO.widget.Tooltip("tt1", { context:"password", text:"Insegre aquí su nueva contraseña." });
+YAHOO.tooltip.container.tt1 = new YAHOO.widget.Tooltip("tt1", { context:"passwordvrfy", text:"Insegre aquí la confirmación de su contraseña." });
+</script>
