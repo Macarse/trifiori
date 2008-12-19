@@ -12,11 +12,11 @@ class CV_Validate_Moneda extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $monedas = new Monedas();
+ 	    $model = new Monedas();
         try
         {
-            $codMoneda = $monedas->getMonedaByName($value);
-            if ($codMoneda != NULL)
+		   $data = $model->fetchAll("NAME_MON LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {

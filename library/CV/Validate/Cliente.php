@@ -12,11 +12,11 @@ class CV_Validate_Cliente extends Zend_Validate_Abstract
         $this->_messageTemplates = array(self::MSG_CLIENTE => $errorMsg);
         $this->_setValue($value);
 
-        $clientes = new Clientes();
+        $model = new Clientes();
         try
         {
-            $codCliente = $clientes->getClienteByName($value);
-            if ($codCliente != NULL)
+   		    $data = $model->fetchAll("NOMBRE_CLI LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {

@@ -12,11 +12,11 @@ class CV_Validate_Destinacion extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $destinacion = new Destinaciones();
+        $model = new Destinaciones();
         try
         {
-            $codDestinacion = $destinacion->getDestinacionByDesc($value);
-            if ($codDestinacion != NULL)
+   		    $data = $model->fetchAll("DESCRIPCION_DES LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {

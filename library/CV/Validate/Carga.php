@@ -12,11 +12,11 @@ class CV_Validate_Carga extends Zend_Validate_Abstract
 
         $this->_setValue($value);
 
-        $cargas = new Cargas();
+        $model = new Cargas();
         try
         {
-            $codCarga = $cargas->getCargaByNroPaq($value);
-            if ($codCarga != NULL)
+            $data = $model->fetchAll("NROPAQUETE_CAR LIKE '" .  $value . "%' AND DELETED LIKE '0'");
+            if (count($data))
                 return true;
             else
             {
