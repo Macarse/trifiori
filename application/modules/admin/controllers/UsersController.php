@@ -269,6 +269,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
         $username = $this->_addform->createElement('text', 'username', array('label' => '*' . $this->language->_('Usuario')));
         $username->addValidator('alnum')
                  ->addValidator('stringLength', false, array(1, 30))
+                 ->addValidator(new CV_Validate_UsuarioExiste())
                  ->setRequired(true);
 
         // Create and configure password element:
@@ -317,6 +318,7 @@ class admin_UsersController extends Trifiori_Admin_Controller_Action
             array('label' => '*' . $this->language->_('E-mail')));
         $email   ->addValidator('stringLength', false, array(1, 100))
                 ->addValidator('EmailAddress')
+                 ->addValidator(new CV_Validate_MailUsuarioExiste())
                 ->setRequired(True);
 
         // Add elements to form:

@@ -875,10 +875,12 @@ class Importaciones extends Zend_Db_Table_Abstract
                 ->join('TRANSPORTES', 'TRANSPORTES.CODIGO_BUQ = IMPORTACIONES.CODIGO_TRA', array())
                 ->join('CANALES', 'CANALES.CODIGO_CAN = IMPORTACIONES.CODIGO_CAN', array())
                 ->join('CARGAS', 'CARGAS.CODIGO_CAR = IMPORTACIONES.CODIGO_CAR', array())
-                ->join('OPP', 'OPP.CODIGO_OPP = IMPORTACIONES.CODIGO_OPP', array())
+                ->joinLeft('OPP', 'OPP.CODIGO_OPP = IMPORTACIONES.CODIGO_OPP', array())
                 ->where($where)
                 ->where("IMPORTACIONES.DELETED LIKE '0'")
                 ->order($mySortby . " " . $mySorttype);
+
+        //die($select->__toString());
 
         return $select;
             

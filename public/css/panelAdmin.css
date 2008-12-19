@@ -6,6 +6,15 @@
 #editmenu.visible .yuimenuitemlabel {
    *zoom: 1;
 }
+
+.errors
+{
+	color: #FF0000;
+	position: relative;
+	font-weight: bold;
+    text-align: center;
+	top: 0.5em;
+}
 		
 div.error
 {
