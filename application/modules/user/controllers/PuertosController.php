@@ -66,7 +66,9 @@ class user_PuertosController extends Trifiori_User_Controller_Action
         /*Errors from the past are deleted*/
         unset($this->view->error);
         unset($this->view->message);
-
+        
+        $config = Zend_Registry::getInstance()->configuration;
+        $this->view->gkey = $config->google->gkey;
         $this->view->message = $this->_flashMessenger->getMessages();
         $this->view->sort = ( isset($_GET["sort"] ) ) ? $_GET["sort"] : 'asc' ;
         $this->view->sortby = ( isset($_GET["sortby"] ) ) ? $_GET["sortby"] : '' ;
