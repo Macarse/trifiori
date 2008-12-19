@@ -85,14 +85,22 @@ class admin_LogController extends Trifiori_Admin_Controller_Action
                     }
 
                     /*Lo envio*/
-                    $config = Zend_Registry::getInstance()->configuration;
+                    try
+                    {
+                        $config = Zend_Registry::getInstance()->configuration;
 
-                    $mail = new Zend_Mail();
-                    $mail->setBodyHtml($body);
-                    $mail->setFrom($config->gmail->email, 'Trifiori Web');
-                    $mail->addTo($config->admin->email, $config->admin->name);
-                    $mail->setSubject('Trifiori Web');
-                    $mail->send(Zend_Registry::getInstance()->mailTransport);
+                        $mail = new Zend_Mail();
+                        $mail->setBodyHtml($body);
+                        $mail->setFrom($config->gmail->email, 'Trifiori Web');
+                        $mail->addTo($config->admin->email, $config->admin->name);
+                        $mail->setSubject('Trifiori Web');
+                        $mail->send(Zend_Registry::getInstance()->mailTransport);
+                    }
+                    catch (Exception $error)
+                    {
+                        $this->view->error = $this->language->_("Error al intentar enviar e-mail.");
+                    }
+
                     $log = $table->searchLog($_GET["consulta"], $mySortBy, $mySortType);
                 }
 

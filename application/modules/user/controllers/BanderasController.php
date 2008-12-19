@@ -122,7 +122,7 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->view->error = $error;
+                $this->view->error = $this->language->_("Error en la Base de datos.");
             }
         }
         $this->view->banderaSearchForm = $this->getBanderaSearchForm();
@@ -145,10 +145,9 @@ class user_BanderasController extends Trifiori_User_Controller_Action
             }
             catch (Zend_Exception $error)
             {
-                $this->_flashMessenger->addMessage( "<div class=\"errors\">" .
-                    $this->language->_("No se puedo eliminar. Error en la Base de datos.") .
-                    "</div>"
-                    );
+                $this->_flashMessenger->addMessage(
+                                $this->language->_("No se puedo eliminar. Error en la Base de datos.")
+                                                );
             }
         }
 
@@ -193,10 +192,9 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                     }
                     catch (Zend_Exception $error)
                     {
-                        $this->_flashMessenger->addMessage("<div class=\"errors\">".
-                            $this->language->_("No se pudo modificar. Error en la Base de datos.") .
-                            "</div>"
-                                            );
+                        $this->_flashMessenger->addMessage(
+                                $this->language->_("No se puedo modificar. Error en la Base de datos.")
+                                                );
                     }
 
                     $this->_helper->redirector->gotoUrl('user/banderas/listbanderas');
@@ -216,8 +214,15 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         }
 
         /*Levanto el usuario para completar el form.*/
-        $bandera = new Banderas();
-        $row = $bandera->getBanderaByID( $id );
+        try
+        {
+            $bandera = new Banderas();
+            $row = $bandera->getBanderaByID( $id );
+        }
+        catch (Zend_Exception $error)
+        {
+            return NULL;
+        }
 
         if ( $row === null )
         {
@@ -314,15 +319,22 @@ class user_BanderasController extends Trifiori_User_Controller_Action
         {
             $this->_name = $this->getRequest()->getParam('query');
 
-            $model = new Banderas();
-            $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
-
-            foreach ($banderas as $row)
+            try
             {
-                array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
-            }
+                $model = new Banderas();
+                $banderas = $model->fetchAll("NOMBRE_BAN LIKE '" .  $this->_name . "%' AND DELETED LIKE '0'");
 
-            $arr = array("Resultset" => array("Result" => $aux));
+                foreach ($banderas as $row)
+                {
+                    array_push($aux, array("id" => $row->id(), "data" => $row->name()));	
+                }
+
+                $arr = array("Resultset" => array("Result" => $aux));
+            }
+            catch (Zend_Exception $error)
+            {
+                $arr = array();
+            }
 
             try
             {

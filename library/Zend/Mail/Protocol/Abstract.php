@@ -58,7 +58,7 @@ abstract class Zend_Mail_Protocol_Abstract
     /**
      * Default timeout in seconds for initiating session
      */
-    const TIMEOUT_CONNECTION = 30;
+    const TIMEOUT_CONNECTION = 7;
 
 
     /**
@@ -221,7 +221,7 @@ abstract class Zend_Mail_Protocol_Abstract
         $errorStr = '';
 
         // open connection
-        $this->_socket = stream_socket_client($remote, $errorNum, $errorStr, self::TIMEOUT_CONNECTION);
+        $this->_socket = @stream_socket_client($remote, $errorNum, $errorStr, self::TIMEOUT_CONNECTION);
 
         if ($this->_socket === false) {
             if ($errorNum == 0) {
