@@ -643,56 +643,6 @@ class Importaciones extends Zend_Db_Table_Abstract
                 ->order($mySortby . " " . $mySorttype);
 
         return $select;
-            
-    /*
-        if ($cliente == null && $orden == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'");
-        }
-        else if ($cliente == null && $orden == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                    WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($cliente == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN_IMP AS CHAR(100)) LIKE '%" . $orden . "%'");
-        }
-        else if ($orden == null && $carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                    WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");
-        }
-        else if ($orden == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                    WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
-                    AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                    WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($cliente == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN_IMP AS CHAR(100)) LIKE '%" . $orden . "%'")
-                    ->where("CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                    WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-        else if ($carga == null)
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN_IMP AS CHAR(100)) LIKE '%" . $orden . "%'")
-                    ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                    WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')");            
-        }
-        else
-        {
-            $query = $this->select()->from($this)->where("DELETED LIKE '0'")->where("CAST(ORDEN_IMP AS CHAR(100)) LIKE '%" . $orden . "%'")
-                    ->where("CODIGO_CLI IN (SELECT CODIGO_CLI FROM CLIENTES
-                    WHERE NOMBRE_CLI LIKE '%" . $cliente . "%')
-                    AND CODIGO_CAR IN (SELECT CODIGO_CAR FROM CARGAS
-                    WHERE NROPAQUETE_CAR LIKE '%" . $carga . "%')");
-        }
-    
-        return $query;
-       */
     }
 }
 ?>

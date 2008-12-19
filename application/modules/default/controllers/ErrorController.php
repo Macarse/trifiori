@@ -6,6 +6,15 @@ class ErrorController extends Trifiori_Default_Controller_Action
     {
         $errors = $this->_getParam('error_handler');
 
+        $module = $this->getRequest()->get("module");
+        
+        if ($module == "user")
+            $this->_helper->layout->setLayout('user');
+        else if ($module == "admin")
+            $this->_helper->layout->setLayout('admin');
+        else
+            $this->_helper->layout->setLayout('common');
+        
         switch ($errors->type)
         {
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
