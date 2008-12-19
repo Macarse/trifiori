@@ -6,14 +6,15 @@ class ErrorController extends Trifiori_Default_Controller_Action
     {
         $errors = $this->_getParam('error_handler');
         
-        $module = $this->getRequest()->get("module");
-      
-        if ($module == "user")
-            $this->_helper->layout->setLayout('user');
-        else if ($module == "admin")
+        
+        $username = Zend_Registry::get('name');
+        
+        if ($username == "guest")
+            $this->_helper->layout->setLayout('common');
+        else if ($username == "admin")
             $this->_helper->layout->setLayout('admin');
         else
-            $this->_helper->layout->setLayout('common');
+            $this->_helper->layout->setLayout('user');
             
         switch ($errors->type)
         {

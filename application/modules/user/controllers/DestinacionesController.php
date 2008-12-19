@@ -171,7 +171,10 @@ class user_DestinacionesController extends Trifiori_User_Controller_Action
                 $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
             }
         }
-
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/destinaciones/listdestinaciones');
+        }
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {

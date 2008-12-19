@@ -118,7 +118,7 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                 {
                     $paginator->setCurrentPageNumber(1);
                 }
-                
+
                 $paginator->setItemCountPerPage(15);
                 $this->view->paginator = $paginator;
             }
@@ -174,7 +174,10 @@ class user_MonedasController extends Trifiori_User_Controller_Action
                 $this->_helper->redirector->gotoUrl('user/monedas/listmonedas');
             }
         }
-
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/monedas/listmonedas');
+        }
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
         {
