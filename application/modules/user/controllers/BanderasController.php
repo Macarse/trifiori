@@ -172,6 +172,10 @@ class user_BanderasController extends Trifiori_User_Controller_Action
                 $this->_helper->redirector->gotoUrl('user/banderas/listbanderas');
             }
         }
+        else
+        {
+            $this->_helper->redirector->gotoUrl('user/banderas/listbanderas');
+        }
 
         /*Si viene algo por post, validarlo.*/
         if ($this->getRequest()->isPost())
