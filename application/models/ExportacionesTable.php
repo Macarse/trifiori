@@ -547,7 +547,6 @@ class Exportaciones extends Zend_Db_Table_Abstract
                         'CODIGO_CLI'        => $codCliente,
                         'CODIGO_BAN'        => $codBandera,
                         'CODIGO_MON'        => $codMoneda,
-                        'CODIGO_GIR'        => $codGiro,
                         'CODIGO_DES'        => $codDestinacion,
                         'CODIGO_CAR'        => $codCarga,
                         'REFERENCIA'        => $referencia,
